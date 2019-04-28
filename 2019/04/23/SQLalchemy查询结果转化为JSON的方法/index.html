@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="博客,">
+  <meta name="keywords" content="Python3,Flask,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="博客的创建在命令行中进入博客的文件夹， 使用hexo new &amp;quot;博客的名字&amp;quot;创建一篇博客。 博客的编写创建之后博客的md文件存储在/blog/source/_post中，编辑相关md文件即可编写博客。注：tag的形式为[tag1,tag2,tag3……]。 未发布博客的查看使用hexo server即可启动本地服务器，通过输入http://localhost:4000即可进入本">
-<meta name="keywords" content="博客">
+<meta name="description" content="##遇到的问题 jsonify ORM对象时不通过，显示无法jsonify该类型 ##解决方法 首先在类中定义一个to_json的方法，使用dict方法来返回类中的属性字典 12345678910111213141516171819class Teacher(db.Model):    __tablename__ = &amp;apos;teacher&amp;apos;    TeacherId = db.Co">
+<meta name="keywords" content="Python3,Flask">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客的编写与发布">
-<meta property="og:url" content="http://yoursite.com/2018/11/21/博客的编写与发布/index.html">
+<meta property="og:title" content="SQLalchemy查询结果转化为JSON的方法">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/SQLalchemy查询结果转化为JSON的方法/index.html">
 <meta property="og:site_name" content="只不过是是随便写写啦">
-<meta property="og:description" content="博客的创建在命令行中进入博客的文件夹， 使用hexo new &amp;quot;博客的名字&amp;quot;创建一篇博客。 博客的编写创建之后博客的md文件存储在/blog/source/_post中，编辑相关md文件即可编写博客。注：tag的形式为[tag1,tag2,tag3……]。 未发布博客的查看使用hexo server即可启动本地服务器，通过输入http://localhost:4000即可进入本">
+<meta property="og:description" content="##遇到的问题 jsonify ORM对象时不通过，显示无法jsonify该类型 ##解决方法 首先在类中定义一个to_json的方法，使用dict方法来返回类中的属性字典 12345678910111213141516171819class Teacher(db.Model):    __tablename__ = &amp;apos;teacher&amp;apos;    TeacherId = db.Co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T02:17:59.875Z">
+<meta property="og:updated_time" content="2019-04-23T01:37:43.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客的编写与发布">
-<meta name="twitter:description" content="博客的创建在命令行中进入博客的文件夹， 使用hexo new &amp;quot;博客的名字&amp;quot;创建一篇博客。 博客的编写创建之后博客的md文件存储在/blog/source/_post中，编辑相关md文件即可编写博客。注：tag的形式为[tag1,tag2,tag3……]。 未发布博客的查看使用hexo server即可启动本地服务器，通过输入http://localhost:4000即可进入本">
+<meta name="twitter:title" content="SQLalchemy查询结果转化为JSON的方法">
+<meta name="twitter:description" content="##遇到的问题 jsonify ORM对象时不通过，显示无法jsonify该类型 ##解决方法 首先在类中定义一个to_json的方法，使用dict方法来返回类中的属性字典 12345678910111213141516171819class Teacher(db.Model):    __tablename__ = &amp;apos;teacher&amp;apos;    TeacherId = db.Co">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/21/博客的编写与发布/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/23/SQLalchemy查询结果转化为JSON的方法/">
 
 
 
 
 
-  <title>博客的编写与发布 | 只不过是是随便写写啦</title>
+  <title>SQLalchemy查询结果转化为JSON的方法 | 只不过是是随便写写啦</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/博客的编写与发布/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/SQLalchemy查询结果转化为JSON的方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老王">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博客的编写与发布</h1>
+          <h1 class="post-title" itemprop="name headline">SQLalchemy查询结果转化为JSON的方法</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T09:38:57+08:00">
-                2018-11-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T09:10:08+08:00">
+                2019-04-23
               </time>
             
 
@@ -300,10 +300,13 @@
       
 
       
-        <h2 id="博客的创建"><a href="#博客的创建" class="headerlink" title="博客的创建"></a>博客的创建</h2><p>在命令行中进入博客的文件夹， 使用<code>hexo new &quot;博客的名字&quot;</code>创建一篇博客。</p>
-<h2 id="博客的编写"><a href="#博客的编写" class="headerlink" title="博客的编写"></a>博客的编写</h2><p>创建之后博客的md文件存储在/blog/source/_post中，编辑相关md文件即可编写博客。注：tag的形式为[tag1,tag2,tag3……]。</p>
-<h2 id="未发布博客的查看"><a href="#未发布博客的查看" class="headerlink" title="未发布博客的查看"></a>未发布博客的查看</h2><p>使用<code>hexo server</code>即可启动本地服务器，通过输入<code>http://localhost:4000</code>即可进入本地的博客浏览编写的博客。</p>
-<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>使用<code>hexo deploy -git</code>即可发布博客。</p>
+        <p>##遇到的问题</p>
+<p>jsonify ORM对象时不通过，显示无法jsonify该类型</p>
+<p>##解决方法</p>
+<p>首先在类中定义一个to_json的方法，使用<strong>dict</strong>方法来返回类中的属性字典</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Teacher(db.Model):</span><br><span class="line">    __tablename__ = &apos;teacher&apos;</span><br><span class="line">    TeacherId = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)</span><br><span class="line">    TeacherName = db.Column(db.String(10), nullable=False)</span><br><span class="line">    TeacherBirth = db.Column(db.Integer)</span><br><span class="line">    TeacherSex = db.Column(db.String(4), nullable=False)</span><br><span class="line">    TeacherCollege = db.Column(db.String(45), nullable=False)</span><br><span class="line">    TeacherJobtitle = db.Column(db.String(10))</span><br><span class="line">    TeacherResearchDirection = db.Column(db.String(50))</span><br><span class="line">    TeacherEmail = db.Column(db.String(45))</span><br><span class="line"></span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &quot;User(username: %s)&quot; % self.TeacherName</span><br><span class="line"></span><br><span class="line">    def to_json(self):</span><br><span class="line">        dict = self.__dict__</span><br><span class="line">        if &quot;_sa_instance_state&quot; in dict:</span><br><span class="line">            del dict[&quot;_sa_instance_state&quot;]</span><br><span class="line">        return dict</span><br></pre></td></tr></table></figure>
+<p>再将查询的结果，一次通过to_json方法放到数组中，在通过jsonify函数返回到前台<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;])</span><br><span class="line">def index():</span><br><span class="line"></span><br><span class="line">    teachers = Teacher.query.all()</span><br><span class="line">    tlist=[]</span><br><span class="line">    for teacher in teachers:</span><br><span class="line">        tlist.append(teacher.to_json())</span><br><span class="line">    return jsonify(tlist)</span><br></pre></td></tr></table></figure></p>
+<p>原创出处：<a href="https://blog.csdn.net/luanxiyuan/article/details/80434767" target="_blank" rel="noopener">https://blog.csdn.net/luanxiyuan/article/details/80434767</a></p>
 
       
     </div>
@@ -321,7 +324,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
+            <a href="/tags/Python3/" rel="tag"># Python3</a>
+          
+            <a href="/tags/Flask/" rel="tag"># Flask</a>
           
         </div>
       
@@ -334,8 +339,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/09/关于这个博客的搭建/" rel="next" title="关于这个博客的搭建">
-                <i class="fa fa-chevron-left"></i> 关于这个博客的搭建
+              <a href="/2019/04/03/微信小程序-TabBar不出现的原因/" rel="next" title="微信小程序-TabBar不出现的原因">
+                <i class="fa fa-chevron-left"></i> 微信小程序-TabBar不出现的原因
               </a>
             
           </div>
@@ -343,10 +348,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/11/初始化spring-boot中遇到的问题/" rel="prev" title="初始化spring boot中遇到的问题">
-                初始化spring boot中遇到的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -398,17 +399,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -459,22 +451,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#博客的创建"><span class="nav-number">1.</span> <span class="nav-text">博客的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客的编写"><span class="nav-number">2.</span> <span class="nav-text">博客的编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未发布博客的查看"><span class="nav-number">3.</span> <span class="nav-text">未发布博客的查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布博客"><span class="nav-number">4.</span> <span class="nav-text">发布博客</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
