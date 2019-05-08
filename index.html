@@ -558,10 +558,8 @@
       
         
           
-            <p>##遇到的问题</p>
-<p>jsonify ORM对象时不通过，显示无法jsonify该类型</p>
-<p>##解决方法</p>
-<p>首先在类中定义一个to_json的方法，使用<strong>dict</strong>方法来返回类中的属性字典</p>
+            <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>jsonify ORM对象时不通过，显示无法jsonify该类型</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>首先在类中定义一个to_json的方法，使用<strong>dict</strong>方法来返回类中的属性字典</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Teacher(db.Model):</span><br><span class="line">    __tablename__ = &apos;teacher&apos;</span><br><span class="line">    TeacherId = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)</span><br><span class="line">    TeacherName = db.Column(db.String(10), nullable=False)</span><br><span class="line">    TeacherBirth = db.Column(db.Integer)</span><br><span class="line">    TeacherSex = db.Column(db.String(4), nullable=False)</span><br><span class="line">    TeacherCollege = db.Column(db.String(45), nullable=False)</span><br><span class="line">    TeacherJobtitle = db.Column(db.String(10))</span><br><span class="line">    TeacherResearchDirection = db.Column(db.String(50))</span><br><span class="line">    TeacherEmail = db.Column(db.String(45))</span><br><span class="line"></span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &quot;User(username: %s)&quot; % self.TeacherName</span><br><span class="line"></span><br><span class="line">    def to_json(self):</span><br><span class="line">        dict = self.__dict__</span><br><span class="line">        if &quot;_sa_instance_state&quot; in dict:</span><br><span class="line">            del dict[&quot;_sa_instance_state&quot;]</span><br><span class="line">        return dict</span><br></pre></td></tr></table></figure>
 <p>再将查询的结果，一次通过to_json方法放到数组中，在通过jsonify函数返回到前台<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;])</span><br><span class="line">def index():</span><br><span class="line"></span><br><span class="line">    teachers = Teacher.query.all()</span><br><span class="line">    tlist=[]</span><br><span class="line">    for teacher in teachers:</span><br><span class="line">        tlist.append(teacher.to_json())</span><br><span class="line">    return jsonify(tlist)</span><br></pre></td></tr></table></figure></p>
 <p>原创出处：<a href="https://blog.csdn.net/luanxiyuan/article/details/80434767" target="_blank" rel="noopener">https://blog.csdn.net/luanxiyuan/article/details/80434767</a></p>
@@ -833,7 +831,7 @@
 <p>这部作品讲了一个被抛弃的男孩，斩杀各种恶魔，找回自己身体的故事。说实话，这部作品看来很不错，但是不知道为什么，就是没有看下去的动力。</p>
 <p>我就不评分了。</p>
 <h2 id="四月新番导师"><a href="#四月新番导师" class="headerlink" title="四月新番导师"></a>四月新番导师</h2><p>这次四月被称为最弱四月，看起来不错的作品基本都是续作，比如一拳超人，进击的巨人等。还有一些大牌导演的电波作，像卡罗拉和缇丝黛，皿三昧这些。我反正看了一下列表，就准备追这些作品：CAROLE &amp; TUESDAY，皿三昧，进击的巨人 第三季 Part.2，鬼灭之刃，异世界四重奏和一拳超人。</p>
-<p>码子好累啊，估计这是我第一次也是最后一次做新番点评了。</p>
+<p>码字好累啊，估计这是我第一次也是最后一次做新番点评了。</p>
 
           
         
