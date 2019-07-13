@@ -106,12 +106,14 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4myomp1y9j30ry0pmn2c.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mo1rh6y6j30su0fidk3.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mp8la9oaj30t40e40ti.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mp9i6jzrj30vq0vetap.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mpkunpyuj315q15s7wh.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mplfk9rij31si15yn2b.jpg">
-<meta property="og:updated_time" content="2019-07-06T04:37:39.007Z">
+<meta property="og:updated_time" content="2019-07-13T05:10:19.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 的开发使用文档 in pycharm">
 <meta name="twitter:description" content="git的安装 从官网(https://git-scm.com/downloads)选择自己的系统安装git 在bash中使用https://git-scm.com/downloads命令来生成ssh key，连按三次回车即可。 使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。   将本地已存在的文件夹上传如alicode在命令行中输入如下">
@@ -378,6 +380,11 @@
 <li>对master分支进行push操作</li>
 </ol>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg" alt="Push"></p>
+<ol start="10">
+<li>当处于正式开发时，普通情况下都不能push Master分支，你只能push dev_local_feature分支，push到代码平台需要进行merge request（合并请求），等到上司同意之后才能合并。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg" alt="Push Reject"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg" alt="Merge Request"></p>
 <h2 id="产生冲突的原因和冲突的解决方法"><a href="#产生冲突的原因和冲突的解决方法" class="headerlink" title="产生冲突的原因和冲突的解决方法"></a>产生冲突的原因和冲突的解决方法</h2><p>原因：两个分支各自都有了新的提交，且在同样的地方有了不同的修改,在合并的时候就会产生冲突。</p>
 <p>分支1</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg" alt="branch 1"></p>
@@ -509,7 +516,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -522,7 +529,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
