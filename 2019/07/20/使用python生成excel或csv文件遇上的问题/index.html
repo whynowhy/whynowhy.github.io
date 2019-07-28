@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,">
+  <meta name="keywords" content="Pandas,">
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="使用pandas.DataFrame.to_excel()写入。假设字典dict={K_A:V_A, K_B:V_B, K_C:V_C}要生成表格 使用命令pandas.DataFrame(dict).to_excel(&amp;#39;磁盘&amp;#39;)进行生成，如果V_A只是一个值，不能迭代，会报错： ValueError: If using all scalar values, you must pa">
-<meta name="keywords" content="python">
+<meta name="keywords" content="Pandas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用python生成excel或csv文件遇上的问题">
 <meta property="og:url" content="http://yoursite.com/2019/07/20/使用python生成excel或csv文件遇上的问题/index.html">
 <meta property="og:site_name" content="只不过是是随便写写啦">
 <meta property="og:description" content="使用pandas.DataFrame.to_excel()写入。假设字典dict={K_A:V_A, K_B:V_B, K_C:V_C}要生成表格 使用命令pandas.DataFrame(dict).to_excel(&amp;#39;磁盘&amp;#39;)进行生成，如果V_A只是一个值，不能迭代，会报错： ValueError: If using all scalar values, you must pa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-20T10:27:26.206Z">
+<meta property="og:updated_time" content="2019-07-28T06:07:17.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用python生成excel或csv文件遇上的问题">
 <meta name="twitter:description" content="使用pandas.DataFrame.to_excel()写入。假设字典dict={K_A:V_A, K_B:V_B, K_C:V_C}要生成表格 使用命令pandas.DataFrame(dict).to_excel(&amp;#39;磁盘&amp;#39;)进行生成，如果V_A只是一个值，不能迭代，会报错： ValueError: If using all scalar values, you must pa">
@@ -191,6 +191,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -273,6 +293,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -301,10 +343,10 @@
 
       
         <h2 id="使用pandas-DataFrame-to-excel-写入。"><a href="#使用pandas-DataFrame-to-excel-写入。" class="headerlink" title="使用pandas.DataFrame.to_excel()写入。"></a>使用pandas.DataFrame.to_excel()写入。</h2><p>假设字典dict={K_A:V_A, K_B:V_B, K_C:V_C}要生成表格</p>
-<p>使用命令<code>pandas.DataFrame(dict).to_excel(&#39;磁盘&#39;)</code>进行生成，如果V_A只是一个值，不能迭代，会报错： <code>ValueError: If using all scalar values, you must pass an index</code>。这是因为 pandas 的 DataFrame 方法需要传入一个可迭代的对象(列表，元组，字典等)，DataFrame 指定 index 参数就可以解决这个问题。修改后为命令为<code>pandas.DataFrame(dict,index=[0]).to_excel(&#39;本地地址&#39;)</code>。生成的excel表格第一列会显示index,在to_excel()方法中加入index=False方法即可去除。生成的单行数据表格的形式如下：<br>|K_A|K_B|K_C|<br>|–|–|–|<br>|V_A|V_B|V_C|</p>
-<p>如果需要生成多行数据，那么字典中的键值对的值必须是列表，如字典dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1,V_C2]}可生成以下表格：<br>|K_A|K_B|K_C|<br>|–|–|–|<br>|V_A1|V_B1|V_C1|<br>|V_A2|V_B2|V_C2|</p>
+<p>使用命令<code>pandas.DataFrame(dict).to_excel(&#39;磁盘&#39;)</code>进行生成，如果V_A只是一个值，不能迭代，会报错： <code>ValueError: If using all scalar values, you must pass an index</code>。这是因为 pandas 的 DataFrame 方法需要传入一个可迭代的对象(列表，元组，字典等)，DataFrame 指定 index 参数就可以解决这个问题。修改后为命令为<code>pandas.DataFrame(dict,index=[0]).to_excel(&#39;本地地址&#39;)</code>。生成的excel表格第一列会显示index,在to_excel()方法中加入index=False方法即可去除。生成的单行数据表格的形式如下：<br>| K_A  | K_B  | K_C  |<br>| —- | —- | —- |<br>| V_A  | V_B  | V_C  |</p>
+<p>如果需要生成多行数据，那么字典中的键值对的值必须是列表，如字典dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1,V_C2]}可生成以下表格：<br>| K_A  | K_B  | K_C  |<br>| —- | —- | —- |<br>| V_A1 | V_B1 | V_C1 |<br>| V_A2 | V_B2 | V_C2 |</p>
 <h2 id="列表元素不一致时，报arrays-must-all-be-same-length错"><a href="#列表元素不一致时，报arrays-must-all-be-same-length错" class="headerlink" title="列表元素不一致时，报arrays must all be same length错"></a>列表元素不一致时，报arrays must all be same length错</h2><p>如果字典中键值对中的value中的列表的元素数量不一样，如dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1]}，就无法使用<code>pandas.DataFrame().to_excel()</code>生成表格，会报错：<code>ValueError: arrays must all be same length</code>。原因是因为使用dataframe(dict) 构建dataframe时，每个key会变成一个column，list-like values会变为行，每个values中的list长度不一致就会出现这个错误。如果需要使用to_excel生成表格，就需要将不一样长度的列表填充空值，或者使用<strong>xlsxwriter</strong>方法来生成excel，相关代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">workbook = xlsxwriter.Workbook(&apos;磁盘地址&apos;)</span><br><span class="line">worksheet = workbook.add_worksheet()</span><br><span class="line"></span><br><span class="line">row = 0</span><br><span class="line">col = 0</span><br><span class="line"></span><br><span class="line">for key in dict.keys():</span><br><span class="line">    row = 0</span><br><span class="line">    worksheet.write(row, col, key)</span><br><span class="line">    for item in dict[key]:</span><br><span class="line">        worksheet.write(row+1, col, item)</span><br><span class="line">        row += 1</span><br><span class="line">    col += 1</span><br><span class="line"></span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">workbook = xlsxwriter.Workbook(<span class="string">'磁盘地址'</span>)</span><br><span class="line">worksheet = workbook.add_worksheet()</span><br><span class="line"></span><br><span class="line">row = <span class="number">0</span></span><br><span class="line">col = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dict.keys():</span><br><span class="line">    row = <span class="number">0</span></span><br><span class="line">    worksheet.write(row, col, key)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> dict[key]:</span><br><span class="line">        worksheet.write(row+<span class="number">1</span>, col, item)</span><br><span class="line">        row += <span class="number">1</span></span><br><span class="line">    col += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -321,7 +363,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/Pandas/" rel="tag"># Pandas</a>
           
         </div>
       
@@ -430,15 +472,24 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">19</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
