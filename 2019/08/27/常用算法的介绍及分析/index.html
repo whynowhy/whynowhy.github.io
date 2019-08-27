@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="分治算法概念在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)…… 算法策略分治策略：对于一个规模为 n 的问题，若该问题可以容易地解决（">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用算法的介绍及分析">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/常用算法的介绍及分析/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="分治算法概念在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)…… 算法策略分治策略：对于一个规模为 n 的问题，若该问题可以容易地解决（">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-27T09:08:32.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用算法的介绍及分析">
+<meta name="twitter:description" content="分治算法概念在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)…… 算法策略分治策略：对于一个规模为 n 的问题，若该问题可以容易地解决（">
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/常用算法的介绍及分析/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>常用算法的介绍及分析 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">只不过是是随便写写啦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+    </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/常用算法的介绍及分析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">常用算法的介绍及分析
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 17:04:03 / 修改时间：17:08:32" itemprop="dateCreated datePublished" datetime="2019-08-27T17:04:03+08:00">2019-08-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h3><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)……</p>
+<h5 id="算法策略"><a href="#算法策略" class="headerlink" title="算法策略"></a>算法策略</h5><p>分治策略：对于一个规模为 n 的问题，若该问题可以容易地解决（比如说规模 n 较小）则直接解决，否则将其分解为 k 个规模较小的子问题，这些子问题互相独立且与原问题形式相同，递归地解这些子问题，然后将各子问题的解合并得到原问题的解。 在平时日常生活中，分治思想也是随处可见的。例如：当我们打牌时，在进行洗牌时，若牌的数目较多，一个人洗不过来，则会将牌进行分堆，单独洗一小堆牌是相对容易的，每一堆牌都洗完之后再放到一起，则完成洗牌过程。</p>
+<p>如果原问题可分割成k个子问题，1&lt;k≤n，且这些子问题都可解并可利用这些子问题的解求出原问题的解，那么这种分治法就是可行的。由分治法产生的子问题往往是原问题的较小模式，这就为使用递归技术提供了方便。在这种情况下，反复应用分治手段，可以使子问题与原问题类型一致而其规模却不断缩小，最终使子问题缩小到很容易直接求出其解。这自然导致递归过程的产生。分治与递归像一对孪生兄弟，经常同时应用在算法设计之中，并由此产生许多高效算法。</p>
+<a id="more"></a>
+<h5 id="分治算法适用的情况"><a href="#分治算法适用的情况" class="headerlink" title="分治算法适用的情况"></a>分治算法适用的情况</h5><p>分治法所能解决的问题一般具有以下几个特征：</p>
+<ol>
+<li>该问题的规模缩小到一定的程度就可以容易地解决</li>
+<li>该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质。</li>
+<li>利用该问题分解出的子问题的解可以合并为该问题的解；</li>
+<li>该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子子问题。</li>
+</ol>
+<p><strong>第一条</strong>特征是绝大多数问题都可以满足的，因为问题的计算复杂性一般是随着问题规模的增加而增加；<strong>第二条</strong>特征是应用分治法的前提它也是大多数问题可以满足的，此特征反映了递归思想的应用；<strong>第三条</strong>特征是关键，能否利用分治法完全取决于问题是否具有第三条特征，如果具备了第一条和第二条特征，而不具备第三条特征，则可以考虑用贪心法或动态规划法。<strong>第四条</strong>特征涉及到分治法的效率，如果各子问题是不独立的则分治法要做许多不必要的工作，重复地解公共的子问题，此时虽然可用分治法，但一般用动态规划法较好。</p>
+<h5 id="分治法的基本步骤"><a href="#分治法的基本步骤" class="headerlink" title="分治法的基本步骤"></a>分治法的基本步骤</h5><p>分治法在每一层的递归上都有三个步骤：</p>
+<ol>
+<li>分解：将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题。</li>
+<li>解决：若子问题规模较小而容易被解决则直接解，否则递归地解各个子问题。</li>
+<li>合并：将各个子问题的解合并为原问题的解。</li>
+</ol>
+<p>算法设计模式（伪代码）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Divide-and-Conquer(P)</span><br><span class="line"></span><br><span class="line">1. if |P|≤n0</span><br><span class="line"></span><br><span class="line">2. then return(ADHOC(P))</span><br><span class="line"></span><br><span class="line">3. 将P分解为较小的子问题 P1 ,P2 ,...,Pk</span><br><span class="line"></span><br><span class="line">4. for i←1 to k</span><br><span class="line"></span><br><span class="line">5. do yi ← Divide-and-Conquer(Pi) △ 递归解决Pi</span><br><span class="line"></span><br><span class="line">6. T ← MERGE(y1,y2,...,yk) △ 合并子问题</span><br><span class="line"></span><br><span class="line">7. return(T)</span><br><span class="line"></span><br><span class="line">其中|P|表示问题P的规模；n0为一阈值，表示当问题P的规模不超过n0时，问题已容易直接解出，不必再继续分解。ADHOC(P)是该分治法中的基本子算法，用于直接解小规模的问题P。因此，当P的规模不超过n0时直接用算法ADHOC(P)求解。算法MERGE(y1,y2,...,yk)是该分治法中的合并子算法，用于将P的子问题P1 ,P2 ,...,Pk的相应的解y1,y2,...,yk合并为P的解。</span><br></pre></td></tr></table></figure>
+<h5 id="复杂性分析"><a href="#复杂性分析" class="headerlink" title="复杂性分析"></a>复杂性分析</h5><p>一个分治法将规模为n的问题分成k个规模为n／m的子问题去解。设分解阀值n0=1，且adhoc解规模为1的问题耗费1个单位时间。再设将原问题分解为k个子问题以及用merge将k个子问题的解合并为原问题的解需用f(n)个单位时间。用T(n)表示该分治法解规模为|P|=n的问题所需的计算时间，则有：T(n)= k*T(n/m)+f(n)</p>
+<h5 id="可使用分治法求解的一些经典问题"><a href="#可使用分治法求解的一些经典问题" class="headerlink" title="可使用分治法求解的一些经典问题"></a>可使用分治法求解的一些经典问题</h5><ol>
+<li>二分搜索</li>
+<li>大整数乘法</li>
+<li>Strassen矩阵乘法</li>
+<li>棋盘覆盖</li>
+<li>合并排序</li>
+<li>快速排序</li>
+<li>线性时间选择</li>
+<li>最接近点对问题</li>
+<li>循环赛日程表</li>
+<li>汉诺塔</li>
+</ol>
+<h5 id="程序设计的思维过程"><a href="#程序设计的思维过程" class="headerlink" title="程序设计的思维过程"></a>程序设计的思维过程</h5><ol>
+<li>一定是先找到最小问题规模时的求解方法</li>
+<li>然后考虑随着问题规模增大时的求解方法</li>
+<li>找到求解的递归函数式后（各种规模或因子），设计递归程序即可。</li>
+</ol>
+<p>实际上就是类似于数学归纳法，找到解决本问题的求解方程公式，然后根据方程公式设计递归程序。</p>
+<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><h5 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h5><p>贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的仅是在某种意义上的局部最优解。贪心算法不是对所有问题都能得到整体最优解，但对范围相当广泛的许多问题他能产生整体最优解或者是整体最优解的近似解。</p>
+<h5 id="算法策略-1"><a href="#算法策略-1" class="headerlink" title="算法策略"></a>算法策略</h5><p>贪心选择性质。所谓贪心选择性质是指所求问题的整体最优解可以通过一系列局部最优的选择，即贪心选择来达到。这是贪心算法可行的第一个基本要素，也是贪心算法与动态规划算法的主要区别。动态规划算法通常以自底向上的方式解各子问题，而贪心算法则通常以自顶向下的方式进行，以迭代的方式作出相继的贪心选择，每作一次贪心选择就将所求问题简化为规模更小的子问题。</p>
+<p>对于一个具体问题，要确定它是否具有贪心选择性质，必须证明每一步所作的贪心选择最终导致问题的整体最优解。 当一个问题的最优解包含其子问题的最优解时，称此问题具有最优子结构性质。问题的最优子结构性质是该问题可用动态规划算法或贪心算法求解的关键特征</p>
+<h5 id="贪心算法的适用情况"><a href="#贪心算法的适用情况" class="headerlink" title="贪心算法的适用情况"></a>贪心算法的适用情况</h5><p>贪心算法一般适用与最优化问题，但贪心算法在每次选择时，都只考虑眼前的最佳选择，即只考虑局部，而不去思考对全局来说，该选择是否最佳。因此，该算法在大多数情况下所得到的都并非全局最优解。所以该算法在大部分情况下最好不要使用。只有待优化问题满足以下2个条件时，我们才可以考虑使用贪心算法：</p>
+<ol>
+<li>该问题的全局最优解可以通过一步又一步获取的多个局部最优解而得到。</li>
+<li>该问题包含多个子问题，而对子问题求解最优解有助于得到该问题的最优解。</li>
+</ol>
+<h5 id="贪心算法的基本步骤"><a href="#贪心算法的基本步骤" class="headerlink" title="贪心算法的基本步骤"></a>贪心算法的基本步骤</h5><ol>
+<li>从某个初始解出发；</li>
+<li>采用迭代的过程，当可以向目标前进一步时，就根据局部最优策略，得到一部分解，缩小问题规模；</li>
+<li>将所有解综合起来。</li>
+</ol>
+<h5 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h5><ol>
+<li>不能保证求得的最后解是最佳的；</li>
+<li>不能用来求最大或最小解问题；</li>
+<li>只能求满足某些约束条件的可行解的范围。</li>
+</ol>
+<h5 id="可使用分治法求解的一些经典问题-1"><a href="#可使用分治法求解的一些经典问题-1" class="headerlink" title="可使用分治法求解的一些经典问题"></a>可使用分治法求解的一些经典问题</h5><ol>
+<li>找零钱问题</li>
+<li>Huffman编码</li>
+<li>最小生成树算法</li>
+<li>Dijkstra算法</li>
+</ol>
+<h3 id="回朔法"><a href="#回朔法" class="headerlink" title="回朔法"></a>回朔法</h3><h5 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h5><p>回溯算法就是一种有组织的系统最优化搜索技术，可以看作蛮力法穷举搜索的改进。回溯法常常可以避免搜索所有可能的解，所以它适用于求解组织数量较大的问题。</p>
+<h5 id="算法策略-2"><a href="#算法策略-2" class="headerlink" title="算法策略"></a>算法策略</h5><p>首先我们先了解一下一个基本概念“解空间树”：问题的解空间一般使用解空间树的方式来组织，树的根节点位于第1层，表示搜索的初始状态，依次向下排列。</p>
+<p>解空间树的动态搜索：在搜索至树中任一节点时，先判断该节点对应的部分是否是满足约束条件，或者是否超出目标函数的界，也就是判断该节点是否包含问题的最优解。如果肯定不包含，则跳过对该节点为根的子树的搜索，即所谓的剪枝；否则，进入该节点为根的子树，继续按照深度优先策略搜索。（这也是为什么回溯可以避免搜索所有的解）</p>
+<p>在搜索过程中，通常采用两种策略避免无效搜索：（1）用约束条件剪除得不到的可行解的子树。（2）用目标函数剪取得不到的最优解的子树。（这两种方式统称为：剪枝函数）</p>
+<p>在用回溯法求解问题时，常常遇到两种典型的解空间树：（1）子集树：但所有的问题是从n个元素的集合中找出满足某种性质的子集时，相应的解空间树成为子集树（2）排列树：当所给出问题是确定n个元素满足某种性质的排列时，相应的解空间称为排列树。</p>
+<h5 id="回溯法的基本步骤"><a href="#回溯法的基本步骤" class="headerlink" title="回溯法的基本步骤"></a>回溯法的基本步骤</h5><ol>
+<li>设置初始化的方案（给变量赋初始值，读入已知数据等）</li>
+<li>变换方式去试探，若全部试完侧转（7）</li>
+<li>判断此法是否成功（通过约束函数），不成功则转（2）</li>
+<li>试探成功则前进一步再试探</li>
+<li>正确方案还是未找到则转（2）</li>
+<li>以找到一种方案则记录并打印</li>
+<li>退回一步（回溯），若未退到头则转（2）</li>
+<li>已退到头则结束或打印无解</li>
+</ol>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h5 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h5><p>动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。<br>动态规划算法的基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段，前一子问题的解，为后一子问题的求解提供了有用的信息。在求解任一子问题时，列出各种可能的局部解，通过决策保留那些有可能达到最优的局部解，丢弃其他局部解。依次解决各子问题，最后一个子问题就是初始问题的解。</p>
+<h5 id="算法策略-3"><a href="#算法策略-3" class="headerlink" title="算法策略"></a>算法策略</h5><p>基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段，前一子问题的解，为后一子问题的求解提供了实用的信息。</p>
+<p>在求解任一子问题时，列出各种可能的局部解，通过决策保留那些有可能达到最优的局部解，丢弃其它局部解。依次解决各子问题，最后一个子问题就是初始问题的解。</p>
+<p>因为动态规划解决的问题多数有重叠子问题这个特点。为降低反复计算。对每个子问题仅仅解一次，将其不同阶段的不同状态保存在一个二维数组中。</p>
+<p>与分治法最大的区别是：适合于用动态规划法求解的问题，经分解后得到的子问题往往不是互相独立的（即下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解）</p>
+<h5 id="动态规划的适用情况"><a href="#动态规划的适用情况" class="headerlink" title="动态规划的适用情况"></a>动态规划的适用情况</h5><ol>
+<li><p>最优化原理：假设问题的最优解所包括的子问题的解也是最优的，就称该问题具有最优子结构，即满足最优化原理。</p>
+</li>
+<li><p>无后效性：即某阶段状态一旦确定。就不受这个状态以后决策的影响。也就是说，某状态以后的过程不会影响曾经的状态。仅仅与当前状态有关；</p>
+</li>
+<li><p>有重叠子问题：即子问题之间是不独立的，一个子问题在下一阶段决策中可能被多次使用到（该性质并非动态规划适用的必要条件，可是假设没有这条性质。动态规划算法同其它算法相比就不具备优势）。</p>
+</li>
+</ol>
+<h5 id="动态规划的算法步骤"><a href="#动态规划的算法步骤" class="headerlink" title="动态规划的算法步骤"></a>动态规划的算法步骤</h5><p> 动态规划所处理的问题是一个多阶段决策问题，一般由初始状态开始，通过对中间阶段决策的选择，达到结束状态。这些决策形成了一个决策序列，同时确定了完成整个过程的一条活动路线(通常是求最优的活动路线)。如图所示。动态规划的设计都有着一定的模式，一般要经历以下几个步骤。</p>
+<ol>
+<li>划分阶段：按照问题的时间或空间特征，把问题分为若干个阶段。在划分阶段时，注意划分后的阶段一定要是有序的或者是可排序的，否则问题就无法求解。</li>
+<li>确定状态和状态变量：将问题发展到各个阶段时所处于的各种客观情况用不同的状态表示出来。当然，状态的选择要满足无后效性。</li>
+<li>确定决策并写出状态转移方程：因为决策和状态转移有着天然的联系，状态转移就是根据上一阶段的状态和决策来导出本阶段的状态。所以如果确定了决策，状态转移方程也就可写出。但事实上常常是反过来做，根据相邻两个阶段的状态之间的关系来确定决策方法和状态转移方程。</li>
+<li>寻找边界条件：给出的状态转移方程是一个递推式，需要一个递推的终止条件或边界条件。</li>
+</ol>
+<p>一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。实际应用中可以按以下几个简化的步骤进行设计：</p>
+<ol>
+<li>分析最优解的性质，并刻画其结构特征。</li>
+<li>递归的定义最优解。</li>
+<li>以自底向上或自顶向下的记忆化方式（备忘录法）计算出最优值。</li>
+<li>根据计算优值时得到的信息，构造问题的最优解。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/27/常用数据结构及排序算法/" rel="next" title="常用数据结构及排序算法">
+                <i class="fa fa-chevron-left"></i> 常用数据结构及排序算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2019/08/27/CV岗面试时的一些常见问题/" rel="prev" title="CV岗面试时的一些常见问题">
+                CV岗面试时的一些常见问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分治算法"><span class="nav-number">1.</span> <span class="nav-text">分治算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">1.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法策略"><span class="nav-number">1.0.2.</span> <span class="nav-text">算法策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分治算法适用的情况"><span class="nav-number">1.0.3.</span> <span class="nav-text">分治算法适用的情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分治法的基本步骤"><span class="nav-number">1.0.4.</span> <span class="nav-text">分治法的基本步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂性分析"><span class="nav-number">1.0.5.</span> <span class="nav-text">复杂性分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可使用分治法求解的一些经典问题"><span class="nav-number">1.0.6.</span> <span class="nav-text">可使用分治法求解的一些经典问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#程序设计的思维过程"><span class="nav-number">1.0.7.</span> <span class="nav-text">程序设计的思维过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心算法"><span class="nav-number">2.</span> <span class="nav-text">贪心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法策略-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">算法策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#贪心算法的适用情况"><span class="nav-number">2.0.3.</span> <span class="nav-text">贪心算法的适用情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#贪心算法的基本步骤"><span class="nav-number">2.0.4.</span> <span class="nav-text">贪心算法的基本步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#存在的问题"><span class="nav-number">2.0.5.</span> <span class="nav-text">存在的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可使用分治法求解的一些经典问题-1"><span class="nav-number">2.0.6.</span> <span class="nav-text">可使用分治法求解的一些经典问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回朔法"><span class="nav-number">3.</span> <span class="nav-text">回朔法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法策略-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">算法策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回溯法的基本步骤"><span class="nav-number">3.0.3.</span> <span class="nav-text">回溯法的基本步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">4.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法策略-3"><span class="nav-number">4.0.2.</span> <span class="nav-text">算法策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动态规划的适用情况"><span class="nav-number">4.0.3.</span> <span class="nav-text">动态规划的适用情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动态规划的算法步骤"><span class="nav-number">4.0.4.</span> <span class="nav-text">动态规划的算法步骤</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

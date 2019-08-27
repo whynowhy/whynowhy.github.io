@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="softmax分类问题中，直接使用输出层的输出有两个问题：  神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义 由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量  softmax解决了以上两个问题，它将输出值变换为值为正且和为1的概率分布，公式如下： $$softmax(y){i} = y{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CV岗面试时的一些常见问题">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/CV岗面试时的一些常见问题/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="softmax分类问题中，直接使用输出层的输出有两个问题：  神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义 由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量  softmax解决了以上两个问题，它将输出值变换为值为正且和为1的概率分布，公式如下： $$softmax(y){i} = y{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-91022ada1965a277.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-9b558ad53fdd5ed7.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-0529f9aa9b0bcff0.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-06549d21ed931a3d.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-e7ef2387e3e86ad7.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-30c1cb3397390d3a.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-0f0dee46c5d21a84.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-bf952ac841174d5d.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-deb58de26cf88955.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-c395e4a2ba5b6ab4.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-1fe911ff5df31d1a.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5005591-87c30cf7a9a4cb32.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5x8ss2unnj30ji0fywgx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5yd1w27gkj30pg0cd41f.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5yd9am8jgj30md0ch407.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5ydadqbulj30ks06ngm7.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5ydv2573xj30cm0e9jx5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5yf0ehed9j30l30gwjrx.jpg">
+<meta property="og:updated_time" content="2019-08-27T10:16:00.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CV岗面试时的一些常见问题">
+<meta name="twitter:description" content="softmax分类问题中，直接使用输出层的输出有两个问题：  神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义 由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量  softmax解决了以上两个问题，它将输出值变换为值为正且和为1的概率分布，公式如下： $$softmax(y){i} = y{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5005591-91022ada1965a277.png">
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/CV岗面试时的一些常见问题/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CV岗面试时的一些常见问题 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">只不过是是随便写写啦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+    </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/CV岗面试时的一些常见问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">CV岗面试时的一些常见问题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 18:07:06 / 修改时间：18:16:00" itemprop="dateCreated datePublished" datetime="2019-08-27T18:07:06+08:00">2019-08-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h3><p>分类问题中，直接使用输出层的输出有两个问题：</p>
+<ul>
+<li>神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义</li>
+<li>由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量</li>
+</ul>
+<p>softmax解决了以上两个问题，它<strong>将输出值变换为值为正且和为1的概率分布</strong>，公式如下：</p>
+<p>$$softmax(y)<em>{i} = y</em>{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^{n}e^{yj}}$$</p>
+<h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>交叉熵刻画了两个概率分布之间的距离，它是分类问题中使用比较广泛的一种损失函数，交叉熵一般会与softmax回归一起使用，公式如下：</p>
+<p>$$L = -\sum_{c=1}^{M}y_{c}log(p_{c})或者H(p,q)=-\sum p(x)logq(x)$$（p代表正确答案，q代表预测值）</p>
+<ul>
+<li>$M$ ——类别的数量；</li>
+<li>$y_{c}$ ——指示变量（0或1）,如果该类别和样本的类别相同就是1，否则是0；</li>
+<li>$p_{c}$ ——对于观测样本属于类别 $c$ 的预测概率。</li>
+</ul>
+<a id="more"></a>
+<h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><h4 id="Batch-gradient-descent-批量梯度下降"><a href="#Batch-gradient-descent-批量梯度下降" class="headerlink" title="Batch gradient descent 批量梯度下降"></a>Batch gradient descent 批量梯度下降</h4><p>每次更新我们需要计算整个数据集的梯度，因此使用批量梯度下降进行优化时，计算速度很慢，而且对于不适合内存计算的数据将会非常棘手。批量梯度下降算法不允许我们实时更新模型。<br>但是批量梯度下降算法能确保收敛到凸平面的全局最优和非凸平面的局部最优。</p>
+<h4 id="SGD-Stochastic-gradient-descent-随机梯度下降"><a href="#SGD-Stochastic-gradient-descent-随机梯度下降" class="headerlink" title="SGD(Stochastic gradient descent) 随机梯度下降"></a>SGD(Stochastic gradient descent) 随机梯度下降</h4><p>随机梯度下降算法参数更新针对每一个样本集x(i) 和y(i) 。批量梯度下降算法在大数据量时会产生大量的冗余计算，比如：每次针对相似样本都会重新计算。这种情况时，SGD算法每次则只更新一次。因此SGD算法通过更快，并且适合online。</p>
+<p>但是SGD以高方差进行快速更新，这会导致目标函数出现严重抖动的情况。一方面，正是因为计算的抖动可以让梯度计算跳出局部最优，最终到达一个更好的最优点；另一方面，SGD算法也会因此产生过调。</p>
+<h4 id="Min-batch-gradient-descent"><a href="#Min-batch-gradient-descent" class="headerlink" title="Min-batch gradient descent"></a>Min-batch gradient descent</h4><p>该算法有两个好处，1）：减少了参数更新的变化，这可以带来更加稳定的收敛。2：可以充分利用矩阵优化，最终计算更加高效。但是Min-batch梯度下降不保证好的收敛性。</p>
+<p><strong>Batch gradient descent、SGD、min-batch gradient descent算法都需要预先设置学习率，并且整个模型计算过程中都采用相同的学习率进行计算。这将会带来一些问题，比如</strong>：</p>
+<ol>
+<li><p>选择一个合适的学习率是非常困难的事情。学习率较小，收敛速度将会非常慢；而学习率较大时，收敛过程将会变得非常抖动，而且有可能不能收敛到最优。</p>
+</li>
+<li><p>预先制定学习率变化规则。比如，计算30轮之后，学习率减半。但是这种方式需要预先定义学习率变化的规则，而规则的准确率在训练过程中并不能保证。</p>
+</li>
+<li><p>上述三种算法针对所有数据采用相同的学习速率，但是当我们的数据非常稀疏的时候，我们可能不希望所有数据都以相同的方式进行梯度更新，而是对这种极少的特征进行一次大的更新。</p>
+</li>
+<li><p>高度非凸函数普遍出现在神经网络中，在优化这类函数时，另一个关键的挑战是使函数避免陷入无数次优的局部最小值。</p>
+</li>
+</ol>
+<h4 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h4><p>动量可以加速SGD算法的收敛速度，并且降低SGD算法收敛时的震荡。</p>
+<p>通过添加一个衰减因子到历史更新向量，并加上当前的更新向量。当梯度保持相同方向时，动量因子加速参数更新；而梯度方向改变时，动量因子能降低梯度的更新速度。</p>
+<h4 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h4><p>Adagrad优化算法是一种自适应优化算法，针对高频特征更新步长较小，而低频特征更新较大。因此该算法适合应用在特征稀疏的场景。</p>
+<p>先前的算法对每一次参数更新都是采用同一个学习率，而adagrad算法每一步采用不同的学习率进行更新。我们计算梯度的公式如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-91022ada1965a277.png" alt="img"></p>
+<p>SGD算法进行参数更新的公式为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-9b558ad53fdd5ed7.png" alt="img"></p>
+<p>Adagrad算法在每一步的计算的时候，根据历史梯度对学习率进行修改</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-0529f9aa9b0bcff0.png" alt="img"></p>
+<p>这里G是一个对角矩阵，对角线元素是截止当前时刻的历史梯度的平方和，eta是一个平方项。如果不执行均方根操作，算法的性能将会变得很差。</p>
+<p>G包含了针对所有历史梯度的平方和，因此我们可以用矩阵元素乘的形式来表达上式：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-06549d21ed931a3d.png" alt="img"></p>
+<p>Adagrad算法的主要优点是它避免了手动调整学习率的麻烦，大部分的实现都采用默认值0.01。</p>
+<p>Adagrad算法主要的缺点在于，其分母梯度平方的累加和。因为每次加入的都是一个正数，随着训练的进行，学习率将会变得无限小，此时算法将不能进行参数的迭代更新。</p>
+<h4 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h4><p>Adadelta算法是adagrad算法的改进版，它主要解决了adagrad算法单调递减学习率的问题。通过约束历史梯度累加来替代累加所有历史梯度平方。这里通过在历史梯度上添加衰减因子，并通过迭代的方式来对当前的梯度进行计算，最终距离较远的梯度对当前的影响较小，而距离当前时刻较近的梯度对当前梯度的计算影响较大。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-e7ef2387e3e86ad7.png" alt="img"></p>
+<h4 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h4><p>RMSPprop算法和adadelta算法都是adagrad算法的优化版，用于解决adagrad算法学习率消失的问题，从最终的计算公式来看，RMSProp算法和Adadelta算法有相似的计算表达式</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-30c1cb3397390d3a.png" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-0f0dee46c5d21a84.png" alt="img"></p>
+<h4 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h4><p>Adam算法是另一种自适应参数更新算法。和Adadelta、RMSProp算法一样，对历史平方梯度v(t)乘上一个衰减因子，adam算法还存储了一个历史梯度m(t)。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-bf952ac841174d5d.png" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-deb58de26cf88955.png" alt="img"></p>
+<p>mt和vt分别是梯度一阶矩（均值）和二阶矩（方差）。当mt和vt初始化为0向量时，adam的作者发现他们都偏向于0，尤其是在初始化的时候和衰减率很小的时候（例如，beta1和beta2趋近于1时）。</p>
+<p>通过计算偏差校正的一阶矩和二阶矩估计来抵消偏差：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-c395e4a2ba5b6ab4.png" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-1fe911ff5df31d1a.png" alt="img"></p>
+<p>利用上述的公式更新参数，得到adam的更新公式：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5005591-87c30cf7a9a4cb32.png" alt="img"></p>
+<h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><p>后一层神经元在前一层神经元的感受空间，如下图所示：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g5x8ss2unnj30ji0fywgx.jpg" alt=""></p>
+<p>注意：小卷积核（如3<em>3）通过多层叠加可取得与大卷积核（如7</em>7）同等规模的感受野，此外采用小卷积核有两个优势：</p>
+<ol>
+<li>小卷积核需多层叠加，加深了网络深度进而增强了网络容量(model capacity)和复杂度（model complexity）</li>
+<li>增强了网络容量的同时减少了参数个数。</li>
+</ol>
+<h3 id="卷积操作作用"><a href="#卷积操作作用" class="headerlink" title="卷积操作作用"></a>卷积操作作用</h3><ul>
+<li>卷积网络中的卷积核参数是通过网络训练出来的</li>
+<li>通过卷积核的组合以及随着网络后续操作的进行，卷积操作可获取图像区域不同类型特征；基本而一般的模式会逐渐被抽象为具有高层语义的“概念”表示，也就是自动学习到图像的高层特征</li>
+</ul>
+<h3 id="CNN权值共享问题"><a href="#CNN权值共享问题" class="headerlink" title="CNN权值共享问题"></a>CNN权值共享问题</h3><p>首先<strong>权值共享就是滤波器共享</strong>，滤波器的参数是固定的，即是用相同的滤波器去扫一遍图像，提取一次特征特征，得到feature map。在卷积网络中，学好了一个滤波器，就相当于掌握了一种特征，这个滤波器在图像中滑动，进行特征提取，然后所有进行这样操作的区域都会被采集到这种特征，就好比上面的水平线。</p>
+<h3 id="CNN结构特点"><a href="#CNN结构特点" class="headerlink" title="CNN结构特点"></a>CNN结构特点</h3><p>局部连接，权值共享，池化操作，多层次结构。</p>
+<ul>
+<li>局部连接使网络可以提取数据的局部特征</li>
+<li>权值共享大大降低了网络的训练难度，一个Filter只提取一个特征，在整个图片（或者语音／文本） 中进行卷积</li>
+<li>池化操作与多层次结构一起，实现了数据的降维，将低层次的局部特征组合成为较高层次的特征，从而对整个图片进行表示。</li>
+</ul>
+<h3 id="pooling层作用"><a href="#pooling层作用" class="headerlink" title="pooling层作用"></a>pooling层作用</h3><ol>
+<li>增加特征平移不变性。池化可以提高网络对微小位移的容忍能力。</li>
+<li>减小特征图大小。池化层对空间局部区域进行下采样，使下一层需要的参数量和计算量减少，并降低过拟合风险。</li>
+<li>最大池化可以带来非线性。这是目前最大池化更常用的原因之一。</li>
+</ol>
+<h3 id="深度特征的层次性"><a href="#深度特征的层次性" class="headerlink" title="深度特征的层次性"></a>深度特征的层次性</h3><p>卷积操作可获取图像区域不同类型特征，而汇合等操作可对这些特征进行融合和抽象，随着若干卷积、汇合等操作的堆叠，各层得到的深度特征逐渐从泛化特征（如边缘、纹理等）过渡到高层语义表示（躯干、头部等模式）。</p>
+<h3 id="什么样的数据集不适合深度学习"><a href="#什么样的数据集不适合深度学习" class="headerlink" title="什么样的数据集不适合深度学习"></a>什么样的数据集不适合深度学习</h3><ul>
+<li>数据集太小，数据样本不足时，深度学习相对其它机器学习算法，没有明显优势。</li>
+<li>数据集没有局部相关特性，目前深度学习表现比较好的领域主要是图像／语音／自然语言处理等领域，这些领域的一个共性是局部相关性。图像中像素组成物体，语音信号中音位组合成单词，文本数据中单词组合成句子，这些特征元素的组合一旦被打乱，表示的含义同时也被改变。对于没有这样的局部相关性的数据集，不适于使用深度学习算法进行处理。举个例子：预测一个人的健康状况，相关的参数会有年龄、职业、收入、家庭状况等各种元素，将这些元素打乱，并不会影响相关的结果。</li>
+</ul>
+<h3 id="什么造成梯度消失问题"><a href="#什么造成梯度消失问题" class="headerlink" title="什么造成梯度消失问题"></a>什么造成梯度消失问题</h3><ul>
+<li>神经网络的训练中，通过改变神经元的权重，使网络的输出值尽可能逼近标签以降低误差值，训练普遍使用BP算法，核心思想是，计算出输出与标签间的损失函数值，然后计算其相对于每个神经元的梯度，进行权值的迭代。</li>
+<li><p>梯度消失会造成权值更新缓慢，模型训练难度增加。造成梯度消失的一个原因是，许多激活函数将输出值挤压在很小的区间内，在激活函数两端较大范围的定义域内梯度为0，造成学习停止。</p>
+</li>
+<li><p>根本原因：从<strong>深层网络</strong>角度来讲，不同的层学习的速度差异很大，表现为网络中靠近输出的层学习的情况很好，靠近输入的层学习的很慢，有时甚至训练了很久，前几层的权值和刚开始随机初始化的值差不多。因此，梯度消失、爆炸，其<strong>根本原因</strong>在于反向传播训练法则，属于先天不足，另外多说一句，Hinton提出capsule的原因就是为了彻底抛弃反向传播，如果真能大范围普及，那真是一个革命。从<strong>激活函数</strong>的角度讲，计算权值更新信息的时候需要计算前层偏导信息，因此如果激活函数选择不合适，比如使用sigmoid，梯度消失就会很明显了。</p>
+</li>
+</ul>
+<h3 id="L1和L2区别"><a href="#L1和L2区别" class="headerlink" title="L1和L2区别"></a>L1和L2区别</h3><p>L1 范数（L1 norm）是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。 比如 向量 A=[1，-1，3]， 那么 A 的 L1 范数为 |1|+|-1|+|3|。简单总结一下就是：</p>
+<ul>
+<li>L1 范数: 为 x 向量各个元素绝对值之和。</li>
+<li>L2 范数: 为 x 向量各个元素平方和的 1/2 次方，L2 范数又称 Euclidean 范数或 Frobenius 范数</li>
+<li>Lp 范数: 为 x 向量各个元素绝对值 p 次方和的 1/p 次方.</li>
+</ul>
+<p>在支持向量机学习过程中，L1 范数实际是一种对于成本函数求解最优的过程，因此，L1 范数正则化通过向成本函数中添加 L1 范数，使得学习得到的结果满足稀疏化，从而方便人类提取特征。</p>
+<p>L1 范数可以使权值参数稀疏，方便特征提取。 L2 范数可以防止过拟合，提升模型的泛化能力。</p>
+<h3 id="TensorFlow计算图"><a href="#TensorFlow计算图" class="headerlink" title="TensorFlow计算图"></a>TensorFlow计算图</h3><p>Tensorflow 是一个通过计算图的形式来表述计算的编程系统，计算图也叫数据流图，可以把计算图看做是一种有向图，Tensorflow 中的每一个计算都是计算图上的一个节点，而节点之间的边描述了计算之间的依赖关系。</p>
+<h3 id="BN（批归一化）的作用"><a href="#BN（批归一化）的作用" class="headerlink" title="BN（批归一化）的作用"></a>BN（批归一化）的作用</h3><ol>
+<li><p><strong>可以使用更高的学习率</strong>。如果每层的scale不一致，实际上每层需要的学习率是不一样的，同一层不同维度的scale往往也需要不同大小的学习率，通常需要使用最小的那个学习率才能保证损失函数有效下降，Batch Normalization将每层、每维的scale保持一致，那么我们就可以直接使用较高的学习率进行优化。</p>
+</li>
+<li><p>移除或使用较低的dropout。 dropout是常用的防止overfitting的方法，而导致overfit的位置往往在数据边界处，如果初始化权重就已经落在数据内部，overfit现象就可以得到一定的缓解。论文中最后的模型分别使用10%、5%和0%的dropout训练模型，与之前的40%-50%相比，可以大大提高训练速度。</p>
+</li>
+<li><p>降低L2权重衰减系数。 还是一样的问题，边界处的局部最优往往有几维的权重（斜率）较大，使用L2衰减可以缓解这一问题，现在用了Batch Normalization，就可以把这个值降低了，论文中降低为原来的5倍。</p>
+</li>
+<li><p>取消Local Response Normalization层。 由于使用了一种Normalization，再使用LRN就显得没那么必要了。而且LRN实际上也没那么work。</p>
+</li>
+<li><p><strong>Batch Normalization调整了数据的分布，不考虑激活函数，它让每一层的输出归一化到了均值为0方差为1的分布</strong>，这保证了梯度的有效性，可以解决反向传播过程中的梯度问题。目前大部分资料都这样解释，比如BN的原始论文认为的缓解了Internal Covariate Shift(ICS)问题。</p>
+</li>
+</ol>
+<h3 id="什么是梯度消失和爆炸，怎么解决？"><a href="#什么是梯度消失和爆炸，怎么解决？" class="headerlink" title="什么是梯度消失和爆炸，怎么解决？"></a>什么是梯度消失和爆炸，怎么解决？</h3><p>在反向传播过程中需要对激活函数进行求导，如果导数大于1，那么随着网络层数的增加梯度更新将会朝着指数爆炸的方式增加这就是梯度爆炸。同样如果导数小于1，那么随着网络层数的增加梯度更新信息会朝着指数衰减的方式减少这就是梯度消失。因此，梯度消失、爆炸，其根本原因在于反向传播训练法则，属于先天不足。 当训练较多层数的模型时，一般会出现梯度消失问题（gradient vanishing problem）和梯度爆炸问题（gradient exploding problem）。注意在反向传播中，当网络模型层数较多时，梯度消失和梯度爆炸是不可避免的。</p>
+<p><strong>深度神经网络中的梯度不稳定性，根本原因在于前面层上的梯度是来自于后面层上梯度的乘积</strong>。当存在过多的层次时，就出现了内在本质上的不稳定场景。前面的层比后面的层梯度变化更小，故变化更慢，故引起了梯度消失问题。前面层比后面层梯度变化更快，故引起梯度爆炸问题。</p>
+<p>解决梯度消失和梯度爆炸问题，常用的有以下几个方案：</p>
+<ul>
+<li>预训练模型 + 微调</li>
+<li>梯度剪切 + 正则化</li>
+<li>relu、leakrelu、elu等激活函数</li>
+<li>BN批归一化</li>
+<li>CNN中的残差结构</li>
+<li>LSTM结构</li>
+</ul>
+<h3 id="RNN循环神经网络理解"><a href="#RNN循环神经网络理解" class="headerlink" title="RNN循环神经网络理解"></a>RNN循环神经网络理解</h3><p>循环神经网络（recurrent neural network, RNN）, 主要应用在语音识别、语言模型、机器翻译以及时序分析等问题上。 <strong>在经典应用中，卷积神经网络在不同的空间位置共享参数，循环神经网络是在不同的时间位置共享参数，从而能够使用有限的参数处理任意长度的序列。</strong>RNN可以看做作是同一神经网络结构在时间序列上被复制多次的结果，这个被复制多次的结构称为循环体，如何设计循环体的网络结构是RNN解决实际问题的关键。 RNN的输入有两个部分，一部分为上一时刻的状态，另一部分为当前时刻的输入样本。</p>
+<h3 id="导致模型不收敛的原因"><a href="#导致模型不收敛的原因" class="headerlink" title="导致模型不收敛的原因"></a>导致模型不收敛的原因</h3><ul>
+<li>没有对数据做归一化。</li>
+<li>没有检查过你的结果。这里的结果包括预处理结果和最终的训练测试结果。</li>
+<li>忘了做数据预处理。</li>
+<li>忘了使用正则化。</li>
+<li>Batch Size设的太大。</li>
+<li>学习率设的不对。</li>
+<li>最后一层的激活函数用的不对。</li>
+<li>网络存在坏梯度。比如Relu对负值的梯度为0，反向传播时，0梯度就是不传播。</li>
+<li>参数初始化错误。</li>
+<li>网络太深。隐藏层神经元数量错误。</li>
+</ul>
+<h3 id="图像处理中平滑和锐化操作是什么？"><a href="#图像处理中平滑和锐化操作是什么？" class="headerlink" title="图像处理中平滑和锐化操作是什么？"></a>图像处理中平滑和锐化操作是什么？</h3><p><strong>平滑处理（smoothing）也称模糊处理（bluring）</strong>，主要用于<strong>消除图像中的噪声部分</strong>，平滑处理常用的用途是用来减少图像上的噪点或失真，平滑主要使用图像滤波。在这里，我个人认为可以把图像平滑和图像滤波联系起来，因为图像平滑常用的方法就是图像滤波器。 在OpenCV3中常用的图像滤波器有以下几种：</p>
+<ul>
+<li>方框滤波——BoxBlur函数</li>
+<li>均值滤波（邻域平均滤波）——Blur函数</li>
+<li>高斯滤波——GaussianBlur函数（高斯低通滤波是模糊，高斯高通滤波是锐化）</li>
+<li>中值滤波——medianBlur函数</li>
+<li>双边滤波——bilateralFilter函数 图像锐化操作是为了突出显示图像的边界和其他细节，而图像锐化实现的方法是通过各种算子和滤波器实现的——Canny算子、Sobel算子、Laplacian算子以及Scharr滤波器。</li>
+</ul>
+<h3 id="VGG使用2个33卷积比1个55的优势在哪里？"><a href="#VGG使用2个33卷积比1个55的优势在哪里？" class="headerlink" title="VGG使用2个33卷积比1个55的优势在哪里？"></a>VGG使用2个3<em>3卷积比1个5</em>5的优势在哪里？</h3><ol>
+<li><strong>减少网络层参数</strong>。用两个3<em>3卷积比用1个5</em>5卷积拥有更少的参数量，只有后者的2∗3∗3/5∗5=0.72。但是起到的效果是一样的，两个3<em>3的卷积层串联相当于一个5</em>5的卷积层，感受野的大小都是5×5，即1个像素会跟周围5*5的像素产生关联。把下图当成动态图看，很容易看到两个3×3卷积层堆叠（没有空间池化）有5×5的有效感受野。</li>
+<li><strong>更多的非线性变换</strong>。2个3<em>3卷积层拥有比1个5</em>5卷积层更多的非线性变换（前者可以使用两次ReLU激活函数，而后者只有一次），使得卷积神经网络对特征的学习能力更强。</li>
+<li><strong><em>paper中给出的相关解释</em></strong>：三个这样的层具有7×7的有效感受野。那么我们获得了什么？例如通过使用三个3×3卷积层的堆叠来替换单个7×7层。首先，我们结合了三个非线性修正层，而不是单一的，这使得决策函数更具判别性。其次，我们减少参数的数量：假设三层3×3卷积堆叠的输入和输出有C个通道，堆叠卷积层的参数为3(32C2)=27C2个权重；同时，单个7×7卷积层将需要72C2=49C2个参数，即参数多81％。这可以看作是对7×7卷积滤波器进行正则化，迫使它们通过3×3滤波器（在它们之间注入非线性）进行分解。</li>
+</ol>
+<h3 id="Relu比Sigmoid效果好在哪里？"><a href="#Relu比Sigmoid效果好在哪里？" class="headerlink" title="Relu比Sigmoid效果好在哪里？"></a>Relu比Sigmoid效果好在哪里？</h3><p>Sigmoid函数公式如下： $\sigma (x)=\frac{1}{1+exp(-x)}$</p>
+<p>ReLU激活函数公式如下：<br>$$<br>ReLu=<br>\begin{cases}<br>x, x&gt;=0\<br>0, X&lt;0\<br>\end{cases}<br>$$</p>
+<p>relu函数方程 ReLU 的输出要么是 0, 要么是输入本身。虽然方程简单，但实际上效果更好。在网上看了很多版本的解释，有从程序实例分析也有从数学上分析，我找了个相对比较直白的回答，如下：</p>
+<ol>
+<li>ReLU函数计算简单，可以减少很多计算量。反向传播求误差梯度时，涉及除法，计算量相对较大，采用ReLU激活函数，可以节省很多计算量；</li>
+<li><strong>避免梯度消失问题</strong>。对于深层网络，sigmoid函数反向传播时，很容易就会出现梯度消失问题（在sigmoid接近饱和区时，变换太缓慢，导数趋于0，这种情况会造成信息丢失），从而无法完成深层网络的训练。</li>
+<li>可以缓解过拟合问题的发生。Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</li>
+<li>相比<code>sigmoid</code>型函数，<code>ReLU</code>函数有助于随机梯度下降方法收敛。</li>
+</ol>
+<h3 id="神经网络中权值共享的理解？"><a href="#神经网络中权值共享的理解？" class="headerlink" title="神经网络中权值共享的理解？"></a>神经网络中权值共享的理解？</h3><p>权值(权重)共享这个词是由LeNet5模型提出来的。以CNN为例，在对一张图片进行卷积的过程中，使用的是同一个卷积核的参数。 比如一个3×3×1的卷积核，这个卷积核内9个的参数被整张图共享，而不会因为图像内位置的不同而改变卷积核内的权系数。说的再直白一些，就是用一个卷积核不改变其内权系数的情况下卷积处理整张图片（当然CNN中每一层不会只有一个卷积核的，这样说只是为了方便解释而已）。</p>
+<h3 id="对fine-tuning-微调模型的理解-，为什么要修改最后几层神经网络权值？"><a href="#对fine-tuning-微调模型的理解-，为什么要修改最后几层神经网络权值？" class="headerlink" title="对fine-tuning(微调模型的理解)，为什么要修改最后几层神经网络权值？"></a>对fine-tuning(微调模型的理解)，为什么要修改最后几层神经网络权值？</h3><p>使用预训练模型的好处，在于利用训练好的SOTA模型权重去做特征提取，可以节省我们训练模型和调参的时间。</p>
+<p>至于为什么只微调最后几层神经网络权重，是因为： (1). CNN中更靠近底部的层（定义模型时先添加到模型中的层）编码的是更加通用的可复用特征，而更靠近顶部的层（最后添加到模型中的层）编码的是更专业化的特征。微调这些更专业化的特征更加有用，它更代表了新数据集上的有用特征。 (2). 训练的参数越多，过拟合的风险越大。很多SOTA模型拥有超过千万的参数，在一个不大的数据集上训练这么多参数是有过拟合风险的，除非你的数据集像Imagenet那样大。</p>
+<h3 id="什么是dropout"><a href="#什么是dropout" class="headerlink" title="什么是dropout?"></a>什么是dropout?</h3><ul>
+<li>dropout可以防止过拟合，dropout简单来说就是：我们在前向传播的时候，<strong>让某个神经元的激活值以一定的概率p停止工作</strong>，这样可以使模型的泛化性更强，因为它不会依赖某些局部的特征。</li>
+<li><code>dropout</code>效果跟<code>bagging</code>效果类似（bagging是减少方差variance，而boosting是减少偏差bias）</li>
+<li>加入dropout会使神经网络训练时间边长，模型预测时不需要dropout，记得关掉。</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g5yd1w27gkj30pg0cd41f.jpg" alt=""></p>
+<h4 id="dropout具体工作流程"><a href="#dropout具体工作流程" class="headerlink" title="dropout具体工作流程"></a>dropout具体工作流程</h4><p>以 标准神经网络为例，正常的流程是：我们首先把输入数据x通过网络前向传播，然后把误差反向传播一决定如何更新参数让网络进行学习。使用dropout之后，过程变成如下：</p>
+<p>(1). 首先随机（临时）删掉网络中一半的隐藏神经元，输入输出神经元保持不变（图3中虚线为部分临时被删除的神经元）； (2). 然后把输入x通过修改后的网络进行前向传播计算，然后把得到的损失结果通过修改的网络反向传播。一小批训练样本执行完这个过程后，在没有被删除的神经元上按照随机梯度下降法更新对应的参数（w，b）； (3). 然后重复这一过程：</p>
+<ul>
+<li>恢复被删掉的神经元（此时被删除的神经元保持原样没有更新w参数，而没有被删除的神经元已经有所更新）</li>
+<li>从隐藏层神经元中随机选择一个一半大小的子集临时删除掉（同时备份被删除神经元的参数）。</li>
+<li>对一小批训练样本，先前向传播然后反向传播损失并根据随机梯度下降法更新参数（w，b） （没有被删除的那一部分参数得到更新，删除的神经元参数保持被删除前的结果）。</li>
+</ul>
+<h4 id="dropout在神经网络中的应用"><a href="#dropout在神经网络中的应用" class="headerlink" title="dropout在神经网络中的应用"></a>dropout在神经网络中的应用</h4><ol>
+<li>在训练模型阶段，不可避免的，在训练网络中的每个单元都要添加一道概率流程，标准网络和带有dropout网络的比较图如下所示：</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g5yd9am8jgj30md0ch407.jpg" alt=""></p>
+<ol start="2">
+<li>在测试模型阶段，预测模型的时候，输入是当前输入，每个神经单元的权重参数要乘以概率p：</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g5ydadqbulj30ks06ngm7.jpg" alt=""></p>
+<h4 id="如何选择dropout-的概率"><a href="#如何选择dropout-的概率" class="headerlink" title="如何选择dropout 的概率"></a>如何选择dropout 的概率</h4><p>input 的dropout概率推荐是0.8， hidden layer 推荐是0.5， 但是也可以在一定的区间上取值。</p>
+<h3 id="HOG算法原理描述"><a href="#HOG算法原理描述" class="headerlink" title="HOG算法原理描述"></a>HOG算法原理描述</h3><p><strong>方向梯度直方图（Histogram of Oriented Gradient, HOG）特征</strong>是一种在计算机视觉和图像处理中用来进行物体检测的特征描述。它通过计算和统计图像局部区域的梯度方向直方图来构成特征。在深度学习取得成功之前，Hog特征结合SVM分类器被广泛应用于图像识别中，在行人检测中获得了较大的成功。</p>
+<h4 id="HOG特征原理"><a href="#HOG特征原理" class="headerlink" title="HOG特征原理"></a>HOG特征原理</h4><p>HOG的核心思想是所检测的局部物体外形能够被光强梯度或边缘方向的分布所描述。通过将整幅图像分割成小的连接区域（称为cells），每个cell生成一个方向梯度直方图或者cell中pixel的边缘方向，这些直方图的组合可表示出（所检测目标的目标）描述子。为改善准确率，局部直方图可以通过计算图像中一个较大区域(称为block)的光强作为measure被对比标准化，然后用这个值(measure)归一化这个block中的所有cells。这个归一化过程完成了更好的照射/阴影不变性。 与其他描述相比，HOG得到的描述子保持了几何和光学转化不变性（除非物体方向改变）。因此HOG描述子尤其适合人的检测。</p>
+<h4 id="HOG特征检测步骤"><a href="#HOG特征检测步骤" class="headerlink" title="HOG特征检测步骤"></a>HOG特征检测步骤</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g5ydv2573xj30cm0e9jx5.jpg" alt=""></p>
+<p>颜色空间归一化——–&gt;梯度计算————-&gt;梯度方向直方图———-&gt;重叠块直方图归一化———–&gt;HOG特征</p>
+<h3 id="移动端深度学习框架知道哪些，用过哪些？"><a href="#移动端深度学习框架知道哪些，用过哪些？" class="headerlink" title="移动端深度学习框架知道哪些，用过哪些？"></a>移动端深度学习框架知道哪些，用过哪些？</h3><p>知名的有TensorFlow Lite、小米MACE、腾讯的ncnn等，目前都没有用过。</p>
+<h3 id="如何提升网络的泛化能力"><a href="#如何提升网络的泛化能力" class="headerlink" title="如何提升网络的泛化能力"></a>如何提升网络的泛化能力</h3><p>和防止模型过拟合的方法类似，另外还有模型融合方法。</p>
+<h3 id="BN算法，为什么要在后面加加伽马和贝塔，不加可以吗？"><a href="#BN算法，为什么要在后面加加伽马和贝塔，不加可以吗？" class="headerlink" title="BN算法，为什么要在后面加加伽马和贝塔，不加可以吗？"></a>BN算法，为什么要在后面加加伽马和贝塔，不加可以吗？</h3><p>最后的“scale and shift”操作则是为了让因训练所需而“刻意”加入的BN能够有可能还原最初的输入。不加也可以。</p>
+<h3 id="激活函数的作用"><a href="#激活函数的作用" class="headerlink" title="激活函数的作用"></a>激活函数的作用</h3><p>激活函数实现去线性化。神经元的结构的输出为所有输入的加权和，这导致神经网络是一个线性模型。如果将每一个神经元（也就是神经网络的节点）的输出通过一个非线性函数，那么整个神经网络的模型也就不再是线性的了，这个非线性函数就是激活函数。 常见的激活函数有：ReLU函数、sigmoid函数、tanh函数。</p>
+<p>ReLU函数：$f(x)=max(x,0)$<br>sigmoid函数：$f(x)=\frac{1}{1+e^{-x}}$<br>tanh函数：$f(x)=\frac{1+e^{-2x}}{1+e^{-2x}}$</p>
+<h3 id="卷积层和池化层有什么区别"><a href="#卷积层和池化层有什么区别" class="headerlink" title="卷积层和池化层有什么区别"></a>卷积层和池化层有什么区别</h3><ol>
+<li>卷积层有参数，池化层没有参数</li>
+<li>经过卷积层节点矩阵深度会改变，池化层不会改变节点矩阵的深度，但是它可以缩小节点矩阵的大小</li>
+</ol>
+<h3 id="卷积层参数数量计算方法"><a href="#卷积层参数数量计算方法" class="headerlink" title="卷积层参数数量计算方法"></a>卷积层参数数量计算方法</h3><p>假设输入层矩阵维度是$9<em>9</em>3$，第一层卷积层使用尺寸为$5<em>5$、深度为16的过滤器（卷积核尺寸为$5</em>5$、卷积核数量为16），那么这层卷积层的参数个数为$5<em>5</em>3*16+16=1216$个，16代表的是bias数。</p>
+<h3 id="卷积层输出大小计算"><a href="#卷积层输出大小计算" class="headerlink" title="卷积层输出大小计算"></a>卷积层输出大小计算</h3><p>卷积中的特征图大小计算方式有两种，分别是‘VALID’和‘SAME’，卷积和池化都适用，除不尽的结果都向下取整。公式：<code>O = (W-F+2P)/S+1</code>，输入图片（Input）大小为<code>I=W*W</code>，卷积核（Filter）大小为<code>F*F</code>，步长（stride）为S，填充（Padding）的像素数为P。</p>
+<ul>
+<li><code>SAME</code>填充方式：填充像素。<code>conv2d</code>函数常用。</li>
+<li><code>VALID</code>填充方式：不填充像素，<code>Maxpooling2D</code>函数常用。”SAME”卷积方式，对于输入<code>5*5</code>图像，图像的每一个点都作为卷积核的中心。最后得到<code>5*5</code>的结果，通俗的来说：首先在原图外层补一圈0，将原图的第一点作为卷积核中心，若一圈0不够，继续补一圈0。如下图所示：</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g5yf0ehed9j30l30gwjrx.jpg" alt=""></p>
+<h3 id="神经网络为什么用交叉熵损失函数"><a href="#神经网络为什么用交叉熵损失函数" class="headerlink" title="神经网络为什么用交叉熵损失函数"></a>神经网络为什么用交叉熵损失函数</h3><p>判断一个输出向量和期望的向量有多接近，交叉熵（cross entroy）是常用的评判方法之一。交叉熵刻画了两个概率分布之间的距离，是分类问题中使用比较广泛的一种损失函数。 给定两个概率分布p和q，通过q来表示p的交叉熵公式为：$$H(p,q)=\sum_{c=1}^{M} {p(x) \log q}$$</p>
+<h3 id="softmax公式"><a href="#softmax公式" class="headerlink" title="softmax公式"></a>softmax公式</h3><p>$$softmax(y)<em>{i} = \frac{e^{yi}}{\sum</em>{j=1}^{n}e^{yj}} $$</p>
+<h3 id="1-1卷积的主要作用"><a href="#1-1卷积的主要作用" class="headerlink" title="1*1卷积的主要作用"></a>1*1卷积的主要作用</h3><ul>
+<li><strong>降维（ dimension reductionality ）</strong>。比如，一张500 <em> 500且厚度depth为100 的图片在20个filter上做1</em>1的卷积，那么结果的大小为500<em>500</em>20。</li>
+<li><strong>加入非线性</strong>。卷积层之后经过激励层，1*1的卷积在前一层的学习表示上添加了非线性激励（ non-linear activation ），提升网络的表达能力</li>
+</ul>
+<h3 id="目标检测基本概念"><a href="#目标检测基本概念" class="headerlink" title="目标检测基本概念"></a>目标检测基本概念</h3><h4 id="准确率、召回率、F1"><a href="#准确率、召回率、F1" class="headerlink" title="准确率、召回率、F1"></a>准确率、召回率、F1</h4><p>混淆矩阵：</p>
+<ul>
+<li>True Positive(真正例, TP)：将正类预测为正类数.</li>
+<li>True Negative(真负例, TN)：将负类预测为负类数.</li>
+<li>False Positive(假正例, FP)：将负类预测为正类数 → 误报 (Type I error).</li>
+<li>False Negative(假负例子, FN)：将正类预测为负类数 → 漏报 (Type II error).</li>
+</ul>
+<p>查准率（准确率）P = TP/(TP+FP) 查全率（召回率）R = TP/(TP+FN) <strong>准确率描述了模型有多准</strong>，即在预测为正例的结果中，有多少是真正例；<strong>召回率则描述了模型有多全</strong>，即在为真的样本中，有多少被我们的模型预测为正例。 以查准率P为纵轴、查全率R为横轴作图，就得到了查准率－查全率曲线，简称<strong>”P-R“</strong>曲线，显示改该曲线的图称为”P-R“图。 查准率、查全率性能的性能度量，除了”平衡点“（BEP），更为常用的是<strong>F1度量</strong>： <strong>$$F1 = \frac{2PR}{P+R} = \frac{2*TP}{样例总数+TP-TN}$$</strong></p>
+<p>F1度量的一般形式：$F_{\beta}$，能让我们表达出对查准率/查全率的偏见，公式如下： $$F_{\beta} = \frac{1+\beta ^{2}<em>P</em>R}{(\beta ^{2}*P)+R}$$ $\beta &gt;1$对查全率有更大影响，$\beta &lt; 1$对查准率有更大影响。</p>
+<p>不同的计算机视觉问题，对两类错误有不同的偏好，常常在某一类错误不多于一定阈值的情况下，努力减少另一类错误。在目标检测中，<strong>mAP</strong>（mean Average Precision）作为一个统一的指标将这两种错误兼顾考虑。</p>
+<h4 id="mAP指标解释"><a href="#mAP指标解释" class="headerlink" title="mAP指标解释"></a>mAP指标解释</h4><p>具体来说就是，在目标检测中，对于每张图片检测模型会输出多个预测框（远超真实框的个数），我们使用IoU(Intersection Over Union，交并比)来标记预测框是否预测准确。标记完成后，随着预测框的增多，查全率R总会上升，<strong>在不同查全率R水平下对准确率P做平均，即得到AP</strong>，最后再对所有类别按其所占比例做平均，即得到mAP指标。</p>
+<h4 id="交并比IOU"><a href="#交并比IOU" class="headerlink" title="交并比IOU"></a>交并比IOU</h4><p>交并比（Intersection-over-Union，IoU），目标检测中使用的一个概念，是产生的候选框（candidate bound）与原标记框（ground truth bound）的交叠率，即它们的交集与并集的比值。最理想情况是完全重叠，即比值为1。 计算公式如下：</p>
+<p>代码实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># candidateBound = [x1, y1, x2, y2]</span><br><span class="line">def calculateIoU(candidateBound, groundTruthBound):</span><br><span class="line">    cx1 = candidateBound[0]</span><br><span class="line">    cy1 = candidateBound[1]</span><br><span class="line">    cx2 = candidateBound[2]</span><br><span class="line">    cy2 = candidateBound[3]</span><br><span class="line">    gx1 = groundTruthBound[0]</span><br><span class="line">    gy1 = groundTruthBound[1]</span><br><span class="line">    gx2 = groundTruthBound[2]</span><br><span class="line">    gy2 = groundTruthBound[3]</span><br><span class="line">    </span><br><span class="line">    carea = (cx2 - cx1) * (cy2 - cy1) #C的面积</span><br><span class="line">    garea = (gx2 - gx1) * (gy2 - gy1) #G的面积</span><br><span class="line">    x1 = max(cx1, gx1)</span><br><span class="line">    y1 = min(cy1, gy1)  # 原点为(0, 0)，所以这里是min不是max</span><br><span class="line">    x2 = min(cx2, gx2)</span><br><span class="line">    y2 = max(cy2, gy2)</span><br><span class="line">    w = max(0, (x2 - x1))</span><br><span class="line">    h = max(0, (y2 - y1))</span><br><span class="line">    area = w * h #C∩G的面积</span><br><span class="line">    </span><br><span class="line">    iou = area / (carea + garea - area)</span><br><span class="line">    return iou</span><br></pre></td></tr></table></figure>
+<h3 id="数据增强方法，离线数据增强和在线数据增强有什么区别？"><a href="#数据增强方法，离线数据增强和在线数据增强有什么区别？" class="headerlink" title="数据增强方法，离线数据增强和在线数据增强有什么区别？"></a>数据增强方法，离线数据增强和在线数据增强有什么区别？</h3><p>常用数据增强方法：</p>
+<ul>
+<li>翻转：Fliplr,Flipud。不同于旋转180度，这是类似镜面的翻折，跟人在镜子中的映射类似，常用水平、上下镜面翻转。</li>
+<li>旋转：rotate。顺时针/逆时针旋转，最好旋转90-180度，否则会出现边缘缺失或者超出问题，如旋转45度。</li>
+<li>缩放：zoom。图像可以被放大或缩小，imgaug库可用Scal函数实现。</li>
+<li>裁剪：crop。一般叫随机裁剪，操作步骤是：随机从图像中选择一部分，然后降这部分图像裁剪出来，然后调整为原图像的大小。根本上理解，图像crop就是指从图像中移除不需要的信息，只保留需要的部分</li>
+<li>平移：translation。平移是将图像沿着x或者y方向（或者两个方向）移动。我们在平移的时候需对背景进行假设，比如说假设为黑色等等，因为平移的时候有一部分图像是空的，由于图片中的物体可能出现在任意的位置，所以说平移增强方法十分有用。</li>
+<li>放射变换：Affine。包含：平移(Translation)、旋转(Rotation)、放缩(zoom)、错切(shear)。</li>
+<li>添加噪声：过拟合通常发生在神经网络学习高频特征的时候，为消除高频特征的过拟合，可以随机加入噪声数据来消除这些高频特征。imgaug库使用GaussianBlur函数。</li>
+<li>亮度、对比度增强：这是图像色彩进行增强的操作</li>
+<li>锐化：Sharpen。imgaug库使用Sharpen函数。</li>
+</ul>
+<p>数据增强分两类，一类是离线增强，一类是在线增强：</p>
+<ul>
+<li><p>离线增强 ： 直接对数据集进行处理，数据的数目会变成增强因子 x 原数据集的数目 ，这种方法常常用于数据集很小的时候</p>
+</li>
+<li><p>在线增强 ： 这种增强的方法用于，获得 batch 数据之后，然后对这个batch的数据进行增强，如旋转、平移、翻折等相应的变化，由于有些数据集不能接受线性级别的增长，这种方法长用于大的数据集，很多机器学习框架已经支持了这种数据增强方式，并且可以使用GPU优化计算。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/27/常用算法的介绍及分析/" rel="next" title="常用算法的介绍及分析">
+                <i class="fa fa-chevron-left"></i> 常用算法的介绍及分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2019/08/27/Spring-Boot框架中，各数据层的作用/" rel="prev" title="Spring Boot框架中，各数据层的作用">
+                Spring Boot框架中，各数据层的作用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax"><span class="nav-number">1.</span> <span class="nav-text">softmax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉熵损失函数"><span class="nav-number">2.</span> <span class="nav-text">交叉熵损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化器"><span class="nav-number">3.</span> <span class="nav-text">优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Batch-gradient-descent-批量梯度下降"><span class="nav-number">3.1.</span> <span class="nav-text">Batch gradient descent 批量梯度下降</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SGD-Stochastic-gradient-descent-随机梯度下降"><span class="nav-number">3.2.</span> <span class="nav-text">SGD(Stochastic gradient descent) 随机梯度下降</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Min-batch-gradient-descent"><span class="nav-number">3.3.</span> <span class="nav-text">Min-batch gradient descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Momentum"><span class="nav-number">3.4.</span> <span class="nav-text">Momentum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adagrad"><span class="nav-number">3.5.</span> <span class="nav-text">Adagrad</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adadelta"><span class="nav-number">3.6.</span> <span class="nav-text">Adadelta</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RMSprop"><span class="nav-number">3.7.</span> <span class="nav-text">RMSprop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adam"><span class="nav-number">3.8.</span> <span class="nav-text">Adam</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感受野"><span class="nav-number">4.</span> <span class="nav-text">感受野</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积操作作用"><span class="nav-number">5.</span> <span class="nav-text">卷积操作作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNN权值共享问题"><span class="nav-number">6.</span> <span class="nav-text">CNN权值共享问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNN结构特点"><span class="nav-number">7.</span> <span class="nav-text">CNN结构特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pooling层作用"><span class="nav-number">8.</span> <span class="nav-text">pooling层作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度特征的层次性"><span class="nav-number">9.</span> <span class="nav-text">深度特征的层次性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么样的数据集不适合深度学习"><span class="nav-number">10.</span> <span class="nav-text">什么样的数据集不适合深度学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么造成梯度消失问题"><span class="nav-number">11.</span> <span class="nav-text">什么造成梯度消失问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1和L2区别"><span class="nav-number">12.</span> <span class="nav-text">L1和L2区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow计算图"><span class="nav-number">13.</span> <span class="nav-text">TensorFlow计算图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN（批归一化）的作用"><span class="nav-number">14.</span> <span class="nav-text">BN（批归一化）的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是梯度消失和爆炸，怎么解决？"><span class="nav-number">15.</span> <span class="nav-text">什么是梯度消失和爆炸，怎么解决？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN循环神经网络理解"><span class="nav-number">16.</span> <span class="nav-text">RNN循环神经网络理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导致模型不收敛的原因"><span class="nav-number">17.</span> <span class="nav-text">导致模型不收敛的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像处理中平滑和锐化操作是什么？"><span class="nav-number">18.</span> <span class="nav-text">图像处理中平滑和锐化操作是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VGG使用2个33卷积比1个55的优势在哪里？"><span class="nav-number">19.</span> <span class="nav-text">VGG使用2个33卷积比1个55的优势在哪里？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relu比Sigmoid效果好在哪里？"><span class="nav-number">20.</span> <span class="nav-text">Relu比Sigmoid效果好在哪里？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络中权值共享的理解？"><span class="nav-number">21.</span> <span class="nav-text">神经网络中权值共享的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对fine-tuning-微调模型的理解-，为什么要修改最后几层神经网络权值？"><span class="nav-number">22.</span> <span class="nav-text">对fine-tuning(微调模型的理解)，为什么要修改最后几层神经网络权值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是dropout"><span class="nav-number">23.</span> <span class="nav-text">什么是dropout?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dropout具体工作流程"><span class="nav-number">23.1.</span> <span class="nav-text">dropout具体工作流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dropout在神经网络中的应用"><span class="nav-number">23.2.</span> <span class="nav-text">dropout在神经网络中的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择dropout-的概率"><span class="nav-number">23.3.</span> <span class="nav-text">如何选择dropout 的概率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOG算法原理描述"><span class="nav-number">24.</span> <span class="nav-text">HOG算法原理描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HOG特征原理"><span class="nav-number">24.1.</span> <span class="nav-text">HOG特征原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HOG特征检测步骤"><span class="nav-number">24.2.</span> <span class="nav-text">HOG特征检测步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端深度学习框架知道哪些，用过哪些？"><span class="nav-number">25.</span> <span class="nav-text">移动端深度学习框架知道哪些，用过哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何提升网络的泛化能力"><span class="nav-number">26.</span> <span class="nav-text">如何提升网络的泛化能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法，为什么要在后面加加伽马和贝塔，不加可以吗？"><span class="nav-number">27.</span> <span class="nav-text">BN算法，为什么要在后面加加伽马和贝塔，不加可以吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数的作用"><span class="nav-number">28.</span> <span class="nav-text">激活函数的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积层和池化层有什么区别"><span class="nav-number">29.</span> <span class="nav-text">卷积层和池化层有什么区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积层参数数量计算方法"><span class="nav-number">30.</span> <span class="nav-text">卷积层参数数量计算方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积层输出大小计算"><span class="nav-number">31.</span> <span class="nav-text">卷积层输出大小计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络为什么用交叉熵损失函数"><span class="nav-number">32.</span> <span class="nav-text">神经网络为什么用交叉熵损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax公式"><span class="nav-number">33.</span> <span class="nav-text">softmax公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1卷积的主要作用"><span class="nav-number">34.</span> <span class="nav-text">1*1卷积的主要作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标检测基本概念"><span class="nav-number">35.</span> <span class="nav-text">目标检测基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准确率、召回率、F1"><span class="nav-number">35.1.</span> <span class="nav-text">准确率、召回率、F1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mAP指标解释"><span class="nav-number">35.2.</span> <span class="nav-text">mAP指标解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交并比IOU"><span class="nav-number">35.3.</span> <span class="nav-text">交并比IOU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据增强方法，离线数据增强和在线数据增强有什么区别？"><span class="nav-number">36.</span> <span class="nav-text">数据增强方法，离线数据增强和在线数据增强有什么区别？</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

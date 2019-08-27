@@ -57,14 +57,21 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="只不过是是随便写写啦">
-<meta property="og:url" content="http://yoursite.com/categories/Blog/index.html">
+  <meta name="description" content="Dao层全称Data Access Object，主要是做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。Dao层比较底层，负责与数据库打交道具体到对某个表、某个实体的增删改查 Service层又叫服务层或业务层，封装Dao层的操作，使一个方法对外表现为实现一种功能。Service层的业务实现，具体要调用到已定义的DAO层的接口，封装Service层的业务逻辑有利于通用的业务逻辑的独立">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot框架中，各数据层的作用">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/Spring-Boot框架中，各数据层的作用/index.html">
 <meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="Dao层全称Data Access Object，主要是做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。Dao层比较底层，负责与数据库打交道具体到对某个表、某个实体的增删改查 Service层又叫服务层或业务层，封装Dao层的操作，使一个方法对外表现为实现一种功能。Service层的业务实现，具体要调用到已定义的DAO层的接口，封装Service层的业务逻辑有利于通用的业务逻辑的独立">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g646kqgfhkj30us0x8te9.jpg">
+<meta property="og:updated_time" content="2019-08-27T10:14:43.515Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="只不过是是随便写写啦">
-  <link rel="canonical" href="http://yoursite.com/categories/Blog/">
+<meta name="twitter:title" content="Spring Boot框架中，各数据层的作用">
+<meta name="twitter:description" content="Dao层全称Data Access Object，主要是做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。Dao层比较底层，负责与数据库打交道具体到对某个表、某个实体的增删改查 Service层又叫服务层或业务层，封装Dao层的操作，使一个方法对外表现为实现一种功能。Service层的业务实现，具体要调用到已定义的DAO层的接口，封装Service层的业务逻辑有利于通用的业务逻辑的独立">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g646kqgfhkj30us0x8te9.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/Spring-Boot框架中，各数据层的作用/">
 
 
 <script id="page.configurations">
@@ -73,7 +80,7 @@
   };
 </script>
 
-  <title>分类: Blog | 只不过是是随便写写啦</title>
+  <title>Spring Boot框架中，各数据层的作用 | 只不过是是随便写写啦</title>
   
 
 
@@ -112,7 +119,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -167,7 +174,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
       
     
 
@@ -199,104 +206,129 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Blog<small>分类</small>
-        </h1>
-      </div>
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/Spring-Boot框架中，各数据层的作用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Spring Boot框架中，各数据层的作用
+
+              
+            
+          </h1>
         
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2018/11/21/博客的编写与发布/" itemprop="url">
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 18:12:20 / 修改时间：18:14:43" itemprop="dateCreated datePublished" datetime="2019-08-27T18:12:20+08:00">2019-08-27</time>
+            </span>
+          
             
-              <span itemprop="name">博客的编写与发布</span>
+
             
-          </a>
-        
-      </h2>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-21T09:38:57+08:00"
-              content="2018-11-21">
-          11-21
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          <br>
 
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h3 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a>Dao层</h3><p>全称Data Access Object，主要是做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。Dao层比较底层，负责与数据库打交道具体到对某个表、某个实体的增删改查</p>
+<h3 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h3><p>又叫服务层或业务层，封装Dao层的操作，使一个方法对外表现为实现一种功能。Service层的业务实现，具体要调用到已定义的DAO层的接口，封装Service层的业务逻辑有利于通用的业务逻辑的独立性和重复利用性，程序显得非常简洁。     </p>
+<h3 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h3><p>又叫业务控制层，负责接收数据和请求，并且调用Service层实现这个业务逻辑。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g646kqgfhkj30us0x8te9.jpg" alt="">  </p>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2018/11/09/关于这个博客的搭建/" itemprop="url">
-            
-              <span itemprop="name">关于这个博客的搭建</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-09T13:50:54+08:00"
-              content="2018-11-09">
-          11-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
     </div>
 
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/27/CV岗面试时的一些常见问题/" rel="next" title="CV岗面试时的一些常见问题">
+                <i class="fa fa-chevron-left"></i> CV岗面试时的一些常见问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+          </div>
+        </div>
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
           
+
 
         </div>
           
@@ -311,8 +343,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -423,6 +464,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao层"><span class="nav-number">1.</span> <span class="nav-text">Dao层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service层"><span class="nav-number">2.</span> <span class="nav-text">Service层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller层"><span class="nav-number">3.</span> <span class="nav-text">Controller层</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -478,6 +536,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.3.0"></script>
 
