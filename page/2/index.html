@@ -209,6 +209,249 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/数据库的相关知识/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/20/数据库的相关知识/" class="post-title-link" itemprop="url">数据库的相关知识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 18:08:54" itemprop="dateCreated datePublished" datetime="2019-07-20T18:08:54+08:00">2019-07-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-28 21:02:31" itemprop="dateModified" datetime="2019-08-28T21:02:31+08:00">2019-08-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><p>平常使用的关系型数据库（如mysql）中，主要分为两种类型，分别是<strong>innodb</strong>和<strong>myisam</strong>。其中innodb和myisam主要的差别为：</p>
+<ol>
+<li>事务和外键：<strong>InnoDB</strong>具有事务，支持4个事务隔离级别，回滚，崩溃修复能力和多版本并发的事务安全，包括ACID。如果应用中需要执行大量的INSERT或UPDATE操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。<strong>MyISAM</strong>管理非事务表。它提供高速存储和检索，以及全文搜索能力。如果应用中需要执行大量的SELECT查询，那么MyISAM是更好的选择</li>
+<li>全文索引：早期innodb不支持全文索引，在mysql5.6版本之后，innodb开始支持全文索引，5.7版本之后，通过使用ngram支持中文。</li>
+<li>锁：<strong>MyISAM</strong>支持表级锁定，提供与 Oracle 类型一致的不加锁读取(non-locking read in SELECTs)。<strong>InnoDB</strong>支持行级锁，InnoDB表的行锁也不是绝对的，如果在执行一个SQL语句时MySQL不能确定要扫描的范围，InnoDB表同样会锁全表，注意间隙锁的影响</li>
+<li>存储：<strong>MyISAM</strong>在磁盘上存储成三个文件。第一个文件的名字以表的名字开始，扩展名指出文件类型，.frm文件存储表定义，数据文件的扩展名为.MYD，索引文件的扩展名是.MYI。<strong>InnoDB</strong>，基于磁盘的资源是InnoDB表空间数据文件和它的日志文件，InnoDB 表的大小只受限于操作系统文件的大小</li>
+<li>索引：<strong>InnoDB</strong>使用的聚簇索引、索引就是数据，顺序存储，因此能缓存索引，也能缓存数据。<strong>MyISAM</strong>使用的是非聚簇索引、索引和文件分开，随机存储，只能缓存索引。</li>
+<li>并发：<strong>MyISAM</strong>读写互相阻塞：不仅会在写入的时候阻塞读取，MyISAM还会在读取的时候阻塞写入，但读本身并不会阻塞另外的读。<strong>InnoDB</strong>读写阻塞与事务隔离级别相关。</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/20/数据库的相关知识/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/工作中的一些随笔/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/13/工作中的一些随笔/" class="post-title-link" itemprop="url">工作中的一些随笔</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-13 18:37:13" itemprop="dateCreated datePublished" datetime="2019-07-13T18:37:13+08:00">2019-07-13</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-28 14:11:24" itemprop="dateModified" datetime="2019-07-28T14:11:24+08:00">2019-07-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h2 id="关于数据库的使用"><a href="#关于数据库的使用" class="headerlink" title="关于数据库的使用"></a>关于数据库的使用</h2><p>不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。<br>如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。</p>
+<p>导出方式(workbench)：</p>
+<p>从所选择的连接中选择左边栏中Data Export，选择你想导出的数据库，点击Start Export进行数据导出。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz3rok38j32701544qp.jpg" alt="Export"></p>
+<p>导入：</p>
+<p>选择本地连接左边栏中的Data Import/Restore, 选择之前导出文件的地址，在选择需要导入的数据库和表，点击Start Import进行导入。如果遇到@@GLOBAL.GTID_MODE = OFF的报错，则需要在数据库导出的时候，打开Advanced Options，其中set-gtid-purged - Add ‘SET @@GLOBAL.GTID_PURGED’ to the output选项改成OFF，即可成功导入。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz4r6xhwj326m13ytzw.jpg" alt="Import"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz575499j31bs0quh3d.jpg" alt="GTOD_PURGED"></p>
+<h2 id="关于需求的理解"><a href="#关于需求的理解" class="headerlink" title="关于需求的理解"></a>关于需求的理解</h2><p>编码之前需要详细理解需求，上司提出的需要需要详细了解。如“数据管理API：更新host和模板的关系”，是指在api中添加能够用更新host和模板的api。</p>
+<p>如果遇到疑问，应该及时去向上司请教。</p>
+<h2 id="对于REST结构的理解"><a href="#对于REST结构的理解" class="headerlink" title="对于REST结构的理解"></a>对于REST结构的理解</h2><p>一句话，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
+<p>其中Flask中有flask.ext库来实现Rest网络编程，简介可参考(<a href="http://www.pythondoc.com/Flask-RESTful/quickstart.html" target="_blank" rel="noopener">http://www.pythondoc.com/Flask-RESTful/quickstart.html</a>)</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/使用FLASK搭建网站时，对于REST架构中API接口的保护/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1194,276 +1437,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/一月新番回顾和四月新番导视/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/02/一月新番回顾和四月新番导视/" class="post-title-link" itemprop="url">一月新番回顾和四月新番导视</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-02 20:25:03" itemprop="dateCreated datePublished" datetime="2019-04-02T20:25:03+08:00">2019-04-02</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:07:55" itemprop="dateModified" datetime="2019-07-28T14:07:55+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="一月新番回顾"><a href="#一月新番回顾" class="headerlink" title="一月新番回顾"></a>一月新番回顾</h2><p>本来今年一月就想做一次季番的回顾与导视了，结果因为要写国家自然科学基金搁置了，其实这次的新番导视我也有点想咕咕咕的，但是既然之前决定了，那就做一次。</p>
-<p>首先回顾一下一月我看的新番，有灵能第二季，辉夜大小姐想让我告白，马纳利亚的魔法学院，约定的梦幻岛，多罗罗，荒野的寿飞行队，不吉波普不笑和加油女友吧，哦，还有看了两集就弃了的五等分的花架，差不多7到8部吧，季度追番的平均水平吧，不过因为最近看动画片的兴致越来越低了，导致经常看到一半就鸽了。</p>
-<p>接下来一部一部的分析吧。</p>
-<h3 id="灵能百分百-第二季"><a href="#灵能百分百-第二季" class="headerlink" title="灵能百分百 第二季"></a>灵能百分百 第二季</h3><p>骨头社制作加上one的原作，可以说是不负众望，不管是整部作品的剧情还是作画都可以说是炸裂，bangumi上也给出了8.5分超高分。</p>
-<p>首先灵能百分百作为一部漫改作品，one老师的原作就已经给整部作品打下了坚实的基础，虽然原作画的比较抽象吧，但是漫画正真厉害的在于分镜，原作的漫画直接可以当动画分镜来用了。再吹一波骨头社吧，可以说是真正的用心在做动画，践行自己公司要做有骨气的动画的建设期望。除了骨头社自己最擅长的打戏，整部作品的文戏也非常的深入人心，比如说其中的第7集，将灵幻这个人的内心剖析的非常精准，非常的有代入感。再说说动作戏，这时候就要单独把11集拿出来品一品了，整集中，不管是甩技能还是近身格斗，所有的动作都是行云流水，再配合上骨头社所特有的中村丰方块式的爆炸，只能说一个字，爽，可以说这一整集都能上anitamshi的作画mad。</p>
-<p>总体上而言，整部作品没有太大的瑕疵，非常推荐，个人推荐指数10颗星。</p>
-<h3 id="辉夜大小姐想让我告白"><a href="#辉夜大小姐想让我告白" class="headerlink" title="辉夜大小姐想让我告白"></a>辉夜大小姐想让我告白</h3><p>kaguyasama这部作品绝对是这个季度最让人惊喜的作品了，本来以为只是一部烂大街的漫改校园恋爱喜剧，但是万万没想到，制作组竟然有这么高的厨力，毕竟这年头不毁原作已经在我心中成为高标准了。</p>
-<p>其实整部动画的故事很简单，就是女主辉夜和男主白银互相斗智斗勇（发狗粮）的作品，话说在原作中本来还是在月刊连载时还有一种互相智斗的感觉，到了周刊连载后只剩下无尽的发狗粮了。除了男女主角外，还有一个搅屎棍子千花书记，本来以为只是一个工具人，但是就是因为第三集的ed，完全手绘90s跳舞，还只用了一个ED，真的是奢侈啊，第三集播出之后感觉全世界都在跳书记舞（我也就看了100遍而已）。整部作品的完成度可以说是非常的高，人物形象，动作细节，肢体语言都表现的非常好，制作组可以说是非常的上心了。</p>
-<p>个人还是比较喜欢这种恋爱喜剧的，推荐指数9.5颗星。</p>
-<h3 id="马纳利亚的魔法学院"><a href="#马纳利亚的魔法学院" class="headerlink" title="马纳利亚的魔法学院"></a>马纳利亚的魔法学院</h3><p>整部作品就充斥着一个单词“AWSL”，虽然我不玩影之诗，不了解整个故事的背景，但是我就是想看安和古蕾雅搞姬。</p>
-<p>这部作品就讲了安和古蕾雅在马纳利亚学院中学习生活的日常生活，轻松悠闲。外加制作方是Cygames，钱多任性，画面相当精美。</p>
-<p>百合控必看，推荐指数9颗星。</p>
-<h3 id="不吉波普不笑"><a href="#不吉波普不笑" class="headerlink" title="不吉波普不笑"></a>不吉波普不笑</h3><p>不吉波普不笑这部作品已经有了20年的历史了，物语系列和空之境界都号称受过不吉波普的启发，外加制作方是MAD HOUSE，再加上令人惊艳的PV，所以我对这部作品还是非常期待的。</p>
-<p>整部作品的叙事方法并没有按照时间的顺序来进行推进，而是跟着人物来进行推进，简而言之就是作品一场事件中每个角色眼中所遇到的情况给叙述了一遍，而不是用上帝视角来看，只有当所有角色的故事都叙述完成之后，你才能了解这个故事，而且不同的事件之间也有着联系。所以看完第一集，整个人都是懵的，有一种我是谁，我在哪，我在看什么的感觉，看完第三集，也就是第一个故事结束，就大概了解了个大概，当我把18集，5个作品看完，就知晓了作品的前因后果。这样的叙述作品的方式，虽然能够更加完整叙述作品的主旨，但是对于一些不用心看了来说简直就是灾难。这部作品的制作班底虽然很雄厚吧，但是有一些角色的人设实在是不咋地，第一个故事中动作戏也是有一点敷衍。</p>
-<p>这部作品推荐给那些能够沉得下心来的人去观看，推荐指数8颗星。</p>
-<h3 id="荒野的寿飞行队"><a href="#荒野的寿飞行队" class="headerlink" title="荒野的寿飞行队"></a>荒野的寿飞行队</h3><p>水岛努加横手美智子的超强组合，外加看完PV之后给人以一种少女与战车的感觉，给我带来了非常高的期待，但是整部作品看完之后还是有一点稍稍的失望的。</p>
-<p>整部作品是架空在现实之上的，作品中的国家都被大山所分开，所以交通工具只能是飞机，战争啊，抢劫啊，都只能靠飞机，然后主角团们作为护卫队和其它势力战斗的场面成为了这部作品最主要的看点。当然寿飞行队这部作品在机站场面上没有让我们失望，我虽然对狗斗啊，飞机啊都不怎么了解，但是就是看的很爽，由于全篇使用的都是3D作画，整个空战的场面的镜头都无比顺畅。不过除了空战，好像也没什么好吹的了，尤其是到最后又来了一个空中之门的设定，这个门是与其它的世界相连的，坏蛋想夺走这个门的占有权，而主角团最后却把门给炸了，让我最后都不知道门的后面到底有什么，感觉故事没讲完一样。</p>
-<p>这部作品推荐给那些喜欢飞机和喜欢大型机械战斗场面的人去观看，推荐指数8颗星。</p>
-<h3 id="家有女友"><a href="#家有女友" class="headerlink" title="家有女友"></a>家有女友</h3><p>我是一季度动画都结束后看了gigguk介绍才去看的这部作品，可以说是一部很差劲却很对我胃口的家庭伦理大作。</p>
-<p>该作品讲述了一个男主发现自己的父亲的再婚对象的两个女儿一个是自己喜欢的老师，而另一个是自己一夜情的对象，然后三人在一个屋檐下一起生活，骨科的故事。这部作品虽然作画真的很差劲，阳菜的脸有时候在一集中有多个样子，然后时不时放出长达5秒左右的静止帧，如果是一部普通的作品，那绝对会把我给劝退了。但是这部作品实在是太刺激了，很符合SPICY这个词好吧，每次看完一集总让人欲罢不能的想看下一集，看看男主又能做出怎样的操作，看看女主们还能玩出什么我想不到的套路来。</p>
-<p>这部作品推荐那些喜欢吃胃药的同学去看，个人推荐指数8颗星。</p>
-<h3 id="约定的梦幻岛"><a href="#约定的梦幻岛" class="headerlink" title="约定的梦幻岛"></a>约定的梦幻岛</h3><p>话说这部约定的梦幻岛在还没动画化的时候就被称为台柱岛，JUMP的希望，可以说是非常吸引人眼球吧。</p>
-<p>于是我看到网上吹得那么厉害，就去DMZJ看了一下，发现是真的好看啊，尤其是漫画的第一部分，脱狱篇。整个故事的连贯性很强，漫画的画风也特备好，一页一页的翻下去，故事的带入性特别强，看得特别紧张。就是因为这个漫画，害的我的开题答辩挂了。但是我在看动画的时候就没有那种紧张感，可能是因为我都知道后续的发展，所以我在第三集就弃了。</p>
-<p>其实讲道理这部作品还是不错的，cl的制作也还行，推荐指数7.5颗星。</p>
-<h3 id="多罗罗"><a href="#多罗罗" class="headerlink" title="多罗罗"></a>多罗罗</h3><p>手冢治虫老师的原作，MAPPA的制作。</p>
-<p>这部作品讲了一个被抛弃的男孩，斩杀各种恶魔，找回自己身体的故事。说实话，这部作品看来很不错，但是不知道为什么，就是没有看下去的动力。</p>
-<p>我就不评分了。</p>
-<h2 id="四月新番导师"><a href="#四月新番导师" class="headerlink" title="四月新番导师"></a>四月新番导师</h2><p>这次四月被称为最弱四月，看起来不错的作品基本都是续作，比如一拳超人，进击的巨人等。还有一些大牌导演的电波作，像卡罗拉和缇丝黛，皿三昧这些。我反正看了一下列表，就准备追这些作品：CAROLE &amp; TUESDAY，皿三昧，进击的巨人 第三季 Part.2，鬼灭之刃，异世界四重奏和一拳超人。</p>
-<p>码字好累啊，估计这是我第一次也是最后一次做新番点评了。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/spring基础知识简介/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/26/spring基础知识简介/" class="post-title-link" itemprop="url">spring基础知识简介</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-26 11:01:12" itemprop="dateCreated datePublished" datetime="2019-03-26T11:01:12+08:00">2019-03-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:08:58" itemprop="dateModified" datetime="2019-07-28T14:08:58+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h1 id="Spring框架简介"><a href="#Spring框架简介" class="headerlink" title="Spring框架简介"></a>Spring框架简介</h1><p>Spring是一个轻量级控制反转(IoC)和面向切面(AOP)的容器框架。</p>
-<p>Spring框架的核心功能有两个</p>
-<ul>
-<li>Spring容器作为超级大工厂，负责创建、管理所有的Java对象，这些Java对象被称为Bean。</li>
-<li>Spring容器管理容器中Bean之间的依赖关系，Spring使用一种被称为”依赖注入”的方式来管理Bean之间的依赖关系。</li>
-</ul>
-<h2 id="JavaBean的简介"><a href="#JavaBean的简介" class="headerlink" title="JavaBean的简介"></a>JavaBean的简介</h2><p>JavaBean 是一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的构造器。JavaBean 通过提供符合一致性设计模式的公共方法将内部域暴露成员属性，set和get方法获取。</p>
-<h4 id="JavaBean的组成"><a href="#JavaBean的组成" class="headerlink" title="JavaBean的组成"></a>JavaBean的组成</h4><p>(1) 属性 (2) 方法 (3) 事件</p>
-<h4 id="JavaBean的任务目标"><a href="#JavaBean的任务目标" class="headerlink" title="JavaBean的任务目标"></a>JavaBean的任务目标</h4><p>JavaBean的任务就是: “Write once, run anywhere, reuse everywhere”，即“一次性编写，任何地方执行，任何地方重用”。这个任何实际上就是要解决困扰软件工业的日益增加的复杂性，提供一个简单的、紧凑的和优秀的问题解决方案。</p>
-<h2 id="Spring容器中的Bean"><a href="#Spring容器中的Bean" class="headerlink" title="Spring容器中的Bean"></a>Spring容器中的Bean</h2><h4 id="指定容器中Bean的作用域"><a href="#指定容器中Bean的作用域" class="headerlink" title="指定容器中Bean的作用域"></a>指定容器中Bean的作用域</h4><p>当通过Spring容器创建一个Bean实例时，不仅可以完成Bean实例的实例化，还可以为Bean指定特定的作用域。如果不指定Bean的作用域，Spring默认使用singleton作用域。prototype作用域的Bean的创建、销毁代价比较大。而singleton作用域的Bean实例一旦创建成果，就可以重复使用。因此，应该尽量避免将Bean设置成prototype作用域。</p>
-<h4 id="使用自动装配注入合作者Bean"><a href="#使用自动装配注入合作者Bean" class="headerlink" title="使用自动装配注入合作者Bean"></a>使用自动装配注入合作者Bean</h4><p>Spring能自动装配Bean与Bean之间的依赖关系，即无须使用ref显式指定依赖Bean，而是由Spring容器检查XML配置文件内容，根据某种规则，为调用者Bean注入被依赖的Bean。</p>
-<h2 id="Spring中Bean的3中创建方法"><a href="#Spring中Bean的3中创建方法" class="headerlink" title="Spring中Bean的3中创建方法"></a>Spring中Bean的3中创建方法</h2><p>(1) 使用构造器创建Bean实例 (2) 使用静态工厂方法创建Bean (3) 调用实例工厂方法创建Bean</p>
-<h2 id="Spring中的依赖注入"><a href="#Spring中的依赖注入" class="headerlink" title="Spring中的依赖注入"></a>Spring中的依赖注入</h2><p>使用依赖注入，不仅可以为Bean注入普通的属性值，还可以注入其他Bean的引用。依赖注入是一种优秀的解耦方式，其可以让Bean以配置文件组织在一起，而不是以硬编码的方式耦合在一起。</p>
-<p>使用Spring框架之后，调用者无需主动获取被依赖对象，调用者只要被动接受Spring容器为调用者的成员变量赋值即可，由此可见，使用Spring后，调用者获取被依赖对象的方式由原来的主动获取，变成了被动接受——所以Rod Johnson称之为控制反转。</p>
-<p>另外从Spring容器的角度来看，Spring容器负责将被依赖对象赋值给调用者的成员变量——相当于为调用者注入它依赖的实例，因此Martine Fowler称之为依赖注入。</p>
-<h2 id="Spring中的AOP"><a href="#Spring中的AOP" class="headerlink" title="Spring中的AOP"></a>Spring中的AOP</h2><h4 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h4><p>AOP（Aspect Orient Programming）也就是面向切面编程，作为面向对象编程的一种补充，已经成为一种比较成熟的编程方式。其实AOP问世的时间并不太长，AOP和OOP互为补充，面向切面编程将程序运行过程分解成各个切面。</p>
-<p>AOP专门用于处理系统中分布于各个模块（不同方法）中的交叉关注点的问题，在JavaEE应用中，常常通过AOP来处理一些具有横切性质的系统级服务，如事务管理、安全检查、缓存、对象池管理等，AOP已经成为一种非常常用的解决方案。</p>
-<h4 id="使用AspectJ实现AOP"><a href="#使用AspectJ实现AOP" class="headerlink" title="使用AspectJ实现AOP"></a>使用AspectJ实现AOP</h4><p>AspectJ是一个基于Java语言的AOP框架，提供了强大的AOP功能，其他很多AOP框架都借鉴或采纳其中的一些思想。其主要包括两个部分：一个部分定义了如何表达、定义AOP编程中的语法规范，通过这套语法规范，可以方便地用AOP来解决Java语言中存在的交叉关注点的问题；另一个部分是工具部分，包括编译、调试工具等。</p>
-<h4 id="Spring的AOP支持"><a href="#Spring的AOP支持" class="headerlink" title="Spring的AOP支持"></a>Spring的AOP支持</h4><p>Spring中的AOP代理由Spring的IoC容器负责生成、管理，其依赖关系也由IoC容器负责管理。为了在应用中使用@AspectJ支持，Spring需要添加三个库：</p>
-<ul>
-<li>aspectjweaver.jar</li>
-<li>aspectjrt.jar</li>
-<li>aopalliance.jar<br>并在Spring配置文件中做如下配置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--启动@AspectJ支持--&gt;</span><br><span class="line">&lt;aop:aspectj-autoproxy/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--指定自动搜索Bean组件、自动搜索切面类--&gt;</span><br><span class="line">&lt;context:component-scan base-package=&quot;edu.shu.sprint.service&quot;&gt;</span><br><span class="line">    &lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.aspectj.lang.annotation.Aspect&quot;/&gt;</span><br><span class="line">&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1501,7 +1474,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
