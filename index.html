@@ -209,6 +209,116 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/Python中的多进程和多线程开发/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/30/Python中的多进程和多线程开发/" class="post-title-link" itemprop="url">Python中的多进程和多线程开发</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-30 19:55:40 / 修改时间：21:33:57" itemprop="dateCreated datePublished" datetime="2019-08-30T19:55:40+08:00">2019-08-30</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h3><p>在了解多进程和多线程开发之前，我们首先要知道什么是进程和线程。</p>
+<ul>
+<li>进程是操作系统分配资源的最小单元, 线程是操作系统调度的最小单元。</li>
+<li>一个应用程序至少包括1个进程，而1个进程包括1个或多个线程，线程的尺度更小。</li>
+<li>每个进程在执行过程中拥有独立的内存单元，而一个线程的多个线程在执行过程中共享内存。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/30/Python中的多进程和多线程开发/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/Python中的内存管理机制/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -258,7 +368,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-30 14:53:31" itemprop="dateModified" datetime="2019-08-30T14:53:31+08:00">2019-08-30</time>
+                <time title="修改时间：2019-08-30 21:34:30" itemprop="dateModified" datetime="2019-08-30T21:34:30+08:00">2019-08-30</time>
               </span>
             
           
@@ -289,40 +399,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="Python中的动态类型"><a href="#Python中的动态类型" class="headerlink" title="Python中的动态类型"></a>Python中的动态类型</h3><p>首先，我们要知道Python属于动态类型的语言，对象与引用分离。</p>
+          <h3 id="Python中的动态类型"><a href="#Python中的动态类型" class="headerlink" title="Python中的动态类型"></a>Python中的动态类型</h3><p>首先，我们要知道Python属于动态类型的语言，对象与引用分离。</p>
 <p>对象是储存在内存中的实体。但我们并不能直接接触到该对象。我们在程序中写的对象名，只是指向这一对象的引用(reference)。</p>
 <p>引用和对象分离，是动态类型的核心。引用可以随时指向一个新的对象：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 3</span><br><span class="line">a = &apos;at&apos;</span><br></pre></td></tr></table></figure>
 <p>第一个语句中，3是储存在内存中的一个整数对象。通过赋值，引用a指向对象3。</p>
 <p>第二个语句中，内存中建立对象‘at’，是一个字符串(string)。引用a指向了’at’。此时，对象3不再有引用指向它。Python会自动将没有引用指向的对象销毁(destruct)，释放相应内存。</p>
 <p>(对于小的整数和短字符串，Python会缓存这些对象，而不是频繁的建立和销毁。)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 5</span><br><span class="line">b = a</span><br><span class="line">a = a + 2</span><br></pre></td></tr></table></figure>
-<p>再看这个例子。通过前两个句子，我们让a,b指向同一个整数对象5(b = a的含义是让引用b指向引用a所指的那一个对象)。但第三个句子实际上对引用a重新赋值，让a指向一个新的对象7。此时a,b分别指向不同的对象。我们看到，即使是多个引用指向同一个对象，如果一个引用值发生变化，那么实际上是让这个引用指向一个新的引用，并不影响其他的引用的指向。从效果上看，就是各个引用各自独立，互不影响。</p>
-<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><h4 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h4><p>从基本原理上，当Python的某个对象的引用计数降为0时，说明没有任何引用指向该对象，该对象就成为要被回收的垃圾了。比如某个新建对象，它被分配给某个引用，对象的引用计数变为1。如果引用被删除，对象的引用计数为0，那么该对象就可以被垃圾回收。比如下面的表:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [1, 2, 3]</span><br><span class="line">del a</span><br></pre></td></tr></table></figure>
-<p>del a后，已经没有任何引用指向之前建立的[1, 2, 3]这个表。用户不可能通过任何方式接触或者动用这个对象。这个对象如果继续待在内存里，就成了不健康的脂肪。当垃圾回收启动时，Python扫描到这个引用计数为0的对象，就将它所占据的内存清空。</p>
-<p>然而，减肥是个昂贵而费力的事情。垃圾回收时，Python不能进行其它的任务。频繁的垃圾回收将大大降低Python的工作效率。如果内存中的对象不多，就没有必要总启动垃圾回收。所以，Python只会在特定条件下，自动启动垃圾回收。当Python运行时，会记录其中分配对象(object allocation)和取消分配对象(object deallocation)的次数。当两者的差值高于某个阈值时，垃圾回收才会启动。</p>
-<p>我们可以通过gc模块的get_threshold()方法，查看该阈值:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import gc</span><br><span class="line">print(gc.get_threshold())</span><br></pre></td></tr></table></figure>
-<p>返回(700, 10, 10)，后面的两个10是与分代回收相关的阈值，后面可以看到。700即是垃圾回收启动的阈值。可以通过gc中的set_threshold()方法重新设置。</p>
-<p>我们也可以手动启动垃圾回收，即使用gc.collect()。</p>
-<h4 id="分代回收"><a href="#分代回收" class="headerlink" title="分代回收"></a>分代回收</h4><p>Python同时采用了分代(generation)回收的策略。这一策略的基本假设是，存活时间越久的对象，越不可能在后面的程序中变成垃圾。我们的程序往往会产生大量的对象，许多对象很快产生和消失，但也有一些对象长期被使用。出于信任和效率，对于这样一些“长寿”对象，我们相信它们的用处，所以减少在垃圾回收中扫描它们的频率。</p>
-<p>Python将所有的对象分为0，1，2三代。所有的新建对象都是0代对象。当某一代对象经历过垃圾回收，依然存活，那么它就被归入下一代对象。垃圾回收启动时，一定会扫描所有的0代对象。如果0代经过一定次数垃圾回收，那么就启动对0代和1代的扫描清理。当1代也经历了一定次数的垃圾回收后，那么会启动对0，1，2，即对所有对象进行扫描。</p>
-<p>这两个次数即上面get_threshold()返回的(700, 10, 10)返回的两个10。也就是说，每10次0代垃圾回收，会配合1次1代的垃圾回收；而每10次1代的垃圾回收，才会有1次的2代垃圾回收。</p>
-<p>同样可以用set_threshold()来调整，比如对2代对象进行更频繁的扫描。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import gc</span><br><span class="line">gc.set_threshold(700, 10, 5)</span><br></pre></td></tr></table></figure>
-<h4 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h4><p>引用环的存在会给上面的垃圾回收机制带来很大的困难。这些引用环可能构成无法使用，但引用计数不为0的一些对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = []</span><br><span class="line">b = [a]</span><br><span class="line">a.append(b)</span><br><span class="line"></span><br><span class="line">del a</span><br><span class="line">del b</span><br></pre></td></tr></table></figure>
-<p>上面我们先创建了两个表对象，并引用对方，构成一个引用环。删除了a，b引用之后，这两个对象不可能再从程序中调用，就没有什么用处了。但是由于引用环的存在，这两个对象的引用计数都没有降到0，不会被垃圾回收。</p>
-<p>为了回收这样的引用环，Python复制每个对象的引用计数，可以记为gc_ref。假设，每个对象i，该计数为gc_ref_i。Python会遍历所有的对象i。对于每个对象i引用的对象j，将相应的gc_ref_j减1。</p>
-<p>在结束遍历后，gc_ref不为0的对象，和这些对象引用的对象，以及继续更下游引用的对象，需要被保留。而其它的对象则被垃圾回收。</p>
-<h3 id="内存池机制"><a href="#内存池机制" class="headerlink" title="内存池机制"></a>内存池机制</h3><p>Python引用了一个内存池(memory pool)机制，即Pymalloc机制(malloc:n.分配内存)，用于对小块内存的申请和释放管理</p>
-<h4 id="内存池（memory-pool）的概念："><a href="#内存池（memory-pool）的概念：" class="headerlink" title="内存池（memory pool）的概念："></a>内存池（memory pool）的概念：</h4><p>当创建大量消耗小内存的对象时，频繁调用new/malloc会导致大量的内存碎片，致使效率降低。内存池的概念就是预先在内存中申请一定数量的，大小相等的内存块留作备用，当有新的内存需求时，就先从内存池中分配内存给这个需求，不够了之后再申请新的内存。这样做最显著的优势就是能够减少内存碎片，提升效率。</p>
-<p>内存池的实现方式有很多，性能和适用范围也不一样。 </p>
-<h4 id="Python中的内存管理机制——Pymalloc："><a href="#Python中的内存管理机制——Pymalloc：" class="headerlink" title="Python中的内存管理机制——Pymalloc："></a>Python中的内存管理机制——Pymalloc：</h4><p>python中的内存管理机制都有两套实现：一套是针对小对象，就是大小小于256kb时，pymalloc会在内存池中申请内存空间；当大于256kb，则会直接执行 new/malloc 的行为来申请新的内存空间。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/29/Python中的内存管理机制/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1212,155 +1304,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/使用python生成excel或csv文件遇上的问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/20/使用python生成excel或csv文件遇上的问题/" class="post-title-link" itemprop="url">使用python生成excel或csv文件遇上的问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-20 18:18:52" itemprop="dateCreated datePublished" datetime="2019-07-20T18:18:52+08:00">2019-07-20</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-03 16:20:11" itemprop="dateModified" datetime="2019-08-03T16:20:11+08:00">2019-08-03</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="使用pandas-DataFrame-to-excel-写入。"><a href="#使用pandas-DataFrame-to-excel-写入。" class="headerlink" title="使用pandas.DataFrame.to_excel()写入。"></a>使用pandas.DataFrame.to_excel()写入。</h2><p>假设字典dict={K_A:V_A, K_B:V_B, K_C:V_C}要生成表格</p>
-<p>使用命令<code>pandas.DataFrame(dict).to_excel(&#39;磁盘&#39;)</code>进行生成，如果V_A只是一个值，不能迭代，会报错： <code>ValueError: If using all scalar values, you must pass an index</code>。这是因为 pandas 的 DataFrame 方法需要传入一个可迭代的对象(列表，元组，字典等)，DataFrame 指定 index 参数就可以解决这个问题。修改后为命令为<code>pandas.DataFrame(dict,index=[0]).to_excel(&#39;本地地址&#39;)</code>。生成的excel表格第一列会显示index,在to_excel()方法中加入index=False方法即可去除。生成的单行数据表格的形式如下：</p>
-<table>
-<thead>
-<tr>
-<th>K_A</th>
-<th>K_B</th>
-<th>K_C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>V_A</td>
-<td>V_B</td>
-<td>V_C</td>
-</tr>
-</tbody>
-</table>
-<p>如果需要生成多行数据，那么字典中的键值对的值必须是列表，如字典dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1,V_C2]}可生成以下表格：</p>
-<table>
-<thead>
-<tr>
-<th>K_A</th>
-<th>K_B</th>
-<th>K_C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>V_A1</td>
-<td>V_B1</td>
-<td>V_C1</td>
-</tr>
-<tr>
-<td>V_A2</td>
-<td>V_B2</td>
-<td>V_C2</td>
-</tr>
-</tbody>
-</table>
-<h2 id="列表元素不一致时，报arrays-must-all-be-same-length错"><a href="#列表元素不一致时，报arrays-must-all-be-same-length错" class="headerlink" title="列表元素不一致时，报arrays must all be same length错"></a>列表元素不一致时，报arrays must all be same length错</h2><p>如果字典中键值对中的value中的列表的元素数量不一样，如dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1]}，就无法使用<code>pandas.DataFrame().to_excel()</code>生成表格，会报错：<code>ValueError: arrays must all be same length</code>。原因是因为使用dataframe(dict) 构建dataframe时，每个key会变成一个column，list-like values会变为行，每个values中的list长度不一致就会出现这个错误。如果需要使用to_excel生成表格，就需要将不一样长度的列表填充空值，或者使用<strong>xlsxwriter</strong>方法来生成excel，相关代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">workbook = xlsxwriter.Workbook(<span class="string">'磁盘地址'</span>)</span><br><span class="line">worksheet = workbook.add_worksheet()</span><br><span class="line"></span><br><span class="line">row = <span class="number">0</span></span><br><span class="line">col = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dict.keys():</span><br><span class="line">    row = <span class="number">0</span></span><br><span class="line">    worksheet.write(row, col, key)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> dict[key]:</span><br><span class="line">        worksheet.write(row+<span class="number">1</span>, col, item)</span><br><span class="line">        row += <span class="number">1</span></span><br><span class="line">    col += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1398,7 +1341,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
