@@ -209,6 +209,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/Linux面试中的一些问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/19/Linux面试中的一些问题/" class="post-title-link" itemprop="url">Linux面试中的一些问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-19 10:04:36 / 修改时间：11:03:54" itemprop="dateCreated datePublished" datetime="2019-09-19T10:04:36+08:00">2019-09-19</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="Linux中五种IO模型"><a href="#Linux中五种IO模型" class="headerlink" title="Linux中五种IO模型"></a>Linux中五种IO模型</h3><p>CSDN上的这篇文章讲得很好，我就不做归纳总结了</p>
+<p><a href="https://blog.csdn.net/baiye_xing/article/details/74331041" target="_blank" rel="noopener">https://blog.csdn.net/baiye_xing/article/details/74331041</a></p>
+<h3 id="Linux中的一些命令"><a href="#Linux中的一些命令" class="headerlink" title="Linux中的一些命令"></a>Linux中的一些命令</h3><p><strong>说一些你比较常用linux指令</strong></p>
+<p>ls/ll、cd、mkdir、rm-rf、cp、mv、ps -ef | grep xxx、kill、free-m、tar -xvf file.tar、（说那么十几二十来个估计差不多了）</p>
+<p><strong>查看进程（例：如何查看所有xx进程）</strong></p>
+<p>ps -ef | grep xxx</p>
+<p>ps -aux | grep xxx（-aux显示所有状态）</p>
+<p><strong>杀掉进程</strong></p>
+<p>kill  -9[PID]    —(PID用查看进程的方式查找)</p>
+<p><strong>启动/停止服务</strong></p>
+<p>cd到bin目录cd/</p>
+<p>./startup.sh   –打开（先确保有足够的权限）</p>
+<p>./shutdown.sh  —关闭</p>
+<p><strong>查看日志</strong></p>
+<p>cd到服务器的logs目录（里面有xx.out文件）</p>
+<p>tail -f xx.out  –此时屏幕上实时更新日志。ctr+c停止</p>
+<p>查看最后100行日志 tail -100 xx.out </p>
+<p>查看关键字附件的日志。如：cat filename | grep -C 5 ‘关键字’（关键字前后五行。B表示前，A表示后，C表示前后） —-使用不多</p>
+<p>还有vi查询啥的。用的也不多。</p>
+<p><strong>查看端口：（如查看某个端口是否被占用）</strong></p>
+<p>netstat -anp | grep 端口号（状态为LISTEN表示被占用）</p>
+<p><strong>查找文件</strong></p>
+<p>查找大小超过xx的文件： find . -type f -size +xxk  —–(find . -type f -mtime -1 -size +100k -size-400k)–查区间大小的文件</p>
+<p>通过文件名：find / -name xxxx    —整个硬盘查找</p>
+<p>其余的基本上不常用</p>
+<p><strong>vim（vi）编辑器</strong>　　</p>
+<p>有命令模式、输入模式、末行模式三种模式。<br>命令模式：查找内容(/abc、跳转到指定行(20gg)、跳转到尾行(G)、跳转到首行(gg)、删除行(dd)、插入行(o)、复制粘贴(yy,p)<br>输入模式：编辑文件内容<br>末行模式：保存退出(wq)、强制退出(q!)、显示文件行号(set number)<br>在命令模式下，输入a或i即可切换到输入模式，输入冒号(:)即可切换到末行模式；在输入模式和末行模式下，按esc键切换到命令模式</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/计算机网络中的面试题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -258,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-18 14:47:55" itemprop="dateModified" datetime="2019-09-18T14:47:55+08:00">2019-09-18</time>
+                <time title="修改时间：2019-09-19 10:01:45" itemprop="dateModified" datetime="2019-09-19T10:01:45+08:00">2019-09-19</time>
               </span>
             
           
@@ -289,212 +414,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg" alt="undefined"></p>
+          <h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg" alt="undefined"></p>
 <p><strong>1）物理层（Physical Layer）</strong></p>
 <p>　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。<strong>该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。</strong>物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。</p>
-<p><strong>2）数据链路层（Data Link Layer）</strong></p>
-<p>　　数据链路层在物理层提供的服务的基础上向网络层提供服务，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。为达到这一目的，数据链路必须具备一系列相应的功能，主要有：如何将数据组合成数据块，在数据链路层中称这种数据块为帧（frame），帧是数据链路层的传送单位；如何控制帧在物理信道上的传输，包括如何处理传输差错，如何调节发送速率以使与接收方相匹配；以及在两个网络实体之间提供数据链路通路的建立、维持和释放的管理。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据的检错、重发等。</p>
-<p>　　有关数据链路层的重要知识点：</p>
-<p>　　<strong>1&gt; 数据链路层为网络层提供可靠的数据传输；</strong></p>
-<p>　　<strong>2&gt; 基本数据单位为帧；</strong></p>
-<p>　　<strong>3&gt; 主要的协议：以太网协议；</strong></p>
-<p>　　<strong>4&gt; 两个重要设备名称：网桥和交换机。</strong></p>
-<p><strong>3）网络层（Network Layer）</strong></p>
-<p>　　网络层的目的是实现两个端系统之间的数据透明传送，具体功能包括寻址和路由选择、连接的建立、保持和终止等。它提供的服务使传输层不需要了解网络中的数据传输和交换技术。如果您想用尽量少的词来记住网络层，那就是“路径选择、路由及逻辑寻址”。</p>
-<p>　　网络层中涉及众多的协议，其中包括最重要的协议，也是TCP/IP的核心协议——IP协议。IP协议非常简单，仅仅提供不可靠、无连接的传送服务。IP协议的主要功能有：无连接数据报传输、数据报路由选择和差错控制。与IP协议配套使用实现其功能的还有地址解析协议ARP、逆地址解析协议RARP、因特网报文协议ICMP、因特网组管理协议IGMP。具体的协议我们会在接下来的部分进行总结，有关网络层的重点为：</p>
-<p>　　<strong>1&gt; 网络层负责对子网间的数据包进行路由选择。此外，网络层还可以实现拥塞控制、网际互连等功能；</strong></p>
-<p>　　<strong>2&gt; 基本数据单位为IP数据报；</strong></p>
-<p>　　<strong>3&gt; 包含的主要协议：</strong></p>
-<p>　　<strong>IP协议（Internet Protocol，因特网互联协议）;</strong></p>
-<p>　　<strong>ICMP协议（Internet Control Message Protocol，因特网控制报文协议）;</strong></p>
-<p>　　<strong>ARP协议（Address Resolution Protocol，地址解析协议）;</strong></p>
-<p>　　<strong>RARP协议（Reverse Address Resolution Protocol，逆地址解析协议）。</strong></p>
-<p>　　<strong>4&gt; 重要的设备：路由器。</strong></p>
-<p><strong>4）传输层（Transport Layer）</strong></p>
-<p>　　第一个端到端，即主机到主机的层次。传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输。此外，传输层还要处理端到端的差错控制和流量控制问题。</p>
-<p>　　传输层的任务是根据通信子网的特性，最佳的利用网络资源，为两个端系统的会话层之间，提供建立、维护和取消传输连接的功能，负责端到端的可靠数据传输。在这一层，信息传送的协议数据单元称为段或报文。</p>
-<p>　　网络层只是根据网络地址将源结点发出的数据包传送到目的结点，而传输层则负责将数据可靠地传送到相应的端口。</p>
-<p>　　有关网络层的重点：</p>
-<p>　　<strong>1&gt; 传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输以及端到端的差错控制和流量控制问题；</strong></p>
-<p>　　<strong>2&gt; 包含的主要协议：TCP协议（Transmission Control Protocol，传输控制协议）、UDP协议（User Datagram Protocol，用户数据报协议）；</strong></p>
-<p>　　<strong>3&gt; 重要设备：网关。</strong></p>
-<p><strong>5）会话层</strong></p>
-<p>　　会话层管理主机之间的会话进程，即负责建立、管理、终止进程之间的会话。会话层还利用在数据中插入校验点来实现数据的同步。</p>
-<p><strong>6）表示层</strong></p>
-<p>　　表示层对上层数据或信息进行变换以保证一个主机应用层信息可以被另一个主机的应用程序理解。表示层的数据转换包括数据的加密、压缩、格式转换等。</p>
-<p><strong>7）应用层</strong></p>
-<p>　　为操作系统或网络应用程序提供访问网络服务的接口。</p>
-<p>　　会话层、表示层和应用层重点：</p>
-<p>　　<strong>1&gt; 数据传输基本单位为报文；</strong></p>
-<p>　　<strong>2&gt; 包含的主要协议：FTP（文件传送协议）、Telnet（远程登录协议）、DNS（域名解析协议）、SMTP（邮件传送协议），POP3协议（邮局协议），HTTP协议（Hyper Text Transfer Protocol）</strong></p>
-<h3 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h3><p>TCP和UDP是OSI模型中的运输层中的协议。TCP提供可靠的通信传输，而UDP则常被用于让广播和细节控制交给应用的通信传输。<br>两者的区别大致如下：</p>
-<ul>
-<li>TCP面向连接，UDP面向非连接即发送数据前不需要建立链接</li>
-<li>TCP提供可靠的服务（数据传输），UDP无法保证</li>
-<li>TCP面向字节流，UDP面向报文</li>
-<li>TCP数据传输慢，UDP数据传输快</li>
-<li>TCP提供一种面向连接的、可靠的字节流服务</li>
-<li>在一个TCP连接中，仅有两方进行彼此通信，因此广播和多播不能用于TCP</li>
-<li>TCP使用校验和，确认和重传机制来保证可靠传输</li>
-<li>TCP使用累积确认</li>
-<li>TCP使用滑动窗口机制来实现流量控制，通过动态改变窗口的大小进行拥塞控制</li>
-</ul>
-<p><strong>TCP的使用场景</strong>：当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。</p>
-<p><strong>UDP的使用场景</strong>：UDP一般用于即时通信（QQ聊天 对数据准确性和丢包要求比较低，但速度必须快），在线视频（RTSP 速度一定要快，保证视频连续，但是偶尔花了一个图像帧，人们还是能接受的），网络语音电话（VoIP 语音数据包一般比较小，需要高速发送，偶尔断音或串音也没有问题）等等。</p>
-<h3 id="TCP中的三次握手"><a href="#TCP中的三次握手" class="headerlink" title="TCP中的三次握手"></a>TCP中的三次握手</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72nxkwmmog311w0lcju4.gif" alt=""></p>
-<ol>
-<li>TCP服务器进程先创建传输控制块TCB，时刻准备接受客户进程的连接请求，此时服务器就进入了LISTEN（监听）状态；</li>
-<li>TCP客户进程也是先创建传输控制块TCB，然后向服务器发出连接请求报文，这是报文首部中的同部位SYN=1，同时选择一个初始序列号 seq=x ，此时，TCP客户端进程进入了 SYN-SENT（同步已发送状态）状态。TCP规定，SYN报文段（SYN=1的报文段）不能携带数据，但需要消耗掉一个序号。</li>
-<li>TCP服务器收到请求报文后，如果同意连接，则发出确认报文。确认报文中应该 ACK=1，SYN=1，确认号是ack=x+1，同时也要为自己初始化一个序列号 seq=y，此时，TCP服务器进程进入了SYN-RCVD（同步收到）状态。这个报文也不能携带数据，但是同样要消耗一个序号。</li>
-<li>TCP客户进程收到确认后，还要向服务器给出确认。确认报文的ACK=1，ack=y+1，自己的序列号seq=x+1，此时，TCP连接建立，客户端进入ESTABLISHED（已建立连接）状态。TCP规定，ACK报文段可以携带数据，但是如果不携带数据则不消耗序号。</li>
-<li>当服务器收到客户端的确认后也进入ESTABLISHED状态，此后双方就可以开始通信了。</li>
-</ol>
-<p>大白话版本：第一次握手：客户端：我要和你建立连接了。第二次握手：服务器端：我知道你要和我建立连接了。</p>
-<p>第三次握手：客户端：我知道你知道要和我建立连接了。</p>
-<p><strong>为什么TCP客户端最后还要发送一次确认呢？</strong></p>
-<p>​    一句话，主要防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误。</p>
-<p>​    如果使用的是两次握手建立连接，假设有这样一种场景，客户端发送了第一个请求连接并且没有丢失，只是因为在网络结点中滞留的时间太长了，由于TCP的客户端迟迟没有收到确认报文，以为服务器没有收到，此时重新向服务器发送这条报文，此后客户端和服务器经过两次握手完成连接，传输数据，然后关闭连接。此时此前滞留的那一次请求连接，网络通畅了到达了服务器，这个报文本该是失效的，但是，两次握手的机制将会让客户端和服务器再次建立连接，这将导致不必要的错误和资源的浪费。</p>
-<p>​    如果采用的是三次握手，就算是那一次失效的报文传送过来了，服务端接受到了那条失效报文并且回复了确认报文，但是客户端不会再次发出确认。由于服务器收不到确认，就知道客户端并没有请求连接。</p>
-<h3 id="TCP连接的释放（四次挥手）"><a href="#TCP连接的释放（四次挥手）" class="headerlink" title="TCP连接的释放（四次挥手）"></a>TCP连接的释放（四次挥手）</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72pv054ung30iy0aoq5k.gif" alt="undefined"></p>
-<ol>
-<li>客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</li>
-<li>服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</li>
-<li>客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</li>
-<li>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</li>
-<li>客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗*∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</li>
-<li>服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。</li>
-</ol>
-<p>大白话版本：第一次挥手：客户端：我要释放连接了。第二次挥手：服务器：我知道你要释放连接了，但你再等等，我还要说点东西。第三次挥手：服务器：我全部说完了，可以释放连接了。第四次挥手：我知道你说完了，可以释放连接了。</p>
-<p> <strong>为什么客户端最后还要等待2MSL？</strong></p>
-<p>MSL（Maximum Segment Lifetime），TCP允许不同的实现可以设置不同的MSL值。</p>
-<p>第一，保证客户端发送的最后一个ACK报文能够到达服务器，因为这个ACK报文可能丢失，站在服务器的角度看来，我已经发送了FIN+ACK报文请求断开了，客户端还没有给我回应，应该是我发送的请求断开报文它没有收到，于是服务器又会重新发送一次，而客户端就能在这个2MSL时间段内收到这个重传的报文，接着给出回应报文，并且会重启2MSL计时器。</p>
-<p>第二，防止类似与“三次握手”中提到了的“已经失效的连接请求报文段”出现在本连接中。客户端发送完最后一个确认报文后，在这个2MSL时间中，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。这样新的连接中不会出现旧连接的请求报文。</p>
-<h3 id="从输入URL到页面加载完成期间经历了什么"><a href="#从输入URL到页面加载完成期间经历了什么" class="headerlink" title="从输入URL到页面加载完成期间经历了什么"></a>从输入URL到页面加载完成期间经历了什么</h3><p>总体来说分为以下几个过程:</p>
-<ol>
-<li>DNS解析</li>
-<li>TCP连接</li>
-<li>发送HTTP请求</li>
-<li>服务器处理请求并返回HTTP报文</li>
-<li>浏览器解析渲染页面</li>
-<li>连接结束</li>
-</ol>
-<h4 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h4><p>NS解析的过程就是寻找哪台机器上有你需要资源的过程。当你在浏览器中输入一个地址时，例如<a href="http://www.baidu.com，其实不是百度网站真正意义上的地址。互联网上每一台计算机的唯一标识是它的IP地址，但是IP地址并不方便记忆。用户更喜欢用方便记忆的网址去寻找互联网上的其它计算机，也就是上面提到的百度的网址。所以互联网设计者需要在用户的方便性与可用性方面做一个权衡，这个权衡就是一个网址到IP地址的转换，这个过程就是DNS解析。它实际上充当了一个翻译的角色，实现了网址到IP地址的转换。网址到IP地址转换的过程是如何进行的" target="_blank" rel="noopener">www.baidu.com，其实不是百度网站真正意义上的地址。互联网上每一台计算机的唯一标识是它的IP地址，但是IP地址并不方便记忆。用户更喜欢用方便记忆的网址去寻找互联网上的其它计算机，也就是上面提到的百度的网址。所以互联网设计者需要在用户的方便性与可用性方面做一个权衡，这个权衡就是一个网址到IP地址的转换，这个过程就是DNS解析。它实际上充当了一个翻译的角色，实现了网址到IP地址的转换。网址到IP地址转换的过程是如何进行的</a>?</p>
-<p><strong>解析过程</strong></p>
-<p>DNS解析是一个递归查询的过程。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g73foaatufj30m80ee0x6.jpg" alt="undefined"></p>
-<p>上述图片是查找<a href="http://www.google.com的IP地址过程。首先在本地域名服务器中查询IP地址，如果没有找到的情况下，本地域名服务器会向根域名服务器发送一个请求，如果根域名服务器也不存在该域名时，本地域名会向com顶级域名服务器发送一个请求，依次类推下去。直到最后本地域名服务器得到google的IP地址并把它缓存到本地，供下次查询使用。从上述过程中，可以看出网址的解析是一个从右向左的过程" target="_blank" rel="noopener">www.google.com的IP地址过程。首先在本地域名服务器中查询IP地址，如果没有找到的情况下，本地域名服务器会向根域名服务器发送一个请求，如果根域名服务器也不存在该域名时，本地域名会向com顶级域名服务器发送一个请求，依次类推下去。直到最后本地域名服务器得到google的IP地址并把它缓存到本地，供下次查询使用。从上述过程中，可以看出网址的解析是一个从右向左的过程</a>: com -&gt; google.com -&gt; <a href="http://www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是www.google.com.，并不是我多打了一个.，这个.对应的就是根域名服务器，默认情况下所有的网址的最后一位都是.，既然是默认情况下，为了方便用户，通常都会省略，浏览器在请求DNS的时候会自动加上，所有网址真正的解析过程为" target="_blank" rel="noopener">www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是www.google.com.，并不是我多打了一个.，这个.对应的就是根域名服务器，默认情况下所有的网址的最后一位都是.，既然是默认情况下，为了方便用户，通常都会省略，浏览器在请求DNS的时候会自动加上，所有网址真正的解析过程为</a>: . -&gt; .com -&gt; google.com. -&gt; <a href="http://www.google.com.。" target="_blank" rel="noopener">www.google.com.。</a></p>
-<p><strong>DNS优化</strong></p>
-<p>了解了DNS的过程，可以为我们带来哪些？上文中请求到google的IP地址时，经历了8个步骤，这个过程中存在多个请求(同时存在UDP和TCP请求，为什么有两种请求方式，请自行查找)。如果每次都经过这么多步骤，是否太耗时间？如何减少该过程的步骤呢？那就是DNS缓存。</p>
-<p>DNS缓存</p>
-<p>DNS存在着多级缓存，从离浏览器的距离排序的话，有以下几种: 浏览器缓存，系统缓存，路由器缓存，IPS服务器缓存，根域名服务器缓存，顶级域名服务器缓存，主域名服务器缓存。</p>
-<ul>
-<li>在你的chrome浏览器中输入:chrome://dns/，你可以看到chrome浏览器的DNS缓存。</li>
-<li>系统缓存主要存在/etc/hosts(Linux系统)中:</li>
-</ul>
-<p>DNS负载均衡</p>
-<p>不知道大家有没有思考过一个问题: DNS返回的IP地址是否每次都一样？如果每次都一样是否说明你请求的资源都位于同一台机器上面，那么这台机器需要多高的性能和储存才能满足亿万请求呢？其实真实的互联网世界背后存在成千上百台服务器，大型的网站甚至更多。但是在用户的眼中，它需要的只是处理他的请求，哪台机器处理请求并不重要。DNS可以返回一个合适的机器的IP给用户，例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等，这种过程就是DNS负载均衡，又叫做DNS重定向。大家耳熟能详的CDN(Content Delivery Network)就是利用DNS的重定向技术，DNS服务器会返回一个跟用户最接近的点的IP地址给用户，CDN节点的服务器负责响应用户的请求，提供所需的内容。</p>
-<h4 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h4><p>建立TCP连接就是上文说的三次握手</p>
-<h4 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h4><p>其实这部分又可以称为前端工程师眼中的HTTP，它主要发生在客户端。发送HTTP请求的过程就是构建HTTP请求报文并通过TCP协议中发送到服务器指定端口(HTTP协议80/8080, HTTPS协议443)。HTTP请求报文是由三部分组成: <strong>请求行</strong>, <strong>请求报头</strong>和<strong>请求正文</strong>。</p>
-<p><strong>请求行</strong></p>
-<p>格式如下:<br><code>Method Request-URL HTTP-Version CRLF</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg: GET index.html HTTP/1.1</span><br></pre></td></tr></table></figure>
-<p>常用的方法有: GET, POST, PUT, DELETE, OPTIONS, HEAD。</p>
-<p><strong>请求报头</strong></p>
-<p>请求报头允许客户端向服务器传递请求的附加信息和客户端自身的信息。<br>PS: 客户端不一定特指浏览器，有时候也可使用Linux下的CURL命令以及HTTP客户端测试工具等。<br>常见的请求报头有: Accept, Accept-Charset, Accept-Encoding, Accept-Language, Content-Type, Authorization, Cookie, User-Agent等。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g73g5ca093j30m809jacs.jpg" alt="undefined"></p>
-<p>上图是使用Chrome开发者工具截取的对百度的HTTP请求以及响应报文，从图中可以看出，请求报头中使用了Accept, Accept-Encoding, Accept-Language, Cache-Control, Connection, Cookie等字段。Accept用于指定客户端用于接受哪些类型的信息，Accept-Encoding与Accept类似，它用于指定接受的编码方式。Connection设置为Keep-alive用于告诉客户端本次HTTP请求结束之后并不需要关闭TCP连接，这样可以使下次HTTP请求使用相同的TCP通道，节省TCP连接建立的时间。</p>
-<p><strong>请求正文</strong></p>
-<p>当使用POST, PUT等方法时，通常需要客户端向服务器传递数据。这些数据就储存在请求正文中。在请求包头中有一些与请求正文相关的信息，例如: 现在的Web应用通常采用Rest架构，请求的数据格式一般为json。这时就需要设置Content-Type: application/json。</p>
-<h4 id="服务器处理请求并返回HTTP报文"><a href="#服务器处理请求并返回HTTP报文" class="headerlink" title="服务器处理请求并返回HTTP报文"></a>服务器处理请求并返回HTTP报文</h4><p>自然而然这部分对应的就是后端工程师眼中的HTTP。后端从在固定的端口接收到TCP报文开始，这一部分对应于编程语言中的socket。它会对TCP连接进行处理，对HTTP协议进行解析，并按照报文格式进一步封装成HTTP Request对象，供上层使用。这一部分工作一般是由Web服务器去进行，我使用过的Web服务器有Tomcat, Jetty和Netty等等。</p>
-<p>HTTP响应报文也是由三部分组成: <strong>状态码</strong>, <strong>响应报头</strong>和<strong>响应报文</strong>。</p>
-<p><strong>状态码</strong></p>
-<p>状态码是由3位数组成，第一个数字定义了响应的类别，且有五种可能取值:</p>
-<ul>
-<li>1xx：指示信息–表示请求已接收，继续处理。</li>
-<li>2xx：成功–表示请求已被成功接收、理解、接受。</li>
-<li>3xx：重定向–要完成请求必须进行更进一步的操作。</li>
-<li>4xx：客户端错误–请求有语法错误或请求无法实现。</li>
-<li>5xx：服务器端错误–服务器未能实现合法的请求。</li>
-</ul>
-<p><strong>响应报头</strong></p>
-<p>常见的响应报头字段有: Server, Connection…</p>
-<p><strong>响应报文</strong></p>
-<p>服务器返回给浏览器的文本信息，通常HTML, CSS, JS, 图片等文件就放在这一部分。</p>
-<h4 id="断开TCP连接"><a href="#断开TCP连接" class="headerlink" title="断开TCP连接"></a>断开TCP连接</h4><p>当信息传递结束之后，TCP连接就会断开，相关步骤详见上文中的四次挥手。</p>
-<h4 id="浏览器解析渲染页面"><a href="#浏览器解析渲染页面" class="headerlink" title="浏览器解析渲染页面"></a>浏览器解析渲染页面</h4><p>浏览器在收到HTML,CSS,JS文件后，它是如何把页面呈现到屏幕上的？下图对应的就是WebKit渲染的过程。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g73gfqglfej30ja09gdhw.jpg" alt="undefined"></p>
-<p>浏览器是一个边解析边渲染的过程。首先浏览器解析HTML文件构建DOM树，然后解析CSS文件构建渲染树，等到渲染树构建完成后，浏览器开始布局渲染树并将其绘制到屏幕上。这个过程比较复杂，涉及到两个概念: reflow(回流)和repain(重绘)。DOM节点中的各个元素都是以盒模型的形式存在，这些都需要浏览器去计算其位置和大小等，这个过程称为relow;当盒模型的位置,大小以及其他属性，如颜色,字体,等确定下来之后，浏览器便开始绘制内容，这个过程称为repain。页面在首次加载时必然会经历reflow和repain。reflow和repain过程是非常消耗性能的，尤其是在移动设备上，它会破坏用户体验，有时会造成页面卡顿。所以我们应该尽可能少的减少reflow和repain。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g73gfzjn1sj30ke0j574q.jpg" alt="undefined"></p>
-<p>JS的解析是由浏览器中的JS解析引擎完成的。JS是单线程运行，也就是说，在同一个时间内只能做一件事，所有的任务都需要排队，前一个任务结束，后一个任务才能开始。但是又存在某些任务比较耗时，如IO读写等，所以需要一种机制可以先执行排在后面的任务，这就是：同步任务(synchronous)和异步任务(asynchronous)。JS的执行机制就可以看做是一个主线程加上一个任务队列(task queue)。同步任务就是放在主线程上执行的任务，异步任务是放在任务队列中的任务。所有的同步任务在主线程上执行，形成一个执行栈;异步任务有了运行结果就会在任务队列中放置一个事件；脚本运行时先依次运行执行栈，然后会从任务队列里提取事件，运行任务队列中的任务，这个过程是不断重复的，所以又叫做事件循环(Event loop)。</p>
-<p>浏览器在解析过程中，如果遇到请求外部资源时，如图像,iconfont,JS等。浏览器将重复1-6过程下载该资源。请求过程是异步的，并不会影响HTML文档进行加载，但是当文档加载过程中遇到JS文件，HTML文档会挂起渲染过程，不仅要等到文档中JS文件加载完毕还要等待解析执行完毕，才会继续HTML的渲染过程。原因是因为JS有可能修改DOM结构，这就意味着JS执行完成前，后续所有资源的下载是没有必要的，这就是JS阻塞后续资源下载的根本原因。CSS文件的加载不影响JS文件的加载，但是却影响JS文件的执行。JS代码执行前浏览器必须保证CSS文件已经下载并加载完毕。</p>
-<h3 id="HTTPS和HTTP的区别"><a href="#HTTPS和HTTP的区别" class="headerlink" title="HTTPS和HTTP的区别"></a>HTTPS和HTTP的区别</h3><h4 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h4><p>HTTP协议是超文本传输协议，是一个基于请求与响应，无状态的，应用层的协议，常基于TCP/IP协议传输数据，互联网上应用最为广泛的一种网络协议,所有的WWW文件都必须遵守这个标准。设计HTTP的初衷是为了提供一种发布和接收HTML页面的方法。</p>
-<p>发展历史：</p>
-<ol>
-<li>1991年发布Http/0.9版本，只有Get命令，且服务端直返HTML格式字符串，服务器响应完毕就关闭TCP连接。</li>
-<li>1996年发布Http/1.0版本，<strong>优点</strong>：可以发送任何格式内容，包括文字、图像、视频、二进制。也丰富了命令Get，Post，Head。请求和响应的格式加入头信息。<strong>缺点</strong>：每个TCP连接只能发送一个请求，而新建TCP连接的成本很高，导致Http/1.0新能很差。</li>
-<li>1997发布Http/1.1版本，完善了Http协议，<strong>直至20年后的今天仍是最流行的版本</strong>。<br><strong>优点</strong>：<code>a</code>. 引入持久连接，TCP默认不关闭，可被多个请求复用，对于一个域名，多数浏览器允许同时建立6个持久连接。<code>b</code>. 引入管道机制，即在同一个TCP连接中，可以同时发送多个请求，不过服务器还是按顺序响应。<code>c</code>. 在头部加入Content-Length字段，一个TCP可以同时传送多个响应，所以就需要该字段来区分哪些内容属于哪个响应。<code>d</code>. 分块传输编码，对于耗时的动态操作，用流模式取代缓存模式，即产生一块数据，就发送一块数据。<code>e</code>. 增加了许多命令，头信息增加Host来指定服务器域名，可以访问一台服务器上的不同网站。<br><strong>缺点</strong>：TCP连接中的响应有顺序，服务器处理完一个回应才能处理下一个回应，如果某个回应特别慢，后面的请求就会排队等着（对头堵塞）。</li>
-<li>2015年发布Http/2版本，它有几个特性：二进制协议、多工、数据流、头信息压缩、服务器推送。</li>
-</ol>
-<p>HTTP的请求和响应格式在上文中都有写到，补充一张图，更直观的理解一下。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g73h0rnv4uj30xc0b50vh.jpg" alt="undefined"></p>
-<h4 id="Https协议-SSL协议"><a href="#Https协议-SSL协议" class="headerlink" title="Https协议/SSL协议"></a>Https协议/SSL协议</h4><p>Https协议是以安全为目标的Http通道，简单来说就是Http的安全版。主要是在Http下加入SSL层（现在主流的是SLL/TLS），SSL是Https协议的安全基础。Https默认端口号为443。<br>前面介绍了Http协议，各位同学能说出Http存在的风险吗？</p>
-<ol>
-<li>窃听风险：Http采用明文传输数据，第三方可以获知通信内容</li>
-<li>篡改风险：第三方可以修改通信内容</li>
-<li>冒充风险：第三方可以冒充他人身份进行通信</li>
-</ol>
-<p>SSL/TLS协议就是为了解决这些风险而设计，希望达到：</p>
-<ol>
-<li>所有信息加密传输，三方窃听通信内容</li>
-<li>具有校验机制，内容一旦被篡改，通信双发立刻会发现</li>
-<li>配备身份证书，防止身份被冒充</li>
-</ol>
-<p>下面主要介绍SSL/TLS协议。</p>
-<h5 id="SSL发展史（互联网加密通信）"><a href="#SSL发展史（互联网加密通信）" class="headerlink" title="SSL发展史（互联网加密通信）"></a>SSL发展史（互联网加密通信）</h5><ol>
-<li>1994年NetSpace公司设计SSL协议（Secure Sockets Layout）1.0版本，但未发布。</li>
-<li>1995年NetSpace发布SSL/2.0版本，很快发现有严重漏洞</li>
-<li>1996年发布SSL/3.0版本，得到大规模应用</li>
-<li>1999年，发布了SSL升级版TLS/1.0版本，<strong>目前应用最广泛的版本</strong></li>
-<li>2006年和2008年，发布了TLS/1.1版本和TLS/1.2版本</li>
-</ol>
-<h5 id="SSL原理及运行过程"><a href="#SSL原理及运行过程" class="headerlink" title="SSL原理及运行过程"></a>SSL原理及运行过程</h5><p>SSL/TLS协议基本思路是采用公钥加密法（最有名的是RSA加密算法）。大概流程是，<strong>客户端向服务器索要公钥，然后用公钥加密信息，服务器收到密文，用自己的私钥解密</strong>。<br>为了防止公钥被篡改，把公钥放在数字证书中，证书可信则公钥可信。公钥加密计算量很大，为了提高效率，<strong>服务端和客户端都生成对话秘钥，用它加密信息，而对话秘钥是对称加密，速度非常快。而公钥用来机密对话秘钥</strong>。</p>
-<p>下面用一张图表示SSL加密传输过程：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g73h456nujj30tv0m33zj.jpg" alt="undefined"></p>
-<p>详细介绍一下图中过程：</p>
-<ol>
-<li>客户端给出协议版本号、一个客户端随机数A（Client random）以及客户端支持的加密方式</li>
-<li>服务端确认双方使用的加密方式，并给出数字证书、一个服务器生成的随机数B（Server random）</li>
-<li>客户端确认数字证书有效，生成一个新的随机数C（Pre-master-secret），<strong>使用证书中的公钥对C加密</strong>，发送给服务端</li>
-<li><strong>服务端使用自己的私钥解密出C</strong></li>
-<li>客户端和服务器根据约定的加密方法，使用三个随机数ABC，生成对话秘钥，之后的通信都用这个对话秘钥进行加密。</li>
-</ol>
-<h5 id="SSL证书"><a href="#SSL证书" class="headerlink" title="SSL证书"></a>SSL证书</h5><p>上面提到了，Https协议中需要使用到SSL证书。<br>SSL证书是一个二进制文件，里面包含经过认证的网站公钥和一些元数据，需要从经销商购买。<br>证书有很多类型，按认证级别分类：</p>
-<ul>
-<li><strong>域名认证（DV=Domain Validation）</strong>：最低级别的认证，可以确认申请人拥有这个域名</li>
-<li><strong>公司认证（OV=Organization Validation）</strong>：确认域名所有人是哪家公司，证书里面包含公司的信息</li>
-<li><strong>扩展认证（EV=Extended Validation）</strong>：最高级别认证，浏览器地址栏会显示公司名称。</li>
-</ul>
-<p>按覆盖范围分类：</p>
-<ul>
-<li><strong>单域名证书</strong>：只能用于单域名，<a href="http://foo.com/" target="_blank" rel="noopener">foo.com</a>证书不能用不<a href="http://www.foo.com/" target="_blank" rel="noopener">www.foo.com</a></li>
-<li><strong>通配符证书</strong>：可用于某个域名及所有一级子域名，比如*<a href="http://.foo.com/" target="_blank" rel="noopener">.foo.com</a>的证书可用于<a href="http://foo.com/" target="_blank" rel="noopener">foo.com</a>，也可用于<a href="http://www.foo.com/" target="_blank" rel="noopener">www.foo.com</a></li>
-<li><strong>多域名证书</strong>：可用于多个域名，比如foo.com和bar.com</li>
-</ul>
-<h4 id="Http协议和Https协议的对比"><a href="#Http协议和Https协议的对比" class="headerlink" title="Http协议和Https协议的对比"></a>Http协议和Https协议的对比</h4><p>Http和Https的区别如下：</p>
-<ul>
-<li>https协议需要到CA申请证书，大多数情况下需要一定费用</li>
-<li>Http是超文本传输协议，信息采用明文传输，Https则是具有安全性SSL加密传输协议</li>
-<li>Http和Https端口号不一样，Http是80端口，Https是443端口</li>
-<li>Http连接是无状态的，而Https采用Http+SSL构建可进行加密传输、身份认证的网络协议，更安全。</li>
-<li>Http协议建立连接的过程比Https协议快。因为Https除了Tcp三次握手，还要经过SSL握手。连接建立之后数据传输速度，二者无明显区别。</li>
-</ul>
-<h3 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h3><h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>由于HTTP协议是无状态的协议，所以服务端需要记录用户的状态时，就需要用某种机制来识具体的用户，这个机制就是Session.典型的场景比如购物车，当你点击下单按钮时，由于HTTP协议无状态，所以并不知道是哪个用户操作的，所以服务端要为特定的用户创建了特定的Session，用用于标识这个用户，并且跟踪用户，这样才知道购物车里面有几本书。这个Session是保存在服务端的，有一个唯一标识。在服务端保存Session的方法很多，内存、数据库、文件都有。集群的时候也要考虑Session的转移，在大型的网站，一般会有专门的Session服务器集群，用来保存用户会话，这个时候 Session 信息都是放在内存的，使用一些缓存服务比如Memcached之类的来放 Session。</p>
-<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>每次HTTP请求的时候，客户端都会发送相应的Cookie信息到服务端。实际上大多数的应用都是用 Cookie 来实现Session跟踪的，第一次创建Session的时候，服务端会在HTTP协议中告诉客户端，需要在 Cookie 里面记录一个Session ID，以后每次请求把这个会话ID发送到服务器，我就知道你是谁了。有人问，如果客户端的浏览器禁用了 Cookie 怎么办？一般这种情况下，会使用一种叫做URL重写的技术来进行会话跟踪，即每次HTTP交互，URL后面都会被附加上一个诸如 sid=xxxxx 这样的参数，服务端据此来识别用户。</p>
-<p>除了记录Session ID，Cookie其实还可以用在一些方便用户的场景下，设想你某次登陆过一个网站，下次登录的时候不想再次输入账号了，怎么办？这个信息可以写到Cookie里面，访问网站的时候，网站页面的脚本可以读取这个信息，就自动帮你把用户名给填了，能够方便一下用户。这也是Cookie名称的由来，给用户的一点甜头。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>Session</strong>是在服务端保存的一个数据结构，用来跟踪用户的状态，这个数据可以保存在集群、数据库、文件中；<br><strong>Cookie</strong>是客户端保存用户信息的一种机制，用来记录用户的一些信息，也是实现Session的一种方式。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/17/计算机网络中的面试题/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -559,6 +490,20 @@
               <time title="创建时间：2019-09-11 18:20:01" itemprop="dateCreated datePublished" datetime="2019-09-11T18:20:01+08:00">2019-09-11</time>
             </span>
           
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-19 10:00:50" itemprop="dateModified" datetime="2019-09-19T10:00:50+08:00">2019-09-19</time>
+              </span>
+            
+          
 
           <br>
 
@@ -572,7 +517,21 @@
 
       
           
-            
+            <h3 id="root密码的设定"><a href="#root密码的设定" class="headerlink" title="root密码的设定"></a>root密码的设定</h3><p>安装完WSL后，需要输入用户名和密码才能进入，但是输入的用户只是普通用户而已，如果我们需要切换用户成root用户的话，该怎么办呢？</p>
+<p>由于ubtun系统默认是没有激活root用户的，需要我们手工进行操作，在命令行界面下，或者在终端中输入如下命令：</p>
+<ol>
+<li><p>sudo passwd root</p>
+</li>
+<li><p>[sudo] password for you: —&gt; 输入你的密码（你现在这个用户的密码）</p>
+</li>
+<li><p>Enter new UNIX password: —&gt; 设置root 密码</p>
+</li>
+<li><p>Retype new UNIX password: —&gt; 重复密码</p>
+</li>
+<li><p>完成</p>
+</li>
+</ol>
+
           
         
       
@@ -752,7 +711,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-04 09:17:46" itemprop="dateModified" datetime="2019-09-04T09:17:46+08:00">2019-09-04</time>
+                <time title="修改时间：2019-09-19 10:01:34" itemprop="dateModified" datetime="2019-09-19T10:01:34+08:00">2019-09-19</time>
               </span>
             
           
@@ -783,39 +742,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>首先给出结论<strong>迭代器</strong>是实现了<strong>iter</strong>和<strong>next</strong>方法的对象。<strong>生成器</strong>其实是一种特殊的迭代器，但是不需要像迭代器一样实现<strong>iter</strong>和<strong>next</strong>方法，只需要使用关键字<strong>yield</strong>，或者使用生成器表达式就可以。</p>
+          <p>首先给出结论<strong>迭代器</strong>是实现了<strong>iter</strong>和<strong>next</strong>方法的对象。<strong>生成器</strong>其实是一种特殊的迭代器，但是不需要像迭代器一样实现<strong>iter</strong>和<strong>next</strong>方法，只需要使用关键字<strong>yield</strong>，或者使用生成器表达式就可以。</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g6mku21r2zj30zc0fyjrr.jpg" alt="undefined"></p>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>什么迭代器呢？它是一个带状态的对象，他能在你调用<code>next()</code>方法的时候返回容器中的下一个值，任何实现了<code>__iter__</code>和<code>__next__()</code>（python2中实现<code>next()</code>）方法的对象都是迭代器，<code>__iter__</code>返回迭代器自身，<code>__next__</code>返回容器中的下一个值，如果容器中没有更多元素了，则抛出StopIteration异常，至于它们到底是如何实现的这并不重要。</p>
-<p>所以，迭代器就是实现了工厂模式的对象，它在你每次你询问要下一个值的时候给你返回。有很多关于迭代器的例子，比如<code>itertools</code>函数返回的都是迭代器对象。</p>
-<p>为了更直观地感受迭代器内部的执行过程，我们自定义一个迭代器，以斐波那契数列为例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fib</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.prev = <span class="number">0</span></span><br><span class="line">        self.curr = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span><span class="params">(self)</span>:</span></span><br><span class="line">        value = self.curr</span><br><span class="line">        self.curr += self.prev</span><br><span class="line">        self.prev = value</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = Fib()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(islice(f, <span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">21</span>, <span class="number">34</span>, <span class="number">55</span>]</span><br></pre></td></tr></table></figure>
-<p>Fib既是一个可迭代对象（因为它实现了<code>__iter__</code>方法），又是一个迭代器（因为实现了<code>__next__</code>方法）。实例变量<code>prev</code>和<code>curr</code>用户维护迭代器内部的状态。每次调用<code>next()</code>方法的时候做两件事：</p>
-<ol>
-<li>为下一次调用<code>next()</code>方法修改状态</li>
-<li>为当前这次调用生成返回结果</li>
-</ol>
-<p>迭代器就像一个懒加载的工厂，等到有人需要的时候才给它生成值返回，没调用的时候就处于休眠状态等待下一次调用。</p>
-<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>知道迭代器之后，就可以正式进入生成器的话题了。普通函数用 return 返回一个值，和 Java 等其他语言是一样的，然而在 Python 中还有一种函数，用关键字 yield 来返回值，这种函数叫生成器函数，函数被调用时会返回一个生成器对象，<strong>生成器本质上还是一个迭代器</strong>，也是用在迭代操作中，因此它有和迭代器一样的特性，唯一的区别在于实现方式上不一样，后者更加简洁。</p>
-<p>Python有两种不同的方式提供生成器：</p>
-<ol>
-<li><strong>生成器函数：</strong>常规函数定义，但是，使用yield语句而不是return语句返回结果。yield语句一次返回一个结果，在每个结果中间，挂起函数的状态，以便下次重它离开的地方继续执行。</li>
-<li><strong>生成器表达式：</strong>类似于列表推导，但是，生成器返回按需产生结果的一个对象，而不是一次构建一个结果列表。</li>
-</ol>
-<h5 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h5><p>我们来看一个例子，使用生成器返回自然数的平方（注意返回的是多个值）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gensquares</span><span class="params">(N)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">        <span class="keyword">yield</span> i ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> gensquares(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">print</span> item,</span><br></pre></td></tr></table></figure>
-<p>使用普通函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gensquares</span><span class="params">(N)</span>:</span></span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">        res.append(i*i)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> gensquares(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">print</span> item,</span><br></pre></td></tr></table></figure>
-<p>可以看到，使用生成器函数代码量更少。</p>
-<h5 id="生成器表达式"><a href="#生成器表达式" class="headerlink" title="生成器表达式"></a>生成器表达式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure>
-<p>将列表推导的中括号，替换成圆括号，就是一个生成器表达式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares = (x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares</span><br><span class="line">&lt;generator object at <span class="number">0x00B2EC88</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>next(squares)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>next(squares)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>next(squares)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(squares)</span><br><span class="line">[<span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure>
-<p>Python不但使用迭代器协议，让for循环变得更加通用。大部分内置函数，也是使用迭代器协议访问对象的。例如， sum函数是Python的内置函数，该函数使用迭代器协议访问对象，而生成器实现了迭代器协议，所以，我们可以直接这样计算一系列值的和：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-<p>而不用多此一举的先构造一个列表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum([x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">4</span>)])</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/03/Python-中的迭代器和生成器的详解/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1408,113 +1345,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/常用算法的介绍及分析/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/27/常用算法的介绍及分析/" class="post-title-link" itemprop="url">常用算法的介绍及分析</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-27 17:04:03 / 修改时间：17:08:32" itemprop="dateCreated datePublished" datetime="2019-08-27T17:04:03+08:00">2019-08-27</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h3><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)……</p>
-<h5 id="算法策略"><a href="#算法策略" class="headerlink" title="算法策略"></a>算法策略</h5><p>分治策略：对于一个规模为 n 的问题，若该问题可以容易地解决（比如说规模 n 较小）则直接解决，否则将其分解为 k 个规模较小的子问题，这些子问题互相独立且与原问题形式相同，递归地解这些子问题，然后将各子问题的解合并得到原问题的解。 在平时日常生活中，分治思想也是随处可见的。例如：当我们打牌时，在进行洗牌时，若牌的数目较多，一个人洗不过来，则会将牌进行分堆，单独洗一小堆牌是相对容易的，每一堆牌都洗完之后再放到一起，则完成洗牌过程。</p>
-<p>如果原问题可分割成k个子问题，1&lt;k≤n，且这些子问题都可解并可利用这些子问题的解求出原问题的解，那么这种分治法就是可行的。由分治法产生的子问题往往是原问题的较小模式，这就为使用递归技术提供了方便。在这种情况下，反复应用分治手段，可以使子问题与原问题类型一致而其规模却不断缩小，最终使子问题缩小到很容易直接求出其解。这自然导致递归过程的产生。分治与递归像一对孪生兄弟，经常同时应用在算法设计之中，并由此产生许多高效算法。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/27/常用算法的介绍及分析/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1552,7 +1382,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1648,7 +1478,9 @@
         
           
         
-        <span class="site-state-item-count">20</span>
+          
+        
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
