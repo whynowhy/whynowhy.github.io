@@ -209,6 +209,440 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/28/各类面经/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/28/各类面经/" class="post-title-link" itemprop="url">各类面经</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-28 15:38:24 / 修改时间：16:15:11" itemprop="dateCreated datePublished" datetime="2019-09-28T15:38:24+08:00">2019-09-28</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="苏州天准"><a href="#苏州天准" class="headerlink" title="苏州天准"></a>苏州天准</h3><h4 id="面向对象的继承和多态的理解"><a href="#面向对象的继承和多态的理解" class="headerlink" title="面向对象的继承和多态的理解"></a>面向对象的继承和多态的理解</h4><p>继承大概就是子类能够继承父类的属性和方法，这样可以使得代码比较简洁。</p>
+<p>而多态大概就是子类能够重写父类的方法，这样可以使子类的形态更多样化。</p>
+<h4 id="线程和进程的理解"><a href="#线程和进程的理解" class="headerlink" title="线程和进程的理解"></a>线程和进程的理解</h4><p>详见操作系统指南，大概就是线程是操作系统中最小的资源调度单位，而线程是CPU调度的基本单位。一个程序起码有一个进程，一个进程起码有一个线程。</p>
+<h4 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h4><p>当时真不知道，现在翻阅书籍之后了解了，一共三大类，23小类，三大类为，<strong>创建类设计模式</strong>，<strong>结构类设计模式</strong>，<strong>行为类设计模式</strong>，详细内容可见这篇<a href="https://yq.aliyun.com/topic/122" target="_blank" rel="noopener">文章</a></p>
+<h4 id="手撕代码"><a href="#手撕代码" class="headerlink" title="手撕代码"></a>手撕代码</h4><p>一个sql语句，一个求数组中最大元素及其index</p>
+<h3 id="锐捷"><a href="#锐捷" class="headerlink" title="锐捷"></a>锐捷</h3><h4 id="docker的理解"><a href="#docker的理解" class="headerlink" title="docker的理解"></a>docker的理解</h4><p>个人理解就是只运行一个服务的虚拟机，java是一次编译处处执行，docker可以做到一次编写处处执行，现在微服务用的很多</p>
+<h4 id="Linux中五种IO复用操作"><a href="#Linux中五种IO复用操作" class="headerlink" title="Linux中五种IO复用操作"></a>Linux中五种IO复用操作</h4><p>详见之前的博客</p>
+<h4 id="敲击键盘A到显示在桌面上的操作"><a href="#敲击键盘A到显示在桌面上的操作" class="headerlink" title="敲击键盘A到显示在桌面上的操作"></a>敲击键盘A到显示在桌面上的操作</h4><p>键盘按下，把键盘输入数据存入键盘缓冲区，键盘控制器通过总线给cpu发送中断信号（什么是CPU的中断，这篇<a href="https://www.cnblogs.com/funeral/archive/2013/03/06/2945485.html" target="_blank" rel="noopener">文章</a>写的很好，大概就是发一个信息能让cpu停止当前干的活，从而去响应键盘的输入，响应完之后才去干其它的活），内核调用键盘中断处理程序把键盘缓冲区的数据读出并放入键盘内存缓冲区，之后操作系统把数据送给指定进程，进程对数据处理后，操作系统把当前界面数据发给显示器缓冲区，显示器按一定时间间隔读取缓冲区内容并显示出来。</p>
+<h4 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h4><p>详见之前的博客</p>
+<h4 id="进程如何保持独立"><a href="#进程如何保持独立" class="headerlink" title="进程如何保持独立"></a>进程如何保持独立</h4><p>我感觉就是进程的调度</p>
+<h4 id="线程如何通信"><a href="#线程如何通信" class="headerlink" title="线程如何通信"></a>线程如何通信</h4><h4 id="虚拟内存和物理内存的区别"><a href="#虚拟内存和物理内存的区别" class="headerlink" title="虚拟内存和物理内存的区别"></a>虚拟内存和物理内存的区别</h4><h4 id="有100个函数，打印出函数的返回值和输入值在log中"><a href="#有100个函数，打印出函数的返回值和输入值在log中" class="headerlink" title="有100个函数，打印出函数的返回值和输入值在log中"></a>有100个函数，打印出函数的返回值和输入值在log中</h4>
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/操作系统一些问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/27/操作系统一些问题/" class="post-title-link" itemprop="url">操作系统中的面试题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-27 14:55:32" itemprop="dateCreated datePublished" datetime="2019-09-27T14:55:32+08:00">2019-09-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-28 15:35:31" itemprop="dateModified" datetime="2019-09-28T15:35:31+08:00">2019-09-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><h4 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h4><ul>
+<li><p>进程是对运行时程序的封装，是系统进行资源调度和分配的的基本单位，实现了操作系统的并发。</p>
+</li>
+<li><p>线程是进程的子任务，是CPU调度和分派的基本单位，用于保证程序的 实时性，实现进程内部的并发。</p>
+</li>
+<li><p>一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在。</p>
+</li>
+<li><p>进程在执行过程中拥有独立的内存单元，而多个线程共享进程的内存。</p>
+</li>
+</ul>
+<h4 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h4><p>进程间的通信的详细内容可看这篇<a href="https://blog.csdn.net/a987073381/article/details/52006729#comments" target="_blank" rel="noopener">博客</a>，以下是概括性的解释：</p>
+<ul>
+<li><p><strong>管道（pipe）及命名管道（named pipe）</strong>：管道可用于具有亲缘关系的父子进程间的通信，有名管道除了具有管道所具有的功能外，它还允许无亲缘关系进程间的通信；</p>
+</li>
+<li><p><strong>信号（signal）</strong>：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生；</p>
+</li>
+<li><p><strong>消息队列</strong>：消息队列是消息的链接表，它克服了上两种通信方式中信号量有限的缺点，具有写权限得进程可以按照一定得规则向消息队列中添加新信息；对消息队列有读权限得进程则可以从消息队列中读取信息；</p>
+</li>
+<li><p><strong>共享内存</strong>：可以说这是最有用的进程间通信方式。它使得多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据得更新。这种方式需要依靠某种同步操作，如互斥锁和信号量等；</p>
+</li>
+<li><p><strong>信号量</strong>：主要作为进程之间及同一种进程的不同线程之间得同步和互斥手段；</p>
+</li>
+<li><p><strong>套接字</strong>：这是一种更为一般得进程间通信机制，它可用于网络中不同机器之间的进程间通信，应用非常广泛。</p>
+</li>
+</ul>
+<h4 id="线程间的通信方式"><a href="#线程间的通信方式" class="headerlink" title="线程间的通信方式"></a>线程间的通信方式</h4><p>线程间通信的详细内容可看这篇<a href="https://blog.csdn.net/a987073381/article/details/52029070" target="_blank" rel="noopener">博客</a>，以下是概括性的解释：</p>
+<ul>
+<li><p>锁机制：包括互斥锁、条件变量、读写锁</p>
+<ul>
+<li>互斥锁提供了以排他方式防止数据结构被并发修改的方法。</li>
+<li>读写锁允许多个线程同时读共享数据，而对写操作是互斥的。</li>
+<li>条件变量可以以原子的方式阻塞进程，直到某个特定条件为真为止。对条件的测试是在互斥锁的保护下进行的。条件变量始终与互斥锁一起使用。</li>
+</ul>
+</li>
+<li><p>信号量机制(Semaphore)：它允许同一时刻多个线程访问同一资源，但是需要控制同一时刻访问此资源的最大线程数量</p>
+</li>
+<li><p>事件(信号)，Wait/Notify：通过通知操作的方式来保持多线程同步，还可以方便的实现多线程优先级的比较操作</p>
+</li>
+</ul>
+<h4 id="进程间的几种状态"><a href="#进程间的几种状态" class="headerlink" title="进程间的几种状态"></a>进程间的几种状态</h4><ul>
+<li>就绪状态：进程已获得除处理机以外的所需资源，等待分配处理机资源；</li>
+<li>运行状态：占用处理机资源运行，处于此状态的进程数小于等于CPU数；</li>
+<li>阻塞状态： 进程等待某种条件，在条件满足之前无法执行；</li>
+</ul>
+<h4 id="线程的几种状态"><a href="#线程的几种状态" class="headerlink" title="线程的几种状态"></a>线程的几种状态</h4><p>创建(new)、就绪(runnable/start)、运行(running)、阻塞(blocked)、等待(waiting)、时间等待(time waiting) 和 消亡(dead/terminated)</p>
+<h4 id="进程同步机制"><a href="#进程同步机制" class="headerlink" title="进程同步机制"></a>进程同步机制</h4><ul>
+<li>信号量机制：一个信号量只能置一次初值，以后只能对之进行p操作或v操作。由此也可以看到，信号量机制必须有公共内存，不能用于分布式操作系统，这是它最大的弱点。</li>
+<li>自旋锁：旋锁是为了保护共享资源提出的一种锁机制。调用者申请的资源如果被占用，即自旋锁被已经被别的执行单元保持，则调用者一直循环在那里看是否该自旋锁的保持着已经释放了锁。自旋锁是一种比较低级的保护数据结构和代码片段的原始方式，可能会引起以下两个问题;（1）死锁（2）过多地占用CPU资源</li>
+<li>管程：信号量机制功能强大，但使用时对信号量的操作分散，而且难以控制，读写和维护都很困难。因此后来又提出了一种集中式同步进程——管程。其基本思想是将共享变量和对它们的操作集中在一个模块中，操作系统或并发程序就由这样的模块构成。这样模块之间联系清晰，便于维护和修改，易于保证正确性。</li>
+<li>会合：进程直接进行相互作用</li>
+<li>分布式系统：由于在分布式操作系统中没有公共内存，因此参数全为值参， 而且不可为指针。</li>
+</ul>
+<h4 id="进程的调度策略"><a href="#进程的调度策略" class="headerlink" title="进程的调度策略"></a>进程的调度策略</h4><ul>
+<li>FCFS(先来先服务，队列实现，非抢占的)：先请求CPU的进程先分配到CPU。</li>
+<li>SJF(最短作业优先调度算法)：平均等待时间最短，但难以知道下一个CPU区间长度。</li>
+<li>优先级调度算法(可以是抢占的，也可以是非抢占的)：优先级越高越先分配到CPU，相同优先级先到先服务，存在的主要问题是：低优先级进程无穷等待CPU，会导致无穷阻塞或饥饿；解决方案：<strong>老化</strong></li>
+<li>时间片轮转调度算法(可抢占的)：队列中没有进程被分配超过一个时间片的CPU时间，除非它是唯一可运行的进程。如果进程的CPU区间超过了一个时间片，那么该进程就被抢占并放回就绪队列。</li>
+<li>多级队列调度算法：将就绪队列分成多个独立的队列，每个队列都有自己的调度算法，队列之间采用固定优先级抢占调度。其中，一个进程根据自身属性被永久地分配到一个队列中。</li>
+<li>多级反馈队列调度算法：与多级队列调度算法相比，其允许进程在队列之间移动：若进程使用过多CPU时间，那么它会被转移到更低的优先级队列；在较低优先级队列等待时间过长的进程会被转移到更高优先级队列，以防止饥饿发生。</li>
+</ul>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>在两个或者多个并发进程中，如果每个进程持有某种资源而又等待其它进程释放它或它们现在保持着的资源，在未改变这种状态之前都不能向前推进，称这一组进程产生了死锁。通俗的讲，就是两个或多个进程无限期的阻塞、相互等待的一种状态。</p>
+<h4 id="产生的四个必要条件"><a href="#产生的四个必要条件" class="headerlink" title="产生的四个必要条件"></a>产生的四个必要条件</h4><ul>
+<li><p>互斥：至少有一个资源必须属于非共享模式，即一次只能被一个进程使用；若其他申请使用该资源，那么申请进程必须等到该资源被释放为止；</p>
+</li>
+<li><p>占有并等待：一个进程必须占有至少一个资源，并等待另一个资源，而该资源为其他进程所占有；</p>
+</li>
+<li><p>非抢占：进程不能被抢占，即资源只能被进程在完成任务后自愿释放</p>
+</li>
+<li><p>循环等待：若干进程之间形成一种头尾相接的环形等待资源关系</p>
+</li>
+</ul>
+<h4 id="死锁的预防"><a href="#死锁的预防" class="headerlink" title="死锁的预防"></a>死锁的预防</h4><p>死锁预防的基本思想是 只要<strong>确保死锁发生的四个必要条件中至少有一个不成立</strong>，就能预防死锁的发生，具体方法包括：</p>
+<ul>
+<li><p>打破互斥条件：允许进程同时访问某些资源。但是，有些资源是不能被多个进程所共享的，这是由资源本身属性所决定的，因此，这种办法通常并无实用价值。</p>
+</li>
+<li><p>打破占有并等待条件：可以实行资源预先分配策略(进程在运行前一次性向系统申请它所需要的全部资源，若所需全部资源得不到满足，则不分配任何资源，此进程暂不运行；只有当系统能满足当前进程所需的全部资源时，才一次性将所申请资源全部分配给该线程)或者只允许进程在没有占用资源时才可以申请资源（一个进程可申请一些资源并使用它们，但是在当前进程申请更多资源之前，它必须全部释放当前所占有的资源）。但是这种策略也存在一些缺点：在很多情况下，无法预知一个进程执行前所需的全部资源，因为进程是动态执行的，不可预知的；同时，会降低资源利用率，导致降低了进程的并发性。</p>
+</li>
+<li><p>打破非抢占条件：允许进程强行从占有者哪里夺取某些资源。也就是说，但一个进程占有了一部分资源，在其申请新的资源且得不到满足时，它必须释放所有占有的资源以便让其它线程使用。这种预防死锁的方式实现起来困难，会降低系统性能。</p>
+</li>
+<li><p>打破循环等待条件：实行资源有序分配策略。对所有资源排序编号，所有进程对资源的请求必须严格按资源序号递增的顺序提出，即只有占用了小号资源才能申请大号资源，这样就不回产生环路，预防死锁的发生。</p>
+</li>
+</ul>
+<h4 id="死锁的避免"><a href="#死锁的避免" class="headerlink" title="死锁的避免"></a>死锁的避免</h4><p>死锁避免的基本思想是动态地检测资源分配状态，以确保循环等待条件不成立，从而确保系统处于安全状态。所谓安全状态是指：如果系统能按某个顺序为每个进程分配资源（不超过其最大值），那么系统状态是安全的，换句话说就是，如果存在一个安全序列，那么系统处于安全状态。资源分配图算法和银行家算法是两种经典的死锁避免的算法，其可以确保系统始终处于安全状态。其中，资源分配图算法应用场景为每种资源类型只有一个实例(申请边，分配边，需求边，不形成环才允许分配)，而银行家算法应用于每种资源类型可以有多个实例的场景。</p>
+<p>银行家算法：</p>
+<ol>
+<li><p>当一个顾客对资金的最大需求量不超过银行家现有的资金时就可接纳该顾客;</p>
+</li>
+<li><p>顾客可以分期贷款,但贷款的总数不能超过最大需求量;</p>
+</li>
+<li><p>当银行家现有的资金不能满足顾客尚需的贷款数额时,对顾客的贷款可推迟支付,但总能使顾客在有限的时间里得到贷款;</p>
+</li>
+<li><p>当顾客得到所需的全部资金后,一定能在有限的时间里归还所有的资金.</p>
+</li>
+</ol>
+<h4 id="死锁解除"><a href="#死锁解除" class="headerlink" title="死锁解除"></a>死锁解除</h4><p>死锁解除的常用两种方法为进程终止和资源抢占。所谓进程终止是指简单地终止一个或多个进程以打破循环等待，包括两种方式：终止所有死锁进程和一次只终止一个进程直到取消死锁循环为止；所谓资源抢占是指从一个或多个死锁进程那里抢占一个或多个资源，此时必须考虑三个问题：</p>
+<ol>
+<li>选择一个牺牲品</li>
+<li>回滚：回滚到安全状态</li>
+<li>饥饿（在代价因素中加上回滚次数，回滚的越多则越不可能继续被作为牺牲品，避免一个进程总是被回滚）</li>
+</ol>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><p>虚拟内存允许执行进程不必完全在内存中。虚拟内存的基本思想是：每个进程拥有独立的地址空间，这个空间被分为大小相等的多个块，称为<strong>页</strong>(Page)，每个页都是一段连续的地址。这些页被映射到物理内存，但并不是所有的页都必须在内存中才能运行程序。当程序引用到一部分在物理内存中的地址空间时，由硬件立刻进行必要的映射；当程序引用到一部分不在物理内存中的地址空间时，由操作系统负责将缺失的部分装入物理内存并重新执行失败的命令。这样，对于进程而言，逻辑上似乎有很大的内存空间，实际上其中一部分对应物理内存上的一块(称为帧，通常页和帧大小相等)，还有一些没加载在内存中的对应在硬盘上，如下图所示<img src="http://ww1.sinaimg.cn/large/007useIpgy1g7f8yd1mtcj309r0bg3ys.jpg" alt="undefined"></p>
+<p>由图可以看出，虚拟内存实际上可以比物理内存大。当访问虚拟内存时，会访问MMU（内存管理单元）去匹配对应的物理地址（比如图的0，1，2）。如果虚拟内存的页并不存在于物理内存中（如图的3,4），会产生缺页中断，从磁盘中取得缺的页放入内存，如果内存已满，还会根据某种算法将磁盘中的页换出。</p>
+<h4 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h4><p>请求调页，也称按需调页，即对不在内存中的“页”，当进程执行时要用时才调入，否则有可能到程序结束时也不会调入。而内存中给页面留的位置是有限的，在内存中以帧为单位放置页面。为了防止请求调页的过程出现过多的内存页面错误（即需要的页面当前不在内存中，需要从硬盘中读数据，也即需要做页面的替换）而使得程序执行效率下降，我们需要设计一些页面置换算法，页面按照这些算法进行相互替换时，可以尽量达到较低的错误率。</p>
+<ul>
+<li>FIFO先进先出算法：在操作系统中经常被用到，比如作业调度（主要实现简单，很容易想到）；</li>
+<li>LRU（Least recently use）最近最少使用算法：根据使用时间到现在的长短来判断；</li>
+<li>LFU（Least frequently use）最少使用次数算法：根据使用次数来判断；</li>
+<li>OPT（Optimal replacement）最优置换算法：理论的最优，理论；就是要保证置换出去的是不再被使用的页，或者是在实际内存中最晚使用的算法。</li>
+</ul>
+<h4 id="虚拟内存的应用与优点"><a href="#虚拟内存的应用与优点" class="headerlink" title="虚拟内存的应用与优点"></a>虚拟内存的应用与优点</h4><p>虚拟内存很适合在多道程序设计系统中使用，许多程序的片段同时保存在内存中。当一个程序等待它的一部分读入内存时，可以把CPU交给另一个进程使用。虚拟内存的使用可以带来以下好处：</p>
+<ul>
+<li>在内存中可以保留多个进程，系统并发度提高</li>
+<li>解除了用户与内存之间的紧密约束，进程可以比内存的全部空间还大</li>
+</ul>
+<h3 id="敲击键盘A到显示在桌面上的操作"><a href="#敲击键盘A到显示在桌面上的操作" class="headerlink" title="敲击键盘A到显示在桌面上的操作"></a>敲击键盘A到显示在桌面上的操作</h3><p>键盘按下，把键盘输入数据存入键盘缓冲区，键盘控制器通过总线给cpu发送中断信号（什么是CPU的中断，这篇<a href="https://www.cnblogs.com/funeral/archive/2013/03/06/2945485.html" target="_blank" rel="noopener">文章</a>写的很好，大概就是发一个信息能让cpu停止当前干的活，从而去响应键盘的输入，响应完之后才去干其它的活），内核调用键盘中断处理程序把键盘缓冲区的数据读出并放入键盘内存缓冲区，之后操作系统把数据送给指定进程，进程对数据处理后，操作系统把当前界面数据发给显示器缓冲区，显示器按一定时间间隔读取缓冲区内容并显示出来。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/Python中的浅拷贝和深拷贝/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/24/Python中的浅拷贝和深拷贝/" class="post-title-link" itemprop="url">Python中的浅拷贝和深拷贝</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-24 09:40:10 / 修改时间：11:01:49" itemprop="dateCreated datePublished" datetime="2019-09-24T09:40:10+08:00">2019-09-24</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="Python的语言类型"><a href="#Python的语言类型" class="headerlink" title="Python的语言类型"></a>Python的语言类型</h3><p>之前在博客中讲过Python属于动态类型的语言，对象与引用分开的，详见博客<a href="https://whynowhy.github.io/2019/08/29/Python%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/" target="_blank" rel="noopener">Python的内存管理机制</a>。</p>
+<h3 id="Python中的浅拷贝和深拷贝"><a href="#Python中的浅拷贝和深拷贝" class="headerlink" title="Python中的浅拷贝和深拷贝"></a>Python中的浅拷贝和深拷贝</h3><p>本来想自己写一下的，结果发现有一篇博客时写的真好，就不班门弄斧了。</p>
+<p><a href="https://www.cnblogs.com/wilber2013/p/4645353.html" target="_blank" rel="noopener">图解Python深拷贝和浅拷贝</a></p>
+<p>浅拷贝中加一点，只有当对可变内容进行浅拷贝时，才会创建新的对象，如果浅拷贝的内容是不可变内容时，不会创建新的对象，同理深拷贝也是一样。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line">a = <span class="string">'a'</span></span><br><span class="line">b = copy.copy(a)</span><br><span class="line">print(id(a)==id(b))</span><br><span class="line"></span><br><span class="line"><span class="comment">##True</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/Linux面试中的一些问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -334,7 +768,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/计算机网络中的面试题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/计算机网络中的一些问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老王">
@@ -351,7 +785,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/09/17/计算机网络中的面试题/" class="post-title-link" itemprop="url">计算机网络中的面试题</a>
+                <a href="/2019/09/17/计算机网络中的一些问题/" class="post-title-link" itemprop="url">计算机网络中的面试题</a>
               
             
           </h1>
@@ -420,7 +854,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/17/计算机网络中的面试题/#more" rel="contents">
+              <a class="btn" href="/2019/09/17/计算机网络中的一些问题/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1002,349 +1436,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/python面试可能会遇到的疑难问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/29/python面试可能会遇到的疑难问题/" class="post-title-link" itemprop="url">python面试可能会遇到的疑难问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-29 19:16:23" itemprop="dateCreated datePublished" datetime="2019-08-29T19:16:23+08:00">2019-08-29</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-30 14:53:24" itemprop="dateModified" datetime="2019-08-30T14:53:24+08:00">2019-08-30</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h4 id="如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。"><a href="#如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。" class="headerlink" title="如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。"></a>如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。</h4><p><strong>答：</strong>这个题目考察的是 datetime 里的 timedelta 方法的使用，参数可选、默认值都为 0：datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0) 通过这个参数可以指定不同的日期类型进行加减操作，这里我们需要改的是 days，代码如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datetime_operate</span><span class="params">(n： int)</span>：</span></span><br><span class="line">    now = datetime.datetime.now()  # 获取当前时间</span><br><span class="line">    _new_date = now + datetime.timedelta(days=n)  <span class="comment"># 获取指定天数后的新日期</span></span><br><span class="line">    new_date = _new_date.strftime(<span class="string">"%Y%m%d"</span>)  <span class="comment"># 转换为指定的输出格式</span></span><br><span class="line">    <span class="keyword">return</span> new_date</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>：</span><br><span class="line">    print(datetime_operate(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="Python-的传参是传值还是传址？"><a href="#Python-的传参是传值还是传址？" class="headerlink" title="Python 的传参是传值还是传址？"></a>Python 的传参是传值还是传址？</h4><p><strong>答：</strong>Python 中的传参即不是传值也不是传地址，传的是对象的引用。</p>
-<h4 id="metaclass-作用？以及应用场景？"><a href="#metaclass-作用？以及应用场景？" class="headerlink" title="metaclass 作用？以及应用场景？"></a>metaclass 作用？以及应用场景？</h4><p><strong>答：</strong> metaclass 即元类，metaclass 是类似创建类的模板，所有的类都是通过他来 create 的(调用<strong>new</strong>)，这使得你可以自由的控制创建类的那个过程，实现你所需要的功能。 我们可以使用元类创建单例模式和实现 ORM 模式。</p>
-<h4 id="代码中经常遇到的-args-kwargs-含义及用法。"><a href="#代码中经常遇到的-args-kwargs-含义及用法。" class="headerlink" title="代码中经常遇到的*args, **kwargs 含义及用法。"></a>代码中经常遇到的*args, **kwargs 含义及用法。</h4><p><strong>答：</strong> 在函数定义中使用 <em>args 和**kwargs 传递可变长参数。 </em>args 用来将参数打包成 tuple 给函数体调用。 **kwargs 打包关键字参数成 dict 给函数体调用。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/Spring-Boot框架中，各数据层的作用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/27/Spring-Boot框架中，各数据层的作用/" class="post-title-link" itemprop="url">Spring Boot框架中，各数据层的作用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-27 18:12:20" itemprop="dateCreated datePublished" datetime="2019-08-27T18:12:20+08:00">2019-08-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-28 15:02:08" itemprop="dateModified" datetime="2019-08-28T15:02:08+08:00">2019-08-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h3 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a>Dao层</h3><p>全称Data Access Object，主要是做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。Dao层比较底层，负责与数据库打交道具体到对某个表、某个实体的增删改查</p>
-<h3 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h3><p>又叫服务层或业务层，封装Dao层的操作，使一个方法对外表现为实现一种功能，负责对数据的处理，如果没有数据处理任务，此层只做单纯的数据传递作用。Service层的业务实现，具体要调用到已定义的DAO层的接口，封装Service层的业务逻辑有利于通用的业务逻辑的独立性和重复利用性，程序显得非常简洁。     </p>
-<h3 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h3><p>又叫业务控制层，负责接收数据和请求，并且调用Service层实现这个业务逻辑。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g646kqgfhkj30us0x8te9.jpg" alt="">  </p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/CV岗面试时的一些常见问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/27/CV岗面试时的一些常见问题/" class="post-title-link" itemprop="url">CV岗面试时的一些常见问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-27 18:07:06 / 修改时间：18:16:00" itemprop="dateCreated datePublished" datetime="2019-08-27T18:07:06+08:00">2019-08-27</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h3><p>分类问题中，直接使用输出层的输出有两个问题：</p>
-<ul>
-<li>神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义</li>
-<li>由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量</li>
-</ul>
-<p>softmax解决了以上两个问题，它<strong>将输出值变换为值为正且和为1的概率分布</strong>，公式如下：</p>
-<p>$$softmax(y)<em>{i} = y</em>{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^{n}e^{yj}}$$</p>
-<h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>交叉熵刻画了两个概率分布之间的距离，它是分类问题中使用比较广泛的一种损失函数，交叉熵一般会与softmax回归一起使用，公式如下：</p>
-<p>$$L = -\sum_{c=1}^{M}y_{c}log(p_{c})或者H(p,q)=-\sum p(x)logq(x)$$（p代表正确答案，q代表预测值）</p>
-<ul>
-<li>$M$ ——类别的数量；</li>
-<li>$y_{c}$ ——指示变量（0或1）,如果该类别和样本的类别相同就是1，否则是0；</li>
-<li>$p_{c}$ ——对于观测样本属于类别 $c$ 的预测概率。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/27/CV岗面试时的一些常见问题/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1382,7 +1473,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1480,7 +1571,9 @@
         
           
         
-        <span class="site-state-item-count">21</span>
+          
+        
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

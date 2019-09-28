@@ -209,6 +209,349 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/python面试可能会遇到的疑难问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/29/python面试可能会遇到的疑难问题/" class="post-title-link" itemprop="url">python面试可能会遇到的疑难问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-29 19:16:23" itemprop="dateCreated datePublished" datetime="2019-08-29T19:16:23+08:00">2019-08-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-30 14:53:24" itemprop="dateModified" datetime="2019-08-30T14:53:24+08:00">2019-08-30</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h4 id="如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。"><a href="#如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。" class="headerlink" title="如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。"></a>如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。</h4><p><strong>答：</strong>这个题目考察的是 datetime 里的 timedelta 方法的使用，参数可选、默认值都为 0：datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0) 通过这个参数可以指定不同的日期类型进行加减操作，这里我们需要改的是 days，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datetime_operate</span><span class="params">(n： int)</span>：</span></span><br><span class="line">    now = datetime.datetime.now()  # 获取当前时间</span><br><span class="line">    _new_date = now + datetime.timedelta(days=n)  <span class="comment"># 获取指定天数后的新日期</span></span><br><span class="line">    new_date = _new_date.strftime(<span class="string">"%Y%m%d"</span>)  <span class="comment"># 转换为指定的输出格式</span></span><br><span class="line">    <span class="keyword">return</span> new_date</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>：</span><br><span class="line">    print(datetime_operate(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="Python-的传参是传值还是传址？"><a href="#Python-的传参是传值还是传址？" class="headerlink" title="Python 的传参是传值还是传址？"></a>Python 的传参是传值还是传址？</h4><p><strong>答：</strong>Python 中的传参即不是传值也不是传地址，传的是对象的引用。</p>
+<h4 id="metaclass-作用？以及应用场景？"><a href="#metaclass-作用？以及应用场景？" class="headerlink" title="metaclass 作用？以及应用场景？"></a>metaclass 作用？以及应用场景？</h4><p><strong>答：</strong> metaclass 即元类，metaclass 是类似创建类的模板，所有的类都是通过他来 create 的(调用<strong>new</strong>)，这使得你可以自由的控制创建类的那个过程，实现你所需要的功能。 我们可以使用元类创建单例模式和实现 ORM 模式。</p>
+<h4 id="代码中经常遇到的-args-kwargs-含义及用法。"><a href="#代码中经常遇到的-args-kwargs-含义及用法。" class="headerlink" title="代码中经常遇到的*args, **kwargs 含义及用法。"></a>代码中经常遇到的*args, **kwargs 含义及用法。</h4><p><strong>答：</strong> 在函数定义中使用 <em>args 和**kwargs 传递可变长参数。 </em>args 用来将参数打包成 tuple 给函数体调用。 **kwargs 打包关键字参数成 dict 给函数体调用。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/Spring-Boot框架中，各数据层的作用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/27/Spring-Boot框架中，各数据层的作用/" class="post-title-link" itemprop="url">Spring Boot框架中，各数据层的作用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 18:12:20" itemprop="dateCreated datePublished" datetime="2019-08-27T18:12:20+08:00">2019-08-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-28 15:02:08" itemprop="dateModified" datetime="2019-08-28T15:02:08+08:00">2019-08-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a>Dao层</h3><p>全称Data Access Object，主要是做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。Dao层比较底层，负责与数据库打交道具体到对某个表、某个实体的增删改查</p>
+<h3 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h3><p>又叫服务层或业务层，封装Dao层的操作，使一个方法对外表现为实现一种功能，负责对数据的处理，如果没有数据处理任务，此层只做单纯的数据传递作用。Service层的业务实现，具体要调用到已定义的DAO层的接口，封装Service层的业务逻辑有利于通用的业务逻辑的独立性和重复利用性，程序显得非常简洁。     </p>
+<h3 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h3><p>又叫业务控制层，负责接收数据和请求，并且调用Service层实现这个业务逻辑。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g646kqgfhkj30us0x8te9.jpg" alt="">  </p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/CV岗面试时的一些常见问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/27/CV岗面试时的一些常见问题/" class="post-title-link" itemprop="url">CV岗面试时的一些常见问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 18:07:06 / 修改时间：18:16:00" itemprop="dateCreated datePublished" datetime="2019-08-27T18:07:06+08:00">2019-08-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h3><p>分类问题中，直接使用输出层的输出有两个问题：</p>
+<ul>
+<li>神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义</li>
+<li>由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量</li>
+</ul>
+<p>softmax解决了以上两个问题，它<strong>将输出值变换为值为正且和为1的概率分布</strong>，公式如下：</p>
+<p>$$softmax(y)<em>{i} = y</em>{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^{n}e^{yj}}$$</p>
+<h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>交叉熵刻画了两个概率分布之间的距离，它是分类问题中使用比较广泛的一种损失函数，交叉熵一般会与softmax回归一起使用，公式如下：</p>
+<p>$$L = -\sum_{c=1}^{M}y_{c}log(p_{c})或者H(p,q)=-\sum p(x)logq(x)$$（p代表正确答案，q代表预测值）</p>
+<ul>
+<li>$M$ ——类别的数量；</li>
+<li>$y_{c}$ ——指示变量（0或1）,如果该类别和样本的类别相同就是1，否则是0；</li>
+<li>$p_{c}$ ——对于观测样本属于类别 $c$ 的预测概率。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/27/CV岗面试时的一些常见问题/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/常用算法的介绍及分析/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -352,11 +695,21 @@
                 
               
 
-              <time title="创建时间：2019-08-27 16:46:32 / 修改时间：17:07:28" itemprop="dateCreated datePublished" datetime="2019-08-27T16:46:32+08:00">2019-08-27</time>
+              <time title="创建时间：2019-08-27 16:46:32" itemprop="dateCreated datePublished" datetime="2019-08-27T16:46:32+08:00">2019-08-27</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-28 16:52:56" itemprop="dateModified" datetime="2019-09-28T16:52:56+08:00">2019-09-28</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -1002,420 +1355,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/工作中的一些随笔/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/13/工作中的一些随笔/" class="post-title-link" itemprop="url">工作中的一些随笔</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-13 18:37:13" itemprop="dateCreated datePublished" datetime="2019-07-13T18:37:13+08:00">2019-07-13</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:11:24" itemprop="dateModified" datetime="2019-07-28T14:11:24+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="关于数据库的使用"><a href="#关于数据库的使用" class="headerlink" title="关于数据库的使用"></a>关于数据库的使用</h2><p>不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。<br>如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。</p>
-<p>导出方式(workbench)：</p>
-<p>从所选择的连接中选择左边栏中Data Export，选择你想导出的数据库，点击Start Export进行数据导出。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz3rok38j32701544qp.jpg" alt="Export"></p>
-<p>导入：</p>
-<p>选择本地连接左边栏中的Data Import/Restore, 选择之前导出文件的地址，在选择需要导入的数据库和表，点击Start Import进行导入。如果遇到@@GLOBAL.GTID_MODE = OFF的报错，则需要在数据库导出的时候，打开Advanced Options，其中set-gtid-purged - Add ‘SET @@GLOBAL.GTID_PURGED’ to the output选项改成OFF，即可成功导入。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz4r6xhwj326m13ytzw.jpg" alt="Import"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz575499j31bs0quh3d.jpg" alt="GTOD_PURGED"></p>
-<h2 id="关于需求的理解"><a href="#关于需求的理解" class="headerlink" title="关于需求的理解"></a>关于需求的理解</h2><p>编码之前需要详细理解需求，上司提出的需要需要详细了解。如“数据管理API：更新host和模板的关系”，是指在api中添加能够用更新host和模板的api。</p>
-<p>如果遇到疑问，应该及时去向上司请教。</p>
-<h2 id="对于REST结构的理解"><a href="#对于REST结构的理解" class="headerlink" title="对于REST结构的理解"></a>对于REST结构的理解</h2><p>一句话，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
-<p>其中Flask中有flask.ext库来实现Rest网络编程，简介可参考(<a href="http://www.pythondoc.com/Flask-RESTful/quickstart.html" target="_blank" rel="noopener">http://www.pythondoc.com/Flask-RESTful/quickstart.html</a>)</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/使用FLASK搭建网站时，对于REST架构中API接口的保护/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/12/使用FLASK搭建网站时，对于REST架构中API接口的保护/" class="post-title-link" itemprop="url">使用FLASK搭建网站时，对于REST架构中API接口的保护</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-12 15:39:07" itemprop="dateCreated datePublished" datetime="2019-07-12T15:39:07+08:00">2019-07-12</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:11:11" itemprop="dateModified" datetime="2019-07-28T14:11:11+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="REST架构的开发"><a href="#REST架构的开发" class="headerlink" title="REST架构的开发"></a>REST架构的开发</h2><p>由于小白第一次进行正式项目的开发，对REST(REpresentational State Transfer, 表现层状态转移)架构开发不是特别了解,所以特别了解了一下REST架构和RESTful API。</p>
-<p>其中REST架构用最简洁的语言说明就是，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
-<p>详细的说明可以参考知乎(<a href="https://www.zhihu.com/question/27785028)，" target="_blank" rel="noopener">https://www.zhihu.com/question/27785028)，</a> 相关官网 (<a href="https://restfulapi.net/)，有能力的可以直接阅读Roy" target="_blank" rel="noopener">https://restfulapi.net/)，有能力的可以直接阅读Roy</a> Thomas Fielding的博士论文。</p>
-<h2 id="RESTapi的保护"><a href="#RESTapi的保护" class="headerlink" title="RESTapi的保护"></a>RESTapi的保护</h2><p>项目的开发使用的是PYTHON的flask框架，flask框架中拥有flask_HTTPAuth拓展（使用pip安装即可）来对api进行保护。Flask-HTTPAuth 扩展可以很好地对 HTTP 的请求进行认证，不依赖于 Cookie 和 Session。相关的介绍在可以参考博客(<a href="http://www.bjhee.com/flask-ext9.html)或者直接看英文文档(https://flask-httpauth.readthedocs.io/en/latest/)。" target="_blank" rel="noopener">http://www.bjhee.com/flask-ext9.html)或者直接看英文文档(https://flask-httpauth.readthedocs.io/en/latest/)。</a></p>
-<p>由于此次搭建的网站只是最简单的小说站，并不存在网络的登录账号，所以此次就只使用最简单的账号密码的方式来进行权限认证。</p>
-<h2 id="Flask-HTTPAuth的使用"><a href="#Flask-HTTPAuth的使用" class="headerlink" title="Flask_HTTPAuth的使用"></a>Flask_HTTPAuth的使用</h2><p>首先需要创建实例化的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask_httpauth import HTTPBasicAuth</span><br><span class="line"> </span><br><span class="line">app = Flask(__name__)</span><br><span class="line">auth = HTTPBasicAuth()</span><br></pre></td></tr></table></figure></p>
-<p>其中导入的HTTPBasicAuth方法是基于账号密码，还有HTTPTokenAuth，MultiAuth和HTTPDigestAuth这三种方法，分别书基于Token的认证，基于多种方式的认证和摘要认证。</p>
-<p>此处详细说明一下账号认证，为了简单说明，且项目数据库也不存在账号，所以此处把用户名置于一个数组内，所以我们所要做的，就是实现一个根据用户名获取密码的回调函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">users = [</span><br><span class="line">    &#123;&apos;username&apos;: &apos;Tom&apos;, &apos;password&apos;: &apos;111111&apos;&#125;,</span><br><span class="line">    &#123;&apos;username&apos;: &apos;Michael&apos;, &apos;password&apos;: &apos;123456&apos;&#125;</span><br><span class="line">]</span><br><span class="line"> </span><br><span class="line">@auth.get_password</span><br><span class="line">def get_password(username):</span><br><span class="line">    for user in users:</span><br><span class="line">        if user[&apos;username&apos;] == username:</span><br><span class="line">            return user[&apos;password&apos;]</span><br><span class="line">    return None</span><br></pre></td></tr></table></figure></p>
-<p>回调函数”get_password()”由装饰器”@auth.get_password”修饰。在函数里，我们根据传入的用户名，返回其密码；如果用户不存在，则返回空。接下来，我们就可以在任一视图函数上，加上”@auth.login_required”装饰器，来表示该视图需要认证：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/&apos;)</span><br><span class="line">@auth.login_required</span><br><span class="line">def index():</span><br><span class="line">    return &quot;Hello, %s!&quot; % auth.username()</span><br></pre></td></tr></table></figure></p>
-<p>在经手的项目中，在api接口处加上@auth.get_password和@auth.login_required。同时在使用requests请求api界面内容时，添加相关的auth参数来完成权限的认证，如<code>requests.get(&#39;api interface host&#39;, auth=(username,userpwd))</code>。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/git-的开发使用文档-in-pycharm/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/06/git-的开发使用文档-in-pycharm/" class="post-title-link" itemprop="url">git 的开发使用文档 in pycharm</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-06 12:36:31" itemprop="dateCreated datePublished" datetime="2019-07-06T12:36:31+08:00">2019-07-06</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:06:11" itemprop="dateModified" datetime="2019-07-28T14:06:11+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h2><ol>
-<li>从官网(<a href="https://git-scm.com/downloads)选择自己的系统安装git" target="_blank" rel="noopener">https://git-scm.com/downloads)选择自己的系统安装git</a></li>
-<li>在bash中使用<code>https://git-scm.com/downloads</code>命令来生成ssh key，连按三次回车即可。</li>
-<li>使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpjyqyirj31dk0ps412.jpg" alt="ssh"></p>
-<h2 id="将本地已存在的文件夹上传如alicode"><a href="#将本地已存在的文件夹上传如alicode" class="headerlink" title="将本地已存在的文件夹上传如alicode"></a>将本地已存在的文件夹上传如alicode</h2><p>在命令行中输入如下的指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@code.aliyun.com:why602443624/gitTest.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;commit message&apos;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnh9xofyj31bs0vswpm.jpg" alt="Terminal"></p>
-<p>如下图，打开alicode后就可以看到，代码已经同步上去，同时在pycharm的项目中，我们可以看到git已经可以正常使用。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnjdafygj31w80t6tcj.jpg" alt="Alicode"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnk4y4qhj313413s1kx.jpg" alt="Pycharm"></p>
-<h2 id="pycharm里面使用git"><a href="#pycharm里面使用git" class="headerlink" title="pycharm里面使用git"></a>pycharm里面使用git</h2><ol>
-<li>首先在setting中设置git,一般都会自动检测git的位置。</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnmjj7jdj31ci0xon4s.jpg" alt="Setting"></p>
-<ol start="2">
-<li>通过VCS-Checkout from version Control-Git去连接代码仓库仓库，clone代码</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnsm668kj30qy0dy0uq.jpg" alt="Clone"></p>
-<ol start="3">
-<li>在本地创建新的开发分支</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnvg0mx8j30oq0g60v9.jpg" alt="Create New Branch"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mntuboj3j30oa0d6q5t.jpg" alt="Create New Branch"></p>
-<ol start="4">
-<li>使用VCS-Git-Add（快捷键：optopn+command+A）进行add操作</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnxajqnzj31cc1464qp.jpg" alt="Add"></p>
-<ol start="5">
-<li>使用VCS-Git-Commit File or Directory进行commit操作</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mny0zbjtj30pi0mowqh.jpg" alt="Commit"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo0cagauj317y16y46g.jpg" alt="Commit"></p>
-<ol start="6">
-<li>pycharm中使用VCS-Git-Revert可进行回滚，或者直接使用pycharm自带的show history来进行回滚</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpbr2ydj313c130b29.jpg" alt="rollback"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpw1w2sj30nq0vcjv1.jpg" alt="rollback"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqbdzccj30yo184474.jpg" alt="rollback"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqqdxoaj31vi12iwqz.jpg" alt="rollback"></p>
-<ol start="7">
-<li>使用VCS-Git-show history进行同分支下任意版本的回荡</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myoblhhtj314a13u4qp.jpg" alt="rollback"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myomp1y9j30ry0pmn2c.jpg" alt="rollback"></p>
-<ol start="8">
-<li>切换到master分支后合并dev_loacl_feature分支</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo1rh6y6j30su0fidk3.jpg" alt="Checkout"></p>
-<ol start="9">
-<li>对master分支进行push操作</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg" alt="Push"></p>
-<ol start="10">
-<li>当处于正式开发时，普通情况下都不能push Master分支，你只能push dev_local_feature分支，push到代码平台需要进行merge request（合并请求），等到上司同意之后才能合并。</li>
-</ol>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg" alt="Push Reject"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg" alt="Merge Request"></p>
-<h2 id="产生冲突的原因和冲突的解决方法"><a href="#产生冲突的原因和冲突的解决方法" class="headerlink" title="产生冲突的原因和冲突的解决方法"></a>产生冲突的原因和冲突的解决方法</h2><p>原因：两个分支各自都有了新的提交，且在同样的地方有了不同的修改,在合并的时候就会产生冲突。</p>
-<p>分支1</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg" alt="branch 1"></p>
-<p>分支2</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp8la9oaj30t40e40ti.jpg" alt="branch2"></p>
-<p>合并后产生冲突</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp9i6jzrj30vq0vetap.jpg" alt="conflict"></p>
-<p>解决冲突的方法：在pycharm中VCS-Git-Resolve Conflict来解决冲突<br><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpkunpyuj315q15s7wh.jpg" alt="Resolve Conflict"></p>
-<p>可以选择冲突的文件的其中之一或者自己修改后的文件</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mplfk9rij31si15yn2b.jpg" alt="Resolve Conflict"></p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1453,7 +1392,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1551,7 +1490,9 @@
         
           
         
-        <span class="site-state-item-count">21</span>
+          
+        
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
