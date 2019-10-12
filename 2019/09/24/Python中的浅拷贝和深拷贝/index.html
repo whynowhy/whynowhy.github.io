@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="只不过是是随便写写啦">
 <meta property="og:description" content="Python的语言类型之前在博客中讲过Python属于动态类型的语言，对象与引用分开的，详见博客Python的内存管理机制。 Python中的浅拷贝和深拷贝本来想自己写一下的，结果发现有一篇博客时写的真好，就不班门弄斧了。 图解Python深拷贝和浅拷贝 浅拷贝中加一点，只有当对可变内容进行浅拷贝时，才会创建新的对象，如果浅拷贝的内容是不可变内容时，不会创建新的对象，同理深拷贝也是一样。 1234">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-24T03:01:49.766Z">
+<meta property="og:updated_time" content="2019-10-11T11:29:17.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的浅拷贝和深拷贝">
 <meta name="twitter:description" content="Python的语言类型之前在博客中讲过Python属于动态类型的语言，对象与引用分开的，详见博客Python的内存管理机制。 Python中的浅拷贝和深拷贝本来想自己写一下的，结果发现有一篇博客时写的真好，就不班门弄斧了。 图解Python深拷贝和浅拷贝 浅拷贝中加一点，只有当对可变内容进行浅拷贝时，才会创建新的对象，如果浅拷贝的内容是不可变内容时，不会创建新的对象，同理深拷贝也是一样。 1234">
@@ -249,11 +249,21 @@
                 
               
 
-              <time title="创建时间：2019-09-24 09:40:10 / 修改时间：11:01:49" itemprop="dateCreated datePublished" datetime="2019-09-24T09:40:10+08:00">2019-09-24</time>
+              <time title="创建时间：2019-09-24 09:40:10" itemprop="dateCreated datePublished" datetime="2019-09-24T09:40:10+08:00">2019-09-24</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-11 19:29:17" itemprop="dateModified" datetime="2019-10-11T19:29:17+08:00">2019-10-11</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -288,6 +298,7 @@
 <p><a href="https://www.cnblogs.com/wilber2013/p/4645353.html" target="_blank" rel="noopener">图解Python深拷贝和浅拷贝</a></p>
 <p>浅拷贝中加一点，只有当对可变内容进行浅拷贝时，才会创建新的对象，如果浅拷贝的内容是不可变内容时，不会创建新的对象，同理深拷贝也是一样。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line">a = <span class="string">'a'</span></span><br><span class="line">b = copy.copy(a)</span><br><span class="line">print(id(a)==id(b))</span><br><span class="line"></span><br><span class="line"><span class="comment">##True</span></span><br></pre></td></tr></table></figure>
+<p>面试被问到答得不太好，再做个总结吧，<strong>浅拷贝</strong>是在另一块地址中创建一个新的变量或容器，但是容器内的元素的地址均是源对象的元素的地址的拷贝。也就是说新的容器中指向了旧的元素（ 新瓶装旧酒 ），所以原对象中的可变对象的对应元素发生改变，会在复制对象的对应元素上有所体现。<strong>深拷贝</strong>是在另一块地址中创建一个新的变量或容器，同时容器内的元素的地址也是新开辟的，仅仅是值相同而已，是完全的副本，当原对象中的任何对象发生改变时，新对象对不会发生改变。也就是说（ 新瓶装新酒 ）</p>
 
     </div>
 
