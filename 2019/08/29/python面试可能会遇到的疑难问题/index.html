@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="只不过是是随便写写啦">
 <meta property="og:description" content="如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。答：这个题目考察的是 datetime 里的 timedelta 方法的使用，参数可选、默认值都为 0：datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-30T06:53:24.045Z">
+<meta property="og:updated_time" content="2019-10-15T01:52:53.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面试可能会遇到的疑难问题">
 <meta name="twitter:description" content="如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。答：这个题目考察的是 datetime 里的 timedelta 方法的使用，参数可选、默认值都为 0：datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0">
@@ -262,7 +262,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-30 14:53:24" itemprop="dateModified" datetime="2019-08-30T14:53:24+08:00">2019-08-30</time>
+                <time title="修改时间：2019-10-15 09:52:53" itemprop="dateModified" datetime="2019-10-15T09:52:53+08:00">2019-10-15</time>
               </span>
             
           
@@ -293,11 +293,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。"><a href="#如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。" class="headerlink" title="如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。"></a>如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。</h4><p><strong>答：</strong>这个题目考察的是 datetime 里的 timedelta 方法的使用，参数可选、默认值都为 0：datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0) 通过这个参数可以指定不同的日期类型进行加减操作，这里我们需要改的是 days，代码如下</p>
+        <h3 id="如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。"><a href="#如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。" class="headerlink" title="如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。"></a>如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。</h3><p><strong>答：</strong>这个题目考察的是 datetime 里的 timedelta 方法的使用，参数可选、默认值都为 0：datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0) 通过这个参数可以指定不同的日期类型进行加减操作，这里我们需要改的是 days，代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datetime_operate</span><span class="params">(n： int)</span>：</span></span><br><span class="line">    now = datetime.datetime.now()  # 获取当前时间</span><br><span class="line">    _new_date = now + datetime.timedelta(days=n)  <span class="comment"># 获取指定天数后的新日期</span></span><br><span class="line">    new_date = _new_date.strftime(<span class="string">"%Y%m%d"</span>)  <span class="comment"># 转换为指定的输出格式</span></span><br><span class="line">    <span class="keyword">return</span> new_date</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>：</span><br><span class="line">    print(datetime_operate(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="Python-的传参是传值还是传址？"><a href="#Python-的传参是传值还是传址？" class="headerlink" title="Python 的传参是传值还是传址？"></a>Python 的传参是传值还是传址？</h4><p><strong>答：</strong>Python 中的传参即不是传值也不是传地址，传的是对象的引用。</p>
-<h4 id="metaclass-作用？以及应用场景？"><a href="#metaclass-作用？以及应用场景？" class="headerlink" title="metaclass 作用？以及应用场景？"></a>metaclass 作用？以及应用场景？</h4><p><strong>答：</strong> metaclass 即元类，metaclass 是类似创建类的模板，所有的类都是通过他来 create 的(调用<strong>new</strong>)，这使得你可以自由的控制创建类的那个过程，实现你所需要的功能。 我们可以使用元类创建单例模式和实现 ORM 模式。</p>
-<h4 id="代码中经常遇到的-args-kwargs-含义及用法。"><a href="#代码中经常遇到的-args-kwargs-含义及用法。" class="headerlink" title="代码中经常遇到的*args, **kwargs 含义及用法。"></a>代码中经常遇到的*args, **kwargs 含义及用法。</h4><p><strong>答：</strong> 在函数定义中使用 <em>args 和**kwargs 传递可变长参数。 </em>args 用来将参数打包成 tuple 给函数体调用。 **kwargs 打包关键字参数成 dict 给函数体调用。</p>
+<h3 id="Python-的传参是传值还是传址？"><a href="#Python-的传参是传值还是传址？" class="headerlink" title="Python 的传参是传值还是传址？"></a>Python 的传参是传值还是传址？</h3><p><strong>答：</strong>Python 中的传参即不是传值也不是传地址，传的是对象的引用。</p>
+<h3 id="metaclass-作用？以及应用场景？"><a href="#metaclass-作用？以及应用场景？" class="headerlink" title="metaclass 作用？以及应用场景？"></a>metaclass 作用？以及应用场景？</h3><p><strong>答：</strong> metaclass 即元类，metaclass 是类似创建类的模板，所有的类都是通过他来 create 的(调用<strong>new</strong>)，这使得你可以自由的控制创建类的那个过程，实现你所需要的功能。 我们可以使用元类创建单例模式和实现 ORM 模式。</p>
+<h3 id="代码中经常遇到的-args-kwargs-含义及用法。"><a href="#代码中经常遇到的-args-kwargs-含义及用法。" class="headerlink" title="代码中经常遇到的*args, **kwargs 含义及用法。"></a>代码中经常遇到的*args, **kwargs 含义及用法。</h3><p><strong>答：</strong> 在函数定义中使用 <em>args 和**kwargs 传递可变长参数。 </em>args 用来将参数打包成 tuple 给函数体调用。 **kwargs 打包关键字参数成 dict 给函数体调用。</p>
+<h3 id="列表和列表的相加"><a href="#列表和列表的相加" class="headerlink" title="列表和列表的相加"></a>列表和列表的相加</h3><p>答：使用+和extend。<code>list1+list2</code>，得到新的列表。<code>list1.extend(list2)</code>，list1中添加新的列表。</p>
+<h3 id="字典和字典相加"><a href="#字典和字典相加" class="headerlink" title="字典和字典相加"></a>字典和字典相加</h3><p>答：使用update。<code>dict1.update(dict2)</code>，dict1中得到新的列表。<code>dict3=dict(**dict1,**dict2)</code>，但是我发现用这种方法的key不能是int类型。</p>
+<h3 id="类中-init-和-new-方法的区别"><a href="#类中-init-和-new-方法的区别" class="headerlink" title="类中__init__和__new__方法的区别"></a>类中__init__和__new__方法的区别</h3><p>答：类实例化的过程本质就是三个过程：1.创建实例对象 2.初始化实例对象 3.返回实例对象 </p>
+<p>其中new方法是在创建实例化对象时调用的,是创建类实例的方法，而init方法是在初始化实例对象时调用的。</p>
+<p>new方法在init方法之前。</p>
+<p>new方法可用作单例模式的创建，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    __instance = <span class="keyword">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> cls.__instance <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        	cls.__instance = object.__new__(cls,*args,**kwargs)</span><br><span class="line">        <span class="keyword">return</span> cls.__instance</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -378,7 +385,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -499,7 +506,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。"><span class="nav-number">1.</span> <span class="nav-text">如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-的传参是传值还是传址？"><span class="nav-number">2.</span> <span class="nav-text">Python 的传参是传值还是传址？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metaclass-作用？以及应用场景？"><span class="nav-number">3.</span> <span class="nav-text">metaclass 作用？以及应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码中经常遇到的-args-kwargs-含义及用法。"><span class="nav-number">4.</span> <span class="nav-text">代码中经常遇到的*args, **kwargs 含义及用法。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果当前的日期为-20190530，要求写一个函数输出-N-天后的日期，-比如-N-为-2，则输出-20190601-。"><span class="nav-number">1.</span> <span class="nav-text">如果当前的日期为 20190530，要求写一个函数输出 N 天后的日期，(比如 N 为 2，则输出 20190601)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-的传参是传值还是传址？"><span class="nav-number">2.</span> <span class="nav-text">Python 的传参是传值还是传址？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#metaclass-作用？以及应用场景？"><span class="nav-number">3.</span> <span class="nav-text">metaclass 作用？以及应用场景？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码中经常遇到的-args-kwargs-含义及用法。"><span class="nav-number">4.</span> <span class="nav-text">代码中经常遇到的*args, **kwargs 含义及用法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表和列表的相加"><span class="nav-number">5.</span> <span class="nav-text">列表和列表的相加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典和字典相加"><span class="nav-number">6.</span> <span class="nav-text">字典和字典相加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类中-init-和-new-方法的区别"><span class="nav-number">7.</span> <span class="nav-text">类中__init__和__new__方法的区别</span></a></li></ol></div>
             
 
           </div>
