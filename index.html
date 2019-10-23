@@ -371,7 +371,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-18 21:49:17" itemprop="dateModified" datetime="2019-10-18T21:49:17+08:00">2019-10-18</time>
+                <time title="修改时间：2019-10-23 18:20:38" itemprop="dateModified" datetime="2019-10-23T18:20:38+08:00">2019-10-23</time>
               </span>
             
           
@@ -734,7 +734,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-07 21:16:25" itemprop="dateModified" datetime="2019-10-07T21:16:25+08:00">2019-10-07</time>
+                <time title="修改时间：2019-10-23 20:06:00" itemprop="dateModified" datetime="2019-10-23T20:06:00+08:00">2019-10-23</time>
               </span>
             
           
@@ -765,41 +765,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="Linux中五种IO模型"><a href="#Linux中五种IO模型" class="headerlink" title="Linux中五种IO模型"></a>Linux中五种IO模型</h3><p>CSDN上的这篇文章讲得很好，我就不做归纳总结了</p>
+          <h3 id="Linux中五种IO模型"><a href="#Linux中五种IO模型" class="headerlink" title="Linux中五种IO模型"></a>Linux中五种IO模型</h3><p>CSDN上的这篇文章讲得很好，我就不做归纳总结了</p>
 <p><a href="https://blog.csdn.net/baiye_xing/article/details/74331041" target="_blank" rel="noopener">https://blog.csdn.net/baiye_xing/article/details/74331041</a></p>
 <h3 id="Linux中生成可执行文件的顺序"><a href="#Linux中生成可执行文件的顺序" class="headerlink" title="Linux中生成可执行文件的顺序"></a>Linux中生成可执行文件的顺序</h3><p>预编译 –&gt; 编译，优化 –&gt; 汇编 –&gt; 链接</p>
 <h3 id="Linux中的一些命令"><a href="#Linux中的一些命令" class="headerlink" title="Linux中的一些命令"></a>Linux中的一些命令</h3><h4 id="说一些你比较常用linux指令"><a href="#说一些你比较常用linux指令" class="headerlink" title="说一些你比较常用linux指令"></a>说一些你比较常用linux指令</h4><p>ls/ll、cd、mkdir、rm-rf、cp、mv、ps -ef | grep xxx、kill、free-m、tar -xvf file.tar、（说那么十几二十来个估计差不多了）</p>
-<h4 id="查看进程（例：如何查看所有xx进程）"><a href="#查看进程（例：如何查看所有xx进程）" class="headerlink" title="查看进程（例：如何查看所有xx进程）"></a>查看进程（例：如何查看所有xx进程）</h4><p>ps -ef | grep xxx</p>
-<p>ps -aux | grep xxx（-aux显示所有状态,包括cpu和内存）</p>
-<h4 id="杀掉进程"><a href="#杀掉进程" class="headerlink" title="杀掉进程"></a>杀掉进程</h4><p>kill  -9[PID]    —(PID用查看进程的方式查找)</p>
-<h4 id="启动-停止服务"><a href="#启动-停止服务" class="headerlink" title="启动/停止服务"></a>启动/停止服务</h4><p>cd到bin目录cd/</p>
-<p>./startup.sh   –打开（先确保有足够的权限）</p>
-<p>./shutdown.sh  —关闭</p>
-<h4 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h4><p>cd到服务器的logs目录（里面有xx.out文件）</p>
-<p>tail -f xx.out  –此时屏幕上实时更新日志。ctr+c停止</p>
-<p>查看最后100行日志 tail -100 xx.out </p>
-<p>查看关键字附件的日志。如：cat filename | grep -C 5 ‘关键字’（关键字前后五行。B表示前，A表示后，C表示前后） —-使用不多</p>
-<p>还有vi查询啥的。用的也不多。</p>
-<h4 id="查看端口：（如查看某个端口是否被占用）"><a href="#查看端口：（如查看某个端口是否被占用）" class="headerlink" title="查看端口：（如查看某个端口是否被占用）"></a>查看端口：（如查看某个端口是否被占用）</h4><p>netstat -anp | grep 端口号（状态为LISTEN表示被占用）</p>
-<h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><p>查找大小超过xx的文件： find . -type f -size +xxk  —–(find . -type f -mtime -1 -size +100k -size-400k)–查区间大小的文件</p>
-<p>通过文件名：find / -name xxxx    —整个硬盘查找</p>
-<p>查找当前文件夹下含有.log的文件：find . -name “*.log*“  — 这个.表示在当前文件夹下搜索</p>
-<p>查找文件中某个字符串出现的次数：grep -o str(字符串) filename(文件名字) | wc -l</p>
-<p>其余的基本上不常用</p>
-<h4 id="vim（vi）编辑器"><a href="#vim（vi）编辑器" class="headerlink" title="vim（vi）编辑器　"></a>vim（vi）编辑器　</h4><p>有命令模式、输入模式、末行模式三种模式。<br>命令模式：查找内容(/abc、跳转到指定行(20gg)、跳转到尾行(G)、跳转到首行(gg)、删除行(dd)、插入行(o)、复制粘贴(yy,p)<br>输入模式：编辑文件内容<br>末行模式：保存退出(wq)、强制退出(q!)、显示文件行号(set number)<br>在命令模式下，输入a或i即可切换到输入模式，输入冒号(:)即可切换到末行模式；在输入模式和末行模式下，按esc键切换到命令模式</p>
-<h4 id="linux三剑客，grep-sed-awk"><a href="#linux三剑客，grep-sed-awk" class="headerlink" title="linux三剑客，grep,sed,awk"></a>linux三剑客，grep,sed,awk</h4><p><strong>grep</strong>：文本搜索工具</p>
-<p><code>grep -n &#39;word&#39; file_name</code> 在file_name文件中找到word所在的所有行并显示。-n 为显示行号。</p>
-<p><strong>sed</strong> :实现数据的替换，删除，增加，选取等(以行为单位进行处理)</p>
-<p><code>sed &#39;2,4d&#39; filename</code> 删除filename文件中的2-4行，再打印出来</p>
-<p><strong>awk</strong> : 以字段为单位进行处理(其实就是把一行的数据分割，然后进行处理)</p>
-<p>awk的基本用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.$0   代表一整行的数据</span><br><span class="line">2.$1   代表第一个字段，用人的话来说就是第一列的数据</span><br><span class="line">3.$2   以此类推</span><br><span class="line">4.NF   每一行拥有的字段总数</span><br><span class="line">5.NR   目前处理的是第几行的数据</span><br><span class="line">6.FS   目前的分隔字符</span><br><span class="line">7.命令格式 ：awk   &apos;条件&#123;命令1&#125; 条件&#123;命令2&#125;...&apos;   file_name</span><br></pre></td></tr></table></figure>
-<p>具体命令：<code>awk &#39;NR&lt;6{print $1 &quot;\t&quot; $2 }&#39; file_name</code> 把file_name 文件中的前五行的第一列，第二列的数据列出来 （以[tab]或空格键分隔）</p>
-<p>三剑客命令总结：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">记住三个命令的运用形式</span><br><span class="line">    grep    &apos;字符&apos;       文件</span><br><span class="line">    sed     &apos;命令&apos;       文件</span><br><span class="line">    awk    &apos;条件&#123;命令&#125;&apos;   文件</span><br><span class="line">死记一点，单引号内就是正则表达式的用法</span><br></pre></td></tr></table></figure></p>
-<p>重复一遍：单引号内一定是正则表达式，一定，一定！！！</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/19/Linux面试中的一些问题/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
