@@ -83,7 +83,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5ydadqbulj30ks06ngm7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5ydv2573xj30cm0e9jx5.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g5yf0ehed9j30l30gwjrx.jpg">
-<meta property="og:updated_time" content="2019-08-27T10:16:00.148Z">
+<meta property="og:updated_time" content="2019-12-29T12:07:41.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CV岗面试时的一些常见问题">
 <meta name="twitter:description" content="softmax分类问题中，直接使用输出层的输出有两个问题：  神经网络输出层的输出值的范围不确定，我们难以直观上判断这些值的意义 由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量  softmax解决了以上两个问题，它将输出值变换为值为正且和为1的概率分布，公式如下： $$softmax(y){i} = y{i}^{‘} = \frac{e^{yi}}{\sum_{j=1}^">
@@ -268,11 +268,21 @@
                 
               
 
-              <time title="创建时间：2019-08-27 18:07:06 / 修改时间：18:16:00" itemprop="dateCreated datePublished" datetime="2019-08-27T18:07:06+08:00">2019-08-27</time>
+              <time title="创建时间：2019-08-27 18:07:06" itemprop="dateCreated datePublished" datetime="2019-08-27T18:07:06+08:00">2019-08-27</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-29 20:07:41" itemprop="dateModified" datetime="2019-12-29T20:07:41+08:00">2019-12-29</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -826,6 +836,53 @@
   
 
 
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
 
 
 
