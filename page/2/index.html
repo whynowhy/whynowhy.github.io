@@ -209,6 +209,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/在线OJ的一些技巧/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/06/在线OJ的一些技巧/" class="post-title-link" itemprop="url">在线OJ的一些技巧</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-06 16:21:36 / 修改时间：19:11:15" itemprop="dateCreated datePublished" datetime="2019-09-06T16:21:36+08:00">2019-09-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h3><p><strong>输入</strong>可以使用<code>sys.stdin.readline()</code>和<code>input()</code>可进行单行的输入，但是这两个输入方法不同的是，<code>sys.stdin.readline()</code>会获取标准输入的全部字符，其中包括结尾<code>\n</code>，而使用<code>input()</code>输入的话，会自动过滤结尾的<code>\n</code>，所以在使用时要使用<code>.strip()</code>方法，从而过滤结尾的转义字符。</p>
+<p>多行输入一次读取可以使用<code>sys.stdin.readlines()</code>，输入多少行，即可生成多少行的数组，但是结尾也会保留转义字符，需要对每一行使用<code>.strip()</code>方法过滤转义字符。</p>
+<p>在<strong>输出</strong>时要注意输出的格式，如果数组需要以<code>1 2 3 4</code>的形式输出时，可以使用<code>print(a[x],end=&#39; &#39;)</code>的形式进行输出，同时最后一个数输出时为<code>print(a[-1],end=&#39; &#39;)</code>，二维数组的类似输出方式如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(a[i])):</span><br><span class="line">        <span class="keyword">if</span> j != len(a[i])<span class="number">-1</span>:</span><br><span class="line">            print(a[i][j],end=<span class="string">' '</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(a[i][j])</span><br></pre></td></tr></table></figure>
+<p>当然也有更巧妙的输出数组的方式，使用<code>join()</code>方法，将数组转化为字符串再输出，<code>print(&#39; &#39;.join(a))</code>，如果a是数字数组的话，使用map函数转换一下就行<code>print(&#39; &#39;.join(map(str,a)))</code></p>
+<p><strong>输出</strong>时间格式时可以使用<code>.format()</code>方法进行字符串格式化，如<code>print(&#39;{:0&gt;2d}:{:0&gt;2d}:{:0&gt;2d}&#39;.format(23,2,4))</code></p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Python-中的迭代器和生成器的详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/03/Python-中的迭代器和生成器的详解/" class="post-title-link" itemprop="url">Python中的迭代器和生成器的详解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-03 18:51:07" itemprop="dateCreated datePublished" datetime="2019-09-03T18:51:07+08:00">2019-09-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-19 10:01:34" itemprop="dateModified" datetime="2019-09-19T10:01:34+08:00">2019-09-19</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先给出结论<strong>迭代器</strong>是实现了<strong>iter</strong>和<strong>next</strong>方法的对象。<strong>生成器</strong>其实是一种特殊的迭代器，但是不需要像迭代器一样实现<strong>iter</strong>和<strong>next</strong>方法，只需要使用关键字<strong>yield</strong>，或者使用生成器表达式就可以。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g6mku21r2zj30zc0fyjrr.jpg" alt="undefined"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/03/Python-中的迭代器和生成器的详解/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/Python中的多进程和多线程开发/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1116,221 +1336,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/Python类中一些装饰器的使用方法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/30/Python类中一些装饰器的使用方法/" class="post-title-link" itemprop="url">Python类中一些装饰器的使用方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-30 20:43:54 / 修改时间：20:51:04" itemprop="dateCreated datePublished" datetime="2019-07-30T20:43:54+08:00">2019-07-30</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="classmethod"><a href="#classmethod" class="headerlink" title="@classmethod"></a>@classmethod</h2><p>类方法，不需要实例化，也不需要self参数，需要一个cls参数，可以用类名调用，也可以用对象来调用。</p>
-<p>原则上，类方法是将类本身作为对象进行操作的方法。假设有个方法，且这个方法在逻辑上采用类本身作为对象来调用更合理，那么这个方法就可以定义为类方法</p>
-<h2 id="staticmethod"><a href="#staticmethod" class="headerlink" title="@staticmethod"></a>@staticmethod</h2><p>静态方法，不需要实例化，不需要self和cls等参数，就跟使用普通的函数一样，只是封装在类中</p>
-<p>静态方法是类中的函数，不需要实例。静态方法主要是用来存放逻辑性的代码，逻辑上属于类，但是和类本身没有关系，也就是说在静态方法中，不会涉及到类中的属性和方法的操作。可以理解为，静态方法是个独立的、单纯的函数，它仅仅托管于某个类的名称空间中，便于使用和维护。</p>
-<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p>属性方法，主要作用是将一个操作方法封装成一个属性,用户用起来就和操作普通属性完全一致,非常简单.定义时，在实例方法的基础上添加@property装饰器，并且只有一个self参数，调用时，不需要括号</p>
-<p>@property 是经典类中的一种装饰器，新式类中具有三种:<br>1.@property获取属性<br>2.@方法名.setter 修改属性<br>3.@方法名.deleter 删除属性</p>
-<p><strong>总结</strong>：类方法，是直接对类操作时候定义的，实例化方法是操作实例化对象时候定义的，静态方法与类无关，就是独立的逻辑单元。@property是将方法转为属性，直接可使用其返回值，提供了可读可写可删除的操作，如果像只读效果，就只需要定义@property就可以，不定义代表禁止其他操作。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/使用python发送邮件，报Connection-unexpectedly-closed错/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/20/使用python发送邮件，报Connection-unexpectedly-closed错/" class="post-title-link" itemprop="url">使用python发送邮件，报Connection unexpectedly closed错</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-20 18:29:09" itemprop="dateCreated datePublished" datetime="2019-07-20T18:29:09+08:00">2019-07-20</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:11:34" itemprop="dateModified" datetime="2019-07-28T14:11:34+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h1 id="使用python发送邮箱遇上的问题"><a href="#使用python发送邮箱遇上的问题" class="headerlink" title="使用python发送邮箱遇上的问题"></a>使用python发送邮箱遇上的问题</h1><p>按照网上的代码测试发邮件的功能时，发生<code>Connection unexpectedly closed</code>的错误，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">receive = &quot;收件箱地址&quot;</span><br><span class="line">sender = &apos;发件箱地址&apos;</span><br><span class="line">password = &apos;发件箱的密码，一般是随机生成的&apos;</span><br><span class="line">mailserver = &apos;发件箱的smtp服务器地址&apos;</span><br><span class="line">mailport = 465</span><br><span class="line"></span><br><span class="line">message = MIMEMultipart()</span><br><span class="line">message[&quot;From&quot;] = Header(&apos;测试发送&apos;, &apos;utf-8&apos;)</span><br><span class="line">message[&quot;To&quot;] = Header(&apos;测试接受&apos;, &apos;utf-8&apos;)</span><br><span class="line">message[&apos;Subject&apos;] = Header(&quot;python邮件发送的测试&quot;, &apos;utf-8&apos;)</span><br><span class="line"></span><br><span class="line">message.attach(MIMEText(&apos;这是&#123;&#125;的报表&apos;.format(today), &apos;plain&apos;, &apos;utf-8&apos;))</span><br><span class="line">att1 = MIMEText(open(r&apos;/Users/walkyren/Desktop/&#123;&#125;order.xlsx&apos;.format(today), &apos;rb&apos;).read(), &apos;base64&apos;, &apos;utf-8&apos;)</span><br><span class="line">att1[&quot;Content-Type&quot;] = &apos;application/octet-stream&apos;</span><br><span class="line">att1[&quot;Content-Disposition&quot;] = &apos;attachment; filename=&quot;todayOrder.xlsx&quot;&apos;</span><br><span class="line">message.attach(att1)</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    smtpObj = smtplib.SMTP(mailserver, mailport)</span><br><span class="line">    smtpObj.login(sender, password)</span><br><span class="line">    smtpObj.sendmail(sender, receive, message.as_string())</span><br><span class="line">    print(&quot;邮件发送成功&quot;)</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(e)</span><br></pre></td></tr></table></figure></p>
-<p>由于本人使用的发件箱是腾讯邮箱，而腾讯邮箱使用的是SSL进行加密，所以python中登录服务器也要使用SSL的方式。<br>需要将<code>smtpObj = smtplib.SMTP(mailserver, mailport)</code>改成<code>smtpObj = smtplib.SMTP_SSL(mailserver, mailport)</code>即可。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1368,7 +1373,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1409,7 +1414,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1468,7 +1475,9 @@
         
           
         
-        <span class="site-state-item-count">22</span>
+          
+        
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1561,11 +1570,11 @@
       
     
       
+    
+      
+    
+      
         
-      
-    
-      
-    
       
     
       
