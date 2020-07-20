@@ -210,6 +210,119 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/hexo博客的迁移/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/20/hexo博客的迁移/" class="post-title-link" itemprop="url">hexo博客的迁移</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-20 10:19:17 / 修改时间：11:00:01" itemprop="dateCreated datePublished" datetime="2020-07-20T10:19:17+08:00">2020-07-20</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h3><p>首先在新电脑中安装npm，hexo，git，并在相应的文件夹中新建Hexo文件，相应的教程在<a href="[http://www.whynowhy.top/2018/11/09/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/](http://www.whynowhy.top/2018/11/09/关于这个博客的搭建/">《关于这个博客的搭建》</a>)。</p>
+<p>然后将老的博客文件复制到新的目录</p>
+<p>将本机生成的git的rsa密钥提供给远程主机，github在setting -&gt; SSH and GPG Keys里面，个人服务器在个人目录的.ssh的文件夹的authorized_keys中。</p>
+<p>然后就可以了</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>迁移后的博客在deploy后发生<code>Host key verification failed</code>的问题</p>
+<p>解决办法：</p>
+<p>当我们生成了ssh的公钥和私钥后通过下面的命令测试 <code>ssh -T git@github.com</code><br> 有可能会出现：</p>
+<blockquote>
+<p>The authenticity of host ‘github.com (192.30.252.1)’ can’t be established.<br> RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br> Are you sure you want to continue connecting (yes/no)?</p>
+</blockquote>
+<p>或者是</p>
+<blockquote>
+<p>The authenticity of host ‘github.com (192.30.252.1)’ can’t be established.<br> RSA key fingerprint is nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.<br> Are you sure you want to continue connecting (yes/no)?</p>
+</blockquote>
+<p>一定要输入<code>yes</code>回车没用</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/社会心理学读书笔记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -385,7 +498,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-06-04 16:10:58" itemprop="dateModified" datetime="2020-06-04T16:10:58+08:00">2020-06-04</time>
+                <time title="修改时间：2020-07-20 10:24:53" itemprop="dateModified" datetime="2020-07-20T10:24:53+08:00">2020-07-20</time>
               </span>
             
           
@@ -1287,118 +1400,11 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/WSL的使用过程中的一些小问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/11/WSL的使用过程中的一些小问题/" class="post-title-link" itemprop="url">WSL的使用过程中的一些小问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-11 18:20:01" itemprop="dateCreated datePublished" datetime="2019-09-11T18:20:01+08:00">2019-09-11</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-19 10:00:52" itemprop="dateModified" datetime="2019-09-19T10:00:52+08:00">2019-09-19</time>
-              </span>
-            
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h3 id="root密码的设定"><a href="#root密码的设定" class="headerlink" title="root密码的设定"></a>root密码的设定</h3><p>安装完WSL后，需要输入用户名和密码才能进入，但是输入的用户只是普通用户而已，如果我们需要切换用户成root用户的话，该怎么办呢？</p>
-<p>由于ubtun系统默认是没有激活root用户的，需要我们手工进行操作，在命令行界面下，或者在终端中输入如下命令：</p>
-<ol>
-<li><p>sudo passwd root</p>
-</li>
-<li><p>[sudo] password for you: —&gt; 输入你的密码（你现在这个用户的密码）</p>
-</li>
-<li><p>Enter new UNIX password: —&gt; 设置root 密码</p>
-</li>
-<li><p>Retype new UNIX password: —&gt; 重复密码</p>
-</li>
-<li><p>完成</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1431,7 +1437,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
