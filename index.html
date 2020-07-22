@@ -210,6 +210,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/Nginx入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/22/Nginx入门/" class="post-title-link" itemprop="url">Nginx入门</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-22 15:01:12 / 修改时间：15:08:29" itemprop="dateCreated datePublished" datetime="2020-07-22T15:01:12+08:00">2020-07-22</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Nginx/" itemprop="url" rel="index"><span itemprop="name">Nginx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="nginx是什么"><a href="#nginx是什么" class="headerlink" title="nginx是什么"></a>nginx是什么</h3><p>“Nginx 是一款轻量级的 HTTP 服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的 IO 性能，时常用于服务端的<strong>反向代理</strong>和<strong>负载均衡</strong>。”</p>
+<p>特点：</p>
+<ul>
+<li>一种轻量级的web服务器</li>
+<li>设计思想是事件驱动的异步非阻塞处理（类node.js）</li>
+<li>占用内存少、启动速度快、并发能力强</li>
+<li>使用C语言开发</li>
+<li>扩展性好，第三方插件非常多</li>
+<li>在互联网项目中广泛应用</li>
+</ul>
+<h3 id="nginx主要应用"><a href="#nginx主要应用" class="headerlink" title="nginx主要应用"></a>nginx主要应用</h3><p>nginx四大应用</p>
+<h5 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gggzy3wb79j30d30cx0sq.jpg" alt="undefined"></p>
+<p>如上图所示，动静分离其实就是 Nginx 服务器将接收到的请求分为<strong>动态请求</strong>和<strong>静态请求</strong>。</p>
+<p>静态请求直接从 nginx 服务器所设定的根目录路径去取对应的资源，动态请求转发给真实的后台（前面所说的应用服务器，如图中的Tomcat）去处理。</p>
+<p>这样做不仅能给应用服务器减轻压力，将后台api接口服务化，还能将前后端代码分开并行开发和部署。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 静态化配置，所有静态请求都转发给 nginx 处理，存放目录为 my-project</span></span><br><span class="line">        location ~ .*\.(html|htm|gif|jpg|jpeg|bmp|png|ico|js|css)$ &#123;</span><br><span class="line">            root /usr/<span class="built_in">local</span>/var/www/my-project; <span class="comment"># 静态请求所代理到的根目录</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 动态请求匹配到path为'node'的就转发到8002端口处理</span></span><br><span class="line">        location /node/ &#123;  </span><br><span class="line">            proxy_pass http://localhost:8002; <span class="comment"># 充当服务代理</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问静态资源 nginx 服务器会返回 my-project 里面的文件，如获取 index.html。</p>
+<p>访问动态请求 nginx 服务器会将它从8002端口请求到的内容，原封不动的返回回去。</p>
+<h5 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h5><p><strong>反向代理是什么</strong></p>
+<p>反向代理其实就类似你去找代购帮你买东西（浏览器或其他终端向nginx请求），你不用管他去哪里买，只要他帮你买到你想要的东西就行（浏览器或其他终端最终拿到了他想要的内容，但是具体从哪儿拿到的这个过程它并不知道）。</p>
+<p><strong>反向代理的作用</strong></p>
+<ol>
+<li>保障应用服务器的安全（增加一层代理，可以屏蔽危险攻击，更方便的控制权限）</li>
+<li>实现负载均衡（稍等~下面会讲）</li>
+<li>实现跨域（号称是最简单的跨域方式）</li>
+</ol>
+<p><strong>配置反向代理</strong></p>
+<p>配置一个简单的反向代理是很容易的，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        proxy_pass http://localhost:8000; <span class="comment"># 反向代理配置，请求会被转发到8000端口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反向代理的表现很简单。那上面的代码块来说，其实就是向nginx请求<code>localhost:8080</code>跟请求 <code>http://localhost:8000</code> 是一样的效果。（跟代购的原理一样）</p>
+<p>这是一个反向代理最简单的模型，只是为了说明反向代理的配置。但是现实中反向代理多数是用在负载均衡中。</p>
+<p>示意图如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh0c9n1s3j30ix0bta9w.jpg" alt="undefined"></p>
+<p>nginx 就是充当图中的 proxy。左边的3个 client 在请求时向 nginx 获取内容，是感受不到3台 server 存在的。</p>
+<blockquote>
+<p>此时Proxy充当了三个server的反向代理</p>
+</blockquote>
+<p>反向代理应用十分广泛，CDN 服务就是反向代理经典的应用场景之一。除此之外，反向代理也是实现负载均衡的基础，很多大公司的架构都应用到了反向代理。</p>
+<h5 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h5><p><strong>负载均衡是什么</strong></p>
+<p>随着业务的不断增长和用户的不断增多，一台服务已经满足不了系统要求了。这个时候就出现了服务器 <a href="https://www.cnblogs.com/bhlsheji/p/4026296.html" target="_blank" rel="noopener">集群</a>。</p>
+<p>在服务器集群中，Nginx 可以将接收到的客户端请求“均匀地”（严格讲并不一定均匀，可以通过设置权重）分配到这个集群中所有的服务器上。这个就叫做<strong>负载均衡</strong>。</p>
+<p>负载均衡的示意图如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh0odvlm2j30ix0bt3yh.jpg" alt="undefined"></p>
+<p><strong>负载均衡的作用</strong></p>
+<ul>
+<li>分摊服务器集群压力</li>
+<li>保证客户端访问的稳定性</li>
+</ul>
+<p>前面也提到了，负载均衡可以解决分摊服务器集群压力的问题。除此之外，Nginx还带有<strong>健康检查</strong>（服务器心跳检查）功能，会定期轮询向集群里的所有服务器发送健康检查请求，来检查集群中是否有服务器处于异常状态。</p>
+<p>一旦发现某台服务器异常，那么在这以后代理进来的客户端请求都不会被发送到该服务器上（直健康检查发现该服务器已恢复正常），从而保证客户端访问的稳定性。</p>
+<p><strong>配置负载均衡</strong></p>
+<p>配置一个简单的负载均衡并不复杂，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 负载均衡：设置domain</span></span><br><span class="line">upstream domain &#123;</span><br><span class="line">    server localhost:8000;</span><br><span class="line">    server localhost:8001;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="comment"># root   html; # Nginx默认值</span></span><br><span class="line">            <span class="comment"># index  index.html index.htm;</span></span><br><span class="line">            </span><br><span class="line">            proxy_pass http://domain; <span class="comment"># 负载均衡配置，请求会被平均分配到8000和8001端口</span></span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>受集群单台服务器内存等资源的限制，负载均衡集群的服务器也不能无限增多。但因其良好的容错机制，负载均衡成为了实现<strong>高可用架构</strong>中必不可少的一环。</p>
+<h5 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h5><p>正向代理跟反向道理正好相反。拿上文中的那个代购例子来讲，多个人找代购购买同一个商品，代购找到买这个的店后一次性给买了。这个过程中，该店主是不知道代购是帮别代买买东西的。那么代购对于多个想买商品的顾客来讲，他就充当了正向代理。</p>
+<p>正向代理的示意图如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh2x99z33j30ix0btq2r.jpg" alt="undefined"></p>
+<p>nginx 就是充当图中的 proxy。左边的3个 client 在请求时向 nginx 获取内容，server 是感受不到3台 client 存在的。</p>
+<p><strong>正向代理</strong>，意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端才能使用正向代理。当你需要把你的服务器作为代理服务器的时候，可以用Nginx来实现正向代理。</p>
+<p>以上是nginx的基础知识，相应的进阶和应用可以看这篇<a href="https://juejin.im/post/5e9ab2e851882573a67f62a0" target="_blank" rel="noopener">博文</a>。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/hexo博客的迁移/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1283,123 +1441,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/计算机网络中的一些问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/17/计算机网络中的一些问题/" class="post-title-link" itemprop="url">计算机网络中的一些问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-17 16:28:46" itemprop="dateCreated datePublished" datetime="2019-09-17T16:28:46+08:00">2019-09-17</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-05 21:36:40" itemprop="dateModified" datetime="2019-10-05T21:36:40+08:00">2019-10-05</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg" alt="undefined"></p>
-<p><strong>1）物理层（Physical Layer）</strong></p>
-<p>　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。<strong>该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。</strong>物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/17/计算机网络中的一些问题/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1437,7 +1478,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1480,7 +1521,9 @@
         
           
         
-        <span class="site-state-item-count">14</span>
+          
+        
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1541,7 +1584,9 @@
         
           
         
-        <span class="site-state-item-count">23</span>
+          
+        
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
