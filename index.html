@@ -210,6 +210,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/消息队列/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/23/消息队列/" class="post-title-link" itemprop="url">消息队列</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-23 09:27:27 / 修改时间：09:30:26" itemprop="dateCreated datePublished" datetime="2020-07-23T09:27:27+08:00">2020-07-23</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Middle-Layer/" itemprop="url" rel="index"><span itemprop="name">Middle Layer</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>消息队列是分布式系统中重要的组件，在很多生产环境如商品抢购等需要控制并发量的场景下都需要用到。</p>
+<h3 id="消息队列-MQ-概述"><a href="#消息队列-MQ-概述" class="headerlink" title="消息队列(MQ)概述"></a>消息队列(MQ)概述</h3><p>消息队列（Message Queue），是分布式系统中重要的组件，其通用的使用场景可以简单地描述为：当不需要立即获得结果，但是并发量又需要进行控制的时候，差不多就是需要使用消息队列的时候。</p>
+<p>消息队列主要解决了应用耦合、异步处理、流量削锋等问题。</p>
+<p>当前使用较多的消息队列有RabbitMQ、RocketMQ、ActiveMQ、Kafka、ZeroMQ、MetaMq等，而部分数据库如Redis、Mysql以及phxsql也可实现消息队列的功能。</p>
+<h3 id="消息队列使用场景"><a href="#消息队列使用场景" class="headerlink" title="消息队列使用场景"></a>消息队列使用场景</h3><p>消息队列在实际应用中包括如下四个场景：</p>
+<ul>
+<li>应用耦合：多应用间通过消息队列对同一消息进行处理，避免调用接口失败导致整个过程失败；</li>
+<li>异步处理：多应用对消息队列中同一消息进行处理，应用间并发处理消息，相比串行处理，减少处理时间；</li>
+<li>限流削峰：广泛应用于秒杀或抢购活动中，避免流量过大导致应用系统挂掉的情况；</li>
+<li>消息驱动的系统：系统分为消息队列、消息生产者、消息消费者，生产者负责产生消息，消费者(可能有多个)负责对消息进行处理；</li>
+</ul>
+<p>下面详细介绍上述四个场景以及消息队列如何在上述四个场景中使用:</p>
+<h5 id="应用耦合"><a href="#应用耦合" class="headerlink" title="应用耦合"></a>应用耦合</h5><p>具体场景：用户使用QQ相册上传一张图片，人脸识别系统会对该图片进行人脸识别，一般的做法是，服务器接收到图片后，图片上传系统立即调用人脸识别系统，调用完成后再返回成功，如下图所示：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggduhsq0ymj30c1029jr6.jpg" alt="undefined"></p>
+<p>该方法有如下缺点：</p>
+<ul>
+<li>人脸识别系统被调失败，导致图片上传失败；</li>
+<li>延迟高，需要人脸识别系统处理完成后，再返回给客户端，即使用户并不需要立即知道结果；</li>
+<li>图片上传系统与人脸识别系统之间互相调用，需要做耦合；</li>
+</ul>
+<p>若使用消息队列：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdun832pij30il02gglf.jpg" alt="undefined"></p>
+<p>客户端上传图片后，图片上传系统将图片信息如uin、批次写入消息队列，直接返回成功；而人脸识别系统则定时从消息队列中取数据，完成对新增图片的识别。 </p>
+<p>此时图片上传系统并不需要关心人脸识别系统是否对这些图片信息的处理、以及何时对这些图片信息进行处理。事实上，由于用户并不需要立即知道人脸识别结果，人脸识别系统可以选择不同的调度策略，按照闲时、忙时、正常时间，对队列中的图片信息进行处理。</p>
+<h5 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h5><p>具体场景：用户为了使用某个应用，进行注册，系统需要发送注册邮件并验证<a href="https://cloud.tencent.com/product/sms?from=10680" target="_blank" rel="noopener">短信</a>。对这两个操作的处理方式有两种：串行及并行。</p>
+<p>（1）串行方式：新注册信息生成后，先发送注册邮件，再发送验证短信；</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggduo5as3oj30qu02sglf.jpg" alt="undefined"></p>
+<p>在这种方式下，需要最终发送验证短信后再返回给客户端。</p>
+<p>（2）并行处理：新注册信息写入后，由发短信和发邮件并行处理； </p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggduoi3jonj30iw058jr9.jpg" alt="undefined"></p>
+<p>在这种方式下，发短信和发邮件 需处理完成后再返回给客户端。</p>
+<p>假设以上三个子系统处理的时间均为50ms，且不考虑网络延迟，则总的处理时间：</p>
+<p>串行：50+50+50=150ms<br>并行：50+50 = 100ms</p>
+<p>若使用消息队列：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdup2r3cpj30l9050gli.jpg" alt="undefined"></p>
+<p>并在写入消息队列后立即返回成功给客户端，则总的响应时间依赖于写入消息队列的时间，而写入消息队列的时间本身是可以很快的，基本可以忽略不计，因此总的处理时间相比串行提高了2倍，相比并行提高了一倍；</p>
+<h5 id="限制峰流"><a href="#限制峰流" class="headerlink" title="限制峰流"></a>限制峰流</h5><p>具体场景：购物网站开展秒杀活动，一般由于瞬时访问量过大，服务器接收过大，会导致流量暴增，相关系统无法处理请求甚至崩溃。而加入消息队列后，系统可以从消息队列中取数据，相当于消息队列做了一次缓冲。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdvisqa19j30h1024743.jpg" alt="undefined"></p>
+<p>该方法有如下优点： </p>
+<ol>
+<li>请求先入消息队列，而不是由业务处理系统直接处理，做了一次缓冲,极大地减少了业务处理系统的压力； </li>
+<li>队列长度可以做限制，事实上，秒杀时，后入队列的用户无法秒杀到商品，这些请求可以直接被抛弃，返回活动已结束或商品已售完信息；</li>
+</ol>
+<h5 id="消息驱动的系统"><a href="#消息驱动的系统" class="headerlink" title="消息驱动的系统"></a>消息驱动的系统</h5><p>具体场景：用户新上传了一批照片， 人脸识别系统需要对这个用户的所有照片进行聚类，聚类完成后由对账系统重新生成用户的人脸索引(加快查询)。这三个子系统间由消息队列连接起来，前一个阶段的处理结果放入队列中，后一个阶段从队列中获取消息继续处理。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdvk8wbecj30v402f745.jpg" alt="undefined"></p>
+<p>该方法有如下优点：</p>
+<ul>
+<li>避免了直接调用下一个系统导致当前系统失败；</li>
+<li>每个子系统对于消息的处理方式可以更为灵活，可以选择收到消息时就处理，可以选择定时处理，也可以划分时间段按不同处理速度处理；</li>
+</ul>
+<h3 id="消息队列的两种模式"><a href="#消息队列的两种模式" class="headerlink" title="消息队列的两种模式"></a>消息队列的两种模式</h3><p>消息队列包括两种模式，点对点模式（point to point， queue）和发布/订阅模式（publish/subscribe，topic）。</p>
+<h5 id="点对点模式"><a href="#点对点模式" class="headerlink" title="点对点模式"></a>点对点模式</h5><p>点对点模式下包括三个角色：</p>
+<ul>
+<li>消息队列</li>
+<li>发送者 (生产者)</li>
+<li>接收者（消费者）</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdw1ti43mj30gm02mjr7.jpg" alt="undefined"></p>
+<p>消息发送者生产消息发送到queue中，然后消息接收者从queue中取出并且消费消息。消息被消费以后，queue中不再有存储，所以消息接收者不可能消费到已经被消费的消息。</p>
+<p>点对点模式特点：</p>
+<ul>
+<li>每个消息只有一个接收者（Consumer）(即一旦被消费，消息就不再在消息队列中)；</li>
+<li>发送者和接收者间没有依赖性，发送者发送消息之后，不管有没有接收者在运行，都不会影响到发送者下次发送消息；</li>
+<li>接收者在成功接收消息之后需向队列应答成功，以便消息队列删除当前接收的消息；</li>
+</ul>
+<h5 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h5><p>发布/订阅模式下包括三个角色：</p>
+<ul>
+<li>角色主题（Topic）</li>
+<li>发布者(Publisher)</li>
+<li>订阅者(Subscriber)</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdw3jyfhvj30gd04zaa1.jpg" alt="undefined"></p>
+<p>发布者将消息发送到Topic,系统将这些消息传递给多个订阅者。</p>
+<p>发布/订阅模式特点：</p>
+<ul>
+<li>每个消息可以有多个订阅者；</li>
+<li>发布者和订阅者之间有时间上的依赖性。针对某个主题（Topic）的订阅者，它必须创建一个订阅者之后，才能消费发布者的消息。</li>
+<li>为了消费消息，订阅者需要提前订阅该角色主题，并保持在线运行；</li>
+</ul>
+<h3 id="常用消息队列介绍"><a href="#常用消息队列介绍" class="headerlink" title="常用消息队列介绍"></a>常用消息队列介绍</h3><p>本部分主要介绍四种常用的消息队列（RabbitMQ/ActiveMQ/RocketMQ/Kafka）的主要差异对比。详细的介绍可见<a href="https://cloud.tencent.com/developer/article/1006035。" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1006035。</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdwimrj1hj30m10mkabg.jpg" alt="undefined"></p>
+<p>结论:</p>
+<p>Kafka在于分布式架构，RabbitMQ基于AMQP协议来实现，RocketMQ/思路来源于kafka，改成了主从结构，在事务性可靠性方面做了优化。广泛来说，电商、金融等对事务性要求很高的，可以考虑RabbitMQ和RocketMQ，对性能要求高的可考虑Kafka。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/Nginx入门/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -246,7 +427,7 @@
                 
               
 
-              <time title="创建时间：2020-07-22 15:01:12 / 修改时间：15:08:29" itemprop="dateCreated datePublished" datetime="2020-07-22T15:01:12+08:00">2020-07-22</time>
+              <time title="创建时间：2020-07-22 15:01:12 / 修改时间：15:49:04" itemprop="dateCreated datePublished" datetime="2020-07-22T15:01:12+08:00">2020-07-22</time>
             </span>
           
             
@@ -280,8 +461,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="nginx是什么"><a href="#nginx是什么" class="headerlink" title="nginx是什么"></a>nginx是什么</h3><p>“Nginx 是一款轻量级的 HTTP 服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的 IO 性能，时常用于服务端的<strong>反向代理</strong>和<strong>负载均衡</strong>。”</p>
+          <h3 id="nginx是什么"><a href="#nginx是什么" class="headerlink" title="nginx是什么"></a>nginx是什么</h3><p>“Nginx 是一款轻量级的 HTTP 服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的 IO 性能，时常用于服务端的<strong>反向代理</strong>和<strong>负载均衡</strong>。”</p>
 <p>特点：</p>
 <ul>
 <li>一种轻量级的web服务器</li>
@@ -291,58 +471,15 @@
 <li>扩展性好，第三方插件非常多</li>
 <li>在互联网项目中广泛应用</li>
 </ul>
-<h3 id="nginx主要应用"><a href="#nginx主要应用" class="headerlink" title="nginx主要应用"></a>nginx主要应用</h3><p>nginx四大应用</p>
-<h5 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gggzy3wb79j30d30cx0sq.jpg" alt="undefined"></p>
-<p>如上图所示，动静分离其实就是 Nginx 服务器将接收到的请求分为<strong>动态请求</strong>和<strong>静态请求</strong>。</p>
-<p>静态请求直接从 nginx 服务器所设定的根目录路径去取对应的资源，动态请求转发给真实的后台（前面所说的应用服务器，如图中的Tomcat）去处理。</p>
-<p>这样做不仅能给应用服务器减轻压力，将后台api接口服务化，还能将前后端代码分开并行开发和部署。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 静态化配置，所有静态请求都转发给 nginx 处理，存放目录为 my-project</span></span><br><span class="line">        location ~ .*\.(html|htm|gif|jpg|jpeg|bmp|png|ico|js|css)$ &#123;</span><br><span class="line">            root /usr/<span class="built_in">local</span>/var/www/my-project; <span class="comment"># 静态请求所代理到的根目录</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 动态请求匹配到path为'node'的就转发到8002端口处理</span></span><br><span class="line">        location /node/ &#123;  </span><br><span class="line">            proxy_pass http://localhost:8002; <span class="comment"># 充当服务代理</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>访问静态资源 nginx 服务器会返回 my-project 里面的文件，如获取 index.html。</p>
-<p>访问动态请求 nginx 服务器会将它从8002端口请求到的内容，原封不动的返回回去。</p>
-<h5 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h5><p><strong>反向代理是什么</strong></p>
-<p>反向代理其实就类似你去找代购帮你买东西（浏览器或其他终端向nginx请求），你不用管他去哪里买，只要他帮你买到你想要的东西就行（浏览器或其他终端最终拿到了他想要的内容，但是具体从哪儿拿到的这个过程它并不知道）。</p>
-<p><strong>反向代理的作用</strong></p>
-<ol>
-<li>保障应用服务器的安全（增加一层代理，可以屏蔽危险攻击，更方便的控制权限）</li>
-<li>实现负载均衡（稍等~下面会讲）</li>
-<li>实现跨域（号称是最简单的跨域方式）</li>
-</ol>
-<p><strong>配置反向代理</strong></p>
-<p>配置一个简单的反向代理是很容易的，代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        proxy_pass http://localhost:8000; <span class="comment"># 反向代理配置，请求会被转发到8000端口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>反向代理的表现很简单。那上面的代码块来说，其实就是向nginx请求<code>localhost:8080</code>跟请求 <code>http://localhost:8000</code> 是一样的效果。（跟代购的原理一样）</p>
-<p>这是一个反向代理最简单的模型，只是为了说明反向代理的配置。但是现实中反向代理多数是用在负载均衡中。</p>
-<p>示意图如下：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh0c9n1s3j30ix0bta9w.jpg" alt="undefined"></p>
-<p>nginx 就是充当图中的 proxy。左边的3个 client 在请求时向 nginx 获取内容，是感受不到3台 server 存在的。</p>
-<blockquote>
-<p>此时Proxy充当了三个server的反向代理</p>
-</blockquote>
-<p>反向代理应用十分广泛，CDN 服务就是反向代理经典的应用场景之一。除此之外，反向代理也是实现负载均衡的基础，很多大公司的架构都应用到了反向代理。</p>
-<h5 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h5><p><strong>负载均衡是什么</strong></p>
-<p>随着业务的不断增长和用户的不断增多，一台服务已经满足不了系统要求了。这个时候就出现了服务器 <a href="https://www.cnblogs.com/bhlsheji/p/4026296.html" target="_blank" rel="noopener">集群</a>。</p>
-<p>在服务器集群中，Nginx 可以将接收到的客户端请求“均匀地”（严格讲并不一定均匀，可以通过设置权重）分配到这个集群中所有的服务器上。这个就叫做<strong>负载均衡</strong>。</p>
-<p>负载均衡的示意图如下：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh0odvlm2j30ix0bt3yh.jpg" alt="undefined"></p>
-<p><strong>负载均衡的作用</strong></p>
-<ul>
-<li>分摊服务器集群压力</li>
-<li>保证客户端访问的稳定性</li>
-</ul>
-<p>前面也提到了，负载均衡可以解决分摊服务器集群压力的问题。除此之外，Nginx还带有<strong>健康检查</strong>（服务器心跳检查）功能，会定期轮询向集群里的所有服务器发送健康检查请求，来检查集群中是否有服务器处于异常状态。</p>
-<p>一旦发现某台服务器异常，那么在这以后代理进来的客户端请求都不会被发送到该服务器上（直健康检查发现该服务器已恢复正常），从而保证客户端访问的稳定性。</p>
-<p><strong>配置负载均衡</strong></p>
-<p>配置一个简单的负载均衡并不复杂，代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 负载均衡：设置domain</span></span><br><span class="line">upstream domain &#123;</span><br><span class="line">    server localhost:8000;</span><br><span class="line">    server localhost:8001;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="comment"># root   html; # Nginx默认值</span></span><br><span class="line">            <span class="comment"># index  index.html index.htm;</span></span><br><span class="line">            </span><br><span class="line">            proxy_pass http://domain; <span class="comment"># 负载均衡配置，请求会被平均分配到8000和8001端口</span></span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>受集群单台服务器内存等资源的限制，负载均衡集群的服务器也不能无限增多。但因其良好的容错机制，负载均衡成为了实现<strong>高可用架构</strong>中必不可少的一环。</p>
-<h5 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h5><p>正向代理跟反向道理正好相反。拿上文中的那个代购例子来讲，多个人找代购购买同一个商品，代购找到买这个的店后一次性给买了。这个过程中，该店主是不知道代购是帮别代买买东西的。那么代购对于多个想买商品的顾客来讲，他就充当了正向代理。</p>
-<p>正向代理的示意图如下：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh2x99z33j30ix0btq2r.jpg" alt="undefined"></p>
-<p>nginx 就是充当图中的 proxy。左边的3个 client 在请求时向 nginx 获取内容，server 是感受不到3台 client 存在的。</p>
-<p><strong>正向代理</strong>，意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端才能使用正向代理。当你需要把你的服务器作为代理服务器的时候，可以用Nginx来实现正向代理。</p>
-<p>以上是nginx的基础知识，相应的进阶和应用可以看这篇<a href="https://juejin.im/post/5e9ab2e851882573a67f62a0" target="_blank" rel="noopener">博文</a>。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/07/22/Nginx入门/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1323,124 +1460,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/Linux面试中的一些问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/19/Linux面试中的一些问题/" class="post-title-link" itemprop="url">Linux中的一些问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 10:04:36" itemprop="dateCreated datePublished" datetime="2019-09-19T10:04:36+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-23 20:06:02" itemprop="dateModified" datetime="2019-10-23T20:06:02+08:00">2019-10-23</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Linux中五种IO模型"><a href="#Linux中五种IO模型" class="headerlink" title="Linux中五种IO模型"></a>Linux中五种IO模型</h3><p>CSDN上的这篇文章讲得很好，我就不做归纳总结了</p>
-<p><a href="https://blog.csdn.net/baiye_xing/article/details/74331041" target="_blank" rel="noopener">https://blog.csdn.net/baiye_xing/article/details/74331041</a></p>
-<h3 id="Linux中生成可执行文件的顺序"><a href="#Linux中生成可执行文件的顺序" class="headerlink" title="Linux中生成可执行文件的顺序"></a>Linux中生成可执行文件的顺序</h3><p>预编译 –&gt; 编译，优化 –&gt; 汇编 –&gt; 链接</p>
-<h3 id="Linux中的一些命令"><a href="#Linux中的一些命令" class="headerlink" title="Linux中的一些命令"></a>Linux中的一些命令</h3><h4 id="说一些你比较常用linux指令"><a href="#说一些你比较常用linux指令" class="headerlink" title="说一些你比较常用linux指令"></a>说一些你比较常用linux指令</h4><p>ls/ll、cd、mkdir、rm-rf、cp、mv、ps -ef | grep xxx、kill、free-m、tar -xvf file.tar、（说那么十几二十来个估计差不多了）</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/Linux面试中的一些问题/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1478,7 +1497,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1523,7 +1542,9 @@
         
           
         
-        <span class="site-state-item-count">15</span>
+          
+        
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1586,7 +1607,9 @@
         
           
         
-        <span class="site-state-item-count">24</span>
+          
+        
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
