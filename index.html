@@ -210,6 +210,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/搭建k8s集群时遇到的一些问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/05/搭建k8s集群时遇到的一些问题/" class="post-title-link" itemprop="url">搭建k8s集群时遇到的一些问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-05 17:22:32 / 修改时间：18:45:34" itemprop="dateCreated datePublished" datetime="2020-08-05T17:22:32+08:00">2020-08-05</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>跟着尚硅谷的<a href="https://www.bilibili.com/video/BV1w4411y7" target="_blank" rel="noopener">k8s教程</a>在学kubernetes，期间也遇到了一些问题，分享一下这些问题。</p>
+<h3 id="node加入时没有反应，报couldn’t-validate-the-identity-of-the-API-Server"><a href="#node加入时没有反应，报couldn’t-validate-the-identity-of-the-API-Server" class="headerlink" title="node加入时没有反应，报couldn’t validate the identity of the API Server"></a>node加入时没有反应，报couldn’t validate the identity of the API Server</h3><p>Token过期了，需要重新生成token和sha256。</p>
+<p>生成Token的方法。 <code>kubeadm token create</code>，在master服务器输入命令可以生成相应的Token。</p>
+<p>再生成使用证书生成Token相应的sha256。命令<code>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &#39;s/^.\* //&#39;</code></p>
+<p>最后再join一下就完事了。<code>kubeadm join 对应的ip和端口 --token 对应的token     --discovery-token-ca-cert-hash sha256:对应的sha256</code></p>
+<h3 id="centos内核更新没反应"><a href="#centos内核更新没反应" class="headerlink" title="centos内核更新没反应"></a>centos内核更新没反应</h3><p>首先通过<code>uname -r</code>的命令来查看os内核版本。</p>
+<p>然后升级内核</p>
+<p>导入ELRepo仓库的公共密钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br></pre></td></tr></table></figure>
+<p>安装ELRepo仓库的yum源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>安装最新版本内核<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum --enablerepo=elrepo-kernel install kernel-ml</span><br></pre></td></tr></table></figure></p>
+<p>设置grub2</p>
+<p>内核安装好后，需要设置为默认启动选项并重启后才会生效。</p>
+<p>查看系统上的所有可用内核：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo awk -F\&apos; &apos;$1==&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&apos; /etc/grub2.cfg</span><br><span class="line">0 : CentOS Linux (4.18.7-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">1 : CentOS Linux (3.10.0-862.11.6.el7.x86_64) 7 (Core)</span><br><span class="line">2 : CentOS Linux (3.10.0-514.el7.x86_64) 7 (Core)</span><br><span class="line">3 : CentOS Linux (0-rescue-063ec330caa04d4baae54c6902c62e54) 7 (Core)</span><br></pre></td></tr></table></figure>
+<p>设置新的内核为grub2的默认版本</p>
+<p>服务器上存在4 个内核，我们要使用 4.18 这个版本，可以通过 <code>grub2-set-default 0</code> 命令或编辑 <code>/etc/default/grub</code> 文件来设置</p>
+<p>重启就完事了</p>
+<h3 id="修改完网卡配置后还ping不通"><a href="#修改完网卡配置后还ping不通" class="headerlink" title="修改完网卡配置后还ping不通"></a>修改完网卡配置后还ping不通</h3><p>不要忘了重启，重启命令是<code>rebot</code>。</p>
+<h3 id="windows中hosts无法修改"><a href="#windows中hosts无法修改" class="headerlink" title="windows中hosts无法修改"></a>windows中hosts无法修改</h3><p>添加了权限都无法修改，研究了半天，发现是没有取消文件的只读权限。右键文件，只读的勾取消掉就行了。</p>
+<h3 id="harbor突然打不开了"><a href="#harbor突然打不开了" class="headerlink" title="harbor突然打不开了"></a>harbor突然打不开了</h3><p>原来是有关harbor的一些容器down了，需要重新run一下</p>
+<h3 id="kubectl-run之后状态一直ready-0-1"><a href="#kubectl-run之后状态一直ready-0-1" class="headerlink" title="kubectl run之后状态一直ready 0/1"></a>kubectl run之后状态一直ready 0/1</h3><p>使用kubectl describe pod查看pod信息后，发现出现了CrashLoopBackOff的问题，仔细一想后发现，容器hello-world不是一个可持续化的容器，自己写了一个静态化的容器后再run就没什么问题了。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/k8s中的资源清单/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1266,137 +1387,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/操作系统一些问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/27/操作系统一些问题/" class="post-title-link" itemprop="url">操作系统中的一些问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-27 14:55:32" itemprop="dateCreated datePublished" datetime="2019-09-27T14:55:32+08:00">2019-09-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-12 18:22:46" itemprop="dateModified" datetime="2019-10-12T18:22:46+08:00">2019-10-12</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><h4 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h4><ul>
-<li>进程是对运行时程序的封装，是系统进行资源调度和分配的的基本单位，实现了操作系统的并发。</li>
-<li>线程是进程的子任务，是CPU调度和分派的基本单位，用于保证程序的 实时性，实现进程内部的并发。</li>
-<li>一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在。</li>
-<li>进程在执行过程中拥有独立的内存单元，而多个线程共享进程的内存。</li>
-</ul>
-<h4 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h4><p>协程不是进程，也不是线程，它就是一个函数，一个特殊的函数——可以在某个地方挂起，并且可以重新在挂起处继续运行。所以说，协程与进程、线程相比，不是一个维度的概念。</p>
-<p>一个进程可以包含多个线程，一个线程也可以包含多个协程，也就是说，一个线程内可以有多个那样的特殊函数在运行。但是有一点，必须明确，一个线程内的多个协程的运行是串行的。如果有多核CPU的话，多个进程或一个进程内的多个线程是可以并行运行的，但是一个线程内的多个协程却绝对串行的，无论有多少个CPU（核）。这个比较好理解，毕竟协程虽然是一个特殊的函数，但仍然是一个函数。一个线程内可以运行多个函数，但是这些函数都是串行运行的。当一个协程运行时，其他协程必须挂起。</p>
-<h4 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h4><p>进程间的通信的详细内容可看这篇<a href="https://blog.csdn.net/a987073381/article/details/52006729#comments" target="_blank" rel="noopener">博客</a>，以下是概括性的解释：</p>
-<ul>
-<li><strong>管道（pipe）及命名管道（named pipe）</strong>：管道可用于具有亲缘关系的父子进程间的通信，有名管道除了具有管道所具有的功能外，它还允许无亲缘关系进程间的通信；</li>
-<li><strong>信号（signal）</strong>：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生；</li>
-<li><strong>消息队列</strong>：消息队列是消息的链接表，它克服了上两种通信方式中信号量有限的缺点，具有写权限得进程可以按照一定得规则向消息队列中添加新信息；对消息队列有读权限得进程则可以从消息队列中读取信息；</li>
-<li><strong>共享内存</strong>：可以说这是最有用的进程间通信方式。它使得多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据得更新。这种方式需要依靠某种同步操作，如互斥锁和信号量等；</li>
-<li><strong>信号量</strong>：主要作为进程之间及同一种进程的不同线程之间得同步和互斥手段；</li>
-<li><strong>套接字</strong>：这是一种更为一般得进程间通信机制，它可用于网络中不同机器之间的进程间通信，应用非常广泛。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/27/操作系统一些问题/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1434,7 +1424,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1483,7 +1473,9 @@
         
           
         
-        <span class="site-state-item-count">17</span>
+          
+        
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1552,7 +1544,9 @@
         
           
         
-        <span class="site-state-item-count">27</span>
+          
+        
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
