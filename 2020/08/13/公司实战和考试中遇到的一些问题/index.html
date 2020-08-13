@@ -66,7 +66,7 @@
 <meta property="og:description" content="linux文件权限Linux的文件权限有九种，分别是拥有者（owner）、所属群组（group）、其他人（others）三种身份各有自己的读（read）、写（write）、执行（execute），文件的权限字符为：[-rwxrwxrwx]，这九个权限是三个三个一组。其中，我们可以使用数字来代表各个权限，各权限的数字对照表： r:4 w:2 x:1 使用chmod来改变文件的权限（需要sudo或者r">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ghgxcy8ztzj30ey0cewes.jpg">
-<meta property="og:updated_time" content="2020-08-13T08:26:10.554Z">
+<meta property="og:updated_time" content="2020-08-13T08:28:17.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="公司实战和考试中遇到的一些问题">
 <meta name="twitter:description" content="linux文件权限Linux的文件权限有九种，分别是拥有者（owner）、所属群组（group）、其他人（others）三种身份各有自己的读（read）、写（write）、执行（execute），文件的权限字符为：[-rwxrwxrwx]，这九个权限是三个三个一组。其中，我们可以使用数字来代表各个权限，各权限的数字对照表： r:4 w:2 x:1 使用chmod来改变文件的权限（需要sudo或者r">
@@ -252,12 +252,27 @@
                 
               
 
-              <time title="创建时间：2020-08-13 16:22:45 / 修改时间：16:26:10" itemprop="dateCreated datePublished" datetime="2020-08-13T16:22:45+08:00">2020-08-13</time>
+              <time title="创建时间：2020-08-13 16:22:45 / 修改时间：16:28:17" itemprop="dateCreated datePublished" datetime="2020-08-13T16:22:45+08:00">2020-08-13</time>
             </span>
           
             
 
             
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           <br>
@@ -277,6 +292,7 @@
 <p>当然也可以不用数字来进行文件权限的修改，可以使用<code>chmod u+x file</code>的方法给file文件的所有者增加可执行权限。</p>
 <p>其中u代表用户，u可以替换为a（代表所有）、g（代表用户组）、o（代表其他），x代表执行的权限，可以替换为r（可执行），w（可写）。+ 表示增加权限。</p>
 <p>这意味着<code>chmod u+x somefile</code> 只授予这个文件的所属者执行的权限<br>而 <code>chmod +x somefile</code> 和 <code>chmod a+x somefile</code>是一样的</p>
+<a id="more"></a>
 <h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><table>
 <thead>
 <tr>
