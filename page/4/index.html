@@ -210,6 +210,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/工作中的一些随笔/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/13/工作中的一些随笔/" class="post-title-link" itemprop="url">工作中的一些随笔</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-13 18:37:13" itemprop="dateCreated datePublished" datetime="2019-07-13T18:37:13+08:00">2019-07-13</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-28 14:11:26" itemprop="dateModified" datetime="2019-07-28T14:11:26+08:00">2019-07-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h2 id="关于数据库的使用"><a href="#关于数据库的使用" class="headerlink" title="关于数据库的使用"></a>关于数据库的使用</h2><p>不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。<br>如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。</p>
+<p>导出方式(workbench)：</p>
+<p>从所选择的连接中选择左边栏中Data Export，选择你想导出的数据库，点击Start Export进行数据导出。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz3rok38j32701544qp.jpg" alt="Export"></p>
+<p>导入：</p>
+<p>选择本地连接左边栏中的Data Import/Restore, 选择之前导出文件的地址，在选择需要导入的数据库和表，点击Start Import进行导入。如果遇到@@GLOBAL.GTID_MODE = OFF的报错，则需要在数据库导出的时候，打开Advanced Options，其中set-gtid-purged - Add ‘SET @@GLOBAL.GTID_PURGED’ to the output选项改成OFF，即可成功导入。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz4r6xhwj326m13ytzw.jpg" alt="Import"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz575499j31bs0quh3d.jpg" alt="GTOD_PURGED"></p>
+<h2 id="关于需求的理解"><a href="#关于需求的理解" class="headerlink" title="关于需求的理解"></a>关于需求的理解</h2><p>编码之前需要详细理解需求，上司提出的需要需要详细了解。如“数据管理API：更新host和模板的关系”，是指在api中添加能够用更新host和模板的api。</p>
+<p>如果遇到疑问，应该及时去向上司请教。</p>
+<h2 id="对于REST结构的理解"><a href="#对于REST结构的理解" class="headerlink" title="对于REST结构的理解"></a>对于REST结构的理解</h2><p>一句话，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
+<p>其中Flask中有flask.ext库来实现Rest网络编程，简介可参考(<a href="http://www.pythondoc.com/Flask-RESTful/quickstart.html" target="_blank" rel="noopener">http://www.pythondoc.com/Flask-RESTful/quickstart.html</a>)</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/使用FLASK搭建网站时，对于REST架构中API接口的保护/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1332,139 +1452,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/spring基础知识简介/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/26/spring基础知识简介/" class="post-title-link" itemprop="url">spring基础知识简介</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-26 11:01:12" itemprop="dateCreated datePublished" datetime="2019-03-26T11:01:12+08:00">2019-03-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:09:00" itemprop="dateModified" datetime="2019-07-28T14:09:00+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h1 id="Spring框架简介"><a href="#Spring框架简介" class="headerlink" title="Spring框架简介"></a>Spring框架简介</h1><p>Spring是一个轻量级控制反转(IoC)和面向切面(AOP)的容器框架。</p>
-<p>Spring框架的核心功能有两个</p>
-<ul>
-<li>Spring容器作为超级大工厂，负责创建、管理所有的Java对象，这些Java对象被称为Bean。</li>
-<li>Spring容器管理容器中Bean之间的依赖关系，Spring使用一种被称为”依赖注入”的方式来管理Bean之间的依赖关系。</li>
-</ul>
-<h2 id="JavaBean的简介"><a href="#JavaBean的简介" class="headerlink" title="JavaBean的简介"></a>JavaBean的简介</h2><p>JavaBean 是一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的构造器。JavaBean 通过提供符合一致性设计模式的公共方法将内部域暴露成员属性，set和get方法获取。</p>
-<h4 id="JavaBean的组成"><a href="#JavaBean的组成" class="headerlink" title="JavaBean的组成"></a>JavaBean的组成</h4><p>(1) 属性 (2) 方法 (3) 事件</p>
-<h4 id="JavaBean的任务目标"><a href="#JavaBean的任务目标" class="headerlink" title="JavaBean的任务目标"></a>JavaBean的任务目标</h4><p>JavaBean的任务就是: “Write once, run anywhere, reuse everywhere”，即“一次性编写，任何地方执行，任何地方重用”。这个任何实际上就是要解决困扰软件工业的日益增加的复杂性，提供一个简单的、紧凑的和优秀的问题解决方案。</p>
-<h2 id="Spring容器中的Bean"><a href="#Spring容器中的Bean" class="headerlink" title="Spring容器中的Bean"></a>Spring容器中的Bean</h2><h4 id="指定容器中Bean的作用域"><a href="#指定容器中Bean的作用域" class="headerlink" title="指定容器中Bean的作用域"></a>指定容器中Bean的作用域</h4><p>当通过Spring容器创建一个Bean实例时，不仅可以完成Bean实例的实例化，还可以为Bean指定特定的作用域。如果不指定Bean的作用域，Spring默认使用singleton作用域。prototype作用域的Bean的创建、销毁代价比较大。而singleton作用域的Bean实例一旦创建成果，就可以重复使用。因此，应该尽量避免将Bean设置成prototype作用域。</p>
-<h4 id="使用自动装配注入合作者Bean"><a href="#使用自动装配注入合作者Bean" class="headerlink" title="使用自动装配注入合作者Bean"></a>使用自动装配注入合作者Bean</h4><p>Spring能自动装配Bean与Bean之间的依赖关系，即无须使用ref显式指定依赖Bean，而是由Spring容器检查XML配置文件内容，根据某种规则，为调用者Bean注入被依赖的Bean。</p>
-<h2 id="Spring中Bean的3中创建方法"><a href="#Spring中Bean的3中创建方法" class="headerlink" title="Spring中Bean的3中创建方法"></a>Spring中Bean的3中创建方法</h2><p>(1) 使用构造器创建Bean实例 (2) 使用静态工厂方法创建Bean (3) 调用实例工厂方法创建Bean</p>
-<h2 id="Spring中的依赖注入"><a href="#Spring中的依赖注入" class="headerlink" title="Spring中的依赖注入"></a>Spring中的依赖注入</h2><p>使用依赖注入，不仅可以为Bean注入普通的属性值，还可以注入其他Bean的引用。依赖注入是一种优秀的解耦方式，其可以让Bean以配置文件组织在一起，而不是以硬编码的方式耦合在一起。</p>
-<p>使用Spring框架之后，调用者无需主动获取被依赖对象，调用者只要被动接受Spring容器为调用者的成员变量赋值即可，由此可见，使用Spring后，调用者获取被依赖对象的方式由原来的主动获取，变成了被动接受——所以Rod Johnson称之为控制反转。</p>
-<p>另外从Spring容器的角度来看，Spring容器负责将被依赖对象赋值给调用者的成员变量——相当于为调用者注入它依赖的实例，因此Martine Fowler称之为依赖注入。</p>
-<h2 id="Spring中的AOP"><a href="#Spring中的AOP" class="headerlink" title="Spring中的AOP"></a>Spring中的AOP</h2><h4 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h4><p>AOP（Aspect Orient Programming）也就是面向切面编程，作为面向对象编程的一种补充，已经成为一种比较成熟的编程方式。其实AOP问世的时间并不太长，AOP和OOP互为补充，面向切面编程将程序运行过程分解成各个切面。</p>
-<p>AOP专门用于处理系统中分布于各个模块（不同方法）中的交叉关注点的问题，在JavaEE应用中，常常通过AOP来处理一些具有横切性质的系统级服务，如事务管理、安全检查、缓存、对象池管理等，AOP已经成为一种非常常用的解决方案。</p>
-<h4 id="使用AspectJ实现AOP"><a href="#使用AspectJ实现AOP" class="headerlink" title="使用AspectJ实现AOP"></a>使用AspectJ实现AOP</h4><p>AspectJ是一个基于Java语言的AOP框架，提供了强大的AOP功能，其他很多AOP框架都借鉴或采纳其中的一些思想。其主要包括两个部分：一个部分定义了如何表达、定义AOP编程中的语法规范，通过这套语法规范，可以方便地用AOP来解决Java语言中存在的交叉关注点的问题；另一个部分是工具部分，包括编译、调试工具等。</p>
-<h4 id="Spring的AOP支持"><a href="#Spring的AOP支持" class="headerlink" title="Spring的AOP支持"></a>Spring的AOP支持</h4><p>Spring中的AOP代理由Spring的IoC容器负责生成、管理，其依赖关系也由IoC容器负责管理。为了在应用中使用@AspectJ支持，Spring需要添加三个库：</p>
-<ul>
-<li>aspectjweaver.jar</li>
-<li>aspectjrt.jar</li>
-<li>aopalliance.jar<br>并在Spring配置文件中做如下配置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--启动@AspectJ支持--&gt;</span><br><span class="line">&lt;aop:aspectj-autoproxy/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--指定自动搜索Bean组件、自动搜索切面类--&gt;</span><br><span class="line">&lt;context:component-scan base-package=&quot;edu.shu.sprint.service&quot;&gt;</span><br><span class="line">    &lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.aspectj.lang.annotation.Aspect&quot;/&gt;</span><br><span class="line">&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1502,7 +1489,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
