@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="在k8s中，Pod被分类为自主式Pod，和控制器管理的Pod，其中自主式Pod是当Pod退出了，该类型的Pod就不会创建。而控制器管理的Pod是指，在控制器的生命周期里，始终要维持Pod的副本数目。 什么是控制器Kubernetes 中内建了很多 controller（控制器），这些相当于一个状态机，用来控制 Pod 的具体状态和行为">
+<meta name="keywords" content="Kubernetes,运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s中的控制器">
+<meta property="og:url" content="http://yoursite.com/2020/08/06/k8s中的控制器/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="在k8s中，Pod被分类为自主式Pod，和控制器管理的Pod，其中自主式Pod是当Pod退出了，该类型的Pod就不会创建。而控制器管理的Pod是指，在控制器的生命周期里，始终要维持Pod的副本数目。 什么是控制器Kubernetes 中内建了很多 controller（控制器），这些相当于一个状态机，用来控制 Pod 的具体状态和行为">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ghh5j6t6z9j30ue0dkaei.jpg">
+<meta property="og:updated_time" content="2020-08-18T11:16:45.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="k8s中的控制器">
+<meta name="twitter:description" content="在k8s中，Pod被分类为自主式Pod，和控制器管理的Pod，其中自主式Pod是当Pod退出了，该类型的Pod就不会创建。而控制器管理的Pod是指，在控制器的生命周期里，始终要维持Pod的副本数目。 什么是控制器Kubernetes 中内建了很多 controller（控制器），这些相当于一个状态机，用来控制 Pod 的具体状态和行为">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ghh5j6t6z9j30ue0dkaei.jpg">
+  <link rel="canonical" href="http://yoursite.com/2020/08/06/k8s中的控制器/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>k8s中的控制器 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="no-referrer">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">只不过是是随便写写啦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+    </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/k8s中的控制器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">k8s中的控制器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-06 09:51:08" itemprop="dateCreated datePublished" datetime="2020-08-06T09:51:08+08:00">2020-08-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-18 19:16:45" itemprop="dateModified" datetime="2020-08-18T19:16:45+08:00">2020-08-18</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在k8s中，Pod被分类为自主式Pod，和控制器管理的Pod，其中自主式Pod是当Pod退出了，该类型的Pod就不会创建。而控制器管理的Pod是指，在控制器的生命周期里，始终要维持Pod的副本数目。</p>
+<h3 id="什么是控制器"><a href="#什么是控制器" class="headerlink" title="什么是控制器"></a>什么是控制器</h3><p>Kubernetes 中内建了很多 controller（控制器），这些相当于一个状态机，用来控制 Pod 的具体状态和行为</p>
+<a id="more"></a>
+<h3 id="控制器的类型"><a href="#控制器的类型" class="headerlink" title="控制器的类型"></a>控制器的类型</h3><h5 id="ReplicationController-和-ReplicaSet"><a href="#ReplicationController-和-ReplicaSet" class="headerlink" title="ReplicationController 和 ReplicaSet"></a>ReplicationController 和 ReplicaSet</h5><p>ReplicationController（RC）用来确保容器应用的副本数始终保持在用户定义的副本数，即如果有容器异常退出，会自动创建新的 Pod 来替代；而如果异常多出来的容器也会自动回收；</p>
+<p>在新版本的 Kubernetes 中建议使用 ReplicaSet 来取代 ReplicationController 。ReplicaSet 跟ReplicationController 没有本质的不同，只是名字不一样，并且 ReplicaSet 支持集合式的 selector（标签 ）；</p>
+<h5 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h5><p>Deployment 为 Pod 和 ReplicaSet 提供了一个声明式定义 (declarative) 方法，用来替代以前的ReplicationController 来方便的管理应用。典型的应用场景包括；</p>
+<ol>
+<li>定义 Deployment 来创建 Pod 和 ReplicaSet</li>
+<li>滚动升级和回滚应用</li>
+<li>扩容和缩容</li>
+<li>暂停和继续 Deployment</li>
+</ol>
+<blockquote>
+<p>声明式编程：它侧重于定义想要什么，然后告诉计算机/引擎，让他帮你去实现。</p>
+</blockquote>
+<blockquote>
+<p>声明式编程 （Deployment） apply</p>
+<p>命令式 （RS） create</p>
+</blockquote>
+<p>滚动更新：会创建一个新副本的rs1，旧的rs的pod减少一个时，rs1会新加一个，直到全部增减完成</p>
+<h5 id="DaemonSet"><a href="#DaemonSet" class="headerlink" title="DaemonSet"></a>DaemonSet</h5><p>DaemonSet确保全部（或者一些）Node 上运行一个Pod 的副本。当有 Node 加入集群时，也会为他们新增一个Pod 。当有 Node 从集群移除时，这些 Pod 也会被回收。删除 DaemonSet 将会删除它创建的所有 Pod。</p>
+<p>使用 DaemonSet 的一些典型用法：</p>
+<p>1.　运行集群存储 daemon，例如在每个 Node 上运行glusterd、ceph<br>2.　在每个 Node 上运行日志收集 daemon，例如fluentd、logstash</p>
+<ol start="3">
+<li><p>个 Node 上运行监控 daemon，例如Prometheus Node Exporter、collectd、Datadog 代理、New Relic 代理，或 Ganglia gmond</p>
+<p>Job 负责批处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个 Pod 成功结束 </p>
+</li>
+</ol>
+<h5 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h5><p>Job负责批处理任务，即执行一次的任务，它保证批处理任务的一个或多个Pod成功结束</p>
+<h5 id="CronJob-在特定的时间循环创建Job"><a href="#CronJob-在特定的时间循环创建Job" class="headerlink" title="CronJob 在特定的时间循环创建Job"></a>CronJob 在特定的时间循环创建Job</h5><p>管理基于时间的 Job，即：</p>
+<ul>
+<li>在给定时间点只运行一次</li>
+<li>周期性地在给定时间点运行</li>
+</ul>
+<blockquote>
+<p>使用前提条件：当前使用的 Kubernetes 集群，版本 &gt;= 1.8（对 CronJob）。对于先前版本的集群，版本 &lt;1.8，启动 API Server时，通过传递选项–runtime-config=batch/v2alpha1=true可以开启 batch/v2alpha1API</p>
+</blockquote>
+<p>典型的用法如下所示：</p>
+<p>在给定的时间点调度 Job 运行</p>
+<p>创建周期性运行的 Job，例如：数据库备份、发送邮件</p>
+<h5 id="StatefulSet"><a href="#StatefulSet" class="headerlink" title="StatefulSet"></a>StatefulSet</h5><p>StatefulSet 作为 Controller 为 Pod 提供唯一的标识。它可以保证部署和 scale 的顺序</p>
+<p>StatefulSet是为了解决<strong>有状态</strong>服务的问题（对应Deployments和ReplicaSets是为无状态服务而设计），其应用场景包括：</p>
+<ol>
+<li><p>稳定的持久化存储，即Pod重新调度后还是能访问到相同的持久化数据，基于PVC来实现</p>
+</li>
+<li><p>稳定的网络标志，即Pod重新调度后其PodName和HostName不变，基于Headless Service（即没有Cluster IP的Service）来实现</p>
+</li>
+<li><p>有序部署，有序扩展，即Pod是有顺序的，在部署或者扩展的时候要依据定义的顺序依次依次进行（即从0到N-1，在下一个Pod运行之前所有之前的Pod必须都是Running和Ready状态），基于init containers来实现</p>
+</li>
+<li><p>有序收缩，有序删除（即从N-1到0）</p>
+</li>
+</ol>
+<h5 id="Horizontal-Pod-Autoscaling（HPA）"><a href="#Horizontal-Pod-Autoscaling（HPA）" class="headerlink" title="Horizontal Pod Autoscaling（HPA）"></a>Horizontal Pod Autoscaling（HPA）</h5><p>应用的资源使用率通常都有高峰和低谷的时候，如何削峰填谷，提高集群的整体资源利用率，让service中的Pod个数自动调整呢？这就有赖于Horizontal Pod Autoscaling了，顾名思义，使Pod水平自动缩放。</p>
+<h3 id="RS与RC与Deployment关联"><a href="#RS与RC与Deployment关联" class="headerlink" title="RS与RC与Deployment关联"></a>RS与RC与Deployment关联</h3><p>主要的作用就是用来确保容器应用的副本数始终保持在用户定义的副本数。即如果有容器异常退出，会自动创建新的Pod来替代；而如果异常多出来的容器也会自动回收</p>
+<p>Kubernetes 官方建议使用 RS（ReplicaSet ）替代 RC （ReplicationController ）进行部署，RS 跟 RC 没有本质的不同，只是名字不一样，并且 RS 支持集合式的 selector</p>
+<p>通过<code>kubectl explain rs</code>来查看RS完整模板信息</p>
+<p>RS模板</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ReplicaSet</span> <span class="comment">#kind类型和之前的不同</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      tier:</span> <span class="string">frontend</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        tier:</span> <span class="string">frontend</span> <span class="comment">#标签</span></span><br><span class="line"><span class="attr">    spec:</span> <span class="comment">#嵌套的pod</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">whyapp</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">hub.whynowhy.com/library/static-app:v1</span></span><br><span class="line"><span class="attr">        env:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">GET_HOST_FROM</span></span><br><span class="line"><span class="attr">          value:</span> <span class="string">dns</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">        - containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<p>通过<code>kubectl create -f ReplicaSet.yaml</code> 来创建rs，创建之后</p>
+<h3 id="RS与Deployment的关联"><a href="#RS与Deployment的关联" class="headerlink" title="RS与Deployment的关联"></a>RS与Deployment的关联</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ghh5j6t6z9j30ue0dkaei.jpg" alt=""></p>
+<p>Deployment 为 Pod 和 ReplicaSet 提供了一个声明式定义(declarative)方法，用来替代以前的ReplicationController 来方便的管理应用。典型的应用场景包括：</p>
+<ol>
+<li><p>定义Deployment来创建Pod和ReplicaSet</p>
+</li>
+<li><p>滚动升级和回滚</p>
+</li>
+<li><p>应用扩容和缩容</p>
+</li>
+<li><p>暂停和继续Deployment</p>
+</li>
+</ol>
+<h5 id="部署一个简单的Nginx应用"><a href="#部署一个简单的Nginx应用" class="headerlink" title="部署一个简单的Nginx应用"></a>部署一个简单的Nginx应用</h5><p><strong>yaml模板</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">nginx-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">whyapp</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">hub.whynowhy.com/library/static-app:v1</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">        - containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<p><strong>创建</strong></p>
+<p><code>kubectl apply -f deployment.yaml --record</code></p>
+<p><strong>扩容</strong></p>
+<p><code>kubectl scale deployment nginx-deployment --replicas 10</code></p>
+<p><strong>更新镜像</strong></p>
+<p><code>kubectl set image deployment/nginx-deployment whyapp=hub.whynowhy.com/library/static-app:v2</code></p>
+<p><strong>回滚</strong></p>
+<p><code>kubectl rollout undo deployment/nginx-deployment</code></p>
+<h5 id="deployment更新策略"><a href="#deployment更新策略" class="headerlink" title="deployment更新策略"></a>deployment更新策略</h5><ul>
+<li>Deployment 可以保证在升级时只有一定数量的 Pod 是 down 的。默认的，它会确保至少有比期望的Pod数量少一个是up状态（最多一个不可用）</li>
+<li>Deployment 同时也可以确保只创建出超过期望数量的一定数量的 Pod。默认的，它会确保最多比期望的Pod数量多一个的 Pod 是 up 的（最多1个 surge ）</li>
+<li>未来的 Kuberentes 版本中，将从1-1变成25%-25%</li>
+</ul>
+<h5 id="Rollover（多个rollout并行）"><a href="#Rollover（多个rollout并行）" class="headerlink" title="Rollover（多个rollout并行）"></a>Rollover（多个rollout并行）</h5><p>假如您创建了一个有5个niginx:1.7.9 replica的 Deployment，但是当还只有3个nginx:1.7.9的 replica 创建出来的时候您就开始更新含有5个nginx:1.9.1 replica 的 Deployment。在这种情况下，Deployment 会立即杀掉已创建的3个nginx:1.7.9的 Pod，并开始创建nginx:1.9.1的 Pod。它不会等到所有的5个nginx:1.7.9的Pod 都创建完成后才开始改变航道。</p>
+<h5 id="回退Deployment"><a href="#回退Deployment" class="headerlink" title="回退Deployment"></a>回退Deployment</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">kubectl set image deployment/nginx-deployment nginx=nginx:1.91</span><br><span class="line"></span><br><span class="line">kubectl rollout status deployments nginx-deployment</span><br><span class="line"></span><br><span class="line">kubectl get pods</span><br><span class="line"></span><br><span class="line">kubectl rollout history deployment/nginx-deployment</span><br><span class="line"></span><br><span class="line">kubectl rollout undo deployment/nginx-deployment</span><br><span class="line"></span><br><span class="line">kubectl rollout undo deployment/nginx-deployment --to-revision=2  ## 可以使用 --revision参数指定某个历史版本</span><br><span class="line"></span><br><span class="line">kubectl rollout pause deployment/nginx-deployment   ## 暂停 deployment 的更新</span><br></pre></td></tr></table></figure>
+<h5 id="清理Policy"><a href="#清理Policy" class="headerlink" title="清理Policy"></a>清理Policy</h5><p>您可以通过设置.spec.revisonHistoryLimit项来指定 deployment 最多保留多少 revision 历史记录。默认的会保留所有的 revision；如果将该项设置为0，Deployment 就不允许回退了。</p>
+<h3 id="DaemonSet控制器"><a href="#DaemonSet控制器" class="headerlink" title="DaemonSet控制器"></a>DaemonSet控制器</h3><p>什么是Daemonset控制器，上面有讲。总之，就是每个node上都会至少存在一个创建的Pod。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">app/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">DaemonSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">deamonset-example</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">    app:</span> <span class="string">daemonset</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">daemonset-example</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">daemonset-example</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">daemonset-exp</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">hub.whynowhy.com/library/static-app:v1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Job控制器"><a href="#Job控制器" class="headerlink" title="Job控制器"></a>Job控制器</h3><p>上面也有写，就是pod中不是长期执行的任务而是执行一次的任务。</p>
+<p>模板</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Job</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span><span class="string">pi</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">pi</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">pi</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">perl</span></span><br><span class="line"><span class="attr">        command:</span><span class="string">["perl",</span> <span class="string">"-Mbignum=bpi"</span><span class="string">,</span> <span class="string">"-wle"</span><span class="string">,</span> <span class="string">"print bpi(2000)"</span><span class="string">]</span></span><br><span class="line"><span class="attr">      restartPolicy:</span> <span class="string">Never</span></span><br></pre></td></tr></table></figure>
+<h3 id="CronJob控制器"><a href="#CronJob控制器" class="headerlink" title="CronJob控制器"></a>CronJob控制器</h3><p>和linux中的crontab差不多，都是定时执行任务，但这个执行的是定时拉起一个pod，等Pod中的Job执行完再结束。</p>
+<p>王泓毅+第一志愿：A-SRE组+岗位选择：PaaS、SaaS产品SRE</p>
+<p>王泓毅+第二志愿：I-SRE组+岗位选择：SDN运维工程师</p>
+<p>模板</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CronJob</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">hello</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  schedule:</span><span class="string">"*/1 * * * *"</span> <span class="comment">#定时</span></span><br><span class="line"><span class="attr">  jobTemplate:</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      template:</span></span><br><span class="line"><span class="attr">        spec:</span></span><br><span class="line"><span class="attr">          containers:</span></span><br><span class="line"><span class="attr">          - name:</span> <span class="string">hello</span></span><br><span class="line"><span class="attr">            image:</span> <span class="string">busybox</span></span><br><span class="line"><span class="attr">            args:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/bin/sh</span></span><br><span class="line"><span class="bullet">            -</span> <span class="bullet">-c</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">date;</span> <span class="string">echo</span> <span class="string">Hello</span> <span class="string">from</span> <span class="string">the</span> <span class="string">Kubernetes</span> <span class="string">cluster</span></span><br><span class="line"><span class="attr">          restartPolicy:</span> <span class="string">OnFailure</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2020/08/05/搭建k8s集群时遇到的一些问题/" rel="next" title="搭建k8s集群时遇到的一些问题">
+                <i class="fa fa-chevron-left"></i> 搭建k8s集群时遇到的一些问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2020/08/13/公司实战和考试中遇到的一些问题/" rel="prev" title="公司实战和考试中遇到的一些问题">
+                公司实战和考试中遇到的一些问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是控制器"><span class="nav-number">1.</span> <span class="nav-text">什么是控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器的类型"><span class="nav-number">2.</span> <span class="nav-text">控制器的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ReplicationController-和-ReplicaSet"><span class="nav-number">2.0.1.</span> <span class="nav-text">ReplicationController 和 ReplicaSet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Deployment"><span class="nav-number">2.0.2.</span> <span class="nav-text">Deployment</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DaemonSet"><span class="nav-number">2.0.3.</span> <span class="nav-text">DaemonSet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Job"><span class="nav-number">2.0.4.</span> <span class="nav-text">Job</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CronJob-在特定的时间循环创建Job"><span class="nav-number">2.0.5.</span> <span class="nav-text">CronJob 在特定的时间循环创建Job</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#StatefulSet"><span class="nav-number">2.0.6.</span> <span class="nav-text">StatefulSet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Horizontal-Pod-Autoscaling（HPA）"><span class="nav-number">2.0.7.</span> <span class="nav-text">Horizontal Pod Autoscaling（HPA）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS与RC与Deployment关联"><span class="nav-number">3.</span> <span class="nav-text">RS与RC与Deployment关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS与Deployment的关联"><span class="nav-number">4.</span> <span class="nav-text">RS与Deployment的关联</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#部署一个简单的Nginx应用"><span class="nav-number">4.0.1.</span> <span class="nav-text">部署一个简单的Nginx应用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#deployment更新策略"><span class="nav-number">4.0.2.</span> <span class="nav-text">deployment更新策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Rollover（多个rollout并行）"><span class="nav-number">4.0.3.</span> <span class="nav-text">Rollover（多个rollout并行）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回退Deployment"><span class="nav-number">4.0.4.</span> <span class="nav-text">回退Deployment</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#清理Policy"><span class="nav-number">4.0.5.</span> <span class="nav-text">清理Policy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DaemonSet控制器"><span class="nav-number">5.</span> <span class="nav-text">DaemonSet控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Job控制器"><span class="nav-number">6.</span> <span class="nav-text">Job控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CronJob控制器"><span class="nav-number">7.</span> <span class="nav-text">CronJob控制器</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+  <a href="http://beian.miit.gov.cn/">苏ICP备20001714号</a>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
