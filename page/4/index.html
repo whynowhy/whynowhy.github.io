@@ -210,6 +210,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/Python类中一些装饰器的使用方法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/30/Python类中一些装饰器的使用方法/" class="post-title-link" itemprop="url">Python类中一些装饰器的使用方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-30 20:43:54 / 修改时间：20:51:06" itemprop="dateCreated datePublished" datetime="2019-07-30T20:43:54+08:00">2019-07-30</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h2 id="classmethod"><a href="#classmethod" class="headerlink" title="@classmethod"></a>@classmethod</h2><p>类方法，不需要实例化，也不需要self参数，需要一个cls参数，可以用类名调用，也可以用对象来调用。</p>
+<p>原则上，类方法是将类本身作为对象进行操作的方法。假设有个方法，且这个方法在逻辑上采用类本身作为对象来调用更合理，那么这个方法就可以定义为类方法</p>
+<h2 id="staticmethod"><a href="#staticmethod" class="headerlink" title="@staticmethod"></a>@staticmethod</h2><p>静态方法，不需要实例化，不需要self和cls等参数，就跟使用普通的函数一样，只是封装在类中</p>
+<p>静态方法是类中的函数，不需要实例。静态方法主要是用来存放逻辑性的代码，逻辑上属于类，但是和类本身没有关系，也就是说在静态方法中，不会涉及到类中的属性和方法的操作。可以理解为，静态方法是个独立的、单纯的函数，它仅仅托管于某个类的名称空间中，便于使用和维护。</p>
+<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p>属性方法，主要作用是将一个操作方法封装成一个属性,用户用起来就和操作普通属性完全一致,非常简单.定义时，在实例方法的基础上添加@property装饰器，并且只有一个self参数，调用时，不需要括号</p>
+<p>@property 是经典类中的一种装饰器，新式类中具有三种:<br>1.@property获取属性<br>2.@方法名.setter 修改属性<br>3.@方法名.deleter 删除属性</p>
+<p><strong>总结</strong>：类方法，是直接对类操作时候定义的，实例化方法是操作实例化对象时候定义的，静态方法与类无关，就是独立的逻辑单元。@property是将方法转为属性，直接可使用其返回值，提供了可读可写可删除的操作，如果像只读效果，就只需要定义@property就可以，不定义代表禁止其他操作。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/使用python发送邮件，报Connection-unexpectedly-closed错/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/20/使用python发送邮件，报Connection-unexpectedly-closed错/" class="post-title-link" itemprop="url">使用python发送邮件，报Connection unexpectedly closed错</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 18:29:09" itemprop="dateCreated datePublished" datetime="2019-07-20T18:29:09+08:00">2019-07-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-28 14:11:36" itemprop="dateModified" datetime="2019-07-28T14:11:36+08:00">2019-07-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h1 id="使用python发送邮箱遇上的问题"><a href="#使用python发送邮箱遇上的问题" class="headerlink" title="使用python发送邮箱遇上的问题"></a>使用python发送邮箱遇上的问题</h1><p>按照网上的代码测试发邮件的功能时，发生<code>Connection unexpectedly closed</code>的错误，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">receive = &quot;收件箱地址&quot;</span><br><span class="line">sender = &apos;发件箱地址&apos;</span><br><span class="line">password = &apos;发件箱的密码，一般是随机生成的&apos;</span><br><span class="line">mailserver = &apos;发件箱的smtp服务器地址&apos;</span><br><span class="line">mailport = 465</span><br><span class="line"></span><br><span class="line">message = MIMEMultipart()</span><br><span class="line">message[&quot;From&quot;] = Header(&apos;测试发送&apos;, &apos;utf-8&apos;)</span><br><span class="line">message[&quot;To&quot;] = Header(&apos;测试接受&apos;, &apos;utf-8&apos;)</span><br><span class="line">message[&apos;Subject&apos;] = Header(&quot;python邮件发送的测试&quot;, &apos;utf-8&apos;)</span><br><span class="line"></span><br><span class="line">message.attach(MIMEText(&apos;这是&#123;&#125;的报表&apos;.format(today), &apos;plain&apos;, &apos;utf-8&apos;))</span><br><span class="line">att1 = MIMEText(open(r&apos;/Users/walkyren/Desktop/&#123;&#125;order.xlsx&apos;.format(today), &apos;rb&apos;).read(), &apos;base64&apos;, &apos;utf-8&apos;)</span><br><span class="line">att1[&quot;Content-Type&quot;] = &apos;application/octet-stream&apos;</span><br><span class="line">att1[&quot;Content-Disposition&quot;] = &apos;attachment; filename=&quot;todayOrder.xlsx&quot;&apos;</span><br><span class="line">message.attach(att1)</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    smtpObj = smtplib.SMTP(mailserver, mailport)</span><br><span class="line">    smtpObj.login(sender, password)</span><br><span class="line">    smtpObj.sendmail(sender, receive, message.as_string())</span><br><span class="line">    print(&quot;邮件发送成功&quot;)</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(e)</span><br></pre></td></tr></table></figure></p>
+<p>由于本人使用的发件箱是腾讯邮箱，而腾讯邮箱使用的是SSL进行加密，所以python中登录服务器也要使用SSL的方式。<br>需要将<code>smtpObj = smtplib.SMTP(mailserver, mailport)</code>改成<code>smtpObj = smtplib.SMTP_SSL(mailserver, mailport)</code>即可。</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/使用python生成excel或csv文件遇上的问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1252,231 +1467,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/读书笔记-《Online-Active-Learning-Ensemble-Framework-for-Drifted-Data-Streams》/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/29/读书笔记-《Online-Active-Learning-Ensemble-Framework-for-Drifted-Data-Streams》/" class="post-title-link" itemprop="url">读书笔记--《Online Active Learning Ensemble Framework for Drifted Data Streams》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 20:08:54" itemprop="dateCreated datePublished" datetime="2019-04-29T20:08:54+08:00">2019-04-29</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:09:10" itemprop="dateModified" datetime="2019-07-28T14:09:10+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h3 id="主题摘要"><a href="#主题摘要" class="headerlink" title="主题摘要"></a>主题摘要</h3><p>该篇论文的的中文标题为《应用于概念漂移数据流的在线主动集成学习框架》，这篇论文在混合标记策略的基础上提出了一种新的应用于漂移数据流的主动学习框架。将一个集成分类器划分为一个长期稳定的分类器以及多个动态分类器，动态分类器是使用多级滑动窗口来创建和更新从而来处理渐进或者突发的数据流漂移。本文在学习方式上使用了主动学习的策略，采用不确定性和随机策略来标记实例。不确定策略的决定阈值是动态调整的，当发生概念漂移时，阈值会相应降低，来查询最不确定的实例。</p>
-<h3 id="在线主动学习框架"><a href="#在线主动学习框架" class="headerlink" title="在线主动学习框架"></a>在线主动学习框架</h3><p>该论文将数据流划分为多个（k个）子数据流，使用多级联滑动窗口的方法来更新集成分类器中弱分类器，其中一个子分类器（长期稳定分类器）使用一条子数据流进行长期更新，而其它的子数据流来生成动态分类器。当子数据流生成k-1个动态分类器后，不使用在线更新的方法对动态分类器进行更新而是直接使用子数据流生成新的动态分类器。</p>
-<h3 id="主动在线学习策略"><a href="#主动在线学习策略" class="headerlink" title="主动在线学习策略"></a>主动在线学习策略</h3><p>在数据流分类时，计算实例A分类结果的准确性，如果准确性小于阈值，看是否满足不确定策略（Uncertainty Strategy）和随机策略（Random Strategy），如果满足使用人工主动学习的方式标记实例，从而更新稳定分类器和最后一个动态分类器。</p>
-<p>结果当然是好，好，好。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/SQLalchemy查询结果转化为JSON的方法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/23/SQLalchemy查询结果转化为JSON的方法/" class="post-title-link" itemprop="url">SQLalchemy查询结果转化为JSON的方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-23 09:10:08" itemprop="dateCreated datePublished" datetime="2019-04-23T09:10:08+08:00">2019-04-23</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:10:48" itemprop="dateModified" datetime="2019-07-28T14:10:48+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>jsonify ORM对象时不通过，显示无法jsonify该类型</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>首先在类中定义一个to_json的方法，使用<strong>dict</strong>方法来返回类中的属性字典</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Teacher(db.Model):</span><br><span class="line">    __tablename__ = &apos;teacher&apos;</span><br><span class="line">    TeacherId = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)</span><br><span class="line">    TeacherName = db.Column(db.String(10), nullable=False)</span><br><span class="line">    TeacherBirth = db.Column(db.Integer)</span><br><span class="line">    TeacherSex = db.Column(db.String(4), nullable=False)</span><br><span class="line">    TeacherCollege = db.Column(db.String(45), nullable=False)</span><br><span class="line">    TeacherJobtitle = db.Column(db.String(10))</span><br><span class="line">    TeacherResearchDirection = db.Column(db.String(50))</span><br><span class="line">    TeacherEmail = db.Column(db.String(45))</span><br><span class="line"></span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &quot;User(username: %s)&quot; % self.TeacherName</span><br><span class="line"></span><br><span class="line">    def to_json(self):</span><br><span class="line">        dict = self.__dict__</span><br><span class="line">        if &quot;_sa_instance_state&quot; in dict:</span><br><span class="line">            del dict[&quot;_sa_instance_state&quot;]</span><br><span class="line">        return dict</span><br></pre></td></tr></table></figure>
-<p>再将查询的结果，一次通过to_json方法放到数组中，在通过jsonify函数返回到前台<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;])</span><br><span class="line">def index():</span><br><span class="line"></span><br><span class="line">    teachers = Teacher.query.all()</span><br><span class="line">    tlist=[]</span><br><span class="line">    for teacher in teachers:</span><br><span class="line">        tlist.append(teacher.to_json())</span><br><span class="line">    return jsonify(tlist)</span><br></pre></td></tr></table></figure></p>
-<p>原创出处：<a href="https://blog.csdn.net/luanxiyuan/article/details/80434767" target="_blank" rel="noopener">https://blog.csdn.net/luanxiyuan/article/details/80434767</a></p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1514,7 +1504,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1636,7 +1626,9 @@
         
           
         
-        <span class="site-state-item-count">28</span>
+          
+        
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

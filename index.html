@@ -210,6 +210,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/25/写shell脚本的时候遇到的一些技巧/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/25/写shell脚本的时候遇到的一些技巧/" class="post-title-link" itemprop="url">写shell脚本的时候遇到的一些技巧</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-25 17:15:51" itemprop="dateCreated datePublished" datetime="2020-08-25T17:15:51+08:00">2020-08-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-26 11:40:46" itemprop="dateModified" datetime="2020-08-26T11:40:46+08:00">2020-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h3 id="本地ip地址的获取（获取ens33网卡）"><a href="#本地ip地址的获取（获取ens33网卡）" class="headerlink" title="本地ip地址的获取（获取ens33网卡）"></a>本地ip地址的获取（获取ens33网卡）</h3><p><code>ip -f inet a show ens33| grep inet| awk &#39;{ print $2}&#39; | cut -d/ -f1</code></p>
+<p>其中centos7开始，网卡名字叫ens33，如果网卡是其它名字，就修改ens33。</p>
+<ul>
+<li><p>第一段 <code>ip -f inet a show ens33</code>是获取本地网卡的ip地址，其中<code>-f inet</code>是获取ipv4的地址。</p>
+</li>
+<li><p><code>grep inet</code>是获取ip哪一行。</p>
+</li>
+<li><p><code>awk &#39;{ print $2}&#39;</code>打印第二个字段，命令中为ip字段。</p>
+</li>
+<li><p><code>cut -d/ -f1</code>是去掉了ip中最后的网段。</p>
+</li>
+</ul>
+<h3 id="SHELL脚本通过输入命令来判断"><a href="#SHELL脚本通过输入命令来判断" class="headerlink" title="SHELL脚本通过输入命令来判断"></a>SHELL脚本通过输入命令来判断</h3><p>通过<code>read</code>命令来接收bash上的输入</p>
+<p><code>read -r -p &quot;请输入&quot; XXX</code></p>
+<p>输入并定义xxx</p>
+<p>通过case 来判断</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">read -r -p "yes or no?[Y/N]" yon</span><br><span class="line">case $yon in</span><br><span class="line">	[yY][eE][sS]|[yY])</span><br><span class="line">		...</span><br><span class="line">		;;</span><br><span class="line">	[nN][oO]|[nN])</span><br><span class="line">		...</span><br><span class="line">		;;</span><br><span class="line">	*)</span><br><span class="line">		...</span><br><span class="line">		;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<p>同时也可以添加while</p>
+<h3 id="通过sed来修改文件"><a href="#通过sed来修改文件" class="headerlink" title="通过sed来修改文件"></a>通过sed来修改文件</h3><p><code>sed -i &quot;s/原字符串/替换字符串/&quot;</code></p>
+<p>单引号里面,s表示替换,三根斜线中间是替换的样式,特殊字符需要使用反斜线”\”进行转义，-i表示不直接输出到屏幕上。</p>
+<p>可以在末尾加g替换每一个匹配的关键字,否则只替换每行的第一个,例如: <code>sed &#39;s/原字符串/替换字符串/g&#39; # 替换所有匹配关键字</code></p>
+<p>一些特殊字符的使用，“^”表示行首，”$”符号如果在引号中表示行尾，但是在引号外却表示末行(最后一行)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 注意这里的 &quot; &amp; &quot; 符号，如果没有 “&amp;”，就会直接将匹配到的字符串替换掉</span><br><span class="line">sed &apos;s/^/添加的头部&amp;/g&apos; 　　　　 #在所有行首添加</span><br><span class="line">sed &apos;s/$/&amp;添加的尾部/g&apos; 　　　　 #在所有行末添加</span><br><span class="line">sed &apos;2s/原字符串/替换字符串/g&apos;　 #替换第2行</span><br><span class="line">sed &apos;$s/原字符串/替换字符串/g&apos;   #替换最后一行</span><br><span class="line">sed &apos;2,5s/原字符串/替换字符串/g&apos; #替换2到5行</span><br><span class="line">sed &apos;2,$s/原字符串/替换字符串/g&apos; #替换2到最后一行</span><br></pre></td></tr></table></figure>
+<h3 id="通过-n来判断文件夹是否为空"><a href="#通过-n来判断文件夹是否为空" class="headerlink" title="通过-n来判断文件夹是否为空"></a>通过-n来判断文件夹是否为空</h3><p>-n “`ls 目录`“</p>
+<p>其中``表示要命令替换，与$()相似，<strong>命令替换</strong>与变量替换差不多，都是用来重组命令行的，先完成引号里的命令行，然后将其结果替换出来，再重组成新的命令行。</p>
+<p>通过-n来判断字符串是否为空，所以ls命令必须带双引号</p>
+<h3 id="通过-判断上一个命令是否执行成功"><a href="#通过-判断上一个命令是否执行成功" class="headerlink" title="通过$?判断上一个命令是否执行成功"></a>通过$?判断上一个命令是否执行成功</h3><p>$? 执行上一个指令的返回值 (显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误)</p>
+<p>所以一般的脚本代码如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if [ $? -eq 0]</span><br><span class="line">then</span><br><span class="line">	"执行成功的指令"</span><br><span class="line">else</span><br><span class="line">	"执行失败的指令"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h3 id="输出多个选项来进行选择"><a href="#输出多个选项来进行选择" class="headerlink" title="输出多个选项来进行选择"></a>输出多个选项来进行选择</h3><p>使用select进行操作，相关语法。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select name [in list ]</span><br><span class="line">do</span><br><span class="line">    statements that can use  $name...</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>和for的格式相似，有和for一样，可以删除in list，即使用缺省的in $@。通过select，我们很容易创建菜单：</p>
+<p>　　执行时的时候，会根据list给出菜单，用户选择之后执行statement，所选择的，放置在$name，执行完之后，再次给出菜单，等等用户执行，一直循环下去，用户如果向跳出循环，可以使用break，</p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/linux中的一些命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/21/linux中的一些命令/" class="post-title-link" itemprop="url">linux中的一些命令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-21 15:48:54" itemprop="dateCreated datePublished" datetime="2020-08-21T15:48:54+08:00">2020-08-21</time>
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/18/vim使用中的一些方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -578,11 +798,21 @@
                 
               
 
-              <time title="创建时间：2020-08-05 17:22:32 / 修改时间：18:45:34" itemprop="dateCreated datePublished" datetime="2020-08-05T17:22:32+08:00">2020-08-05</time>
+              <time title="创建时间：2020-08-05 17:22:32" itemprop="dateCreated datePublished" datetime="2020-08-05T17:22:32+08:00">2020-08-05</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-20 08:40:29" itemprop="dateModified" datetime="2020-08-20T08:40:29+08:00">2020-08-20</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -1115,274 +1345,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/社会心理学读书笔记/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/25/社会心理学读书笔记/" class="post-title-link" itemprop="url">社会心理学读书笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-04-25 16:27:54" itemprop="dateCreated datePublished" datetime="2020-04-25T16:27:54+08:00">2020-04-25</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-27 18:03:52" itemprop="dateModified" datetime="2020-05-27T18:03:52+08:00">2020-05-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="第一章-社会心理学导论"><a href="#第一章-社会心理学导论" class="headerlink" title="第一章 社会心理学导论"></a>第一章 社会心理学导论</h3><p><strong>社会心里学</strong>是一门研究人们如何看待他人，如何互相影响，以及如何与他人互相关联的科学。</p>
-<p>它关注的核心问题是：</p>
-<ul>
-<li>我们如何构建我们的世界</li>
-<li>我们的社会直觉如何指引我们，而有时候又是如何误导我们的</li>
-<li>我们的社会行为如何受他人、我们自己的态度和性格以及生物性的影响</li>
-<li><p>社会心理学的原理是如何应用于我们的日常生活和其他研究领域中的</p>
-<p>人类的价值观会对社会心理学产生影响</p>
-</li>
-</ul>
-<p>只有在事实揭晓后才会显得“显而易见”，这种后见之明偏差（我早就知道了现象）常导致人们过高评价自己的判断与预测。</p>
-<p>社会心理学家将想法和发现构建成理论。一个号理论将会从一长串事实中提炼出许多简短的预测原则。我们可以利用这些预测来证实或修正，以产生新的研究，并将其应用于实践。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/04/25/社会心理学读书笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/经济学原理读书笔记/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/25/经济学原理读书笔记/" class="post-title-link" itemprop="url">经济学原理读书笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-04-25 16:27:08" itemprop="dateCreated datePublished" datetime="2020-04-25T16:27:08+08:00">2020-04-25</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-07-20 10:24:53" itemprop="dateModified" datetime="2020-07-20T10:24:53+08:00">2020-07-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="第一章-经济学十大原理"><a href="#第一章-经济学十大原理" class="headerlink" title="第一章 经济学十大原理"></a>第一章 经济学十大原理</h3><p>《经济学原理》中最重要的内容。</p>
-<ol>
-<li><p>人们面临权衡取舍；</p>
-</li>
-<li><p>某种东西的成本是为了得到它而放弃的东西；</p>
-</li>
-<li><p>理性人考虑边际量；</p>
-</li>
-<li><p>人们会对激励作出反应；</p>
-</li>
-<li><p>贸易能使每个人状况更好；</p>
-</li>
-<li><p>市场通常是组织经济活动的一种好方法；</p>
-</li>
-<li><p>政府有时可以改善市场结果；</p>
-</li>
-<li><p>一国的生活水平取决于它生产物品与劳务的能力；</p>
-</li>
-<li><p>当政府发行了过多货币时，物价上升；</p>
-</li>
-<li><p>社会面临通货膨胀与失业之间的短期交替关系。</p>
-</li>
-</ol>
-<h3 id="第八章-赋税的代价"><a href="#第八章-赋税的代价" class="headerlink" title="第八章 赋税的代价"></a>第八章 赋税的代价</h3><p>会产生无谓损失，即税收或其它政策扭曲了市场结果时所引起的总剩余的减少。</p>
-<p>无谓损失的来源，因为它使买者和卖者不能实现某些贸易的好处。</p>
-<p>供给和需求的弹性越大，税收的无谓损失也就越大。</p>
-<p>税收给市场参与者带来损失，不仅是因为税收将资源从市场参与者手中转到政府手中，还因为税收改变了激励，并扭曲了市场结果。</p>
-<p>税收增加越大，它对激励的扭曲越大，无谓损失也就越大。但由于税收减小了市场规模，税收收入不会一直增加。税收收入起初随着税收规模的扩大而增加，但如果税收规模达到足够大，税收收入就会开始下降。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/04/25/经济学原理读书笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1420,7 +1382,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1542,7 +1504,9 @@
         
           
         
-        <span class="site-state-item-count">28</span>
+          
+        
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
