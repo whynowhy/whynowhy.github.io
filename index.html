@@ -210,6 +210,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/Zabbix的搭建/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/09/14/Zabbix的搭建/" class="post-title-link" itemprop="url">Zabbix的搭建</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-09-14 09:37:00 / 修改时间：15:09:46" itemprop="dateCreated datePublished" datetime="2020-09-14T09:37:00+08:00">2020-09-14</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Zabbix/" itemprop="url" rel="index"><span itemprop="name">Zabbix</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2020/09/14/Zabbix的搭建/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/14/Zabbix的搭建/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>由于公司课题中有写监控脚本的，之前使用python写了几个脚本，又写了一个监控平台的后端。然后研究了一下之后就发现，有zabbix这么大的一个轮子，为什么还要自己造轮子呢？</p>
+<p>本文就详细介绍一下zabbix的搭建过程，系统环境是centos7。</p>
+<p>这里感谢作者<a href="https://www.cnblogs.com/yaoyaojcy/p/9884130.html" target="_blank" rel="noopener">CARLOS_CHIANG</a>的教程，下面的web界面的安装也是转载这位大哥的。</p>
+<h3 id="搭建LAMP环境"><a href="#搭建LAMP环境" class="headerlink" title="搭建LAMP环境"></a>搭建LAMP环境</h3><p>搭建之前先看一下系统环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release  <span class="comment">#查看Centos版本</span></span><br><span class="line">cat /proc/version        <span class="comment">#查看内核</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914100958310.png" alt="image-20200914100958310"></p>
+<h4 id="搭建之前的操作"><a href="#搭建之前的操作" class="headerlink" title="搭建之前的操作"></a>搭建之前的操作</h4><h5 id="升级系统组件"><a href="#升级系统组件" class="headerlink" title="升级系统组件"></a>升级系统组件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y update</span><br></pre></td></tr></table></figure>
+<h5 id="关闭selinux"><a href="#关闭selinux" class="headerlink" title="关闭selinux"></a>关闭selinux</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/selinux/config <span class="comment">#将selinux=enforcing改为selinux=disable 设置需要重启</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914101139865.png" alt="image-20200914101139865"></p>
+<h5 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state  <span class="comment">#查看当前防火墙状态，关闭后显示not runing，开启后显示runninig</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914101517320.png" alt="image-20200914101517320"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewall.service  <span class="comment">#临时关闭forewall</span></span><br><span class="line">systemctl <span class="built_in">disable</span>  firewalld.service  <span class="comment">#禁止firewall开机启动</span></span><br></pre></td></tr></table></figure>
+<h4 id="搭建LAMP环境-1"><a href="#搭建LAMP环境-1" class="headerlink" title="搭建LAMP环境"></a>搭建LAMP环境</h4><h5 id="安装所需要的Yum环境"><a href="#安装所需要的Yum环境" class="headerlink" title="安装所需要的Yum环境"></a>安装所需要的Yum环境</h5><p>Zabbix是建立在LAMP环境之上的，在此使用yum来安装LAMP环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y httpd mariadb-server mariadb php php-mysql php-gd libjpeg* php-ldap php-odbc php-pear php-xml php-xmlrpc php-mhash</span><br><span class="line">rpm -qa httpd php mariadb</span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914102152971.png" alt="image-20200914102152971"></p>
+<h5 id="编辑httpd"><a href="#编辑httpd" class="headerlink" title="编辑httpd"></a>编辑httpd</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf  <span class="comment">#没有vim那就使用vi</span></span><br><span class="line"></span><br><span class="line">ServerName www.whyzabbix.com      <span class="comment">#修改为主机名</span></span><br><span class="line">DirectoryIndex index.html index.php   <span class="comment"># 添加首页支持格式</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914102629376.png" alt="image-20200914102629376"></p>
+<h5 id="编辑配置php，配置中国时区"><a href="#编辑配置php，配置中国时区" class="headerlink" title="编辑配置php，配置中国时区"></a>编辑配置php，配置中国时区</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/php.ini </span><br><span class="line"></span><br><span class="line">date.timezone = PRC <span class="comment"># 配置时区</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914103313609.png" alt="image-20200914103313609"></p>
+<h5 id="启动httpd，mysqld"><a href="#启动httpd，mysqld" class="headerlink" title="启动httpd，mysqld"></a>启动httpd，mysqld</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start httpd   <span class="comment">#启动并加入开机自启动httpd</span></span><br><span class="line">systemctl <span class="built_in">enable</span> httpd</span><br><span class="line">systemctl start mariadb  <span class="comment">#启动并加入开机自启动mysqld</span></span><br><span class="line">systemctl <span class="built_in">enable</span> mariadb</span><br></pre></td></tr></table></figure>
+<h5 id="创建一个测试页，测试LAMP是否搭建成功"><a href="#创建一个测试页，测试LAMP是否搭建成功" class="headerlink" title="创建一个测试页，测试LAMP是否搭建成功"></a>创建一个测试页，测试LAMP是否搭建成功</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /var/www/html/index.php</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">phpinfo()</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>进入本地浏览器，输入url<code>http://服务器ip/index.php</code>。</p>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914104051687.png" alt="image-20200914104051687"></p>
+<h5 id="初始化mysql数据库，并配置root用户密码"><a href="#初始化mysql数据库，并配置root用户密码" class="headerlink" title="初始化mysql数据库，并配置root用户密码"></a>初始化mysql数据库，并配置root用户密码</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root password 123456  <span class="comment">#设置数据库root密码</span></span><br><span class="line">mysql -u root -p <span class="comment">#登陆数据库</span></span><br><span class="line"><span class="comment">#以下为mysql命令行</span></span><br><span class="line">CREATE DATABASE zabbix character <span class="built_in">set</span> utf8 collate utf8_bin; <span class="comment">#创建名为zabbix的数据库</span></span><br></pre></td></tr></table></figure>
+<p>这里我偷了个懒，直接准备用root账号连zabbix，当然也可以创建一个名为zabbix的mysql账户来作为zabbix的数据库，创建用户赋予zabbix的数据库即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim var/www/html/index.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$link=mysql_connect(<span class="string">'127.0.0.1'</span>,<span class="string">'root'</span>,<span class="string">'123456'</span>); </span><br><span class="line"><span class="keyword">if</span>($link) <span class="keyword">echo</span> <span class="string">"&lt;h1&gt;Success!!&lt;/h1&gt;"</span>;   <span class="comment">#显示Success表示连接数据库成功</span></span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">echo</span> <span class="string">"Fail!!"</span>;</span><br><span class="line">mysql_close();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914112008715.png" alt="image-20200914112008715"></p>
+<p>出现上图呀就说明PHP连通了数据库</p>
+<h3 id="安装Zabbix"><a href="#安装Zabbix" class="headerlink" title="安装Zabbix"></a>安装Zabbix</h3><h4 id="安装依赖包和组件"><a href="#安装依赖包和组件" class="headerlink" title="安装依赖包和组件"></a>安装依赖包和组件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum -y install net-snmp net-snmp-devel curl curl-devel libxml2 libxml2-devel libevent-devel.x86_64 javacc.noarch  javacc-javadoc.noarch javacc-maven-plugin.noarch javacc*</span><br><span class="line"></span><br><span class="line">yum install php-bcmath php-mbstring -y <span class="comment">#安装php支持zabbix组件</span></span><br><span class="line"></span><br><span class="line">rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm  <span class="comment">#会自动生成yum源文件，保证系统可以上网</span></span><br><span class="line"></span><br><span class="line">yum install zabbix-server-mysql zabbix-web-mysql -y    <span class="comment">#安装zabbix组件,这时可能会因为zabbix下载源的问题，导致无法继续安装，解决办法：不停的使用yum进行重复安装，</span></span><br><span class="line"></span><br><span class="line">zcat /usr/share/doc/zabbix-server-mysql-4.0.24/create.sql.gz | mysql -uroot -p123456  zabbix   <span class="comment">#导入数据到数据库zabbix中(最后一个zabbix是数据库zabbix)，密码是用户root登陆密码123456，注意可能由于zabbix-server-mysql的版本迭代的原因，导致不是文件夹不是4.0.24，可以根据当前的版本进行自行修改</span></span><br></pre></td></tr></table></figure>
+<p>同时，检查一下zabbix的设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/zabbix/zabbix_server.conf</span><br></pre></td></tr></table></figure>
+<p>其中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DBname=zabbix #设置zabbix的数据库</span><br><span class="line">DBUser=root #设置连接数据库的用户</span><br><span class="line">DBPassword=123456 #设置连接数据库的密码</span><br></pre></td></tr></table></figure>
+<p>配置时区，并设置加入开机自启动zabbix-server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf.d/zabbix.conf</span><br><span class="line">将<span class="comment"># php_value date.timezone Europe/Riga 变更成php_value date.timezone Asia/Shanghai</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914140905108.png" alt="image-20200914140905108"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> zabbix-server <span class="comment">#启动并加入开机自启动zabbix-server</span></span><br><span class="line">systemctl start zabbix-server</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anpt | grep zabbix <span class="comment">#监听是不是在10051端口上，如果没监听成功，可重启zabbix-server</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200914141230200.png" alt="image-20200914141230200"></p>
+<h4 id="web界面安装zabbix"><a href="#web界面安装zabbix" class="headerlink" title="web界面安装zabbix"></a>web界面安装zabbix</h4><p>如果以上步骤无误，现在可以使用web打开，进行配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://你的服务器ip/zabbix    //推荐使用chrome</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq6z4pt4hj31580fpjth.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq6zau3mlj318f0lrdh5.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq6zfji9zj318g0lotag.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq71aj9dfj318g0kuwg3.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq71esmilj318b0kxjsm.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq71m0ziuj318e0kwq4f.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq71qry8aj318f0lqjse.jpg" alt="undefined"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq73n17mjj317w0lxtb4.jpg" alt="undefined"></p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/25/写shell脚本的时候遇到的一些技巧/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1375,142 +1541,11 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/hexo博客的迁移/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/07/20/hexo博客的迁移/" class="post-title-link" itemprop="url">hexo博客的迁移</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-07-20 10:19:17 / 修改时间：11:00:01" itemprop="dateCreated datePublished" datetime="2020-07-20T10:19:17+08:00">2020-07-20</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/2020/07/20/hexo博客的迁移/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/20/hexo博客的迁移/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h3 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h3><p>首先在新电脑中安装npm，hexo，git，并在相应的文件夹中新建Hexo文件，相应的教程在<a href="[http://www.whynowhy.top/2018/11/09/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/](http://www.whynowhy.top/2018/11/09/关于这个博客的搭建/">《关于这个博客的搭建》</a>)。</p>
-<p>然后将老的博客文件复制到新的目录</p>
-<p>将本机生成的git的rsa密钥提供给远程主机，github在setting -&gt; SSH and GPG Keys里面，个人服务器在个人目录的.ssh的文件夹的authorized_keys中。</p>
-<p>然后就可以了</p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>迁移后的博客在deploy后发生<code>Host key verification failed</code>的问题</p>
-<p>解决办法：</p>
-<p>当我们生成了ssh的公钥和私钥后通过下面的命令测试 <code>ssh -T git@github.com</code><br> 有可能会出现：</p>
-<blockquote>
-<p>The authenticity of host ‘github.com (192.30.252.1)’ can’t be established.<br> RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br> Are you sure you want to continue connecting (yes/no)?</p>
-</blockquote>
-<p>或者是</p>
-<blockquote>
-<p>The authenticity of host ‘github.com (192.30.252.1)’ can’t be established.<br> RSA key fingerprint is nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.<br> Are you sure you want to continue connecting (yes/no)?</p>
-</blockquote>
-<p>一定要输入<code>yes</code>回车没用</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1543,7 +1578,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1594,7 +1629,9 @@
         
           
         
-        <span class="site-state-item-count">18</span>
+          
+        
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1667,7 +1704,9 @@
         
           
         
-        <span class="site-state-item-count">29</span>
+          
+        
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
