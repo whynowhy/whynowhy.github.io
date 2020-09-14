@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="只不过是是随便写写啦">
 <meta property="og:description" content="vim中的设置vim的用户配置文件应该是在/usr/bin/vim/.vimrc中，但是本人配置了.vimrc后不起作用，所以对系统的vimrc文件/etc/vimrc进行修改。 syntax enable “自动检测语法syntax on “自动语法高亮set number “显示行号set tabstop=4 “表示Tab代表4个空格的宽度set expandtab “表示Tab自动转换成空格">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-18T11:15:19.005Z">
+<meta property="og:updated_time" content="2020-09-14T07:46:16.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim使用中的一些方法">
 <meta name="twitter:description" content="vim中的设置vim的用户配置文件应该是在/usr/bin/vim/.vimrc中，但是本人配置了.vimrc后不起作用，所以对系统的vimrc文件/etc/vimrc进行修改。 syntax enable “自动检测语法syntax on “自动语法高亮set number “显示行号set tabstop=4 “表示Tab代表4个空格的宽度set expandtab “表示Tab自动转换成空格">
@@ -250,11 +250,21 @@
                 
               
 
-              <time title="创建时间：2020-08-18 18:26:42 / 修改时间：19:15:19" itemprop="dateCreated datePublished" datetime="2020-08-18T18:26:42+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-18 18:26:42" itemprop="dateCreated datePublished" datetime="2020-08-18T18:26:42+08:00">2020-08-18</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-14 15:46:16" itemprop="dateModified" datetime="2020-09-14T15:46:16+08:00">2020-09-14</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -310,6 +320,8 @@
 <h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>单行删除 dd，全文删除 dG</p>
 <h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p><strong>单行</strong> 在命令模式下，将光标移动到将要复制的行处，按“yy”进行复制，将光标移动到将要粘贴的行处，按“p”进行粘贴。</p>
 <p><strong>多行</strong> 在命令模式下，按v进入可视模式，按箭头键即可选择相应的行，选择相应的行之后，到复制的文本结束的地方，再按y进行复制，之后会自动退出退出可视模式，光标返回到文本开始的位置。移动光标到需要开始复制的地方，按p进行复制</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>在normal模式下按下<code>/</code>键即可进入查找模式，输入要查找1字符串并按下回车。Vim会跳转到第一个匹配。按下小写的<code>n</code>查找下一个，按下大写的<code>N</code>查找上一个。</p>
+<p>每次查找后VIm会高亮搜索结果，在normal模式下输入:nohl即可</p>
 
     </div>
 
@@ -521,7 +533,9 @@
         
           
         
-        <span class="site-state-item-count">30</span>
+          
+        
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -542,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim中的设置"><span class="nav-number">1.</span> <span class="nav-text">vim中的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不用箭头键进行上下左右移动光标"><span class="nav-number">2.</span> <span class="nav-text">不用箭头键进行上下左右移动光标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上下翻页"><span class="nav-number">3.</span> <span class="nav-text">上下翻页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入输入模式"><span class="nav-number">4.</span> <span class="nav-text">进入输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制"><span class="nav-number">6.</span> <span class="nav-text">复制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim中的设置"><span class="nav-number">1.</span> <span class="nav-text">vim中的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不用箭头键进行上下左右移动光标"><span class="nav-number">2.</span> <span class="nav-text">不用箭头键进行上下左右移动光标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上下翻页"><span class="nav-number">3.</span> <span class="nav-text">上下翻页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入输入模式"><span class="nav-number">4.</span> <span class="nav-text">进入输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制"><span class="nav-number">6.</span> <span class="nav-text">复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索"><span class="nav-number">7.</span> <span class="nav-text">搜索</span></a></li></ol></div>
             
 
           </div>
