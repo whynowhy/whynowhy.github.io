@@ -57,15 +57,25 @@
   };
 </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="linux中的一些命令">
-<meta property="og:url" content="http://yoursite.com/2020/08/21/linux中的一些命令/index.html">
+  <meta name="description" content="用户自定义zabbix的key有时候，我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端的配置文件zabbix_angentd.conf里面配置UserParameter。 语法如下 1UserParameter=key,command 用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。 用人">
+<meta name="keywords" content="Zabbix,运维,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zabbix下的mysql自定义监控">
+<meta property="og:url" content="http://yoursite.com/2020/09/15/Zabbix下的mysql自定义监控/index.html">
 <meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="用户自定义zabbix的key有时候，我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端的配置文件zabbix_angentd.conf里面配置UserParameter。 语法如下 1UserParameter=key,command 用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。 用人">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-21T07:48:54.522Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird51sgjqj30i509tjrd.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird57mdhhj30jq0gu3z8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird5e6tbjj31e107ut99.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird5jp21mj30lb0jbgm1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird5o9n8wj30ly0bodg1.jpg">
+<meta property="og:updated_time" content="2020-09-15T07:24:36.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux中的一些命令">
-  <link rel="canonical" href="http://yoursite.com/2020/08/21/linux中的一些命令/">
+<meta name="twitter:title" content="Zabbix下的mysql自定义监控">
+<meta name="twitter:description" content="用户自定义zabbix的key有时候，我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端的配置文件zabbix_angentd.conf里面配置UserParameter。 语法如下 1UserParameter=key,command 用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。 用人">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird51sgjqj30i509tjrd.jpg">
+  <link rel="canonical" href="http://yoursite.com/2020/09/15/Zabbix下的mysql自定义监控/">
 
 
 <script id="page.configurations">
@@ -74,7 +84,7 @@
   };
 </script>
 
-  <title>linux中的一些命令 | 只不过是是随便写写啦</title>
+  <title>Zabbix下的mysql自定义监控 | 只不过是是随便写写啦</title>
   
 
 
@@ -212,7 +222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/linux中的一些命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/Zabbix下的mysql自定义监控/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老王">
@@ -226,7 +236,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">linux中的一些命令
+          <h1 class="post-title" itemprop="name headline">Zabbix下的mysql自定义监控
 
               
             
@@ -246,7 +256,26 @@
                 
               
 
-              <time title="创建时间：2020-08-21 15:48:54" itemprop="dateCreated datePublished" datetime="2020-08-21T15:48:54+08:00">2020-08-21</time>
+              <time title="创建时间：2020-09-15 11:01:42 / 修改时间：15:24:36" itemprop="dateCreated datePublished" datetime="2020-09-15T11:01:42+08:00">2020-09-15</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Zabbix/" itemprop="url" rel="index"><span itemprop="name">Zabbix</span></a></span>
+
+                
+                
+              
             </span>
           
 
@@ -262,8 +291,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/2020/08/21/linux中的一些命令/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/21/linux中的一些命令/" itemprop="commentCount"></span>
+    <a href="/2020/09/15/Zabbix下的mysql自定义监控/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/15/Zabbix下的mysql自定义监控/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -279,7 +308,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h3 id="用户自定义zabbix的key"><a href="#用户自定义zabbix的key" class="headerlink" title="用户自定义zabbix的key"></a>用户自定义zabbix的key</h3><p>有时候，我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端的配置文件zabbix_angentd.conf里面配置UserParameter。</p>
+<p>语法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserParameter=key,command</span><br></pre></td></tr></table></figure>
+<p>用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。</p>
+<p><strong>用人话来说就是command命令返回值对应这个key，在zabbix服务器端，可以通过这个key来获取command命令的返回值。这个命令可以是bash xx.sh，也可以是python xxx.py，还可以使用下文的[*]来添加参数，如python xxx.pt $1。</strong></p>
+<p>同时，key可以自定义参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserParameter=key[*],command</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Key</td>
+<td>唯一. [*]表示里面可以传递多个参数</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>需要执行的脚本，key的[]里面的参数一一对应$1到$9，一共9个参数。$0表示脚本命令.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意事项</strong></p>
+<ol>
+<li>如果需要使用命令行里面出现$2这种变量，那么你要使用两个$$2，例如awk ’{ print $$2 }’，之前就遇到过这个问题，不停的测试自己脚本输出正常，但是zabbix却拿不到数据，原来是出在这里。为了防止和参数冲突，所以zabbix做了这个规定。</li>
+<li>zabbix禁止使用一些不安全的参数，如：\ ‘ ” ` * ? [ ] { } ~ $ ! &amp; ; ( ) &lt; &gt; | # @</li>
+<li>从zabbix 2.0开始，zabbix返回文本数据可以是空格。</li>
+</ol>
+<h3 id="zabbix在服务器端获取值"><a href="#zabbix在服务器端获取值" class="headerlink" title="zabbix在服务器端获取值"></a>zabbix在服务器端获取值</h3><h4 id="创建模板"><a href="#创建模板" class="headerlink" title="创建模板"></a>创建模板</h4><p>zabbix配置-&gt;模板-&gt;创建模板，填入模板名称和群组，没有群组的话在配置的主机选项中创建主机。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird51sgjqj30i509tjrd.jpg" alt="image-20200915144739708.png"></p>
+<h4 id="设置监控项"><a href="#设置监控项" class="headerlink" title="设置监控项"></a>设置监控项</h4><p>点击选择创建的模板，选择监控项，点击右上创建监控项。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird57mdhhj30jq0gu3z8.jpg" alt="image-20200915145628748.png"></p>
+<p>之后就能对返回的参数进行监控，在监测-&gt;最新数据中，就能得到返回值。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird5e6tbjj31e107ut99.jpg" alt="image-20200915150722128.png"></p>
+<h4 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h4><p>触发器（triggers）是使用逻辑表达式来评估通过item获取到得数据是处于哪种状态，item一收回数据就交给触发器去评估状态。</p>
+<p>在触发器表达式中我们可以定义哪些值范围是合理，哪些是不合理的，如果出现不合理的值，触发器会把状态改为PROBLEM，并进行报警。</p>
+<p>创建触发器：配置-&gt;主机-&gt;触发器-&gt;创建触发器。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird5jp21mj30lb0jbgm1.jpg" alt="image-20200915152102505.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird5o9n8wj30ly0bodg1.jpg" alt="image-20200915152146271.png"></p>
+
     </div>
 
     
@@ -287,10 +358,20 @@
     
 
     <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Zabbix/" rel="tag"># Zabbix</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2020/08/18/vim使用中的一些方法/" rel="next" title="vim使用中的一些方法">
-                <i class="fa fa-chevron-left"></i> vim使用中的一些方法
+              <a href="/2020/09/15/Zabbix客户端的配置/" rel="next" title="Zabbix客户端的配置">
+                <i class="fa fa-chevron-left"></i> Zabbix客户端的配置
               </a>
             
           </div>
@@ -298,10 +379,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2020/08/25/写shell脚本的时候遇到的一些技巧/" rel="prev" title="写shell脚本的时候遇到的一些技巧">
-                写shell脚本的时候遇到的一些技巧 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
@@ -334,8 +411,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -484,6 +570,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户自定义zabbix的key"><span class="nav-number">1.</span> <span class="nav-text">用户自定义zabbix的key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zabbix在服务器端获取值"><span class="nav-number">2.</span> <span class="nav-text">zabbix在服务器端获取值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建模板"><span class="nav-number">2.1.</span> <span class="nav-text">创建模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置监控项"><span class="nav-number">2.2.</span> <span class="nav-text">设置监控项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器"><span class="nav-number">2.3.</span> <span class="nav-text">触发器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
