@@ -210,6 +210,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/git-的开发使用文档-in-pycharm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/06/git-的开发使用文档-in-pycharm/" class="post-title-link" itemprop="url">git 的开发使用文档 in pycharm</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-06 12:36:31" itemprop="dateCreated datePublished" datetime="2019-07-06T12:36:31+08:00">2019-07-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-28 14:06:12" itemprop="dateModified" datetime="2019-07-28T14:06:12+08:00">2019-07-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2019/07/06/git-的开发使用文档-in-pycharm/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/06/git-的开发使用文档-in-pycharm/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h2 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h2><ol>
+<li>从官网(<a href="https://git-scm.com/downloads)选择自己的系统安装git" target="_blank" rel="noopener">https://git-scm.com/downloads)选择自己的系统安装git</a></li>
+<li>在bash中使用<code>https://git-scm.com/downloads</code>命令来生成ssh key，连按三次回车即可。</li>
+<li>使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpjyqyirj31dk0ps412.jpg" alt="ssh"></p>
+<h2 id="将本地已存在的文件夹上传如alicode"><a href="#将本地已存在的文件夹上传如alicode" class="headerlink" title="将本地已存在的文件夹上传如alicode"></a>将本地已存在的文件夹上传如alicode</h2><p>在命令行中输入如下的指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@code.aliyun.com:why602443624/gitTest.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;commit message&apos;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnh9xofyj31bs0vswpm.jpg" alt="Terminal"></p>
+<p>如下图，打开alicode后就可以看到，代码已经同步上去，同时在pycharm的项目中，我们可以看到git已经可以正常使用。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnjdafygj31w80t6tcj.jpg" alt="Alicode"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnk4y4qhj313413s1kx.jpg" alt="Pycharm"></p>
+<h2 id="pycharm里面使用git"><a href="#pycharm里面使用git" class="headerlink" title="pycharm里面使用git"></a>pycharm里面使用git</h2><ol>
+<li>首先在setting中设置git,一般都会自动检测git的位置。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnmjj7jdj31ci0xon4s.jpg" alt="Setting"></p>
+<ol start="2">
+<li>通过VCS-Checkout from version Control-Git去连接代码仓库仓库，clone代码</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnsm668kj30qy0dy0uq.jpg" alt="Clone"></p>
+<ol start="3">
+<li>在本地创建新的开发分支</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnvg0mx8j30oq0g60v9.jpg" alt="Create New Branch"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mntuboj3j30oa0d6q5t.jpg" alt="Create New Branch"></p>
+<ol start="4">
+<li>使用VCS-Git-Add（快捷键：optopn+command+A）进行add操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnxajqnzj31cc1464qp.jpg" alt="Add"></p>
+<ol start="5">
+<li>使用VCS-Git-Commit File or Directory进行commit操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mny0zbjtj30pi0mowqh.jpg" alt="Commit"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo0cagauj317y16y46g.jpg" alt="Commit"></p>
+<ol start="6">
+<li>pycharm中使用VCS-Git-Revert可进行回滚，或者直接使用pycharm自带的show history来进行回滚</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpbr2ydj313c130b29.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpw1w2sj30nq0vcjv1.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqbdzccj30yo184474.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqqdxoaj31vi12iwqz.jpg" alt="rollback"></p>
+<ol start="7">
+<li>使用VCS-Git-show history进行同分支下任意版本的回荡</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myoblhhtj314a13u4qp.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myomp1y9j30ry0pmn2c.jpg" alt="rollback"></p>
+<ol start="8">
+<li>切换到master分支后合并dev_loacl_feature分支</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo1rh6y6j30su0fidk3.jpg" alt="Checkout"></p>
+<ol start="9">
+<li>对master分支进行push操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg" alt="Push"></p>
+<ol start="10">
+<li>当处于正式开发时，普通情况下都不能push Master分支，你只能push dev_local_feature分支，push到代码平台需要进行merge request（合并请求），等到上司同意之后才能合并。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg" alt="Push Reject"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg" alt="Merge Request"></p>
+<h2 id="产生冲突的原因和冲突的解决方法"><a href="#产生冲突的原因和冲突的解决方法" class="headerlink" title="产生冲突的原因和冲突的解决方法"></a>产生冲突的原因和冲突的解决方法</h2><p>原因：两个分支各自都有了新的提交，且在同样的地方有了不同的修改,在合并的时候就会产生冲突。</p>
+<p>分支1</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg" alt="branch 1"></p>
+<p>分支2</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp8la9oaj30t40e40ti.jpg" alt="branch2"></p>
+<p>合并后产生冲突</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp9i6jzrj30vq0vetap.jpg" alt="conflict"></p>
+<p>解决冲突的方法：在pycharm中VCS-Git-Resolve Conflict来解决冲突<br><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpkunpyuj315q15s7wh.jpg" alt="Resolve Conflict"></p>
+<p>可以选择冲突的文件的其中之一或者自己修改后的文件</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mplfk9rij31si15yn2b.jpg" alt="Resolve Conflict"></p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/读书笔记-《Incremental-Ensemble-Classifier-Addressing-Non-stationary-Fast-Data-Streams》/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1448,134 +1642,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/spring-boot中文乱码/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/13/spring-boot中文乱码/" class="post-title-link" itemprop="url">spring boot中文乱码</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-13 10:50:02" itemprop="dateCreated datePublished" datetime="2019-03-13T10:50:02+08:00">2019-03-13</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:08:10" itemprop="dateModified" datetime="2019-07-28T14:08:10+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/2019/03/13/spring-boot中文乱码/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/13/spring-boot中文乱码/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h2 id="使用IDEA创建并启动spring-boot项目的解决方法"><a href="#使用IDEA创建并启动spring-boot项目的解决方法" class="headerlink" title="使用IDEA创建并启动spring boot项目的解决方法"></a>使用IDEA创建并启动spring boot项目的解决方法</h2><p>设置 File Encodings的Transparent native-to-ascii conversion为true，具体步骤如下：依次点击File -&gt; Settings -&gt; Editor -&gt; File Encodings</p>
-<p>将Properties Files (*.properties)下的Default encoding for properties files设置为UTF-8，将Transparent native-to-ascii conversion前的勾选上。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1613,7 +1679,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

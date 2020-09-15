@@ -210,6 +210,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/k8s中的资源清单/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/05/k8s中的资源清单/" class="post-title-link" itemprop="url">k8s中的资源清单</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-05 17:15:56 / 修改时间：17:19:34" itemprop="dateCreated datePublished" datetime="2020-08-05T17:15:56+08:00">2020-08-05</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2020/08/05/k8s中的资源清单/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/05/k8s中的资源清单/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>在k8s中，一般使用yaml格式的文件来创建符合我们预期期望的pod，这样的yaml文件我们一般称为资源清单</strong></p>
+<h3 id="k8s中的资源"><a href="#k8s中的资源" class="headerlink" title="k8s中的资源"></a>k8s中的资源</h3><p>k8s中所有的内容都抽象为资源，资源实例化之后，叫做对象。</p>
+<h5 id="名称空间级别"><a href="#名称空间级别" class="headerlink" title="名称空间级别"></a>名称空间级别</h5><ol>
+<li>工作负载型资源(workload)：Pod、ReplicaSet、Deployment、StatefulSet、DaemonSet、Job、CronJob(ReplicationController在v1.11版本被废弃</li>
+<li>服务发现及负载均衡型资源(ServiceDiscoveryLoadBalance):Service、Ingress、…</li>
+<li>配置与存储型资源：Volume(存储卷)、CSI(容器存储接口,可以扩展各种各样的第三方存储卷)</li>
+<li>特殊类型的存储卷：ConfigMap(当配置中心来使用的资源类型)、Secret(保存敏感数据)、DownwardAPI(把外部环境中的信息输出给容器)</li>
+</ol>
+<h5 id="集群级资源"><a href="#集群级资源" class="headerlink" title="集群级资源"></a>集群级资源</h5><p>Namespace（命名空间），Node（节点），Role（角色），ClusterRole，RoleBinding，ClusterRoleBinding</p>
+<h5 id="元数据资源"><a href="#元数据资源" class="headerlink" title="元数据资源"></a>元数据资源</h5><p>HPA，PodTemplate、LimitRange</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/05/k8s中的资源清单/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/消息队列/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1445,138 +1577,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/Python中的浅拷贝和深拷贝/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/24/Python中的浅拷贝和深拷贝/" class="post-title-link" itemprop="url">Python中的浅拷贝和深拷贝</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-24 09:40:10" itemprop="dateCreated datePublished" datetime="2019-09-24T09:40:10+08:00">2019-09-24</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-11 19:29:18" itemprop="dateModified" datetime="2019-10-11T19:29:18+08:00">2019-10-11</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/2019/09/24/Python中的浅拷贝和深拷贝/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/24/Python中的浅拷贝和深拷贝/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <h3 id="Python的语言类型"><a href="#Python的语言类型" class="headerlink" title="Python的语言类型"></a>Python的语言类型</h3><p>之前在博客中讲过Python属于动态类型的语言，对象与引用分开的，详见博客<a href="https://whynowhy.github.io/2019/08/29/Python%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/" target="_blank" rel="noopener">Python的内存管理机制</a>。</p>
-<h3 id="Python中的浅拷贝和深拷贝"><a href="#Python中的浅拷贝和深拷贝" class="headerlink" title="Python中的浅拷贝和深拷贝"></a>Python中的浅拷贝和深拷贝</h3><p>本来想自己写一下的，结果发现有一篇博客时写的真好，就不班门弄斧了。</p>
-<p><a href="https://www.cnblogs.com/wilber2013/p/4645353.html" target="_blank" rel="noopener">图解Python深拷贝和浅拷贝</a></p>
-<p>浅拷贝中加一点，只有当对可变内容进行浅拷贝时，才会创建新的对象，如果浅拷贝的内容是不可变内容时，不会创建新的对象，同理深拷贝也是一样。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line">a = <span class="string">'a'</span></span><br><span class="line">b = copy.copy(a)</span><br><span class="line">print(id(a)==id(b))</span><br><span class="line"></span><br><span class="line"><span class="comment">##True</span></span><br></pre></td></tr></table></figure>
-<p>面试被问到答得不太好，再做个总结吧，<strong>浅拷贝</strong>是在另一块地址中创建一个新的变量或容器，但是容器内的元素的地址均是源对象的元素的地址的拷贝。也就是说新的容器中指向了旧的元素（ 新瓶装旧酒 ），所以原对象中的可变对象的对应元素发生改变，会在复制对象的对应元素上有所体现。<strong>深拷贝</strong>是在另一块地址中创建一个新的变量或容器，同时容器内的元素的地址也是新开辟的，仅仅是值相同而已，是完全的副本，当原对象中的任何对象发生改变时，新对象对不会发生改变。也就是说（ 新瓶装新酒 ）</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1614,7 +1614,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

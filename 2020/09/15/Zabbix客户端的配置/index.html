@@ -67,7 +67,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird8i0tzcj30h608bgm0.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird8lmjtlj30g608ejrr.jpg">
-<meta property="og:updated_time" content="2020-09-15T07:27:01.196Z">
+<meta property="og:updated_time" content="2020-09-15T08:17:29.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix客户端的配置">
 <meta name="twitter:description" content="在配置完zabbix的服务器端之后，为了监控其它主机的情况，必须在被监控主机上安装一个agentd服务 Zabbix客户端的配置和服务器端的配置一样，要关闭selinux和防火墙 获取对应的agentd包需要在http://repo.zabbix.com/zabbix仓库上获取所对应的rpm包，如本人用的4.0.24的zabbix所对应的agentd版本也要是**zabbix-agent-4.0.">
@@ -253,7 +253,7 @@
                 
               
 
-              <time title="创建时间：2020-09-15 09:37:27 / 修改时间：15:27:01" itemprop="dateCreated datePublished" datetime="2020-09-15T09:37:27+08:00">2020-09-15</time>
+              <time title="创建时间：2020-09-15 09:37:27 / 修改时间：16:17:29" itemprop="dateCreated datePublished" datetime="2020-09-15T09:37:27+08:00">2020-09-15</time>
             </span>
           
             
@@ -309,6 +309,7 @@
 <h3 id="Zabbix客户端的配置"><a href="#Zabbix客户端的配置" class="headerlink" title="Zabbix客户端的配置"></a>Zabbix客户端的配置</h3><p>和服务器端的配置一样，要关闭selinux和防火墙</p>
 <h4 id="获取对应的agentd包"><a href="#获取对应的agentd包" class="headerlink" title="获取对应的agentd包"></a>获取对应的agentd包</h4><p>需要在<a href="http://repo.zabbix.com/zabbix仓库上获取所对应的rpm包，如本人用的4.0.24的zabbix所对应的agentd版本也要是**zabbix-agent-4.0.24-1.el7.x86_64.rpm*" target="_blank" rel="noopener">http://repo.zabbix.com/zabbix仓库上获取所对应的rpm包，如本人用的4.0.24的zabbix所对应的agentd版本也要是**zabbix-agent-4.0.24-1.el7.x86_64.rpm*</a>*</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-agent-4.0.24-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="修改conf文件"><a href="#修改conf文件" class="headerlink" title="修改conf文件"></a>修改conf文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/zabbix/zabbix_agentd.conf</span><br><span class="line"></span><br><span class="line">Server = zabbix-server的ip</span><br><span class="line">ServerActive = zabbix-server的ip</span><br><span class="line">Hostname = 本机的名字</span><br></pre></td></tr></table></figure>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird8i0tzcj30h608bgm0.jpg" alt="image-20200915102430684.png"></p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gird8lmjtlj30g608ejrr.jpg" alt="image-20200915102443402.png"></p>
@@ -401,7 +402,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

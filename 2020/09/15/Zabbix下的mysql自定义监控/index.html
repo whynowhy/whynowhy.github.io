@@ -70,7 +70,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird5e6tbjj31e107ut99.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird5jp21mj30lb0jbgm1.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gird5o9n8wj30ly0bodg1.jpg">
-<meta property="og:updated_time" content="2020-09-15T07:24:36.558Z">
+<meta property="og:updated_time" content="2020-09-15T08:17:40.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix下的mysql自定义监控">
 <meta name="twitter:description" content="用户自定义zabbix的key有时候，我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端的配置文件zabbix_angentd.conf里面配置UserParameter。 语法如下 1UserParameter=key,command 用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。 用人">
@@ -256,7 +256,7 @@
                 
               
 
-              <time title="创建时间：2020-09-15 11:01:42 / 修改时间：15:24:36" itemprop="dateCreated datePublished" datetime="2020-09-15T11:01:42+08:00">2020-09-15</time>
+              <time title="创建时间：2020-09-15 11:01:42 / 修改时间：16:17:40" itemprop="dateCreated datePublished" datetime="2020-09-15T11:01:42+08:00">2020-09-15</time>
             </span>
           
             
@@ -313,6 +313,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserParameter=key,command</span><br></pre></td></tr></table></figure>
 <p>用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。</p>
 <p><strong>用人话来说就是command命令返回值对应这个key，在zabbix服务器端，可以通过这个key来获取command命令的返回值。这个命令可以是bash xx.sh，也可以是python xxx.py，还可以使用下文的[*]来添加参数，如python xxx.pt $1。</strong></p>
+<a id="more"></a>
 <p>同时，key可以自定义参数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserParameter=key[*],command</span><br></pre></td></tr></table></figure>
 <table>
@@ -379,6 +380,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+              <a href="/2020/09/15/Zabbix中的邮件报警/" rel="prev" title="Zabbix中的邮件报警">
+                Zabbix中的邮件报警 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
     </footer>
@@ -433,7 +438,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
