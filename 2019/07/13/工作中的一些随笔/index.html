@@ -68,7 +68,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4wz3rok38j32701544qp.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4wz4r6xhwj326m13ytzw.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4wz575499j31bs0quh3d.jpg">
-<meta property="og:updated_time" content="2020-08-13T08:31:41.941Z">
+<meta property="og:updated_time" content="2020-09-16T03:02:13.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作中的一些随笔">
 <meta name="twitter:description" content="关于数据库的使用不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。 导出方式(workbench)： 从所选择的连接中选择左边栏中Data Export，选择你想导出的数据库，点击Start Export进行数据导出。  导入： 选择本地连接左边栏中的Data Import/">
@@ -267,7 +267,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-13 16:31:41" itemprop="dateModified" datetime="2020-08-13T16:31:41+08:00">2020-08-13</time>
+                <time title="修改时间：2020-09-16 11:02:13" itemprop="dateModified" datetime="2020-09-16T11:02:13+08:00">2020-09-16</time>
               </span>
             
           
@@ -316,7 +316,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="关于数据库的使用"><a href="#关于数据库的使用" class="headerlink" title="关于数据库的使用"></a>关于数据库的使用</h2><p>不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。<br>如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。</p>
+        <h3 id="关于数据库的使用"><a href="#关于数据库的使用" class="headerlink" title="关于数据库的使用"></a>关于数据库的使用</h3><p>不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。<br>如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。</p>
 <p>导出方式(workbench)：</p>
 <p>从所选择的连接中选择左边栏中Data Export，选择你想导出的数据库，点击Start Export进行数据导出。</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz3rok38j32701544qp.jpg" alt="Export"></p>
@@ -324,9 +324,9 @@
 <p>选择本地连接左边栏中的Data Import/Restore, 选择之前导出文件的地址，在选择需要导入的数据库和表，点击Start Import进行导入。如果遇到@@GLOBAL.GTID_MODE = OFF的报错，则需要在数据库导出的时候，打开Advanced Options，其中set-gtid-purged - Add ‘SET @@GLOBAL.GTID_PURGED’ to the output选项改成OFF，即可成功导入。</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz4r6xhwj326m13ytzw.jpg" alt="Import"></p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz575499j31bs0quh3d.jpg" alt="GTOD_PURGED"></p>
-<h2 id="关于需求的理解"><a href="#关于需求的理解" class="headerlink" title="关于需求的理解"></a>关于需求的理解</h2><p>编码之前需要详细理解需求，上司提出的需要需要详细了解。如“数据管理API：更新host和模板的关系”，是指在api中添加能够用更新host和模板的api。</p>
+<h3 id="关于需求的理解"><a href="#关于需求的理解" class="headerlink" title="关于需求的理解"></a>关于需求的理解</h3><p>编码之前需要详细理解需求，上司提出的需要需要详细了解。如“数据管理API：更新host和模板的关系”，是指在api中添加能够用更新host和模板的api。</p>
 <p>如果遇到疑问，应该及时去向上司请教。</p>
-<h2 id="对于REST结构的理解"><a href="#对于REST结构的理解" class="headerlink" title="对于REST结构的理解"></a>对于REST结构的理解</h2><p>一句话，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
+<h3 id="对于REST结构的理解"><a href="#对于REST结构的理解" class="headerlink" title="对于REST结构的理解"></a>对于REST结构的理解</h3><p>一句话，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
 <p>其中Flask中有flask.ext库来实现Rest网络编程，简介可参考(<a href="http://www.pythondoc.com/Flask-RESTful/quickstart.html" target="_blank" rel="noopener">http://www.pythondoc.com/Flask-RESTful/quickstart.html</a>)</p>
 
     </div>
@@ -558,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于数据库的使用"><span class="nav-number">1.</span> <span class="nav-text">关于数据库的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于需求的理解"><span class="nav-number">2.</span> <span class="nav-text">关于需求的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于REST结构的理解"><span class="nav-number">3.</span> <span class="nav-text">对于REST结构的理解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于数据库的使用"><span class="nav-number">1.</span> <span class="nav-text">关于数据库的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于需求的理解"><span class="nav-number">2.</span> <span class="nav-text">关于需求的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于REST结构的理解"><span class="nav-number">3.</span> <span class="nav-text">对于REST结构的理解</span></a></li></ol></div>
             
 
           </div>

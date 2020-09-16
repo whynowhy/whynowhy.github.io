@@ -66,7 +66,7 @@
 <meta property="og:description" content="首先给出结论迭代器是实现了iter和next方法的对象。生成器其实是一种特殊的迭代器，但是不需要像迭代器一样实现iter和next方法，只需要使用关键字yield，或者使用生成器表达式就可以。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g6mku21r2zj30zc0fyjrr.jpg">
-<meta property="og:updated_time" content="2019-09-19T02:01:36.000Z">
+<meta property="og:updated_time" content="2020-09-16T02:51:41.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的迭代器和生成器的详解">
 <meta name="twitter:description" content="首先给出结论迭代器是实现了iter和next方法的对象。生成器其实是一种特殊的迭代器，但是不需要像迭代器一样实现iter和next方法，只需要使用关键字yield，或者使用生成器表达式就可以。">
@@ -265,7 +265,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-19 10:01:36" itemprop="dateModified" datetime="2019-09-19T10:01:36+08:00">2019-09-19</time>
+                <time title="修改时间：2020-09-16 10:51:41" itemprop="dateModified" datetime="2020-09-16T10:51:41+08:00">2020-09-16</time>
               </span>
             
           
@@ -333,12 +333,12 @@
 <li><strong>生成器函数：</strong>常规函数定义，但是，使用yield语句而不是return语句返回结果。yield语句一次返回一个结果，在每个结果中间，挂起函数的状态，以便下次重它离开的地方继续执行。</li>
 <li><strong>生成器表达式：</strong>类似于列表推导，但是，生成器返回按需产生结果的一个对象，而不是一次构建一个结果列表。</li>
 </ol>
-<h5 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h5><p>我们来看一个例子，使用生成器返回自然数的平方（注意返回的是多个值）：</p>
+<h4 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h4><p>我们来看一个例子，使用生成器返回自然数的平方（注意返回的是多个值）：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gensquares</span><span class="params">(N)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">        <span class="keyword">yield</span> i ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> gensquares(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">print</span> item,</span><br></pre></td></tr></table></figure>
 <p>使用普通函数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gensquares</span><span class="params">(N)</span>:</span></span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">        res.append(i*i)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> gensquares(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">print</span> item,</span><br></pre></td></tr></table></figure>
 <p>可以看到，使用生成器函数代码量更少。</p>
-<h5 id="生成器表达式"><a href="#生成器表达式" class="headerlink" title="生成器表达式"></a>生成器表达式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="生成器表达式"><a href="#生成器表达式" class="headerlink" title="生成器表达式"></a>生成器表达式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure>
 <p>将列表推导的中括号，替换成圆括号，就是一个生成器表达式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares = (x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>squares</span><br><span class="line">&lt;generator object at <span class="number">0x00B2EC88</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>next(squares)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>next(squares)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>next(squares)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(squares)</span><br><span class="line">[<span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure>
 <p>Python不但使用迭代器协议，让for循环变得更加通用。大部分内置函数，也是使用迭代器协议访问对象的。例如， sum函数是Python的内置函数，该函数使用迭代器协议访问对象，而生成器实现了迭代器协议，所以，我们可以直接这样计算一系列值的和：</p>
@@ -577,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-number">1.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器"><span class="nav-number">2.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#生成器函数"><span class="nav-number">2.0.1.</span> <span class="nav-text">生成器函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成器表达式"><span class="nav-number">2.0.2.</span> <span class="nav-text">生成器表达式</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-number">1.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器"><span class="nav-number">2.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器函数"><span class="nav-number">2.1.</span> <span class="nav-text">生成器函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器表达式"><span class="nav-number">2.2.</span> <span class="nav-text">生成器表达式</span></a></li></ol></li></ol></div>
             
 
           </div>

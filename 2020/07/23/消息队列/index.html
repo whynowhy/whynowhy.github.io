@@ -75,7 +75,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ggdw1ti43mj30gm02mjr7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ggdw3jyfhvj30gd04zaa1.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ggdwimrj1hj30m10mkabg.jpg">
-<meta property="og:updated_time" content="2020-07-24T08:35:24.891Z">
+<meta property="og:updated_time" content="2020-09-16T02:59:03.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="消息队列">
 <meta name="twitter:description" content="消息队列是分布式系统中重要的组件，在很多生产环境如商品抢购等需要控制并发量的场景下都需要用到。 消息队列(MQ)概述消息队列（Message Queue），是分布式系统中重要的组件，其通用的使用场景可以简单地描述为：当不需要立即获得结果，但是并发量又需要进行控制的时候，差不多就是需要使用消息队列的时候。 消息队列主要解决了应用耦合、异步处理、流量削锋等问题。 当前使用较多的消息队列有RabbitM">
@@ -274,7 +274,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-07-24 16:35:24" itemprop="dateModified" datetime="2020-07-24T16:35:24+08:00">2020-07-24</time>
+                <time title="修改时间：2020-09-16 10:59:03" itemprop="dateModified" datetime="2020-09-16T10:59:03+08:00">2020-09-16</time>
               </span>
             
           
@@ -336,7 +336,7 @@
 <li>消息驱动的系统：系统分为消息队列、消息生产者、消息消费者，生产者负责产生消息，消费者(可能有多个)负责对消息进行处理；</li>
 </ul>
 <p>下面详细介绍上述四个场景以及消息队列如何在上述四个场景中使用:</p>
-<h5 id="应用耦合"><a href="#应用耦合" class="headerlink" title="应用耦合"></a>应用耦合</h5><p>具体场景：用户使用QQ相册上传一张图片，人脸识别系统会对该图片进行人脸识别，一般的做法是，服务器接收到图片后，图片上传系统立即调用人脸识别系统，调用完成后再返回成功，如下图所示：</p>
+<h4 id="应用耦合"><a href="#应用耦合" class="headerlink" title="应用耦合"></a>应用耦合</h4><p>具体场景：用户使用QQ相册上传一张图片，人脸识别系统会对该图片进行人脸识别，一般的做法是，服务器接收到图片后，图片上传系统立即调用人脸识别系统，调用完成后再返回成功，如下图所示：</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggduhsq0ymj30c1029jr6.jpg" alt="undefined"></p>
 <p>该方法有如下缺点：</p>
 <ul>
@@ -348,7 +348,7 @@
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdun832pij30il02gglf.jpg" alt="undefined"></p>
 <p>客户端上传图片后，图片上传系统将图片信息如uin、批次写入消息队列，直接返回成功；而人脸识别系统则定时从消息队列中取数据，完成对新增图片的识别。 </p>
 <p>此时图片上传系统并不需要关心人脸识别系统是否对这些图片信息的处理、以及何时对这些图片信息进行处理。事实上，由于用户并不需要立即知道人脸识别结果，人脸识别系统可以选择不同的调度策略，按照闲时、忙时、正常时间，对队列中的图片信息进行处理。</p>
-<h5 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h5><p>具体场景：用户为了使用某个应用，进行注册，系统需要发送注册邮件并验证<a href="https://cloud.tencent.com/product/sms?from=10680" target="_blank" rel="noopener">短信</a>。对这两个操作的处理方式有两种：串行及并行。</p>
+<h4 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h4><p>具体场景：用户为了使用某个应用，进行注册，系统需要发送注册邮件并验证<a href="https://cloud.tencent.com/product/sms?from=10680" target="_blank" rel="noopener">短信</a>。对这两个操作的处理方式有两种：串行及并行。</p>
 <p>（1）串行方式：新注册信息生成后，先发送注册邮件，再发送验证短信；</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggduo5as3oj30qu02sglf.jpg" alt="undefined"></p>
 <p>在这种方式下，需要最终发送验证短信后再返回给客户端。</p>
@@ -360,14 +360,14 @@
 <p>若使用消息队列：</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdup2r3cpj30l9050gli.jpg" alt="undefined"></p>
 <p>并在写入消息队列后立即返回成功给客户端，则总的响应时间依赖于写入消息队列的时间，而写入消息队列的时间本身是可以很快的，基本可以忽略不计，因此总的处理时间相比串行提高了2倍，相比并行提高了一倍；</p>
-<h5 id="限制峰流"><a href="#限制峰流" class="headerlink" title="限制峰流"></a>限制峰流</h5><p>具体场景：购物网站开展秒杀活动，一般由于瞬时访问量过大，服务器接收过大，会导致流量暴增，相关系统无法处理请求甚至崩溃。而加入消息队列后，系统可以从消息队列中取数据，相当于消息队列做了一次缓冲。</p>
+<h4 id="限制峰流"><a href="#限制峰流" class="headerlink" title="限制峰流"></a>限制峰流</h4><p>具体场景：购物网站开展秒杀活动，一般由于瞬时访问量过大，服务器接收过大，会导致流量暴增，相关系统无法处理请求甚至崩溃。而加入消息队列后，系统可以从消息队列中取数据，相当于消息队列做了一次缓冲。</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdvisqa19j30h1024743.jpg" alt="undefined"></p>
 <p>该方法有如下优点： </p>
 <ol>
 <li>请求先入消息队列，而不是由业务处理系统直接处理，做了一次缓冲,极大地减少了业务处理系统的压力； </li>
 <li>队列长度可以做限制，事实上，秒杀时，后入队列的用户无法秒杀到商品，这些请求可以直接被抛弃，返回活动已结束或商品已售完信息；</li>
 </ol>
-<h5 id="消息驱动的系统"><a href="#消息驱动的系统" class="headerlink" title="消息驱动的系统"></a>消息驱动的系统</h5><p>具体场景：用户新上传了一批照片， 人脸识别系统需要对这个用户的所有照片进行聚类，聚类完成后由对账系统重新生成用户的人脸索引(加快查询)。这三个子系统间由消息队列连接起来，前一个阶段的处理结果放入队列中，后一个阶段从队列中获取消息继续处理。</p>
+<h4 id="消息驱动的系统"><a href="#消息驱动的系统" class="headerlink" title="消息驱动的系统"></a>消息驱动的系统</h4><p>具体场景：用户新上传了一批照片， 人脸识别系统需要对这个用户的所有照片进行聚类，聚类完成后由对账系统重新生成用户的人脸索引(加快查询)。这三个子系统间由消息队列连接起来，前一个阶段的处理结果放入队列中，后一个阶段从队列中获取消息继续处理。</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdvk8wbecj30v402f745.jpg" alt="undefined"></p>
 <p>该方法有如下优点：</p>
 <ul>
@@ -375,7 +375,7 @@
 <li>每个子系统对于消息的处理方式可以更为灵活，可以选择收到消息时就处理，可以选择定时处理，也可以划分时间段按不同处理速度处理；</li>
 </ul>
 <h3 id="消息队列的两种模式"><a href="#消息队列的两种模式" class="headerlink" title="消息队列的两种模式"></a>消息队列的两种模式</h3><p>消息队列包括两种模式，点对点模式（point to point， queue）和发布/订阅模式（publish/subscribe，topic）。</p>
-<h5 id="点对点模式"><a href="#点对点模式" class="headerlink" title="点对点模式"></a>点对点模式</h5><p>点对点模式下包括三个角色：</p>
+<h4 id="点对点模式"><a href="#点对点模式" class="headerlink" title="点对点模式"></a>点对点模式</h4><p>点对点模式下包括三个角色：</p>
 <ul>
 <li>消息队列</li>
 <li>发送者 (生产者)</li>
@@ -389,7 +389,7 @@
 <li>发送者和接收者间没有依赖性，发送者发送消息之后，不管有没有接收者在运行，都不会影响到发送者下次发送消息；</li>
 <li>接收者在成功接收消息之后需向队列应答成功，以便消息队列删除当前接收的消息；</li>
 </ul>
-<h5 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h5><p>发布/订阅模式下包括三个角色：</p>
+<h4 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h4><p>发布/订阅模式下包括三个角色：</p>
 <ul>
 <li>角色主题（Topic）</li>
 <li>发布者(Publisher)</li>
@@ -407,10 +407,10 @@
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggdwimrj1hj30m10mkabg.jpg" alt="undefined"></p>
 <p>结论:</p>
 <p>Kafka在于分布式架构，RabbitMQ基于AMQP协议来实现，RocketMQ/思路来源于kafka，改成了主从结构，在事务性可靠性方面做了优化。广泛来说，电商、金融等对事务性要求很高的，可以考虑RabbitMQ和RocketMQ，对性能要求高的可考虑Kafka。</p>
-<h3 id="消息丢失，消息重复，消息积压。"><a href="#消息丢失，消息重复，消息积压。" class="headerlink" title="消息丢失，消息重复，消息积压。"></a>消息丢失，消息重复，消息积压。</h3><h5 id="如何确保消息不丢失"><a href="#如何确保消息不丢失" class="headerlink" title="如何确保消息不丢失"></a>如何确保消息不丢失</h5><p>利用消息对客的有序性来验证是否消息丢失：在Producer端，给每个发出的消息附加一个连续递增的序号，然后在Consumer端检查序号的连续性。若检测到序号不连续，那就是丢消息了。</p>
+<h3 id="消息丢失，消息重复，消息积压。"><a href="#消息丢失，消息重复，消息积压。" class="headerlink" title="消息丢失，消息重复，消息积压。"></a>消息丢失，消息重复，消息积压。</h3><h4 id="如何确保消息不丢失"><a href="#如何确保消息不丢失" class="headerlink" title="如何确保消息不丢失"></a>如何确保消息不丢失</h4><p>利用消息对客的有序性来验证是否消息丢失：在Producer端，给每个发出的消息附加一个连续递增的序号，然后在Consumer端检查序号的连续性。若检测到序号不连续，那就是丢消息了。</p>
 <p>一些措施：生产阶段，在编写发送消息代码时，需要注意，正确处理返回值或者捕获异常，就可以保证这个阶段的消息不会丢失。存储阶段，通过配置Broker参数来避免因为宕机丢消息，如果是单个Broker，需要在收到消息后，先落盘再返回确认响应。消费阶段，编写消费代码时需要注意的是，不要在收到消息后就立即发送消费确认，而是应该在执行完所有消费业务逻辑之后，在发送消费确认。</p>
-<h5 id="处理消费过程中的重复消息"><a href="#处理消费过程中的重复消息" class="headerlink" title="处理消费过程中的重复消息"></a>处理消费过程中的重复消息</h5><p>利用幂等性解决重复消息问题：1、利用数据库的唯一约束实现幂等。2、为更新的数据设置前置条件，如果满足条件就更新数据，否则拒绝更新数据。3、在执行数据更新操作之前，先检查一下是否执行过这个更新操作。</p>
-<h5 id="处理消息队列积压"><a href="#处理消息队列积压" class="headerlink" title="处理消息队列积压"></a>处理消息队列积压</h5><p>预防：1、发送端提高并发及批量大小；2、消费端增加实例且同步扩容分区。</p>
+<h4 id="处理消费过程中的重复消息"><a href="#处理消费过程中的重复消息" class="headerlink" title="处理消费过程中的重复消息"></a>处理消费过程中的重复消息</h4><p>利用幂等性解决重复消息问题：1、利用数据库的唯一约束实现幂等。2、为更新的数据设置前置条件，如果满足条件就更新数据，否则拒绝更新数据。3、在执行数据更新操作之前，先检查一下是否执行过这个更新操作。</p>
+<h4 id="处理消息队列积压"><a href="#处理消息队列积压" class="headerlink" title="处理消息队列积压"></a>处理消息队列积压</h4><p>预防：1、发送端提高并发及批量大小；2、消费端增加实例且同步扩容分区。</p>
 <p>处理消息积压：1、消费端扩容；2、服务降级；3、异常监控。</p>
 
     </div>
@@ -642,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列-MQ-概述"><span class="nav-number">1.</span> <span class="nav-text">消息队列(MQ)概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列使用场景"><span class="nav-number">2.</span> <span class="nav-text">消息队列使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#应用耦合"><span class="nav-number">2.0.1.</span> <span class="nav-text">应用耦合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异步处理"><span class="nav-number">2.0.2.</span> <span class="nav-text">异步处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#限制峰流"><span class="nav-number">2.0.3.</span> <span class="nav-text">限制峰流</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#消息驱动的系统"><span class="nav-number">2.0.4.</span> <span class="nav-text">消息驱动的系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列的两种模式"><span class="nav-number">3.</span> <span class="nav-text">消息队列的两种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#点对点模式"><span class="nav-number">3.0.1.</span> <span class="nav-text">点对点模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发布-订阅模式"><span class="nav-number">3.0.2.</span> <span class="nav-text">发布/订阅模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用消息队列介绍"><span class="nav-number">4.</span> <span class="nav-text">常用消息队列介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息丢失，消息重复，消息积压。"><span class="nav-number">5.</span> <span class="nav-text">消息丢失，消息重复，消息积压。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何确保消息不丢失"><span class="nav-number">5.0.1.</span> <span class="nav-text">如何确保消息不丢失</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理消费过程中的重复消息"><span class="nav-number">5.0.2.</span> <span class="nav-text">处理消费过程中的重复消息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理消息队列积压"><span class="nav-number">5.0.3.</span> <span class="nav-text">处理消息队列积压</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列-MQ-概述"><span class="nav-number">1.</span> <span class="nav-text">消息队列(MQ)概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列使用场景"><span class="nav-number">2.</span> <span class="nav-text">消息队列使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用耦合"><span class="nav-number">2.1.</span> <span class="nav-text">应用耦合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步处理"><span class="nav-number">2.2.</span> <span class="nav-text">异步处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#限制峰流"><span class="nav-number">2.3.</span> <span class="nav-text">限制峰流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息驱动的系统"><span class="nav-number">2.4.</span> <span class="nav-text">消息驱动的系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列的两种模式"><span class="nav-number">3.</span> <span class="nav-text">消息队列的两种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#点对点模式"><span class="nav-number">3.1.</span> <span class="nav-text">点对点模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布-订阅模式"><span class="nav-number">3.2.</span> <span class="nav-text">发布/订阅模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用消息队列介绍"><span class="nav-number">4.</span> <span class="nav-text">常用消息队列介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息丢失，消息重复，消息积压。"><span class="nav-number">5.</span> <span class="nav-text">消息丢失，消息重复，消息积压。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何确保消息不丢失"><span class="nav-number">5.1.</span> <span class="nav-text">如何确保消息不丢失</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理消费过程中的重复消息"><span class="nav-number">5.2.</span> <span class="nav-text">处理消费过程中的重复消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理消息队列积压"><span class="nav-number">5.3.</span> <span class="nav-text">处理消息队列积压</span></a></li></ol></li></ol></div>
             
 
           </div>

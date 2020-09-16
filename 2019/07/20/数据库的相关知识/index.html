@@ -71,7 +71,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g52nnuknxpj30kj0blwh4.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g52noot9slj30fe07r0tr.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g52np4kvtdj30k907l403.jpg">
-<meta property="og:updated_time" content="2019-08-28T13:02:32.000Z">
+<meta property="og:updated_time" content="2020-09-16T02:49:29.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库的相关知识">
 <meta name="twitter:description" content="关系型数据库平常使用的关系型数据库（如mysql）中，主要分为两种类型，分别是innodb和myisam。其中innodb和myisam主要的差别为：  事务和外键：InnoDB具有事务，支持4个事务隔离级别，回滚，崩溃修复能力和多版本并发的事务安全，包括ACID。如果应用中需要执行大量的INSERT或UPDATE操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。MyISAM管理非事">
@@ -270,7 +270,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-28 21:02:32" itemprop="dateModified" datetime="2019-08-28T21:02:32+08:00">2019-08-28</time>
+                <time title="修改时间：2020-09-16 10:49:29" itemprop="dateModified" datetime="2020-09-16T10:49:29+08:00">2020-09-16</time>
               </span>
             
           
@@ -319,7 +319,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><p>平常使用的关系型数据库（如mysql）中，主要分为两种类型，分别是<strong>innodb</strong>和<strong>myisam</strong>。其中innodb和myisam主要的差别为：</p>
+        <h3 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h3><p>平常使用的关系型数据库（如mysql）中，主要分为两种类型，分别是<strong>innodb</strong>和<strong>myisam</strong>。其中innodb和myisam主要的差别为：</p>
 <ol>
 <li>事务和外键：<strong>InnoDB</strong>具有事务，支持4个事务隔离级别，回滚，崩溃修复能力和多版本并发的事务安全，包括ACID。如果应用中需要执行大量的INSERT或UPDATE操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。<strong>MyISAM</strong>管理非事务表。它提供高速存储和检索，以及全文搜索能力。如果应用中需要执行大量的SELECT查询，那么MyISAM是更好的选择</li>
 <li>全文索引：早期innodb不支持全文索引，在mysql5.6版本之后，innodb开始支持全文索引，5.7版本之后，通过使用ngram支持中文。</li>
@@ -334,8 +334,7 @@
 <li>选择MyISAM的情况：(1)不需要事务支持（不支持） (2)并发相对较低（锁定机制问题） (3)数据修改相对较少（阻塞问题），以读为主  (4)数据一致性要求不是非常高</li>
 <li>选择innodb的情况：(1)需要事务支持（具有较好的事务特性）(2)行级锁定对高并发有很好的适应能力，但需要确保查询是通过索引完成 (3)数据更新较为频繁的场景 (4)数据一致性要求较高 (5)硬件设备内存较大，可以利用InnoDB较好的缓存能力来提高内存利用率，尽可能减少磁盘 IO</li>
 </ol>
-<p>mysql索引的实现，B+Tree的相关解释</p>
-<ol>
+<h4 id="mysql索引的实现，B-Tree的相关解释"><a href="#mysql索引的实现，B-Tree的相关解释" class="headerlink" title="mysql索引的实现，B+Tree的相关解释"></a>mysql索引的实现，B+Tree的相关解释</h4><ol>
 <li><p>索引是什么：索引是为了加速对表中数据行的检索而创建的一种分散存储的数据结构。</p>
 </li>
 <li><p>索引的工作机制是怎样的：如下图中，如果现在有一条sql语句 <code>select * from teacher where id = 101</code>，如果没有索引的条件下，我们要找到这条记录，我们就需要就行全表扫描，匹配id = 101的数据。如果有了索引，我们就可以快速的通过索引找到101所对应的行记录在磁盘中的地址，再根据给定的地址取出对应的行数据。<img src="http://ww1.sinaimg.cn/large/007useIpgy1g52nhfqgkkj30fe04d3zj.jpg" alt="index"></p>
@@ -597,7 +596,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据库"><span class="nav-number">1.</span> <span class="nav-text">关系型数据库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系型数据库"><span class="nav-number">1.</span> <span class="nav-text">关系型数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql索引的实现，B-Tree的相关解释"><span class="nav-number">1.1.</span> <span class="nav-text">mysql索引的实现，B+Tree的相关解释</span></a></li></ol></li></ol></div>
             
 
           </div>

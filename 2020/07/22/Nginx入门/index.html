@@ -69,7 +69,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ggh0c9n1s3j30ix0bta9w.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ggh0odvlm2j30ix0bt3yh.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1ggh2x99z33j30ix0btq2r.jpg">
-<meta property="og:updated_time" content="2020-07-22T07:49:04.527Z">
+<meta property="og:updated_time" content="2020-09-16T02:58:39.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx入门">
 <meta name="twitter:description" content="nginx是什么“Nginx 是一款轻量级的 HTTP 服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的 IO 性能，时常用于服务端的反向代理和负载均衡。” 特点：  一种轻量级的web服务器 设计思想是事件驱动的异步非阻塞处理（类node.js） 占用内存少、启动速度快、并发能力强 使用C语言开发 扩展性好，第三方插件非常多 在互联网项目中广泛应用">
@@ -255,11 +255,21 @@
                 
               
 
-              <time title="创建时间：2020-07-22 15:01:12 / 修改时间：15:49:04" itemprop="dateCreated datePublished" datetime="2020-07-22T15:01:12+08:00">2020-07-22</time>
+              <time title="创建时间：2020-07-22 15:01:12" itemprop="dateCreated datePublished" datetime="2020-07-22T15:01:12+08:00">2020-07-22</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-16 10:58:39" itemprop="dateModified" datetime="2020-09-16T10:58:39+08:00">2020-09-16</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -319,14 +329,14 @@
 </ul>
 <a id="more"></a>
 <h3 id="nginx主要应用"><a href="#nginx主要应用" class="headerlink" title="nginx主要应用"></a>nginx主要应用</h3><p>nginx四大应用</p>
-<h5 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gggzy3wb79j30d30cx0sq.jpg" alt="undefined"></p>
+<h4 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gggzy3wb79j30d30cx0sq.jpg" alt="undefined"></p>
 <p>如上图所示，动静分离其实就是 Nginx 服务器将接收到的请求分为<strong>动态请求</strong>和<strong>静态请求</strong>。</p>
 <p>静态请求直接从 nginx 服务器所设定的根目录路径去取对应的资源，动态请求转发给真实的后台（前面所说的应用服务器，如图中的Tomcat）去处理。</p>
 <p>这样做不仅能给应用服务器减轻压力，将后台api接口服务化，还能将前后端代码分开并行开发和部署。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 静态化配置，所有静态请求都转发给 nginx 处理，存放目录为 my-project</span></span><br><span class="line">        location ~ .*\.(html|htm|gif|jpg|jpeg|bmp|png|ico|js|css)$ &#123;</span><br><span class="line">            root /usr/<span class="built_in">local</span>/var/www/my-project; <span class="comment"># 静态请求所代理到的根目录</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 动态请求匹配到path为'node'的就转发到8002端口处理</span></span><br><span class="line">        location /node/ &#123;  </span><br><span class="line">            proxy_pass http://localhost:8002; <span class="comment"># 充当服务代理</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>访问静态资源 nginx 服务器会返回 my-project 里面的文件，如获取 index.html。</p>
 <p>访问动态请求 nginx 服务器会将它从8002端口请求到的内容，原封不动的返回回去。</p>
-<h5 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h5><p><strong>反向代理是什么</strong></p>
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p><strong>反向代理是什么</strong></p>
 <p>反向代理其实就类似你去找代购帮你买东西（浏览器或其他终端向nginx请求），你不用管他去哪里买，只要他帮你买到你想要的东西就行（浏览器或其他终端最终拿到了他想要的内容，但是具体从哪儿拿到的这个过程它并不知道）。</p>
 <p><strong>反向代理的作用</strong></p>
 <ol>
@@ -346,7 +356,7 @@
 <p>此时Proxy充当了三个server的反向代理</p>
 </blockquote>
 <p>反向代理应用十分广泛，CDN 服务就是反向代理经典的应用场景之一。除此之外，反向代理也是实现负载均衡的基础，很多大公司的架构都应用到了反向代理。</p>
-<h5 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h5><p><strong>负载均衡是什么</strong></p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><p><strong>负载均衡是什么</strong></p>
 <p>随着业务的不断增长和用户的不断增多，一台服务已经满足不了系统要求了。这个时候就出现了服务器 <a href="https://www.cnblogs.com/bhlsheji/p/4026296.html" target="_blank" rel="noopener">集群</a>。</p>
 <p>在服务器集群中，Nginx 可以将接收到的客户端请求“均匀地”（严格讲并不一定均匀，可以通过设置权重）分配到这个集群中所有的服务器上。这个就叫做<strong>负载均衡</strong>。</p>
 <p>负载均衡的示意图如下：</p>
@@ -362,7 +372,7 @@
 <p>配置一个简单的负载均衡并不复杂，代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 负载均衡：设置domain</span></span><br><span class="line">upstream domain &#123;</span><br><span class="line">    server localhost:8000;</span><br><span class="line">    server localhost:8001;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;  </span><br><span class="line">        listen       8080;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="comment"># root   html; # Nginx默认值</span></span><br><span class="line">            <span class="comment"># index  index.html index.htm;</span></span><br><span class="line">            </span><br><span class="line">            proxy_pass http://domain; <span class="comment"># 负载均衡配置，请求会被平均分配到8000和8001端口</span></span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>受集群单台服务器内存等资源的限制，负载均衡集群的服务器也不能无限增多。但因其良好的容错机制，负载均衡成为了实现<strong>高可用架构</strong>中必不可少的一环。</p>
-<h5 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h5><p>正向代理跟反向道理正好相反。拿上文中的那个代购例子来讲，多个人找代购购买同一个商品，代购找到买这个的店后一次性给买了。这个过程中，该店主是不知道代购是帮别代买买东西的。那么代购对于多个想买商品的顾客来讲，他就充当了正向代理。</p>
+<h4 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h4><p>正向代理跟反向道理正好相反。拿上文中的那个代购例子来讲，多个人找代购购买同一个商品，代购找到买这个的店后一次性给买了。这个过程中，该店主是不知道代购是帮别代买买东西的。那么代购对于多个想买商品的顾客来讲，他就充当了正向代理。</p>
 <p>正向代理的示意图如下：</p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1ggh2x99z33j30ix0btq2r.jpg" alt="undefined"></p>
 <p>nginx 就是充当图中的 proxy。左边的3个 client 在请求时向 nginx 获取内容，server 是感受不到3台 client 存在的。</p>
@@ -598,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx是什么"><span class="nav-number">1.</span> <span class="nav-text">nginx是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx主要应用"><span class="nav-number">2.</span> <span class="nav-text">nginx主要应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#动静分离"><span class="nav-number">2.0.1.</span> <span class="nav-text">动静分离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#反向代理"><span class="nav-number">2.0.2.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#负载均衡"><span class="nav-number">2.0.3.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正向代理"><span class="nav-number">2.0.4.</span> <span class="nav-text">正向代理</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx是什么"><span class="nav-number">1.</span> <span class="nav-text">nginx是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx主要应用"><span class="nav-number">2.</span> <span class="nav-text">nginx主要应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#动静分离"><span class="nav-number">2.1.</span> <span class="nav-text">动静分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反向代理"><span class="nav-number">2.2.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#负载均衡"><span class="nav-number">2.3.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正向代理"><span class="nav-number">2.4.</span> <span class="nav-text">正向代理</span></a></li></ol></li></ol></div>
             
 
           </div>
