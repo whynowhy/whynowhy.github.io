@@ -57,19 +57,23 @@
   };
 </script>
 
-  <meta name="description" content="输入与输出输入可以使用sys.stdin.readline()和input()可进行单行的输入，但是这两个输入方法不同的是，sys.stdin.readline()会获取标准输入的全部字符，其中包括结尾\n，而使用input()输入的话，会自动过滤结尾的\n，所以在使用时要使用.strip()方法，从而过滤结尾的转义字符。 多行输入一次读取可以使用sys.stdin.readlines()，输入多">
-<meta name="keywords" content="Python,求职">
+  <meta name="description" content="kubernetes Service 定义了这样一种抽象：一个Pod的逻辑分组，一种可以访问它们的策略。这一组Pod能被Service访问到 Service的类型 ClusterIp：自动分配一个仅Cluster内部可以访问的虚拟IP NodePort：在ClusterIP基础上为Service在每台机器上绑定一个端口（外部可访问的端口），这样就可以通过NodeIP：NodePort来访问该服务">
+<meta name="keywords" content="运维,Kubernetes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在线OJ的一些技巧">
-<meta property="og:url" content="http://yoursite.com/2019/09/06/在线OJ的一些技巧/index.html">
+<meta property="og:title" content="k8s中的Service">
+<meta property="og:url" content="http://yoursite.com/2020/09/17/k8s中的Service/index.html">
 <meta property="og:site_name" content="只不过是是随便写写啦">
-<meta property="og:description" content="输入与输出输入可以使用sys.stdin.readline()和input()可进行单行的输入，但是这两个输入方法不同的是，sys.stdin.readline()会获取标准输入的全部字符，其中包括结尾\n，而使用input()输入的话，会自动过滤结尾的\n，所以在使用时要使用.strip()方法，从而过滤结尾的转义字符。 多行输入一次读取可以使用sys.stdin.readlines()，输入多">
+<meta property="og:description" content="kubernetes Service 定义了这样一种抽象：一个Pod的逻辑分组，一种可以访问它们的策略。这一组Pod能被Service访问到 Service的类型 ClusterIp：自动分配一个仅Cluster内部可以访问的虚拟IP NodePort：在ClusterIP基础上为Service在每台机器上绑定一个端口（外部可访问的端口），这样就可以通过NodeIP：NodePort来访问该服务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-16T02:51:18.191Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gijbq5aozkj30mz0ew46a.jpg">
+<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200917142319695.png">
+<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200917142701109.png">
+<meta property="og:updated_time" content="2020-09-17T06:27:21.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在线OJ的一些技巧">
-<meta name="twitter:description" content="输入与输出输入可以使用sys.stdin.readline()和input()可进行单行的输入，但是这两个输入方法不同的是，sys.stdin.readline()会获取标准输入的全部字符，其中包括结尾\n，而使用input()输入的话，会自动过滤结尾的\n，所以在使用时要使用.strip()方法，从而过滤结尾的转义字符。 多行输入一次读取可以使用sys.stdin.readlines()，输入多">
-  <link rel="canonical" href="http://yoursite.com/2019/09/06/在线OJ的一些技巧/">
+<meta name="twitter:title" content="k8s中的Service">
+<meta name="twitter:description" content="kubernetes Service 定义了这样一种抽象：一个Pod的逻辑分组，一种可以访问它们的策略。这一组Pod能被Service访问到 Service的类型 ClusterIp：自动分配一个仅Cluster内部可以访问的虚拟IP NodePort：在ClusterIP基础上为Service在每台机器上绑定一个端口（外部可访问的端口），这样就可以通过NodeIP：NodePort来访问该服务">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gijbq5aozkj30mz0ew46a.jpg">
+  <link rel="canonical" href="http://yoursite.com/2020/09/17/k8s中的Service/">
 
 
 <script id="page.configurations">
@@ -78,7 +82,7 @@
   };
 </script>
 
-  <title>在线OJ的一些技巧 | 只不过是是随便写写啦</title>
+  <title>k8s中的Service | 只不过是是随便写写啦</title>
   
 
 
@@ -216,7 +220,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/在线OJ的一些技巧/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/k8s中的Service/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老王">
@@ -230,7 +234,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">在线OJ的一些技巧
+          <h1 class="post-title" itemprop="name headline">k8s中的Service
 
               
             
@@ -250,21 +254,11 @@
                 
               
 
-              <time title="创建时间：2019-09-06 16:21:36" itemprop="dateCreated datePublished" datetime="2019-09-06T16:21:36+08:00">2019-09-06</time>
+              <time title="创建时间：2020-09-17 11:28:38 / 修改时间：14:27:21" itemprop="dateCreated datePublished" datetime="2020-09-17T11:28:38+08:00">2020-09-17</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-09-16 10:51:18" itemprop="dateModified" datetime="2020-09-16T10:51:18+08:00">2020-09-16</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -275,7 +269,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a></span>
 
                 
                 
@@ -295,8 +289,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/2019/09/06/在线OJ的一些技巧/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/06/在线OJ的一些技巧/" itemprop="commentCount"></span>
+    <a href="/2020/09/17/k8s中的Service/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/17/k8s中的Service/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -312,12 +306,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h3><p><strong>输入</strong>可以使用<code>sys.stdin.readline()</code>和<code>input()</code>可进行单行的输入，但是这两个输入方法不同的是，<code>sys.stdin.readline()</code>会获取标准输入的全部字符，其中包括结尾<code>\n</code>，而使用<code>input()</code>输入的话，会自动过滤结尾的<code>\n</code>，所以在使用时要使用<code>.strip()</code>方法，从而过滤结尾的转义字符。</p>
-<p>多行输入一次读取可以使用<code>sys.stdin.readlines()</code>，输入多少行，即可生成多少行的数组，但是结尾也会保留转义字符，需要对每一行使用<code>.strip()</code>方法过滤转义字符。</p>
-<p>在<strong>输出</strong>时要注意输出的格式，如果数组需要以<code>1 2 3 4</code>的形式输出时，可以使用<code>print(a[x],end=&#39; &#39;)</code>的形式进行输出，同时最后一个数输出时为<code>print(a[-1],end=&#39; &#39;)</code>，二维数组的类似输出方式如下所示。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(a[i])):</span><br><span class="line">        <span class="keyword">if</span> j != len(a[i])<span class="number">-1</span>:</span><br><span class="line">            print(a[i][j],end=<span class="string">' '</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(a[i][j])</span><br></pre></td></tr></table></figure>
-<p>当然也有更巧妙的输出数组的方式，使用<code>join()</code>方法，将数组转化为字符串再输出，<code>print(&#39; &#39;.join(a))</code>，如果a是数字数组的话，使用map函数转换一下就行<code>print(&#39; &#39;.join(map(str,a)))</code></p>
-<p><strong>输出</strong>时间格式时可以使用<code>.format()</code>方法进行字符串格式化，如<code>print(&#39;{:0&gt;2d}:{:0&gt;2d}:{:0&gt;2d}&#39;.format(23,2,4))</code></p>
+        <p>kubernetes Service 定义了这样一种抽象：一个Pod的逻辑分组，一种可以访问它们的策略。这一组Pod能被Service访问到</p>
+<h3 id="Service的类型"><a href="#Service的类型" class="headerlink" title="Service的类型"></a>Service的类型</h3><ul>
+<li>ClusterIp：自动分配一个仅Cluster内部可以访问的虚拟IP</li>
+<li>NodePort：在ClusterIP基础上为Service在每台机器上绑定一个端口（外部可访问的端口），这样就可以通过NodeIP：NodePort来访问该服务</li>
+<li>LoadBalancer：在NodePort的基础上，借助cloud provider创建了一个外部负载均衡器，并将请求转发到NodeIP：NodePort</li>
+<li>ExternalName：把集群外部的服务引入到集群内部来，在集群内部直接使用。没有任何类型代理被创建</li>
+</ul>
+<h3 id="VIP和Service代理"><a href="#VIP和Service代理" class="headerlink" title="VIP和Service代理"></a>VIP和Service代理</h3><p>在K8S集群中，每个Node运行了一个kube-proxy进程。kube-proxy负责为Service实现了一种VIP（虚拟IP）的形式。</p>
+<p>代理形式有1.0版本中的userspace到1.1中的iptables，在1.8中添加了ipvs代理。在1.14版本开始使用默认的ipvs代理</p>
+<p>这里主要讲一下ipvs代理模式</p>
+<p>在这种模式下，kube-proxy会监视kubernetes Service对象和Endpoints，调用netlink接口以相应地创建ipvs规则并定期与Kubernets Service对象和Endpoints对象同步ipvs规则，以确保ipvs状态与期望一致。访问服务时，流量将被重定向到其中一个后端Pod。</p>
+<p>与iptables类似，ipvs与netfilter的hook功能，但使用哈希表作为底层数据结构并在内核空间中工作。这意味着ipvs可以更快地重定向流量，并且在同步代理规则时具有更好的性能。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gijbq5aozkj30mz0ew46a.jpg" alt="undefined"></p>
+<h3 id="Ingress"><a href="#Ingress" class="headerlink" title="Ingress"></a>Ingress</h3><p>k8s还提供了一种集群维度暴露服务的方式，也就是ingress。ingress可以简单理解为service的service，他通过独立的ingress对象来制定请求转发的规则，把请求路由到一个或多个service中。这样就把服务与请求规则解耦了，可以从业务维度统一考虑业务的暴露，而不用为每个service单独考虑。</p>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200917142319695.png" alt="image-20200917142319695"></p>
+<p>大概就是，一个ip可以绑定不同的url，通过不同的url来转发请求到一个kubernetes集群的不同的Service中。</p>
+<p>下图为Ingress的过程。</p>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200917142701109.png" alt="image-20200917142701109"></p>
 
     </div>
 
@@ -329,15 +335,15 @@
           
         
         <div class="post-tags">
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/运维/" rel="tag"># 运维</a>
           
-            <a href="/tags/求职/" rel="tag"># 求职</a>
+            <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
           
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/09/03/Python-中的迭代器和生成器的详解/" rel="next" title="Python中的迭代器和生成器的详解">
-                <i class="fa fa-chevron-left"></i> Python中的迭代器和生成器的详解
+              <a href="/2020/09/15/Zabbix中的邮件报警/" rel="next" title="Zabbix中的邮件报警">
+                <i class="fa fa-chevron-left"></i> Zabbix中的邮件报警
               </a>
             
           </div>
@@ -345,8 +351,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/09/11/WSL的使用过程中的一些小问题/" rel="prev" title="WSL的使用过程中的一些小问题">
-                WSL的使用过程中的一些小问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/09/17/k8s中的存储机制/" rel="prev" title="k8s中的存储机制">
+                k8s中的存储机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -546,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入与输出"><span class="nav-number">1.</span> <span class="nav-text">输入与输出</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service的类型"><span class="nav-number">1.</span> <span class="nav-text">Service的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VIP和Service代理"><span class="nav-number">2.</span> <span class="nav-text">VIP和Service代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ingress"><span class="nav-number">3.</span> <span class="nav-text">Ingress</span></a></li></ol></div>
             
 
           </div>
