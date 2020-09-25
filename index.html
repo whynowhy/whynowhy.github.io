@@ -259,7 +259,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-09-25 09:35:26" itemprop="dateModified" datetime="2020-09-25T09:35:26+08:00">2020-09-25</time>
+                <time title="修改时间：2020-09-25 09:43:56" itemprop="dateModified" datetime="2020-09-25T09:43:56+08:00">2020-09-25</time>
               </span>
             
           
@@ -309,7 +309,7 @@
 
       
           <h3 id="机制说明"><a href="#机制说明" class="headerlink" title="机制说明"></a>机制说明</h3><p>Kubernetes作为一个分布式集群的管理工具，保证集群的安全性是一个重要的任务。API Server是集群内部各个组件通信的中介，也是外部控制的入口。所以Kubernetes的安全机制基本就是围绕保护API Server来设计的。Kubernetes使用了<strong>认证（Authentication）</strong>、<strong>鉴权（Authorization）</strong>、<strong>准入控制（Admission Control）</strong>三步来保证API Server的安全。</p>
-<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924162750460.png" alt="image-20200924162750460"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj2ni35w09j315p0ivdmx.jpg" alt="image-20200924162750460.png"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -814,11 +814,21 @@
                 
               
 
-              <time title="创建时间：2020-09-17 11:28:38 / 修改时间：14:27:21" itemprop="dateCreated datePublished" datetime="2020-09-17T11:28:38+08:00">2020-09-17</time>
+              <time title="创建时间：2020-09-17 11:28:38" itemprop="dateCreated datePublished" datetime="2020-09-17T11:28:38+08:00">2020-09-17</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-25 09:41:59" itemprop="dateModified" datetime="2020-09-25T09:41:59+08:00">2020-09-25</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -866,8 +876,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>kubernetes Service 定义了这样一种抽象：一个Pod的逻辑分组，一种可以访问它们的策略。这一组Pod能被Service访问到</p>
+          <p>kubernetes Service 定义了这样一种抽象：一个Pod的逻辑分组，一种可以访问它们的策略。这一组Pod能被Service访问到</p>
 <h3 id="Service的类型"><a href="#Service的类型" class="headerlink" title="Service的类型"></a>Service的类型</h3><ul>
 <li>ClusterIp：自动分配一个仅Cluster内部可以访问的虚拟IP</li>
 <li>NodePort：在ClusterIP基础上为Service在每台机器上绑定一个端口（外部可访问的端口），这样就可以通过NodeIP：NodePort来访问该服务</li>
@@ -876,17 +885,15 @@
 </ul>
 <h3 id="VIP和Service代理"><a href="#VIP和Service代理" class="headerlink" title="VIP和Service代理"></a>VIP和Service代理</h3><p>在K8S集群中，每个Node运行了一个kube-proxy进程。kube-proxy负责为Service实现了一种VIP（虚拟IP）的形式。</p>
 <p>代理形式有1.0版本中的userspace到1.1中的iptables，在1.8中添加了ipvs代理。在1.14版本开始使用默认的ipvs代理</p>
-<p>这里主要讲一下ipvs代理模式</p>
-<p>在这种模式下，kube-proxy会监视kubernetes Service对象和Endpoints，调用netlink接口以相应地创建ipvs规则并定期与Kubernets Service对象和Endpoints对象同步ipvs规则，以确保ipvs状态与期望一致。访问服务时，流量将被重定向到其中一个后端Pod。</p>
-<p>与iptables类似，ipvs与netfilter的hook功能，但使用哈希表作为底层数据结构并在内核空间中工作。这意味着ipvs可以更快地重定向流量，并且在同步代理规则时具有更好的性能。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gijbq5aozkj30mz0ew46a.jpg" alt="undefined"></p>
-<h3 id="Ingress"><a href="#Ingress" class="headerlink" title="Ingress"></a>Ingress</h3><p>k8s还提供了一种集群维度暴露服务的方式，也就是ingress。ingress可以简单理解为service的service，他通过独立的ingress对象来制定请求转发的规则，把请求路由到一个或多个service中。这样就把服务与请求规则解耦了，可以从业务维度统一考虑业务的暴露，而不用为每个service单独考虑。</p>
-<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200917142319695.png" alt="image-20200917142319695"></p>
-<p>大概就是，一个ip可以绑定不同的url，通过不同的url来转发请求到一个kubernetes集群的不同的Service中。</p>
-<p>下图为Ingress的过程。</p>
-<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200917142701109.png" alt="image-20200917142701109"></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/09/17/k8s中的Service/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>

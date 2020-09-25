@@ -65,16 +65,16 @@
 <meta property="og:site_name" content="只不过是是随便写写啦">
 <meta property="og:description" content="机制说明Kubernetes作为一个分布式集群的管理工具，保证集群的安全性是一个重要的任务。API Server是集群内部各个组件通信的中介，也是外部控制的入口。所以Kubernetes的安全机制基本就是围绕保护API Server来设计的。Kubernetes使用了认证（Authentication）、鉴权（Authorization）、准入控制（Admission Control）三步来保证A">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200924162750460.png">
-<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200924163436555.png">
-<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200924163504421.png">
-<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200924171136988.png">
-<meta property="og:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200924172802975.png">
-<meta property="og:updated_time" content="2020-09-25T01:35:26.874Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj2ni35w09j315p0ivdmx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj2ni89faqj310z0m0mze.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj2nih0lpuj310s0oeai7.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj2nil8i7tj3146090q4n.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj2nioy11lj31300dbdho.jpg">
+<meta property="og:updated_time" content="2020-09-25T01:43:56.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetes中的集群安全">
 <meta name="twitter:description" content="机制说明Kubernetes作为一个分布式集群的管理工具，保证集群的安全性是一个重要的任务。API Server是集群内部各个组件通信的中介，也是外部控制的入口。所以Kubernetes的安全机制基本就是围绕保护API Server来设计的。Kubernetes使用了认证（Authentication）、鉴权（Authorization）、准入控制（Admission Control）三步来保证A">
-<meta name="twitter:image" content="c:/Users/whyic/AppData/Roaming/Typora/typora-user-images/image-20200924162750460.png">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj2ni35w09j315p0ivdmx.jpg">
   <link rel="canonical" href="http://yoursite.com/2020/09/24/Kubernetes中的集群安全/">
 
 
@@ -269,7 +269,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-09-25 09:35:26" itemprop="dateModified" datetime="2020-09-25T09:35:26+08:00">2020-09-25</time>
+                <time title="修改时间：2020-09-25 09:43:56" itemprop="dateModified" datetime="2020-09-25T09:43:56+08:00">2020-09-25</time>
               </span>
             
           
@@ -319,15 +319,15 @@
 
       
         <h3 id="机制说明"><a href="#机制说明" class="headerlink" title="机制说明"></a>机制说明</h3><p>Kubernetes作为一个分布式集群的管理工具，保证集群的安全性是一个重要的任务。API Server是集群内部各个组件通信的中介，也是外部控制的入口。所以Kubernetes的安全机制基本就是围绕保护API Server来设计的。Kubernetes使用了<strong>认证（Authentication）</strong>、<strong>鉴权（Authorization）</strong>、<strong>准入控制（Admission Control）</strong>三步来保证API Server的安全。</p>
-<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924162750460.png" alt="image-20200924162750460"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj2ni35w09j315p0ivdmx.jpg" alt="image-20200924162750460.png"></p>
 <a id="more"></a>
 <h3 id="认证-Authentication"><a href="#认证-Authentication" class="headerlink" title="认证 Authentication"></a>认证 Authentication</h3><ul>
 <li>HTTP Token认证：通过一个Token来识别合法用户</li>
 <li>HTTP Base认证：通过用户名+密码的方式进行认证</li>
 <li><strong>最严格的HTTPS证书认证：基于CA根证书签名的客户端身份认证方式</strong>（现在普遍都使用该方法进行认证）</li>
 </ul>
-<h4 id="HTTPS证书认证"><a href="#HTTPS证书认证" class="headerlink" title="HTTPS证书认证"></a>HTTPS证书认证</h4><p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924163436555.png" alt="image-20200924163436555"></p>
-<h4 id="需要认证的节点"><a href="#需要认证的节点" class="headerlink" title="需要认证的节点"></a>需要认证的节点</h4><p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924163504421.png" alt="image-20200924163504421"></p>
+<h4 id="HTTPS证书认证"><a href="#HTTPS证书认证" class="headerlink" title="HTTPS证书认证"></a>HTTPS证书认证</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj2ni89faqj310z0m0mze.jpg" alt="image-20200924163436555.png"></p>
+<h4 id="需要认证的节点"><a href="#需要认证的节点" class="headerlink" title="需要认证的节点"></a>需要认证的节点</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj2nih0lpuj310s0oeai7.jpg" alt="image-20200924163504421.png"></p>
 <p><strong>两种说明</strong></p>
 <ul>
 <li>kubernetes组件对API Server的访问：kubectl、Contrller Manager、Scheduler、kubelet、kubeproxy</li>
@@ -353,7 +353,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl get secret --all-namespaces</span><br><span class="line">kubectl describe secret default-token</span><br></pre></td></tr></table></figure>
 <p>默认情况下，每个namespace都会有一个ServiceAccount，如果Pod下创建时没有指定ServiceAccount，就会使用Pod所属的namespace的ServiceAccount</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924171136988.png" alt="image-20200924171136988"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj2nil8i7tj3146090q4n.jpg" alt="image-20200924171136988.png"></p>
 <h3 id="鉴权-Authorization"><a href="#鉴权-Authorization" class="headerlink" title="鉴权 Authorization"></a>鉴权 Authorization</h3><p>上面认证过程，只是确认通信的双方都确认了对方是可信的，可以相互通信。而鉴权是确定请求方有哪些资源的权限。API Server目前支持以下几种授权策略(通过 API Server的启动参数”–authorization-mode”设置)</p>
 <ul>
 <li><p>AlwaysDeny: 表示拒绝所有的请求，一般用于测试</p>
@@ -375,7 +375,7 @@
 </ul>
 <p><strong>RBAC的API资源对象说明</strong></p>
 <p>RBAC引入了4个新的顶级资源对象：Role、ClusterRole、RoleBinding、ClusterRoleBinding，4种对象类型均可以通过kubectl与API操作。</p>
-<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924172802975.png" alt="image-20200924172802975"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj2nioy11lj31300dbdho.jpg" alt="image-20200924172802975.png"></p>
 <p>需要注意的是Kubernetes并不会提供用户管理，那么User、Group、ServiceAccount指定的用户又是从哪里来的呢？Kubernetes组件（kubectl、kube-proxy）或是其他自定义的用户在向CA申请证书时，需要提供一个证书的请求文件。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"CN"</span>:<span class="string">"admin"</span>,</span><br><span class="line">    <span class="attr">"hosts"</span>:[],</span><br><span class="line">    <span class="attr">"key"</span>:&#123;</span><br><span class="line">        <span class="attr">"algo"</span>:<span class="string">"rsa"</span>,</span><br><span class="line">        <span class="attr">"size"</span>:<span class="number">2048</span></span><br><span class="line">    &#125;,</span><br><span class="line">	<span class="attr">"names"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"C"</span>:<span class="string">"CN"</span>,</span><br><span class="line">            <span class="attr">"ST"</span>:<span class="string">"hangZhou"</span>,</span><br><span class="line">            <span class="attr">"L"</span>:<span class="string">"XS"</span>,</span><br><span class="line">            <span class="attr">"O"</span>:<span class="string">"system:masters"</span>,</span><br><span class="line">            <span class="attr">"OU"</span>:<span class="string">"System"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>API Server会把客户端证书的CN字段作为User，把name.O字段作为Group</p>
