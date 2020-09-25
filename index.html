@@ -210,6 +210,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/24/Kubernetes中的集群安全/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/09/24/Kubernetes中的集群安全/" class="post-title-link" itemprop="url">Kubernetes中的集群安全</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-09-24 14:04:54" itemprop="dateCreated datePublished" datetime="2020-09-24T14:04:54+08:00">2020-09-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-25 09:35:26" itemprop="dateModified" datetime="2020-09-25T09:35:26+08:00">2020-09-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2020/09/24/Kubernetes中的集群安全/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/24/Kubernetes中的集群安全/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="机制说明"><a href="#机制说明" class="headerlink" title="机制说明"></a>机制说明</h3><p>Kubernetes作为一个分布式集群的管理工具，保证集群的安全性是一个重要的任务。API Server是集群内部各个组件通信的中介，也是外部控制的入口。所以Kubernetes的安全机制基本就是围绕保护API Server来设计的。Kubernetes使用了<strong>认证（Authentication）</strong>、<strong>鉴权（Authorization）</strong>、<strong>准入控制（Admission Control）</strong>三步来保证API Server的安全。</p>
+<p><img src="C:\Users\whyic\AppData\Roaming\Typora\typora-user-images\image-20200924162750460.png" alt="image-20200924162750460"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/09/24/Kubernetes中的集群安全/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/Kubernetes中一些组件的个人理解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -246,11 +380,21 @@
                 
               
 
-              <time title="创建时间：2020-09-23 09:11:40 / 修改时间：09:17:43" itemprop="dateCreated datePublished" datetime="2020-09-23T09:11:40+08:00">2020-09-23</time>
+              <time title="创建时间：2020-09-23 09:11:40" itemprop="dateCreated datePublished" datetime="2020-09-23T09:11:40+08:00">2020-09-23</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-25 09:35:41" itemprop="dateModified" datetime="2020-09-25T09:35:41+08:00">2020-09-25</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -298,15 +442,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h3><p>Pod是一个逻辑概念，是K8S的资源调度单元，一般情况下会把一组功能强相关的容器逻辑上称之为一个pod，就是所说的实例，它们共享PID、IPC、Networks和UTS namespace。作为一个逻辑概念，pod本身没有资源，pod中的容器具有资源，可以通过定义pod模块来创建pod。Pod的设计理念是支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式组合完成服务。</p>
+          <h3 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h3><p>Pod是一个逻辑概念，是K8S的资源调度单元，一般情况下会把一组功能强相关的容器逻辑上称之为一个pod，就是所说的实例，它们共享PID、IPC、Networks和UTS namespace。作为一个逻辑概念，pod本身没有资源，pod中的容器具有资源，可以通过定义pod模块来创建pod。Pod的设计理念是支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式组合完成服务。</p>
 <h3 id="RS或RC"><a href="#RS或RC" class="headerlink" title="RS或RC"></a>RS或RC</h3><p>RS（ReplicaSet）或RS（ReplicationController）负责通过“控制器模式”，保证系统中 Pod 的个数永远等于指定的个数（比如，2 个）。</p>
 <p>Replicaset在继承Pod的所有特性的同时, 它可以利用预先创建好的模板定义副本数量并自动控制, 通过改变Pod副本数量实现Pod的扩容和缩容。</p>
 <h3 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h3><p>ReplicaSet是Deployment的一个子集。Deployment 通过“控制器模式”，来操作 ReplicaSet 的个数和属性，进而实现“水平扩展 / 收缩”和“滚动更新”这两个编排动作。</p>
 <h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>service是pod的路由代理抽象，用于解决pod之间的服务发现问题，即上下游pod之间使用的问题。传统部署方式中，实例所在的主机ip（或者dns名字）一般是不会改变的，但是pod的运行状态可动态变化(比如容器重启、切换机器了、缩容过程中被终止了等)，所以访问端不能以写死IP的方式去访问该pod提供的服务。service的引入旨在保证pod的动态变化对访问端透明，访问端只需要知道service的地址，由service来提供代理。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj0bipwo7zj30qr0ltjrw.jpg" alt="image-20200921194833495.png"></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/09/23/Kubernetes中一些组件的个人理解/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -371,6 +520,35 @@
               <time title="创建时间：2020-09-22 18:58:48" itemprop="dateCreated datePublished" datetime="2020-09-22T18:58:48+08:00">2020-09-22</time>
             </span>
           
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-25 09:34:59" itemprop="dateModified" datetime="2020-09-25T09:34:59+08:00">2020-09-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -401,9 +579,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Scheduler是kubernetes的调度器，主要的任务是把定义的pod分配到集群的节点上。</p>
+<ul>
+<li><p>公平：如何保证每个节点都能被分配资源</p>
+</li>
+<li><p>资源高效利用：集群所有资源最大化被使用</p>
+</li>
+<li><p>效率：调度的性能要好，能够尽快地对大批量的 pod 完成调度工作</p>
+</li>
+<li><p>灵活：允许用户根据自己的需求控制调度的逻辑</p>
+</li>
+</ul>
+<p>Scheduler 是作为单独的程序运行的，启动之后会一直坚挺 API Server，获取PodSpec.NodeName为空的 pod，对每个 pod 都会创建一个 binding（必须遵守的），表明该 pod 应该放到哪个节点上</p>
+<h3 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h3><p> 调度分为几个部分：</p>
+<ol>
+<li><p>首先是过滤掉不满足条件的节点，这个过程称为predicate（预选）；</p>
+</li>
+<li><p>然后对通过的节点按照优先级排序，这个是priority（优选）；</p>
+</li>
+<li><p>最后从中选择优先级最高的节点。</p>
+</li>
+</ol>
+<p>如果中间任何一步骤有错误，就直接返回错误（先预选，后优选）</p>
+          <!--noindex-->
           
-            
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/09/22/Kubernetes调度器/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1365,103 +1571,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/linux中的一些命令/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/21/linux中的一些命令/" class="post-title-link" itemprop="url">linux中的一些命令</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-21 15:48:54" itemprop="dateCreated datePublished" datetime="2020-08-21T15:48:54+08:00">2020-08-21</time>
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/2020/08/21/linux中的一些命令/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/21/linux中的一些命令/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1499,7 +1608,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

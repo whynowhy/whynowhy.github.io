@@ -66,7 +66,7 @@
 <meta property="og:description" content="PodPod是一个逻辑概念，是K8S的资源调度单元，一般情况下会把一组功能强相关的容器逻辑上称之为一个pod，就是所说的实例，它们共享PID、IPC、Networks和UTS namespace。作为一个逻辑概念，pod本身没有资源，pod中的容器具有资源，可以通过定义pod模块来创建pod。Pod的设计理念是支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gj0bipwo7zj30qr0ltjrw.jpg">
-<meta property="og:updated_time" content="2020-09-23T01:17:43.211Z">
+<meta property="og:updated_time" content="2020-09-25T01:35:41.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetes中一些组件的个人理解">
 <meta name="twitter:description" content="PodPod是一个逻辑概念，是K8S的资源调度单元，一般情况下会把一组功能强相关的容器逻辑上称之为一个pod，就是所说的实例，它们共享PID、IPC、Networks和UTS namespace。作为一个逻辑概念，pod本身没有资源，pod中的容器具有资源，可以通过定义pod模块来创建pod。Pod的设计理念是支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的">
@@ -252,11 +252,21 @@
                 
               
 
-              <time title="创建时间：2020-09-23 09:11:40 / 修改时间：09:17:43" itemprop="dateCreated datePublished" datetime="2020-09-23T09:11:40+08:00">2020-09-23</time>
+              <time title="创建时间：2020-09-23 09:11:40" itemprop="dateCreated datePublished" datetime="2020-09-23T09:11:40+08:00">2020-09-23</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-25 09:35:41" itemprop="dateModified" datetime="2020-09-25T09:35:41+08:00">2020-09-25</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -309,6 +319,7 @@
 <p>Replicaset在继承Pod的所有特性的同时, 它可以利用预先创建好的模板定义副本数量并自动控制, 通过改变Pod副本数量实现Pod的扩容和缩容。</p>
 <h3 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h3><p>ReplicaSet是Deployment的一个子集。Deployment 通过“控制器模式”，来操作 ReplicaSet 的个数和属性，进而实现“水平扩展 / 收缩”和“滚动更新”这两个编排动作。</p>
 <h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>service是pod的路由代理抽象，用于解决pod之间的服务发现问题，即上下游pod之间使用的问题。传统部署方式中，实例所在的主机ip（或者dns名字）一般是不会改变的，但是pod的运行状态可动态变化(比如容器重启、切换机器了、缩容过程中被终止了等)，所以访问端不能以写死IP的方式去访问该pod提供的服务。service的引入旨在保证pod的动态变化对访问端透明，访问端只需要知道service的地址，由service来提供代理。</p>
+<a id="more"></a>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gj0bipwo7zj30qr0ltjrw.jpg" alt="image-20200921194833495.png"></p>
 
     </div>
@@ -337,6 +348,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+              <a href="/2020/09/24/Kubernetes中的集群安全/" rel="prev" title="Kubernetes中的集群安全">
+                Kubernetes中的集群安全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
     </footer>
@@ -391,7 +406,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
