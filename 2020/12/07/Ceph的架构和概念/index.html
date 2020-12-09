@@ -70,7 +70,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1glfd4f0onwj30gk0973yh.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1glfdh1aeykj30fq031t8m.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1glfeay41xcj30o60cqwfe.jpg">
-<meta property="og:updated_time" content="2020-12-07T09:36:41.887Z">
+<meta property="og:updated_time" content="2020-12-08T05:42:04.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ceph的架构和概念">
 <meta name="twitter:description" content="Ceph简介Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStack都可与Ceph整合以支持虚拟机镜像的后端存储。 使用Ceph系统可以提供对象存储、块设备存储和文件系统服">
@@ -256,11 +256,21 @@
                 
               
 
-              <time title="创建时间：2020-12-07 17:34:07 / 修改时间：17:36:41" itemprop="dateCreated datePublished" datetime="2020-12-07T17:34:07+08:00">2020-12-07</time>
+              <time title="创建时间：2020-12-07 17:34:07" itemprop="dateCreated datePublished" datetime="2020-12-07T17:34:07+08:00">2020-12-07</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-12-08 13:42:04" itemprop="dateModified" datetime="2020-12-08T13:42:04+08:00">2020-12-08</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -313,18 +323,15 @@
 <p>使用Ceph系统可以提供<strong>对象存储</strong>、<strong>块设备存储</strong>和<strong>文件系统服务</strong>。</p>
 <p>Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW、RBD、CephFS等服务。Ceph实现了非常底层的object storage，是纯粹的SDS，并且支持通用的ZFS、BtrFS和Ext4文件系统，能轻易得Scale，没有单点故障。</p>
 <h3 id="Ceph特点"><a href="#Ceph特点" class="headerlink" title="Ceph特点"></a>Ceph特点</h3><ul>
-<li><p><strong>高性能</strong></p>
+<li><strong>高性能</strong></li>
+</ul>
 <ol>
-<li><p>摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。</p>
-</li>
-<li><p>考虑了容灾域的隔离，能够实现各类负载的副本放置规则，例如跨机房、机架感知等。</p>
-</li>
-<li><p>能够支持上千个存储节点的规模，支持TB到PB级的数据。</p>
-</li>
+<li>摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。</li>
+<li>考虑了容灾域的隔离，能够实现各类负载的副本放置规则，例如跨机房、机架感知等。</li>
+<li>能够支持上千个存储节点的规模，支持TB到PB级的数据。</li>
 </ol>
-</li>
-<li><p><strong>高可用性</strong></p>
-</li>
+<ul>
+<li><strong>高可用性</strong></li>
 </ul>
 <ol>
 <li>副本数可以灵活控制。</li>

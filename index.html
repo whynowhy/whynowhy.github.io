@@ -246,11 +246,21 @@
                 
               
 
-              <time title="创建时间：2020-12-07 17:34:07 / 修改时间：17:36:41" itemprop="dateCreated datePublished" datetime="2020-12-07T17:34:07+08:00">2020-12-07</time>
+              <time title="创建时间：2020-12-07 17:34:07" itemprop="dateCreated datePublished" datetime="2020-12-07T17:34:07+08:00">2020-12-07</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-12-08 13:42:04" itemprop="dateModified" datetime="2020-12-08T13:42:04+08:00">2020-12-08</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -304,18 +314,15 @@
 <p>使用Ceph系统可以提供<strong>对象存储</strong>、<strong>块设备存储</strong>和<strong>文件系统服务</strong>。</p>
 <p>Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW、RBD、CephFS等服务。Ceph实现了非常底层的object storage，是纯粹的SDS，并且支持通用的ZFS、BtrFS和Ext4文件系统，能轻易得Scale，没有单点故障。</p>
 <h3 id="Ceph特点"><a href="#Ceph特点" class="headerlink" title="Ceph特点"></a>Ceph特点</h3><ul>
-<li><p><strong>高性能</strong></p>
+<li><strong>高性能</strong></li>
+</ul>
 <ol>
-<li><p>摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。</p>
-</li>
-<li><p>考虑了容灾域的隔离，能够实现各类负载的副本放置规则，例如跨机房、机架感知等。</p>
-</li>
-<li><p>能够支持上千个存储节点的规模，支持TB到PB级的数据。</p>
-</li>
+<li>摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。</li>
+<li>考虑了容灾域的隔离，能够实现各类负载的副本放置规则，例如跨机房、机架感知等。</li>
+<li>能够支持上千个存储节点的规模，支持TB到PB级的数据。</li>
 </ol>
-</li>
-<li><p><strong>高可用性</strong></p>
-</li>
+<ul>
+<li><strong>高可用性</strong></li>
 </ul>
 <ol>
 <li>副本数可以灵活控制。</li>
