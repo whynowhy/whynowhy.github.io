@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="OSI-TCP模型 1）物理层（Physical Layer） 　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。">
+<meta name="keywords" content="SDN,计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络的基础知识">
+<meta property="og:url" content="http://yoursite.com/2020/12/18/计算机网络的基础知识/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="OSI-TCP模型 1）物理层（Physical Layer） 　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1glpxg1d01bj30hs08jwf3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gls3sn1u0rj30wy0fcn60.jpg">
+<meta property="og:updated_time" content="2020-12-18T08:47:11.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络的基础知识">
+<meta name="twitter:description" content="OSI-TCP模型 1）物理层（Physical Layer） 　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg">
+  <link rel="canonical" href="http://yoursite.com/2020/12/18/计算机网络的基础知识/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>计算机网络的基础知识 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="no-referrer">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">只不过是是随便写写啦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+    </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/18/计算机网络的基础知识/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络的基础知识
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-18 16:44:13 / 修改时间：16:47:11" itemprop="dateCreated datePublished" datetime="2020-12-18T16:44:13+08:00">2020-12-18</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2020/12/18/计算机网络的基础知识/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/18/计算机网络的基础知识/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="OSI-TCP模型"><a href="#OSI-TCP模型" class="headerlink" title="OSI-TCP模型"></a>OSI-TCP模型</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg" alt="undefined"></p>
+<p><strong>1）物理层（Physical Layer）</strong></p>
+<p>　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。<strong>该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。</strong>物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。</p>
+<a id="more"></a>
+<p><strong>2）数据链路层（Data Link Layer）</strong></p>
+<p>　　数据链路层在物理层提供的服务的基础上向网络层提供服务，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。为达到这一目的，数据链路必须具备一系列相应的功能，主要有：如何将数据组合成数据块，在数据链路层中称这种数据块为帧（frame），帧是数据链路层的传送单位；如何控制帧在物理信道上的传输，包括如何处理传输差错，如何调节发送速率以使与接收方相匹配；以及在两个网络实体之间提供数据链路通路的建立、维持和释放的管理。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据的检错、重发等。</p>
+<p>　　有关数据链路层的重要知识点：</p>
+<p>　　<strong>1&gt; 数据链路层为网络层提供可靠的数据传输；</strong></p>
+<p>　　<strong>2&gt; 基本数据单位为帧；</strong></p>
+<p>　　<strong>3&gt; 主要的协议：以太网协议；</strong></p>
+<p>　　<strong>4&gt; 两个重要设备名称：网桥和交换机。</strong></p>
+<p><strong>3）网络层（Network Layer）</strong></p>
+<p>　　网络层的目的是实现两个端系统之间的数据透明传送，具体功能包括寻址和路由选择、连接的建立、保持和终止等。它提供的服务使传输层不需要了解网络中的数据传输和交换技术。如果您想用尽量少的词来记住网络层，那就是“路径选择、路由及逻辑寻址”。</p>
+<p>　　网络层中涉及众多的协议，其中包括最重要的协议，也是TCP/IP的核心协议——IP协议。IP协议非常简单，仅仅提供不可靠、无连接的传送服务。IP协议的主要功能有：无连接数据报传输、数据报路由选择和差错控制。与IP协议配套使用实现其功能的还有地址解析协议ARP、逆地址解析协议RARP、因特网报文协议ICMP、因特网组管理协议IGMP。具体的协议我们会在接下来的部分进行总结，有关网络层的重点为：</p>
+<p>　　<strong>1&gt; 网络层负责对子网间的数据包进行路由选择。此外，网络层还可以实现拥塞控制、网际互连等功能；</strong></p>
+<p>　　<strong>2&gt; 基本数据单位为IP数据包；</strong></p>
+<p>　　<strong>3&gt; 包含的主要协议：</strong></p>
+<p>　　<strong>IP协议（Internet Protocol，因特网互联协议）;</strong></p>
+<p>　　<strong>ICMP协议（Internet Control Message Protocol，因特网控制报文协议）;</strong></p>
+<p>　　<strong>ARP协议（Address Resolution Protocol，地址解析协议）;</strong></p>
+<p>　　<strong>RARP协议（Reverse Address Resolution Protocol，逆地址解析协议）。</strong></p>
+<p>　　<strong>4&gt; 重要的设备：路由器。</strong></p>
+<p><strong>4）传输层（Transport Layer）</strong></p>
+<p>　　第一个端到端，即主机到主机的层次。传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输。此外，传输层还要处理端到端的差错控制和流量控制问题。</p>
+<p>　　传输层的任务是根据通信子网的特性，最佳的利用网络资源，为两个端系统的会话层之间，提供建立、维护和取消传输连接的功能，负责端到端的可靠数据传输。在这一层，信息传送的协议数据单元称为段或报文。</p>
+<p>　　网络层只是根据网络地址将源结点发出的数据包传送到目的结点，而传输层则负责将数据可靠地传送到相应的端口。</p>
+<p>　　有关网络层的重点：</p>
+<p>　　<strong>1&gt; 传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输以及端到端的差错控制和流量控制问题；</strong></p>
+<p>　　<strong>2&gt; 包含的主要协议：TCP协议（Transmission Control Protocol，传输控制协议）、UDP协议（User Datagram Protocol，用户数据报协议）；</strong></p>
+<p>　　<strong>3&gt; 重要设备：网关。</strong></p>
+<p><strong>5）会话层</strong></p>
+<p>　　会话层管理主机之间的会话进程，即负责建立、管理、终止进程之间的会话。会话层还利用在数据中插入校验点来实现数据的同步。</p>
+<p><strong>6）表示层</strong></p>
+<p>　　表示层对上层数据或信息进行变换以保证一个主机应用层信息可以被另一个主机的应用程序理解。表示层的数据转换包括数据的加密、压缩、格式转换等。</p>
+<p><strong>7）应用层</strong></p>
+<p>　　为操作系统或网络应用程序提供访问网络服务的接口。</p>
+<p>　　会话层、表示层和应用层重点：</p>
+<p>　　<strong>1&gt; 数据传输基本单位为报文；</strong></p>
+<p>　　<strong>2&gt; 包含的主要协议：FTP（文件传送协议）、Telnet（远程登录协议）、DNS（域名解析协议）、SMTP（邮件传送协议），POP3协议（邮局协议），HTTP协议（Hyper Text Transfer Protocol）</strong></p>
+<h4 id="各层中的数据"><a href="#各层中的数据" class="headerlink" title="各层中的数据"></a>各层中的数据</h4><p>Data是应用层协议产生的数据，例如访问网页、看视频、听音乐，这些都可以称为应用层数据，电脑的操作系统会把这些应用层数据按照一定的规则传给下一层传输层。</p>
+<p>在传输层，我们看到的数据称之为Segment，中文意思是段。在这一层，数据会被加上TCP或者UDP头，变成一个应用程序特有的数据。操作系统就是通过TCP或UDP端口号来区别不同应用程序的。</p>
+<p>当数据再被往下传输的时候，就变成了packet，即“包”的意思。在这一层，Segment会被加上IP头部信息，然后就可以在三层传输了，而工作在三层的路由器会根据目的IP地址来转发这些”包“。</p>
+<p>在往下，数据就会被加上MAC地址信息，名称就变成了Frame，”帧“。在这一层，就是交换机的世界了，交换机通常查找MAC地址表项来转发相应的”帧“。</p>
+<p>在最底层的物理层，数据还没有被组织，仅作为原始的位流或电气电压处理，单位是比特。</p>
+<p>相应的层次和各层数据的对应关系如下图所示。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1glpxg1d01bj30hs08jwf3.jpg" alt="undefined"></p>
+<h3 id="IP地址及子网掩码划分"><a href="#IP地址及子网掩码划分" class="headerlink" title="IP地址及子网掩码划分"></a>IP地址及子网掩码划分</h3><p>IP地址可以划分为网络地址（Network）和节点地址（Host）</p>
+<p>网络地址也可以称网络号，唯一指定了每个网络。同一个网络中的每台计算机都共享相同的网络地址，并用它作为自己的IP地址的一部分。它定义了IP地址所属的网段。</p>
+<p>节点地址也可以称为主机地址，是在一个网络中用来标识每台计算机的，它也是唯一的标志符。</p>
+<h4 id="地址分类"><a href="#地址分类" class="headerlink" title="地址分类"></a>地址分类</h4><p><strong>A类</strong>   1.0.0.1 ~ 126.255.255.254</p>
+<p><strong>B类</strong>   128.0.0.1 ~ 191.255.255.254</p>
+<p><strong>C类</strong>   192.0.0.1 ~ 223.255.255.254</p>
+<p><strong>D类</strong>   224.0.0.1 ~ 139.255.255.254  多播地址</p>
+<p><strong>E类</strong>   240.0.0.1 ~ 255.255.255.254</p>
+<p>A类地址和B类地址之间还有一个回环地址，127.0.0.1，不属于任何一个有类别地址类。它代表设备的本地虚拟接口，所以默认被看作是永远不会宕掉的接口。</p>
+<p>每个网段内的第一个网络地址即 .0 的地址就代表了整个网络，最后一个.255地址被作为广播之地，这两个地址不能被分配</p>
+<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><p><strong>A类IP</strong> 默认掩码：255.0.0.0 ==/8</p>
+<p><strong>B类IP</strong> 默认掩码：255.255.0.0 ==/16</p>
+<p><strong>C类IP</strong> 默认掩码：255.255.255.0 ==/24</p>
+<p>掩码的作用就是将IP划分为网络位和主机位</p>
+<p>假设ip为192.168.1.1，那么网络位和主机位如下所示</p>
+<table>
+<thead>
+<tr>
+<th>网络位</th>
+<th>主机位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.1</td>
+<td>.1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可变长子网掩码"><a href="#可变长子网掩码" class="headerlink" title="可变长子网掩码"></a>可变长子网掩码</h4><p>可变长子网掩码打破传统的以类为标准的地址划分方法，是为了环节IP地址紧缺而产生</p>
+<p>比如 C类掩码再加一位，变成 255.255.255.128  ==/25</p>
+<p>这样就变成了 网络位 子网位 主机位</p>
+<p>就把一个C类的IP地址划分为两个网段 192.168.1.0~192.168.1.127 和192.168.1.128~192.168.1.255</p>
+<h3 id="网络设备基础命令"><a href="#网络设备基础命令" class="headerlink" title="网络设备基础命令"></a>网络设备基础命令</h3><h4 id="Cisco-IOS-模式"><a href="#Cisco-IOS-模式" class="headerlink" title="Cisco IOS 模式"></a>Cisco IOS 模式</h4><ul>
+<li>用户执行模式 “&gt;”</li>
+<li>特权执行模式 “#”，用于查询和测试</li>
+<li>全局配置模式，对于产品的配置</li>
+<li>其它特定配置模式</li>
+</ul>
+<h4 id="模式的切换"><a href="#模式的切换" class="headerlink" title="模式的切换"></a>模式的切换</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gls3sn1u0rj30wy0fcn60.jpg" alt="image-20201217103731093.png"></p>
+<p>enable 进入特权执行模式</p>
+<p>configure terminal  进入全局配置模式</p>
+<p>interface f0/0 进入接口模式，可配置该接口 </p>
+<p>ip address xxx.xxx.xxx.xxx(ip地址) xxx.xxx.xxx.xxx(子网掩码) 配置接口的ip地址</p>
+<p>hostname 改变主机名</p>
+<h4 id="工程三招"><a href="#工程三招" class="headerlink" title="工程三招"></a>工程三招</h4><ol>
+<li><p><code>（config）#no ip domain lookup</code></p>
+<p>关闭域名解析；为防止敲错命令而查询导致系统终止，但是再配置完成后必须开启，否则无法上网；（ctrl+shift+6强行终止）</p>
+</li>
+<li><p><code>（config）#line console 0</code></p>
+<p><code>（config-line）#logging synchronous</code></p>
+<p>log当前显示信息同步，防止中断输入的命令，使命令移动下一行继续输入；</p>
+</li>
+<li><p><code>（config）#line console 0</code></p>
+<p><code>（config-line）#no exec-timeout</code></p>
+<p>//关闭会话超时，防止时间长不适用自动退出特权，解决再次输入密码的繁琐。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/SDN/" rel="tag"># SDN</a>
+          
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2020/12/07/Ceph的架构和概念/" rel="next" title="Ceph的架构和概念">
+                <i class="fa fa-chevron-left"></i> Ceph的架构和概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-TCP模型"><span class="nav-number">1.</span> <span class="nav-text">OSI-TCP模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#各层中的数据"><span class="nav-number">1.1.</span> <span class="nav-text">各层中的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址及子网掩码划分"><span class="nav-number">2.</span> <span class="nav-text">IP地址及子网掩码划分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址分类"><span class="nav-number">2.1.</span> <span class="nav-text">地址分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子网掩码"><span class="nav-number">2.2.</span> <span class="nav-text">子网掩码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变长子网掩码"><span class="nav-number">2.3.</span> <span class="nav-text">可变长子网掩码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络设备基础命令"><span class="nav-number">3.</span> <span class="nav-text">网络设备基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cisco-IOS-模式"><span class="nav-number">3.1.</span> <span class="nav-text">Cisco IOS 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式的切换"><span class="nav-number">3.2.</span> <span class="nav-text">模式的切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工程三招"><span class="nav-number">3.3.</span> <span class="nav-text">工程三招</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+  <a href="http://beian.miit.gov.cn/">苏ICP备20001714号</a>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'ga0fxxbxDkeXwmO5nTaPYWkU-gzGzoHsz',
+    appKey: 'FHDz0ygNXivmQnkJa9QwgM7F',
+    placeholder: '兄弟们 冲',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+</body>
+</html>

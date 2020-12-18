@@ -210,6 +210,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/常用数据结构及排序算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/27/常用数据结构及排序算法/" class="post-title-link" itemprop="url">常用数据结构及排序算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 16:46:32" itemprop="dateCreated datePublished" datetime="2019-08-27T16:46:32+08:00">2019-08-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-16 10:52:40" itemprop="dateModified" datetime="2020-09-16T10:52:40+08:00">2020-09-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2019/08/27/常用数据结构及排序算法/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/27/常用数据结构及排序算法/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="线性结构"><a href="#线性结构" class="headerlink" title="线性结构"></a>线性结构</h3><p><strong>顺序表</strong>：顺序表是内存中一块连续的区域，紧密排列了若干个相同类型的数据。但是，这种设计需要事先知道同样的元素一共有多少，不然就无法开辟出合适的内存区域（即会存在浪费或者不足）。在普通的编程语言中，数组就是顺序表的经典结构。而且Python中，list（列表）和tuple（元组）就具有顺序表的性质，但是list具有元素可变的性质，具体实现策略是：在建立空表（或很小的表）时，系统分配一块能够容纳8个元素的存储区域；在执行插入操作时，如果元素区满就换一块4倍大的存储区域。如果当时的存储取悦已经很大（当前是50000），系统将改变策略，换存储区域时，容量加倍。</p>
+<p><strong>链表</strong>：链表的诞生是为了解决线性表中元素数量不灵活的缺点。链表的基本单位是节点，每个节点都有一个数据区和next指针，其中的数据区是为了存放数据，next指针指向下一个节点。与顺序表相比，链表可以根据需要自由选择节点的数量，从而解决了内存分配不合适的问题。链表一般分为<strong>头插法</strong>和<strong>尾插法</strong>两种方式。头插法就是把新节点直接插在节点链的头部，比较适合构造栈；尾插法把新节点插在链表末尾，比较适合构造队列，而且需要额外的指针指向尾节点。插入过程如下：(1) 将新节点的next指针指向要插入的位置的后一个节点（new_node-&gt;next = p-&gt;next;）(2) 第二步，把要插入的位置的前一个节点的next指针指向新节点（p-&gt;next = new_node;）。删除节点过程如下：(1) 将要删除的节点的上一个节点的next指针指向被删除的节点的下一个节点（p-&gt;next = deleted_node-&gt;next;) (2) 释放被删除的节点（free(delete_node);）</p>
+<p>相关的python代码。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/27/常用数据结构及排序算法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/Flask中html没有传值时，使用request不报错的方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1513,135 +1648,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/《A-novel-online-ensemble-approach-to-handle-concept-drifting-data-streams-diversified-dynamic-weighted-majority》-读后感/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="老王">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只不过是是随便写写啦">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/09/《A-novel-online-ensemble-approach-to-handle-concept-drifting-data-streams-diversified-dynamic-weighted-majority》-读后感/" class="post-title-link" itemprop="url">读书笔记--《A novel online ensemble approach to handle concept drifting data streams: diversified dynamic weighted majority》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-09 21:38:15" itemprop="dateCreated datePublished" datetime="2019-05-09T21:38:15+08:00">2019-05-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 14:07:44" itemprop="dateModified" datetime="2019-07-28T14:07:44+08:00">2019-07-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/2019/05/09/《A-novel-online-ensemble-approach-to-handle-concept-drifting-data-streams-diversified-dynamic-weighted-majority》-读后感/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/09/《A-novel-online-ensemble-approach-to-handle-concept-drifting-data-streams-diversified-dynamic-weighted-majority》-读后感/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>本文提出了一种多元动态权值(diversified dynamic weighted majority, DDWM)的方法来解决数据流挖掘中的概念漂移，文中使用不同权重的两组集合来区分他们的多样性，根据其分类准确度更新或移除任一组集合中的专家（基分类器），并基于算法的最终全局预测和任何数据实例的整体的全局预测来添加新专家。</p>
-<p>文中的分类系统具有两个集合，一个是具有高多样性，另一个是具有低多样性的</p>
-<p>这篇论文有点捞 等会再看。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1679,7 +1685,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1809,7 +1815,11 @@
         
           
         
-        <span class="site-state-item-count">31</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
