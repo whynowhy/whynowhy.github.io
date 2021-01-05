@@ -68,7 +68,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1glpxg1d01bj30hs08jwf3.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gls3sn1u0rj30wy0fcn60.jpg">
-<meta property="og:updated_time" content="2020-12-18T08:49:18.193Z">
+<meta property="og:updated_time" content="2021-01-05T02:47:10.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络的基础知识">
 <meta name="twitter:description" content="OSI-TCP模型 1）物理层（Physical Layer） 　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。">
@@ -254,11 +254,21 @@
                 
               
 
-              <time title="创建时间：2020-12-18 16:44:13 / 修改时间：16:49:18" itemprop="dateCreated datePublished" datetime="2020-12-18T16:44:13+08:00">2020-12-18</time>
+              <time title="创建时间：2020-12-18 16:44:13" itemprop="dateCreated datePublished" datetime="2020-12-18T16:44:13+08:00">2020-12-18</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-05 10:47:10" itemprop="dateModified" datetime="2021-01-05T10:47:10+08:00">2021-01-05</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -408,6 +418,136 @@
 <li><p><code>（config）#line console 0</code></p>
 <p><code>（config-line）#no exec-timeout</code></p>
 <p>//关闭会话超时，防止时间长不适用自动退出特权，解决再次输入密码的繁琐。</p>
+</li>
+</ol>
+<h3 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h3><p>一个小型到中型的网络适合静态路由，而且没有或只有较小的扩充计划时。</p>
+<p>静态路由要手工输入，手工管理：管理开销对于动态路由来说是一个负担</p>
+<p>思科配置静态路由的方法： ip router &lt;目的网段&gt; &lt;目的网段掩码&gt;&lt;下一跳&gt;</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>对路由器CPU没有管理型开销</li>
+<li>在路由器没有带宽占用</li>
+<li>增加安全性</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>必须真正了解网络</li>
+<li>对于新添加网络配置繁琐</li>
+<li>对于大型网咯工作量巨大</li>
+</ul>
+<p>在配置静态路由时，主要配置目的网段和下一跳地址，在配置前需要进行如下的分析：</p>
+<p>静态路由的配置分析：</p>
+<ol>
+<li>首先先统计网络个数</li>
+<li>每个路由器需要配置的路由数目等于总网络数目减去本身连接的网络数目</li>
+<li>目的网络位需要去的网络，也就是非直连的网络</li>
+<li>下一跳为与自己直连路由器的接口地址</li>
+</ol>
+<h4 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h4><p>ARP：Address Resolution Protocol 地址解析协议</p>
+<p>ARP的作用：将已知的IP地址解析为MAC地址</p>
+<p>发广播请求，回单播响应</p>
+<h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><h4 id="RIP协议"><a href="#RIP协议" class="headerlink" title="RIP协议"></a>RIP协议</h4><p>Routing Information Protocol ，路由信息协议</p>
+<p>基于<strong>距离矢量协议</strong>，度量值：<strong>跳数</strong>。跳数超过15不可达，每30秒收敛一次。</p>
+<p>使用UDP协议传输，源目的端口号520</p>
+<h5 id="RIPv1-和-RIPv2"><a href="#RIPv1-和-RIPv2" class="headerlink" title="RIPv1 和 RIPv2"></a>RIPv1 和 RIPv2</h5><p>RIP还要提到一点是RIP分为RIP1与RIP2两个版本，区别如下：</p>
+<ol>
+<li><strong>RIP1是一个有类路由协议</strong>，即所有的更新包中不含子网掩码，不支持VLSM， 所以就要求网络中所有设备必须使用相同的子网掩码，否则就会出错，而<strong>RIP2是一个无类的路由协议</strong>，它使用子网掩码。</li>
+<li>第二个不同的地方是<strong>RIP1</strong>是发送更新包的时候使用的是<strong>广播包</strong>，而<strong>RIP2</strong>默认使用的是<strong>组播</strong>224.0.0.9，也支持广播发送，这样相对于RIP1来说就节省了一部分网络带宽。</li>
+<li>第三个就是RIP2支持明文或者是 MD5验证，要求两台路由器在同步路由表的时候必须进行验证，通过才可以进行路由同步，这样可以加强安全性。</li>
+</ol>
+<h5 id="RIP计时器"><a href="#RIP计时器" class="headerlink" title="RIP计时器"></a>RIP计时器</h5><ul>
+<li>更新计时器（update）：30s更新路由表。</li>
+<li>无效计时器（invalid）：180s不刷新则将该路由条目的度量值设置为16。</li>
+<li><p>刷新计时器（flush）：默认240s，比无效计时器长60s。刷新后路由条目则删除。</p>
+</li>
+<li><p>抑制计时器（Hold-down）：180s</p>
+</li>
+</ul>
+<h5 id="防环机制"><a href="#防环机制" class="headerlink" title="防环机制"></a>防环机制</h5><ul>
+<li>水平分割：从一个接口收到的路由条目不会再从这个接口发送出去。</li>
+<li>路由毒化和毒性逆转的水平分割：从一个接口收到的路由条目会从这个接口发送出去，但是将这个路由条目标记为16跳不可达。</li>
+<li>触发更新，当路由表发生变化时，会立刻发送更新信息。</li>
+</ul>
+<h4 id="OSPF协议"><a href="#OSPF协议" class="headerlink" title="OSPF协议"></a>OSPF协议</h4><p>Open Shortest Pah First，开放式最短路径优先协议</p>
+<p>基于<strong>链路状态协议</strong>，度量值：<strong>带宽</strong></p>
+<p>使用hello包建立邻居，10s利用组播发送一次</p>
+<p>有以下特点：可适应大规模网络，路由变化收敛速度快，无路由环，支持变长子网掩码VLSM，支持区域划分，支持以组播地址发送协议报</p>
+<h5 id="报文类型"><a href="#报文类型" class="headerlink" title="报文类型"></a>报文类型</h5><ul>
+<li>Hello 建立和维护OSPF邻居关系</li>
+<li>DBD 链路状态数据库描述信息（描述LSDB中LSA头部信息）</li>
+<li>LSR 链路状态请求，向OSPF邻居请求链路状态信息</li>
+<li>LSU 链路状态更新（包含一条或多条LSA）</li>
+<li>LSAack 对LSU中的LSA进行确认</li>
+</ul>
+<h5 id="OSPF网络类型"><a href="#OSPF网络类型" class="headerlink" title="OSPF网络类型"></a>OSPF网络类型</h5><ul>
+<li>广播多路访问型</li>
+<li>非广播多路访问型</li>
+<li>点到点型</li>
+<li>点到多点型</li>
+</ul>
+<h5 id="OSPF的三张表"><a href="#OSPF的三张表" class="headerlink" title="OSPF的三张表"></a>OSPF的三张表</h5><ul>
+<li><strong>邻居表</strong> OSPF用邻居机制来发现和维持路由的存在，邻居表存储了双向通信的邻居关系OSPF路由器列表的信息。</li>
+<li><strong>拓扑表</strong> OSPF用LSA来描述网络拓扑信息，然后OSPF路由器用拓扑数据库来存储网络的这些LSA。</li>
+<li><strong>OSPF路由表</strong> 对链路状态数据库进行SPF计算，而得出的OSPF路由表。</li>
+</ul>
+<h5 id="OSPF的基本运行步骤"><a href="#OSPF的基本运行步骤" class="headerlink" title="OSPF的基本运行步骤"></a>OSPF的基本运行步骤</h5><ol>
+<li><p>建立邻接关系</p>
+<p>所谓“邻接关系”（Adjacency）是指OSPF路由器以交换路由信息为目的，在所选择的相邻路由器之间建立的一种关系。</p>
+<p>路由器首先发送拥有自身ID信息（Loopback端口或最大的IP地址）的Hello报文。与之相邻的路由器如果收到这个Hello报文，就将这个报文内的ID信息加入到自己的Hello报文内。</p>
+<p>如果路由器的某端口收到从其他路由器发送的含有自身ID信息的Hello报文，则它根据该端口所在网络类型确定是否可以建立邻接关系。</p>
+<p>在点对点网络中，路由器将直接和对端路由器建立起邻接关系，并且该路由器将直接进入到第三步操作：发现其他路由器。若为MultiAccess 网络, 该路由器将进入选举步骤。</p>
+</li>
+<li><p>必要的时候进行DR的选举</p>
+<p>不同类型的网络选举DR和BDR的方式不同。</p>
+<p>MultiAccess网络支持多个路由器，在这种状况下, OSPF需要建立起作为链路状态和LSA更新的中心节点。选举利用Hello报文内的ID和优先权(Priority)字段值来确定。优先权字段值大小从0到255，优先权值最高的路由器成为DR。如果优先权值大小一样，则ID值最高的路由器选举为DR，优先权值次高的路由器选举为BDR。优先权值和ID值都可以直接设置</p>
+</li>
+<li><p>发现路由</p>
+<p>在这个步骤中，路由器与路由器之间首先利用Hello报文的ID信息确认主从关系，然后主从路由器相互交换部分链路状态信息。每个路由器对信息进行分析比较，如果收到的信息有新的内容，路由器将要求对方发送完整的链路状态信息。这个状态完成后，路由器之间建立完全相邻（Full Adjacency）关系，同时邻接路由器拥有自己独立的、完整的链路状态数据库。</p>
+<p>在MultiAccess网络内，DR与BDR互换信息，并同时与本子网内其他路由器交换链路状态信息。</p>
+<p>Point-to-Point 或 Point-to-MultiPoint网络中，相邻路由器之间信息。</p>
+</li>
+<li><p>选择合适的路由器</p>
+<p>当一个路由器拥有完整独立的链路状态数据库后，它将采用SPF算法计算并创建路由表。OSPF路由器依据链路状态数据库的内容，独立地用SPF算法计算出到每一个目的网络的路径，并将路径存入路由表中。</p>
+<p>OSPF利用量度（Cost）计算目的路径，Cost最小者即为最短路径。在配置OSPF路由器时可根据实际情况，如链路带宽、时延或经济上的费用设置链路Cost大小。Cost越小，则该链路被选为路由的可能性越大。</p>
+</li>
+<li><p>维护路由信息</p>
+<p>当链路状态发生变化时，OSPF通过Flooding 过程通告网络上其他路由器。OSPF路由器接收到包含有新信息的链路状态更新报文，将更新自己的链路状态数据库，然后用SPF算法重新计算路由表。在重新计算过程中，路由器继续使用旧路由表，直到SPF完成新的路由表计算。新的链路状态信息将发送给其他路由器。值得注意的是，即使链路状态没有发生改变，OSPF路由信息也会自动更新，默认时间为30分钟。</p>
+</li>
+</ol>
+<h4 id="BGP协议"><a href="#BGP协议" class="headerlink" title="BGP协议"></a>BGP协议</h4><p>Border Gateway Protocol，边界网关协议</p>
+<p>基于<strong>路径向量协议</strong>的外部网关协议，</p>
+<p>BGP 只能是力求寻找一条能够达到目的网络且<strong>比较好的路由</strong>，而<strong>并非最佳路由</strong>。</p>
+<h5 id="报文类型-1"><a href="#报文类型-1" class="headerlink" title="报文类型"></a>报文类型</h5><ul>
+<li>OPEN（打开）报文：用来与相邻的另一个BGP发言人建立关系，并认证发送方。</li>
+<li>UPDATE（更新）报文：通告新路径或撤销原路径。</li>
+<li>KEEPALIVE（保活）报文：在无UPDATE时，用来周期性正式邻站的连通性，也作为OPEN的确认</li>
+<li>NOTIFICATION（通知）报文：用来发现检测到的错误，或者用于关闭连接。</li>
+</ul>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
+<li><p>和谁交换：与其它AS的邻站BGP发言人交换信息</p>
+<p>在配置BGP时，每一个自治系统的管理员要选择至少一个路由器作为该自治系统的<strong>“BGP发言人”</strong>，这里所谓的发言人就是该路由器可以代表整个自治系统与其他自治系统交互路由信息。BGP发言人往往就是BGP<strong>边界路由器</strong>。</p>
+</li>
+<li><p>交换什么信息：交换的网络可达性信息，即要达到某个网络所要经过的一系列AS</p>
+<p>当BGP发言人相互交换了网络可达性信息后，各BGP发言就根据所采用的策略从收到的路由信息中找出到达各自治系统的较好路由。</p>
+</li>
+<li><p>多久交换：发生变化时更新有变化的部分</p>
+<p>在BGP刚运行时，BGP的邻站是交换整个的BGP路由表。但是以后只需要在发生变换时更新有变化的部分。这样做对节省网络带宽和减少路由器的处理开销都有好处。</p>
+</li>
+</ul>
+<h5 id="BGP的工作过程"><a href="#BGP的工作过程" class="headerlink" title="BGP的工作过程"></a>BGP的工作过程</h5><ol>
+<li>IP可达：BGP承载于IGP之上</li>
+<li>建立TCP会话：基于179端口，目标端口必须为179；</li>
+<li>使用open报文建立BGP的邻居关系，生成邻居表</li>
+<li>邻居关系建立后使用update共享路由信息，装载BGP表中，本地发出及接收到的所有路由信息</li>
+<li>根据选路规则将BGP表中最优路径加载于路由表；</li>
+<li>邻居建立后，一直使用keepalive周期保活TCP会话</li>
+<li>若出现拓扑结构变化，直接使用update触发更新即可</li>
+<li>若出现错误的配置产生故障参数时，将使用notification进行报错</li>
+<li>结构突变<ol>
+<li>新增：最先学习到新增网段的BGP设备，使用update包共享条目即可</li>
+<li>断开：最先知道断开网段的BGP设备，使用update包共享信息即可</li>
+<li>无法通讯：hold time到时时，断开邻居关系和TCP会话；然后删除所有从该邻居学习到的信息</li>
+</ol>
 </li>
 </ol>
 
@@ -646,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-TCP模型"><span class="nav-number">1.</span> <span class="nav-text">OSI-TCP模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#各层中的数据"><span class="nav-number">1.1.</span> <span class="nav-text">各层中的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址及子网掩码划分"><span class="nav-number">2.</span> <span class="nav-text">IP地址及子网掩码划分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址分类"><span class="nav-number">2.1.</span> <span class="nav-text">地址分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子网掩码"><span class="nav-number">2.2.</span> <span class="nav-text">子网掩码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变长子网掩码"><span class="nav-number">2.3.</span> <span class="nav-text">可变长子网掩码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络设备基础命令"><span class="nav-number">3.</span> <span class="nav-text">网络设备基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cisco-IOS-模式"><span class="nav-number">3.1.</span> <span class="nav-text">Cisco IOS 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式的切换"><span class="nav-number">3.2.</span> <span class="nav-text">模式的切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工程三招"><span class="nav-number">3.3.</span> <span class="nav-text">工程三招</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-TCP模型"><span class="nav-number">1.</span> <span class="nav-text">OSI-TCP模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#各层中的数据"><span class="nav-number">1.1.</span> <span class="nav-text">各层中的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址及子网掩码划分"><span class="nav-number">2.</span> <span class="nav-text">IP地址及子网掩码划分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址分类"><span class="nav-number">2.1.</span> <span class="nav-text">地址分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子网掩码"><span class="nav-number">2.2.</span> <span class="nav-text">子网掩码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变长子网掩码"><span class="nav-number">2.3.</span> <span class="nav-text">可变长子网掩码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络设备基础命令"><span class="nav-number">3.</span> <span class="nav-text">网络设备基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cisco-IOS-模式"><span class="nav-number">3.1.</span> <span class="nav-text">Cisco IOS 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式的切换"><span class="nav-number">3.2.</span> <span class="nav-text">模式的切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工程三招"><span class="nav-number">3.3.</span> <span class="nav-text">工程三招</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态路由"><span class="nav-number">4.</span> <span class="nav-text">静态路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP协议"><span class="nav-number">4.1.</span> <span class="nav-text">ARP协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态路由"><span class="nav-number">5.</span> <span class="nav-text">动态路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RIP协议"><span class="nav-number">5.1.</span> <span class="nav-text">RIP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RIPv1-和-RIPv2"><span class="nav-number">5.1.1.</span> <span class="nav-text">RIPv1 和 RIPv2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RIP计时器"><span class="nav-number">5.1.2.</span> <span class="nav-text">RIP计时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#防环机制"><span class="nav-number">5.1.3.</span> <span class="nav-text">防环机制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OSPF协议"><span class="nav-number">5.2.</span> <span class="nav-text">OSPF协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#报文类型"><span class="nav-number">5.2.1.</span> <span class="nav-text">报文类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OSPF网络类型"><span class="nav-number">5.2.2.</span> <span class="nav-text">OSPF网络类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OSPF的三张表"><span class="nav-number">5.2.3.</span> <span class="nav-text">OSPF的三张表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OSPF的基本运行步骤"><span class="nav-number">5.2.4.</span> <span class="nav-text">OSPF的基本运行步骤</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BGP协议"><span class="nav-number">5.3.</span> <span class="nav-text">BGP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#报文类型-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">报文类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">5.3.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BGP的工作过程"><span class="nav-number">5.3.3.</span> <span class="nav-text">BGP的工作过程</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -664,7 +804,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     
     <i class="fa fa-user"></i>
