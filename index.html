@@ -210,7 +210,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/18/计算机网络的基础知识/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/14/SDN的基础架构和原理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老王">
@@ -227,7 +227,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/12/18/计算机网络的基础知识/" class="post-title-link" itemprop="url">计算机网络的基础知识</a>
+                <a href="/2021/01/14/SDN的基础架构和原理/" class="post-title-link" itemprop="url">SDN的基础架构和原理</a>
               
             
           </h1>
@@ -246,21 +246,11 @@
                 
               
 
-              <time title="创建时间：2020-12-18 16:44:13" itemprop="dateCreated datePublished" datetime="2020-12-18T16:44:13+08:00">2020-12-18</time>
+              <time title="创建时间：2021-01-14 10:25:13 / 修改时间：10:34:18" itemprop="dateCreated datePublished" datetime="2021-01-14T10:25:13+08:00">2021-01-14</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-01-05 10:47:10" itemprop="dateModified" datetime="2021-01-05T10:47:10+08:00">2021-01-05</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -291,8 +281,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/2020/12/18/计算机网络的基础知识/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/18/计算机网络的基础知识/" itemprop="commentCount"></span>
+    <a href="/2021/01/14/SDN的基础架构和原理/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/14/SDN的基础架构和原理/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -308,18 +298,254 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="OSI-TCP模型"><a href="#OSI-TCP模型" class="headerlink" title="OSI-TCP模型"></a>OSI-TCP模型</h3><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g72lrypcvoj30ku0d2gmy.jpg" alt="undefined"></p>
-<p><strong>1）物理层（Physical Layer）</strong></p>
-<p>　　激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。<strong>该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保原始的数据可在各种物理媒体上传输。</strong>物理层记住两个重要的设备名称，中继器（Repeater，也叫放大器）和集线器。</p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/12/18/计算机网络的基础知识/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
+            <h3 id="SDN基础架构"><a href="#SDN基础架构" class="headerlink" title="SDN基础架构"></a>SDN基础架构</h3><p>ONF在SDN技术白皮书中给出了SDN的基本框架，主要分为三层，应用层，控制层和转发层</p>
+<ul>
+<li>应用层：实现了网络流量的灵活控制。</li>
+<li>控制层：网络虚拟化的一种实现方式，其核心技术为OpenFlow。</li>
+<li>转发层：一种新型的网络创新架构，实现了网络设备控制与转发分离。</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmmzj45oeqj30g70lz74w.jpg" alt="image-20210113095648274.png"></p>
+<h4 id="体系架构"><a href="#体系架构" class="headerlink" title="体系架构"></a>体系架构</h4><p>此外ONF定义SDN的体系架构，分为四个平面和两大接口</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmmzjd1jdpj31bc0r81kx.jpg" alt="image-20210112110621558.png"></p>
+<h5 id="四大平面"><a href="#四大平面" class="headerlink" title="四大平面"></a>四大平面</h5><ul>
+<li>数据平面</li>
+</ul>
+<p>是由若干网元(Network Element)组成，每个网元包含一个或多个SDN数据路径(SDN Datapath)。SDN Datapath是逻辑上的网络设备，负责转发和处理数据无控制能力，一个SDN DataPath包含控制数据平面接口(Control Data Plane Interface,CDPI)、代理、转发引擎(Forwarding Engine)表和处理功能(Processing Function) SDN数据面(转发面)的关键技术:对数据面进行抽象建模。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmkqko1r1mj31nk0t2abl.jpg" alt="undefined"></p>
+<ul>
+<li>控制平面</li>
+</ul>
+<p>控制平面包括北向接口(Northbound Interfaces,NBI)代理、SDN控制逻辑(Control Logic)、控制数据平面接口驱动三部分。控制平面有两个任务：1.将SDN应用层请求转换到SDN Datapath;2.为SDN应用提供底层网络的抽象模型(状态或事件)</p>
+<p>控制平面的关键技术：控制器(网络操作系统(NOS)或网络控制器)，SDN控制器是整个网络的大脑，网络的智能或核心实现都在SDN控制器中。开源的SDN控制器：NOX、POX、FloodLight、RYU、OpenDayLight、ONOS等。</p>
+<ul>
+<li>应用平面</li>
+</ul>
+<p>应用平面包括SDN应用逻辑与北向接口(NBI)驱动。应用平面通过北向接口与SDN控制器进行交互。在应用逻辑的实现上可以基于SDN理念改造传统应用的交付能力比如负载均衡、访问控制、应用加速。具体比如：可以通过软件实现的应用交付能力，降低系统的开支和成本;实现网元的虚拟化和集中化控制;支持网络系统的快速部署，在故障出现时能够快速并发现与解决问题;提供更高的智能，支持自动化运作，实现应用可感知的网络，这些都是SDN应用逻辑的具体实现。</p>
+<ul>
+<li>管理平面</li>
+</ul>
+<p>管理平面负责一系列静态的工作例如网元的初始化配置;指定SDN DataPath控制器;定义SDN控制器及SDN应用的控制范围。</p>
+<h5 id="两大接口"><a href="#两大接口" class="headerlink" title="两大接口"></a>两大接口</h5><ul>
+<li>南向接口</li>
+</ul>
+<p>南向接口是控制平面和数据平面间的接口，主要功能包括：转发行为控制、设备性能查询、统计报告、事件通知等。标准化的南向接口协议（Openflow）不依赖于底层具体厂商的交换设备。<strong>关键技术</strong>：转发面开放协议（南向接口协议），允许控制器控制交换机的配置以及相关转发行为。</p>
+<ul>
+<li>北向接口</li>
+</ul>
+<p>北向接口是应用平面与控制平面之间的接口（NBI），向应用层提供抽象的网络视图，使应用能直接控制网络的行为。是一个开放的、与厂商无关的接口。<strong>关键技术</strong>：SDN北向接口设计，使控制器将网络能力封装后开放接口，供上层业务调用。REST API成为SDN北向接口的主流设计。</p>
+<h3 id="SDN核心思想"><a href="#SDN核心思想" class="headerlink" title="SDN核心思想"></a>SDN核心思想</h3><p>SDN和核心思想可分为三个点，解耦，抽象和可编程</p>
+<h4 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h4><p><strong>概念</strong>：将控制平面和数据平面进行分离。</p>
+<p><strong>解决问题</strong>：传统网络中，在物理上紧耦合导致的问题。</p>
+<p>解耦后<strong>控制平面</strong>负责上层的控制决策，通过软件实现，灵活，可满足多元化需求；<strong>数据平面</strong>负责数据的交换转发，通过硬件设备实现，专注转发，简单通用。</p>
+<h4 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h4><p>转发抽象，将数据平面抽象成通用的转发模型，与硬件无关</p>
+<p>分布状态抽象，控制层将设备的分布状态抽象成全局的网络视图，从而实现抽象功能，通过网络操作系统来实现。主要实现两个功能：1.实现下发控制命令。2.手机设备和链路状态，为上层应用提供全局的网络视图</p>
+<p>配置抽象，将网络行为的表达通过编程语言来实现，基于简化抽象模型抽象配置映射为物理配置。</p>
+<h4 id="可编程"><a href="#可编程" class="headerlink" title="可编程"></a>可编程</h4><p>在数据平面和控制平面解耦后，提供了开放的可编程接口，如北向接口，南向接口和东西向接口。</p>
+<h3 id="SDN数据平面"><a href="#SDN数据平面" class="headerlink" title="SDN数据平面"></a>SDN数据平面</h3><p>数据平面的主要任务是执行网络控制逻辑，如解析数据包头，转发数据包到某些端口。数据平面对数据包的处理主要是通过查询由控制平面所生成的转发信息表</p>
+<h4 id="数据包的处理流程"><a href="#数据包的处理流程" class="headerlink" title="数据包的处理流程"></a>数据包的处理流程</h4><p><strong>传统网络</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn02gifnej31dn0jxqkp.jpg" alt="image-20210112164056505.png"></p>
+<p>数据转发处理特点：1. 协议相关，只能处理某几种特定协议的数据包。2. 功能模块固定，支持有限的用户配置，不支持编程自定义。</p>
+<p><strong>SDN网络</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn02qycjjj31cr0kineg.jpg" alt="image-20210112164743243.png"></p>
+<h4 id="Openflow"><a href="#Openflow" class="headerlink" title="Openflow"></a>Openflow</h4><h5 id="架构组成部分"><a href="#架构组成部分" class="headerlink" title="架构组成部分"></a>架构组成部分</h5><ul>
+<li><p><strong>流表</strong></p>
+<p>指示交换机如何进行流处理，每个动作关联一个流表项。</p>
+</li>
+<li><p><strong>安全通道</strong></p>
+</li>
+</ul>
+<p>负责控制器与交换机之间的交互，通过安全通道与远端控制器连接。</p>
+<ul>
+<li><strong>OpenFlow协议</strong></li>
+</ul>
+<p>定义了一种南向接口标准，为控制器与交换机之间的通信提供了一种开放标准的方式</p>
+<h5 id="OpenFlow主要版本及特性"><a href="#OpenFlow主要版本及特性" class="headerlink" title="OpenFlow主要版本及特性"></a>OpenFlow主要版本及特性</h5><table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>发布时间</th>
+<th>主要特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V1.0</td>
+<td>2009.12</td>
+<td>单流表</td>
+</tr>
+<tr>
+<td>V1.1</td>
+<td>2011.02</td>
+<td>流水线、组表</td>
+</tr>
+<tr>
+<td>V1.2</td>
+<td>2011.12</td>
+<td>可拓展匹配、多控制器、IPv6</td>
+</tr>
+<tr>
+<td>V1.3</td>
+<td>2012.06</td>
+<td>计量表、IPv6拓展头</td>
+</tr>
+<tr>
+<td>V1.4</td>
+<td>2013.10</td>
+<td>流表同步机制</td>
+</tr>
+<tr>
+<td>V1.5</td>
+<td>2014.12</td>
+<td>出向流表</td>
+</tr>
+</tbody>
+</table>
+<h5 id="流表"><a href="#流表" class="headerlink" title="流表"></a>流表</h5><p><strong>流的概念</strong></p>
+<ul>
+<li>某种共同特征的数据</li>
+<li>由网络管理员定义，根据不同的流执行不同的策略。</li>
+<li>数据以“流”为单位进行处理。</li>
+</ul>
+<p>流表就是特定流的策略表象集合，负责数据包的查找和转发。</p>
+<h5 id="流表组成"><a href="#流表组成" class="headerlink" title="流表组成"></a>流表组成</h5><p>流表由包头域，计数器和动作表组成</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn05kyn51j316d0m3ttj.jpg" alt="image-20210112201618756.png"></p>
+<p><strong>包头域</strong></p>
+<p>包头域是链路层、网络层和传输层的大部分标识，是一个12元组（如上图），涵盖了OSI模型的1-4层，12元组相应的层数划分如下所示。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn05s2j0oj314c0g41kx.jpg" alt="image-20210112202739859.png"></p>
+<p><strong>计数器</strong></p>
+<p>统计数据流量相关信息，流表、数据流、设备端口和转发队列；</p>
+<ul>
+<li>流表：统计表项数、数据包查询次数和数据包匹配次数等</li>
+<li>数据流：统计数据包数，字节数、数据流持续时间等</li>
+<li>队列：统计发送的数据包数、字节数和溢出错误数</li>
+<li>设备端口：统计接收到的数据包数，发送数据包数，接收字节数，发送字节数和错误发生的次数</li>
+</ul>
+<p><strong>动作表</strong></p>
+<p>指示与该交换机匹配的数据包应该执行的下一步操作。</p>
+<p>每个流表项对应有零至多个动作，如果没有定义转发动作，数据包丢弃；多个动作的执行可以具有不同的优先级；出现OpenFlow交换机不支持的参数值，返回相应的出错信息。</p>
+<ul>
+<li>必备动作：<ul>
+<li>转发：数据包交个物理端口或者保留端口：ALL、CONTROLLER、TABLE、LOCAL、IN_PORT</li>
+<li>丢弃：交换机对没有明确动作指示的流表项，将会对与其匹配的数据包默认执行丢弃操作</li>
+</ul>
+</li>
+<li>可选动作：<ul>
+<li>转发：交换机可选支持将数据包转发给如下虚拟端口：NORMAL、FLOOD</li>
+<li>排队：交换机将数据包转发到某个出端口对应的转发序列中，便于提供QOS支持</li>
+<li>修改域：交换机修改报头的具体字段</li>
+</ul>
+</li>
+</ul>
+<h5 id="数据包的处理流程-1"><a href="#数据包的处理流程-1" class="headerlink" title="数据包的处理流程"></a>数据包的处理流程</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0c6vi4zj31am0hy17h.jpg" alt="image-20210112210937523.png"></p>
+<h5 id="包头解析匹配流程"><a href="#包头解析匹配流程" class="headerlink" title="包头解析匹配流程"></a>包头解析匹配流程</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0cei0htj30uj0nyk4x.jpg" alt="image-20210112211102259.png"></p>
+<h5 id="流表项结构变化"><a href="#流表项结构变化" class="headerlink" title="流表项结构变化"></a>流表项结构变化</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0cjucs5j314c0n3qoh.jpg" alt="image-20210112211202697.png"></p>
+<p>流表用于数据包的查找，处理和转发。由多个流表项组成，每个流表项是一个转发规则，由匹配字段、计数器和动作组成。</p>
+<h4 id="SDN交换机"><a href="#SDN交换机" class="headerlink" title="SDN交换机"></a>SDN交换机</h4><p><strong>SDN物理（硬件）交换机</strong></p>
+<p>混合模式交换机：支持传统二、三层处理模式和SDN处理模式。</p>
+<p><strong>SDN虚拟（软件）交换机</strong></p>
+<p>成本低、配置灵活，性能满足中小规模的网络要求。</p>
+<h3 id="南向接口协议"><a href="#南向接口协议" class="headerlink" title="南向接口协议"></a>南向接口协议</h3><p>控制平面的控制器和数据平面的交换机之间的信息交互而设计的协议称为南向接口协议</p>
+<h4 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h4><ul>
+<li>实现数据平面与控制平面的信息交互，向上手机交换机信息，向下下发控制策略，指导转发行为。</li>
+<li>实现网络的配置与管理。</li>
+<li>实现路径计算，包括传送链路的带宽与开销等属性、链路状态和拓扑信息等。</li>
+</ul>
+<h4 id="OpenFlow协议"><a href="#OpenFlow协议" class="headerlink" title="OpenFlow协议"></a>OpenFlow协议</h4><h5 id="Openflow消息类型"><a href="#Openflow消息类型" class="headerlink" title="Openflow消息类型"></a>Openflow消息类型</h5><ul>
+<li><p>Controller-to-Switch消息：由控制器发起，可能会要求交换机回复对应的消息。有以下类型</p>
+<p>| 名称          | 说明                                                   |<br>| ————- | —————————————————— |<br>| Features      | 发送Feature_Request消息请求交换机的特性信息            |<br>| Configuration | 设置或查询交换机的配置信息                             |<br>| Modify-state  | 管理交换机流表项和端口状态等                           |<br>| Read-state    | 收集交换机的各种信息，包括配置信息、统计信息和功能特性 |<br>| Send-packet   | 通过Packet-out消息向交换机的制定端口发送数据包         |<br>| Barrier       | 确保动作执行顺序，保持策略一致性                       |</p>
+</li>
+<li><p>Asynchronous消息：由交换机发起，用于告知控制器新数据包的达到和交换机状态的改变。</p>
+<p>| 名称         | 说明                                               |<br>| ———— | ————————————————– |<br>| Packet-in    | 流表中没有匹配项，则发送Packet-in消息给控制器。    |<br>| Flow-removed | 流表项因为超市或修该等原因被删除时，会触发该消息。 |<br>| Port-status  | 端口状态发生变化时（Up/Down），触发该消息。        |<br>| Error        | 通知控制器发生的问题                               |</p>
+</li>
+<li><p>Symmetric消息：由控制器或交换机任意一方发送，无需对方的许可或请求。</p>
+<p>| 名称   | 说明                                   |<br>| —— | ————————————– |<br>| Hello  | 双方通过握手消息Hello建立安全连接      |<br>| Echo   | 用于测量延迟、带宽，或用于保持活动连接 |<br>| Vendor | 为额外的功能预留空间                   |</p>
+</li>
+</ul>
+<h5 id="Openflow消息格式"><a href="#Openflow消息格式" class="headerlink" title="Openflow消息格式"></a>Openflow消息格式</h5><p>Openflow消息格式由Openflow Header和Openflow Message</p>
+<p><strong>Openflow Header格式</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0cpw6soj31b50fkwmm.jpg" alt="image-20210113113500899.png"></p>
+<p><strong>基于Openflow的SDN通信流程</strong></p>
+<p>连接的建立：</p>
+<ul>
+<li>控制器开启TCP的663端口等待交换机的连接；</li>
+<li>交换机启动时，尝试连接到指定控制器端口；</li>
+<li>安全通道采用TLS（Transport Layer Security）连接加密；</li>
+<li>双方通过交换证书进行认证</li>
+</ul>
+<p>通信过程</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0cw47i7j30k00l515h.jpg" alt="image-20210113144805874.png"></p>
+<h4 id="OF-CONFIG协议"><a href="#OF-CONFIG协议" class="headerlink" title="OF-CONFIG协议"></a>OF-CONFIG协议</h4><p>OpenFlow交换机管理配置协议，是OpenFlow的伴侣协议</p>
+<h5 id="OF-Config协议的设计需求"><a href="#OF-Config协议的设计需求" class="headerlink" title="OF-Config协议的设计需求"></a>OF-Config协议的设计需求</h5><p><strong>配置需求</strong></p>
+<ul>
+<li>控制器连接设置：控制器IP地址、端口号和传输协议（TLS和TCP）</li>
+<li>多控制器设置：连接到多个控制器的参数配置</li>
+<li><p>OpenFlow逻辑交换机设置：OpenFlow逻辑交换机相关的各种资源配置</p>
+</li>
+<li><p>连接中断设置：配置连接失效后进入的模式</p>
+</li>
+<li><p>加密设置： 身份认证方式配置</p>
+</li>
+<li>队列设置：最小速率、最大速率和自定义速率的配置</li>
+<li>端口设置：禁止Packet-in消息、管理状态</li>
+<li>能力发现：发现能力特性</li>
+</ul>
+<p><strong>操作运维需求</strong></p>
+<ul>
+<li>支持OpenFlow交换机被多个OpenFlow配置点配置</li>
+<li><p>支持一个OpenFlow配置点管理多个OpenFlow交换机</p>
+</li>
+<li><p>支持一个OpenFlow逻辑交换机被多个控制器控制</p>
+</li>
+<li>支持配置OpenFlow交换机的端口和队列</li>
+<li>支持OpenFlow逻辑交换机的能力发现</li>
+<li>支持配置隧道，如IPinGRE、VXLAN及NVGRE</li>
+</ul>
+<p><strong>管理协议需求</strong></p>
+<ul>
+<li>支持完整、私有及认证</li>
+<li>支持交换机与配置点两断的双向认证</li>
+<li>支持配置请求和应答的可靠传输</li>
+</ul>
+<h5 id="OF-config协议的数据模型"><a href="#OF-config协议的数据模型" class="headerlink" title="OF-config协议的数据模型"></a>OF-config协议的数据模型</h5><ul>
+<li>OF-CONFIG采用XML来描述其数据结构</li>
+<li>数据模型由类和类的属性构成</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmm4zs86oxj30bv0fe75k.jpg" alt="undefined"></p>
+<h5 id="OF-Config的传输协议"><a href="#OF-Config的传输协议" class="headerlink" title="OF-Config的传输协议"></a>OF-Config的传输协议</h5><p>通过NETCONF协议来传输其内容。</p>
+<h4 id="NETCONF协议"><a href="#NETCONF协议" class="headerlink" title="NETCONF协议"></a>NETCONF协议</h4><p>增加、修改、删除网络设备的配置，获取网络设备的配置和状态信息。</p>
+<h5 id="NETCONF优点"><a href="#NETCONF优点" class="headerlink" title="NETCONF优点"></a>NETCONF优点</h5><ol>
+<li>NETCONF提供保护锁定机制，防止多用户操作产生冲突。</li>
+<li>NETCONF可以针对整个系统的配置数据可直接进行操作，且定义了过滤功能。</li>
+<li>拓展性号：协议模型分层定义，各层之间相互独立；协议采用XML编码。</li>
+<li>利用现有的安全协议（SSH、TLS等）提供安全保证，并不与具体的安全协议绑定，更灵活。</li>
+</ol>
+<h5 id="NETCONF特点"><a href="#NETCONF特点" class="headerlink" title="NETCONF特点"></a>NETCONF特点</h5><p>区分配置数据（对网络设备进行配置的数据）和状态数据（反应设备状态的数据），提供不同的操作进行数据的增删改查</p>
+<h5 id="NETCONF协议框架"><a href="#NETCONF协议框架" class="headerlink" title="NETCONF协议框架"></a>NETCONF协议框架</h5><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0d5ga2cj30tc0kxwon.jpg" alt="image-20210113164736915.png"></p>
+<h3 id="SDN控制平面"><a href="#SDN控制平面" class="headerlink" title="SDN控制平面"></a>SDN控制平面</h3><p>一个或多个SDN控制器组成SDN的控制平面，是网络的大脑。主要负责两大任务，1. 对底层网络交换设备进行集中管理，状态监测，转发决策以及处理和调度流量；2. 向上层应用开放多个层次的可编程能力。</p>
+<h4 id="SDN控制器体系架构"><a href="#SDN控制器体系架构" class="headerlink" title="SDN控制器体系架构"></a>SDN控制器体系架构</h4><p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0d8uptnj30zf0mwqbp.jpg" alt="image-20210113171234924.png"></p>
+<h4 id="南向网络控制"><a href="#南向网络控制" class="headerlink" title="南向网络控制"></a>南向网络控制</h4><h5 id="链路控制"><a href="#链路控制" class="headerlink" title="链路控制"></a>链路控制</h5><p>获得SDN全网信息，实现网络地址学习、VLAN、路由转发</p>
+<h5 id="拓扑管理"><a href="#拓扑管理" class="headerlink" title="拓扑管理"></a>拓扑管理</h5><p>监控和采集SDN交换机的信息，反馈工作状态和链路连接状态</p>
+<h5 id="策略制定"><a href="#策略制定" class="headerlink" title="策略制定"></a>策略制定</h5><p>流表生成算法是影响控制器智能化水平的关键因素。</p>
+<p>针对不同层次的传输需求，制定相应的转发策略并生成对应的流表项。</p>
+<p>SDN具有集中化管控的优势，全局的网络资源视图，容易获得优化的算法执行结果，处理压力较重。</p>
+<h5 id="表项下发"><a href="#表项下发" class="headerlink" title="表项下发"></a>表项下发</h5><p>通过流表下发机制控制交换机的数据包转发</p>
+<p>主动下发：数据包到达交换机之前进行流表设置</p>
+<p>被动下发：交换机接收到一个数据包并且没有发现匹配的流表项，将其送给控制器处理</p>
+<h4 id="北向支撑"><a href="#北向支撑" class="headerlink" title="北向支撑"></a>北向支撑</h4><p>通过北向接口为上层业务应用以及资源管理系统提供灵活的网络资源抽象</p>
+<p>北向接口定义是SDN领域关注和争论的焦点</p>
+<p>REST API是用户容易接受的方式</p>
+<h3 id="北向接口"><a href="#北向接口" class="headerlink" title="北向接口"></a>北向接口</h3><p>应用平面与控制平面之间的接口（NBI），通过控制器向上层业务应用开放的接口，为上层业务应用和资源管理系统提供灵活的网络资源抽象。</p>
+<h4 id="北向接口设计"><a href="#北向接口设计" class="headerlink" title="北向接口设计"></a>北向接口设计</h4><ul>
+<li><p>功能型北向接口</p>
+<p>自下而上看网络，重点在网络资源抽象及控制能力的开放。</p>
+</li>
+<li><p>基于意图的北向接口</p>
+<p>自上而下看网络，关注应用或者服务的需求，与具体的网络技术无关</p>
+</li>
+</ul>
+
           
-          <!--/noindex-->
         
       
     </div>
