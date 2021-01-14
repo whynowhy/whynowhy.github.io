@@ -80,7 +80,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gmm4zs86oxj30bv0fe75k.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gmn0d5ga2cj30tc0kxwon.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1gmn0d8uptnj30zf0mwqbp.jpg">
-<meta property="og:updated_time" content="2021-01-14T03:27:20.203Z">
+<meta property="og:updated_time" content="2021-01-14T05:44:47.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SDN的基础架构和原理">
 <meta name="twitter:description" content="SDN基础架构ONF在SDN技术白皮书中给出了SDN的基本框架，主要分为三层，应用层，控制层和转发层  应用层：实现了网络流量的灵活控制。 控制层：网络虚拟化的一种实现方式，其核心技术为OpenFlow。 转发层：一种新型的网络创新架构，实现了网络设备控制与转发分离。">
@@ -266,7 +266,7 @@
                 
               
 
-              <time title="创建时间：2021-01-14 10:25:13 / 修改时间：11:27:20" itemprop="dateCreated datePublished" datetime="2021-01-14T10:25:13+08:00">2021-01-14</time>
+              <time title="创建时间：2021-01-14 10:25:13 / 修改时间：13:44:47" itemprop="dateCreated datePublished" datetime="2021-01-14T10:25:13+08:00">2021-01-14</time>
             </span>
           
             
@@ -472,16 +472,96 @@
 <li>实现路径计算，包括传送链路的带宽与开销等属性、链路状态和拓扑信息等。</li>
 </ul>
 <h4 id="OpenFlow协议"><a href="#OpenFlow协议" class="headerlink" title="OpenFlow协议"></a>OpenFlow协议</h4><h5 id="Openflow消息类型"><a href="#Openflow消息类型" class="headerlink" title="Openflow消息类型"></a>Openflow消息类型</h5><ul>
-<li><p>Controller-to-Switch消息：由控制器发起，可能会要求交换机回复对应的消息。有以下类型</p>
-<p>| 名称          | 说明                                                   |<br>| ————- | —————————————————— |<br>| Features      | 发送Feature_Request消息请求交换机的特性信息            |<br>| Configuration | 设置或查询交换机的配置信息                             |<br>| Modify-state  | 管理交换机流表项和端口状态等                           |<br>| Read-state    | 收集交换机的各种信息，包括配置信息、统计信息和功能特性 |<br>| Send-packet   | 通过Packet-out消息向交换机的制定端口发送数据包         |<br>| Barrier       | 确保动作执行顺序，保持策略一致性                       |</p>
-</li>
-<li><p>Asynchronous消息：由交换机发起，用于告知控制器新数据包的达到和交换机状态的改变。</p>
-<p>| 名称         | 说明                                               |<br>| ———— | ————————————————– |<br>| Packet-in    | 流表中没有匹配项，则发送Packet-in消息给控制器。    |<br>| Flow-removed | 流表项因为超市或修该等原因被删除时，会触发该消息。 |<br>| Port-status  | 端口状态发生变化时（Up/Down），触发该消息。        |<br>| Error        | 通知控制器发生的问题                               |</p>
-</li>
-<li><p>Symmetric消息：由控制器或交换机任意一方发送，无需对方的许可或请求。</p>
-<p>| 名称   | 说明                                   |<br>| —— | ————————————– |<br>| Hello  | 双方通过握手消息Hello建立安全连接      |<br>| Echo   | 用于测量延迟、带宽，或用于保持活动连接 |<br>| Vendor | 为额外的功能预留空间                   |</p>
-</li>
+<li>Controller-to-Switch消息：由控制器发起，可能会要求交换机回复对应的消息。有以下类型</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Features</td>
+<td>发送Feature_Request消息请求交换机的特性信息</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td>设置或查询交换机的配置信息</td>
+</tr>
+<tr>
+<td>Modify-state</td>
+<td>管理交换机流表项和端口状态等</td>
+</tr>
+<tr>
+<td>Read-state</td>
+<td>收集交换机的各种信息，包括配置信息、统计信息和功能特性</td>
+</tr>
+<tr>
+<td>Send-packet</td>
+<td>通过Packet-out消息向交换机的制定端口发送数据包</td>
+</tr>
+<tr>
+<td>Barrier</td>
+<td>确保动作执行顺序，保持策略一致性</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Asynchronous消息：由交换机发起，用于告知控制器新数据包的达到和交换机状态的改变。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Packet-in</td>
+<td>流表中没有匹配项，则发送Packet-in消息给控制器。</td>
+</tr>
+<tr>
+<td>Flow-removed</td>
+<td>流表项因为超市或修该等原因被删除时，会触发该消息。</td>
+</tr>
+<tr>
+<td>Port-status</td>
+<td>端口状态发生变化时（Up/Down），触发该消息。</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>通知控制器发生的问题</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Symmetric消息：由控制器或交换机任意一方发送，无需对方的许可或请求。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hello</td>
+<td>双方通过握手消息Hello建立安全连接</td>
+</tr>
+<tr>
+<td>Echo</td>
+<td>用于测量延迟、带宽，或用于保持活动连接</td>
+</tr>
+<tr>
+<td>Vendor</td>
+<td>为额外的功能预留空间</td>
+</tr>
+</tbody>
+</table>
 <h5 id="Openflow消息格式"><a href="#Openflow消息格式" class="headerlink" title="Openflow消息格式"></a>Openflow消息格式</h5><p>Openflow消息格式由Openflow Header和Openflow Message</p>
 <p><strong>Openflow Header格式</strong></p>
 <p><img src="http://ww1.sinaimg.cn/large/007useIpgy1gmn0cpw6soj31b50fkwmm.jpg" alt="image-20210113113500899.png"></p>
