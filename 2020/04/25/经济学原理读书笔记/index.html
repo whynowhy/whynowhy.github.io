@@ -1,22 +1,614 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第一章 经济学十大原理《经济学原理》中最重要的内容。  人们面临权衡取舍；  某种东西的成本是为了得到它而放弃的东西；  理性人考虑边际量；  人们会对激励作出反应；  贸易能使每个人状况更好；  市场通常是组织经济活动的一种好方法；  政府有时可以改善市场结果；  一国的生活水平取决于它生产物品与劳务的能力；  当政府发行了过多货币时，物价上升；  社会面临通货膨胀与失业之间的短期交替关系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经济学原理读书笔记">
+<meta property="og:url" content="http://yoursite.com/2020/04/25/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="第一章 经济学十大原理《经济学原理》中最重要的内容。  人们面临权衡取舍；  某种东西的成本是为了得到它而放弃的东西；  理性人考虑边际量；  人们会对激励作出反应；  贸易能使每个人状况更好；  市场通常是组织经济活动的一种好方法；  政府有时可以改善市场结果；  一国的生活水平取决于它生产物品与劳务的能力；  当政府发行了过多货币时，物价上升；  社会面临通货膨胀与失业之间的短期交替关系。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-25T08:27:08.000Z">
+<meta property="article:modified_time" content="2020-07-20T02:24:53.325Z">
+<meta property="article:author" content="老王">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/25/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>经济学原理读书笔记 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">只不过是是随便写写啦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          经济学原理读书笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-25 16:27:08" itemprop="dateCreated datePublished" datetime="2020-04-25T16:27:08+08:00">2020-04-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-20 10:24:53" itemprop="dateModified" datetime="2020-07-20T10:24:53+08:00">2020-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="第一章-经济学十大原理"><a href="#第一章-经济学十大原理" class="headerlink" title="第一章 经济学十大原理"></a>第一章 经济学十大原理</h3><p>《经济学原理》中最重要的内容。</p>
+<ol>
+<li><p>人们面临权衡取舍；</p>
+</li>
+<li><p>某种东西的成本是为了得到它而放弃的东西；</p>
+</li>
+<li><p>理性人考虑边际量；</p>
+</li>
+<li><p>人们会对激励作出反应；</p>
+</li>
+<li><p>贸易能使每个人状况更好；</p>
+</li>
+<li><p>市场通常是组织经济活动的一种好方法；</p>
+</li>
+<li><p>政府有时可以改善市场结果；</p>
+</li>
+<li><p>一国的生活水平取决于它生产物品与劳务的能力；</p>
+</li>
+<li><p>当政府发行了过多货币时，物价上升；</p>
+</li>
+<li><p>社会面临通货膨胀与失业之间的短期交替关系。</p>
+</li>
+</ol>
+<h3 id="第八章-赋税的代价"><a href="#第八章-赋税的代价" class="headerlink" title="第八章 赋税的代价"></a>第八章 赋税的代价</h3><p>会产生无谓损失，即税收或其它政策扭曲了市场结果时所引起的总剩余的减少。</p>
+<p>无谓损失的来源，因为它使买者和卖者不能实现某些贸易的好处。</p>
+<p>供给和需求的弹性越大，税收的无谓损失也就越大。</p>
+<p>税收给市场参与者带来损失，不仅是因为税收将资源从市场参与者手中转到政府手中，还因为税收改变了激励，并扭曲了市场结果。</p>
+<p>税收增加越大，它对激励的扭曲越大，无谓损失也就越大。但由于税收减小了市场规模，税收收入不会一直增加。税收收入起初随着税收规模的扩大而增加，但如果税收规模达到足够大，税收收入就会开始下降。</p>
+<span id="more"></span>
+
+<h3 id="第九章-国际贸易"><a href="#第九章-国际贸易" class="headerlink" title="第九章 国际贸易"></a>第九章 国际贸易</h3><p>当一个国家开放贸易时，有赢家也会有输家，但赢家的利益大于输家的利益。</p>
+<p>关税（对进口物品的一种税），使市场向没有贸易时的均衡移动，因此，减少了贸易的好处。</p>
+<h3 id="第十章-外部性"><a href="#第十章-外部性" class="headerlink" title="第十章 外部性"></a>第十章 外部性</h3><p>当一个人从事一种影响旁观者福利并对这种影响既不付报酬又不得报酬的活动时，就产生了<strong>外部性</strong>。</p>
+<p>如果对旁观者的影响是不利的，就称为<strong>负外部性</strong>；如果这种影响是有利的，就称为<strong>正外部性</strong>。</p>
+<p>负外部性使市场生产的数量大于社会合意的数量，正外部性使市场生产的数量小于社会合意的数量。为了解决这个问题，政府可以通过对有负外部性的物品征税和给予有正外部性的物品补贴来使外部性内在化。 </p>
+<p><strong>科斯定理</strong>说明，私人经济主体可以解决他们之间的外部性问题。无论最初的权利如何分配，有关各方总可以达成一种协议，在这种协议中，每个人状况都可以变好，而且，结果最有效率。</p>
+<h3 id="第十一章-公共物品和公共资源"><a href="#第十一章-公共物品和公共资源" class="headerlink" title="第十一章 公共物品和公共资源"></a>第十一章 公共物品和公共资源</h3><p>物品可根据两个特点来进行分类：<strong>排他性</strong>，<strong>竞争性</strong></p>
+<p>排他性指一种物品具有的可以阻止一个人使用该物品的特性</p>
+<p>竞争性指一个人使用一种物品将减少其他人对该物品的使用的特性。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>竞争性</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>排他性</td>
+<td>是</td>
+<td>私人物品</td>
+<td>俱乐部物品</td>
+</tr>
+<tr>
+<td></td>
+<td>否</td>
+<td>公共资源</td>
+<td>公共物品</td>
+</tr>
+</tbody></table>
+<p>公共物品既无竞争性也无排他性。公共物品的例子包括焰火表演、国防和基础知识的创造。由于不能对使用公共物品的人收费，人们存在搭便车的激励，使私人不能提供这种物品。因此，政府提供公共物品，并以成本-收益分析为基础做出关于每种物品供给量的决策。</p>
+<p>公共资源在消费中有竞争性但无排他性。例子包括公有的草地、清洁的空气和拥堵的道路。由于不能向使用公共资源的人收费，他们往往会过度使用公共资源。因此，政府努力使用各种办法限制公共资源的使用。</p>
+<h3 id="第十二章-税制的设计"><a href="#第十二章-税制的设计" class="headerlink" title="第十二章 税制的设计"></a>第十二章 税制的设计</h3><p>税制的效率是指它给纳税人带来的成本。除了资源从纳税人向政府转移，税收还有两种成本：第一种是由于税收改变了激励、扭曲了资源配置而带来的无谓损失；第二种是遵从税法的管理负担。</p>
+<p>税制的平等涉及税收负担是否公平地在个人之间进行分配。根据受益原则，人们根据他们从政府得到的收益来纳税是公平的。根据支付能力原则，人们根据他们承受财务负担的能力来纳税是公平的。当评价税制的平等性时，记住从税收归宿研究中得出的一条结论是很重要的：税收负担的分配与税单的分配并不相同。</p>
+<p><strong>个人支付所有税收</strong></p>
+<h3 id="第十三章-生产成本"><a href="#第十三章-生产成本" class="headerlink" title="第十三章 生产成本"></a>第十三章 生产成本</h3><p>企业的目标是利润最大化，利润等于总收益减去总成本</p>
+<p>分析企业的行为时，重要的是要包括生产的所有机会成本。一些机会成本是显性的，例如，企业支付给工人的工资。另一些则是隐性的，例如，企业所有者在其企业工作而不去找其它工作所放弃的工资。经济利润既考虑显性成本也考虑隐性成本，而会计利润只考虑显性成本。</p>
+<p>企业的成本反应其生成的过程。随着投入量的增加，典型企业的生产函数变得更加平坦，这表现了边际产量递减的性质。因此，随着产量的增加，企业的总成本曲线变得更加陡峭。</p>
+<p>企业总成本=固定成本+可变成本 </p>
+<p>关键衡量指标：平均总成本=总成本/产量   边际成本=产量增加一单位量时总成本的增加量</p>
+<p>在分析企业行为时，画出平均总成本和边际成本的图形往往是有帮助的。边际成本曲线总是与平均总成本曲线相交于平均总成本的最低点。</p>
+<p>一个企业的成本往往取决于所考虑的时间范围。特别是，许多成本在短期中是固定的，但在长期中是可变的。</p>
+<h3 id="第十四章-竞争市场上的企业"><a href="#第十四章-竞争市场上的企业" class="headerlink" title="第十四章 竞争市场上的企业"></a>第十四章 竞争市场上的企业</h3><p>由于竞争企业是价格的接受者，所以它的收益与产量是成比例的。物品的价格等于企业平均收益和边际收益。</p>
+<p>为了使利润最大化，企业选择使边际收益等于边际成本的产量。由于竞争企业的边际收益等于市场价格，所以企业选择使价格等于边际成本的产量。因此，企业的边际成本曲线又是它的供给曲线。</p>
+<p>在短期中，当企业不能收回其固定成本时，如果物品价格小于平均可变成本，企业将选择暂时停止营业。在长期中，当企业能收回其固定成本和可变成本时，如果价格小于平均总成本，企业将选择退出市场。</p>
+<p>在可以自由进入与退出的市场上，长期中利润为零。在长期均衡时，所有企业都在有效规模上生产，价格等于最低平均总成本，而且，企业数量会自发调整，以满足在这种价格时的需求量。</p>
+<p>需求变动在不同时期范围之内有不同影响。在短期中，需求增加引起价格上升，并带来利润，而需求减少引起价格下降，并带来亏损。但如果企业可以自由进入和退出市场，那么，在长期中企业数量将自发调整，使市场回到零利润状态。</p>
+<h3 id="第十五章-垄断"><a href="#第十五章-垄断" class="headerlink" title="第十五章 垄断"></a>第十五章 垄断</h3><p>垄断者是在其市场上作为唯一卖者的企业。当一个企业拥有一种关键资源，当政府给一个企业排他性地生产一种物品的权利，或者当一个企业可以比许多同行以较低成本供给整个市场时，垄断就产生了。</p>
+<p>由于垄断者是其市场上唯一的生产者，所以它面临向右下方倾斜的产品需求曲线、当垄断者增加一单位产量时，就引起它的产品价格下降，这就减少了所有单位的产量赚到的收益量。因此，垄断者的边际收益总是低于其物品的价格。</p>
+<p>和竞争企业一样，垄断企业也通过生产边际收益等于边际成本的产量来实现利润最大化。这时垄断者根据需求量确定价格。与竞争企业不同，垄断企业的价格高于它的边际收益，因此它的价格高于边际成本。</p>
+<p>垄断者通常可以通过根据买者的支付意愿对同一种物品收取不同的价格来增加利润，这种行为被称为<strong>价格歧视</strong>。此行为可以通过使一些不想购买的消费者购买物品从而增加经济福利。在完全价格歧视的极端情况下，垄断的无谓损失完全消失了，而且市场上所有剩余都归垄断生产者。在更一般的情况下，当价格歧视不完全时，与单一垄断价格相比，它会增加或减少福利。</p>
+<p>决策者可以使用四种方式对垄断行为的无效率做出反应：（1）用反托拉斯法使行业更具竞争性（2）管制垄断者收取的价格（3）把垄断者变为政府经营的企业（4）不作为。</p>
+<h3 id="第十六章-垄断竞争"><a href="#第十六章-垄断竞争" class="headerlink" title="第十六章 垄断竞争"></a>第十六章 垄断竞争</h3><p>垄断竞争市场有三个特点：许多企业、有差别的产品和自由进入。</p>
+<p>垄断竞争市场的长期均衡在两个相关的方面完全不同于完全竞争的市场。第一，垄断竞争市场上的每个企业都有过剩的生产能力。也就是说，它在平均总成本曲线向右下方倾斜的部分运营。第二，每个企业都收取高于边际成本的价格。</p>
+<p>垄断竞争没有完全竞争的所有合意的特点，存在由高于边际成本的价格加成引起的垄断的标准无谓损失。此外，企业的数量（以及产品的种类）可能过多或过少。实际中，决策者纠正这些无效率的能力是有限的。</p>
+<p>垄断竞争中固有的产品差别使企业使用广告与品牌。</p>
+<h3 id="第十七章-寡头"><a href="#第十七章-寡头" class="headerlink" title="第十七章 寡头"></a>第十七章 寡头</h3><p><strong>寡头</strong>市场的本质是只有少数几个卖者。</p>
+<p>企业之间有关生产与价格的这种协议被称为勾结，而且联合起来行事的集团被称为卡特尔。</p>
+<p>寡头通过形成一个卡特尔并像垄断者一样行事以使自己的利润最大化。但如果寡头独立地做出量产决策，结果是产量大于垄断产量，价格低于垄断价格。在寡头市场上企业数量越多，产量和价格越接近于完全竞争的状态下的水平。</p>
+<p>囚徒困境表明，利己使人们即使在合作符合他们共同利益时也无法维持合作。囚徒困境的逻辑适用于许多情况，包括军备竞赛、公共资源问题和寡头。</p>
+<p>决策者用反托拉斯法来防止寡头从事减少竞争的行为。这些法律的适用性是有争议的，因为有些看来可能减少竞争的行为实际上可能有合理的经营目的。</p>
+<h3 id="第十八章-生成要素市场"><a href="#第十八章-生成要素市场" class="headerlink" title="第十八章 生成要素市场"></a>第十八章 生成要素市场</h3><p>经济的收入是在生产要素市场上分配的。三种最重要的生产要素是劳动、土地和资本。</p>
+<p>要素需求，例如劳动需求，是一种派生需求，它产生于用这些要素生产物品与服务的企业。竞争的、以利润最大化为目标的企业在某要素的边际值等于其价格这一点上使用该要素。</p>
+<p>劳动的供给产生于个人在工作和闲暇间的权衡取舍。向右上方倾斜的劳动供给曲线意味着人们对工资上升的反应是做更多工作和少享受闲暇。</p>
+<p>支付给每种要素的价格的调整使该要素的供求趋于平衡。由于要素需求反映了该要素的边际产量值，在均衡每种要素根据其对物品和服务生产的边际贡献得到报酬。</p>
+<p>由于生产要素是同时使用的，因此，任何一种要素的边际产量都取决于可以得到的所有要素量。因此，一种要素供给的变动会改变所有哦要素的均衡收入。</p>
+<h3 id="第十九章-收入与歧视"><a href="#第十九章-收入与歧视" class="headerlink" title="第十九章 收入与歧视"></a>第十九章 收入与歧视</h3><p>工人由于许多原因而赚到不同的工资。在某种程度上，工资差别是对工人工作特性的补偿。在其他条件相等时，从事艰苦、乏味工作的工人得到的工资高于从事轻松、有趣工作的工人。</p>
+<p>人力资本多的工人得到的工资高于人力资本少的工人。累积的人力资本的收益是很高的，而且在过去几十年来一直在增加。</p>
+<p>虽然受教育年限、经验和工作特性都像理论所预期的那样影响收入，但任有许多收入差别不能用经济学家可以衡量的东西来解释。收入中无法解释的变动主要归因于天生的能力、努力和机遇。</p>
+<p>一些经济学家提出，受教育更多的人得到更高工资并不是因为教育提高了其生产力，而是因为有更高天赋的人把教育作为一种向雇主显示他们高能力的信号。如果这种信号理论正确，那么，提高所有工人的受教育程度就不会提高整个工资水平。</p>
+<p>有时工资会高于供求平衡的水平。高于均衡水平的工资产生的三个原因是最低工资法、工会和效率工资。</p>
+<p>收入中的一些差别是基于种族、性别或其他因素的歧视。但是，歧视的衡量是很困难的，因为必须根据人力资本和工作特性的差别进行矫正。</p>
+<p>竞争市场倾向于限制歧视对工资的影响。</p>
+<h3 id="第二十章-收入不平等与平困"><a href="#第二十章-收入不平等与平困" class="headerlink" title="第二十章 收入不平等与平困"></a>第二十章 收入不平等与平困</h3><p>收入分配数据表明了美国社会中存在的巨大不平等。最富有的1/5家庭的收入是最穷的1/5家庭收入的12倍还多。</p>
+<p>由于实物转移支付、经济生命周期、暂时收入和经济流动性对于理解收入变动如此重要，以至于要用某一年的收入分配数据来判断我们社会中的不平等程度是很困难的。当考虑到这些其他因素时，它们总倾向于表明经济福利的分配比年收入的分配更为平均。</p>
+<p>有许多旨在帮助穷人的不同政策–最低工资发、福利、负所得税以及实物转移支付。虽然这些政策都帮助了一些家庭脱贫，但它们也有意料之外的副作用。由于经济援助随着收入增加而减少，因此，穷人往往面临很高的有效边际税率。这种高有效率不鼓励贫穷家庭依靠自己的力量脱贫。</p>
+<h3 id="第二十一章-消费者选择理论"><a href="#第二十一章-消费者选择理论" class="headerlink" title="第二十一章 消费者选择理论"></a>第二十一章 消费者选择理论</h3><p>消费者预算约束线表示在其收入与物品价格为既定时，他可以购买的不同物品的可能组合。预算约束线的斜率等于这些物品的相对价格。</p>
+<p>消费者的无差异曲线代表其偏好。无差异曲线表示能使消费者同样满足的各种物品组合。消费者对较高无差异曲线上各点的偏好大于对较低无差异曲线上的各点的偏好。无差异曲线上任何一点的斜率是消费者的边际替代率–消费者愿意用一种物品交换另一种物品的比率。</p>
+<p>消费者通过选择既在预算约束线上又在最高无差异曲线上的一点来实现最优化。在这一点上，无差异曲线的斜率（物品之间的边际替代率）等于预算约束线的斜率（物品的相对价格），而且，消费者对这两种物品的评价（由边际替代率衡量）等于市场的评价（由相对价格衡量）。</p>
+<p>当一种物品价格下降时，对消费者选择的影响可以分解为收入效应和替代效应。收入效应是由于价格降低使消费者状况变好引起的消费变动。替代效应是由于价格变动鼓励更多地消费变得相对便宜的物品而引起的消费变动。收入效应反映在从较低无差异曲线向较高无差异曲线的移动上，而替代效应表现为沿着一条无差异曲线向有不同斜率的点的变动上。</p>
+<p>消费者选择理论适用于许多情况。它可以解释为什么需求曲线有可能向右上方倾斜，为什么工资提高既可能增加也可能减少劳动供给量，以及为什么高利率既可能增加也可能减少储蓄。</p>
+<h3 id="第二十二章-微观经济学前沿"><a href="#第二十二章-微观经济学前沿" class="headerlink" title="第二十二章 微观经济学前沿"></a>第二十二章 微观经济学前沿</h3><p>在许多经济交易中，信息是不对称的。当存在隐蔽性行为时，委托人会关注因代理人道德风险引起的损失。当存在隐蔽性特征时，买者会关注卖者找那个的逆向选择问题。私人市场有时用发信号和筛选来应对不对称信息。</p>
+<p>虽然政府政策有时可以改善市场结果，但政府本身也是不完善的制度。康多塞悖论说明，多数原则并没有产生可传递的社会偏好；而阿罗不可能性定理说明，没有一种投票制度是完美的。在许多情况下，民主制度将产生中值选民选民想要的结果，而无论其他选民的偏好是什么。此外，那些决定政府政策的人会受到利己而不是国家利益的驱动。</p>
+<p>心理学和经济学的研究表明。人的决策比传统经济理论所假设的要复杂。人们并不总是理性的，他们关心经济结果的公正性，而且他们可能具有前后不一致性。</p>
+<h3 id="第二十三章-一国收入的衡量"><a href="#第二十三章-一国收入的衡量" class="headerlink" title="第二十三章 一国收入的衡量"></a>第二十三章 一国收入的衡量</h3><p>由于每一次交易都有买者和卖者，所以经济中的总支出等于经济中的总收入。</p>
+<p>国内生产总值（GDP）衡量经济用于新生产的物品与服务的总支出，以及生产这些物品与服务所赚到的总收入。更确切的说，GDP是在某一既定时期一个国家内生产的所有与最终物品和服务的市场价值。</p>
+<p>GDP分为四个组成部分：消费、投资、政府购买和净出口。消费包括家庭用于物品与服务的支出，但不包括购买新住房的支出。投资包括用于新设备和建筑物的支出，也包括家庭购买新住房的支出。政府购买包括地方、州和联邦政府用于物品和服务的支出。净出口等于国内生产并销售到国外的物品与服务的价值（出口）减国外生产并在国内销售的物品与服务的价值（进口）。</p>
+<p>名义GDP用现期价格来评价经济中物品与服务的生产。真实GDP用不变的基年价格来评价经济中物品与服务的生产。GDP平减指数–用名义GDP与真实GDP的比率计算–衡量经济中的物价水平。</p>
+<p>GDP是经济福利的一个良好的衡量标准，因为人们对高收入的偏好大于低收入。但GDP并不是衡量福利的一个完美指标。例如，GDP不包括闲暇的价值和清洁环境的价值。</p>
+<h3 id="第二十四章-生活费用的衡量"><a href="#第二十四章-生活费用的衡量" class="headerlink" title="第二十四章 生活费用的衡量"></a>第二十四章 生活费用的衡量</h3><p>消费物价指数表示相对于基年一篮子物品与服务的费用，这一篮子物品与服务的费用是多少。这个指数用于衡量经济的物价总水平。消费物价指数变动的百分比可用于衡量通货膨胀率。</p>
+<p>由于三个原因，消费物价指数并不是生活费用的一个完美的衡量。第一，它没有考虑到，随着时间的推移，消费者用变得较便宜的物品替代原有物品的能力。第二，它没有考虑到因新物品的引进而使1美元的购买力提高。第三，这个指数因没有衡量物品与服务质量的变动而被扭曲。由于这些衡量问题，消费物价指数高估了真实的通货膨胀。</p>
+<p>与消费物价指数一样，GDP平减指数也衡量经济的物价总水平。这两个物价指数通常同时变动，但是它们有着重大差别。GDP平减指数不同于消费物价指数，是因为它涵盖生产出来的物品与服务，而不是用于消费的物品与服务。因此，进口物品影响消费物价指数，但不影响GDP平减指数。此外，消费物价指数用固定的一篮子物品，而GDP平减指数一直随着GDP构成的变动而自动地改变物品与服务的组合。</p>
+<p>不同时间的美元数字并不代表购买力的真实差别。为了比较过去与现在的美元数字，过去的数字应该用物价指数进行调整。</p>
+<p>各种法律和私人合同用物价指数来矫正通货膨胀的影响。但是，税法知识部分地对通货膨胀实行了指数化。</p>
+<p>当考察利率数据时，对通货膨胀的矫正特别重要。名义利率是通常所公布的利率，它是储蓄账户上随着时间推移而增加的美元比率。与此相反，真实利率考虑到美元价值随着时间的推移而发生的变动。真实利率等于名义利率减通货膨胀率。</p>
+<h3 id="第二十五章-生产与增长"><a href="#第二十五章-生产与增长" class="headerlink" title="第二十五章 生产与增长"></a>第二十五章 生产与增长</h3><p>按人均GDP衡量的经济繁荣在世界各国差别很大。世界上最富裕国家的平均收入是最贫穷国家的十倍以上。由于真实GDP增长率差别也很大，所以各国的相对低位一直在急剧变动。</p>
+<p>一个经济的生活水平取决于该经济生产物品与服务的能力。生产率又取决于物质资本、人力资本、自然资源和工人得到的技术知识。</p>
+<p>政府政策能以许多方式影响经济的增长率：鼓励储蓄和投资、鼓励来自国外的投资、促进教育、促进健康、维护产权与政治稳定、允许自由贸易以及促进新技术的研究与开发。</p>
+<p>资本积累收益递减的限制：一个经济拥有的资本越多，该经济从新增加的一单位资本中得到的产量的增加就越少。结果，尽管高储蓄会引起一定时期内的高增长，但是随着资本、生产率和收入的增加，增长最终会放慢。由于收益递减，在穷国资本的收益特别高。在其他条件相同时，由于追赶效应这些国家可以增长得更快。</p>
+<p>人口增长对经济增长有多种影响。一方面，更加迅速的人口增长会通过使自然资源供给紧张和减少每个工人可以得到的资本量而降低生产率。另一方面，更多的人口也可以提高技术进步的速度，因为会产生更多的科学家和工程师。</p>
+<h3 id="第二十六章-储蓄、投资和金融体系"><a href="#第二十六章-储蓄、投资和金融体系" class="headerlink" title="第二十六章 储蓄、投资和金融体系"></a>第二十六章 储蓄、投资和金融体系</h3><p>美国的金融体系由各种金融机构组成，例如，债券市场、股票市场、银行和共同基金。所有这些机构的作用都是使那些想把一部分收入储蓄起来的家庭的资源流入到那些想借款的家庭和企业的手中。</p>
+<p>国民收入账户恒等式说明了宏观经济变量之间的一些重要关系。特别是，对一个封闭经济来说，国民储蓄一定等于投资。金融机构是使一个人的储蓄与另一个人的投资相匹配的机制。</p>
+<p>利率由可贷资金的供求决定。可贷资金的供给来自想把自己的一部分收入储蓄起来并借贷出去的家庭。可贷资金的需求来自想借款投资的家庭和企业。为了分析任何一种政策或事件如何影响利率，我们应该考虑它如何影响可贷资金的供给与需求。</p>
+<p>国民储蓄等于私人储蓄加公共储蓄。政府预算赤字代表负的公共储蓄，从而减少了国民储蓄和可用于为投资筹资的可贷资金供给。当政府预算赤字挤出了投资时，它就降低了生产率和GDP增长。</p>
+<h3 id="第二十七章-金融学的基本工具"><a href="#第二十七章-金融学的基本工具" class="headerlink" title="第二十七章 金融学的基本工具"></a>第二十七章 金融学的基本工具</h3><p>由于储蓄可以赚到利息，所以今天的火币量比未来相同的货币量更有价值。人们可以用现值的概念比较不同时点的货币量。任何一笔未来货币量的现值是现行利率既定时为产生未来这一货币量今天所需要的货币量</p>
+<p>由于边际效用递减，大多数人是风险厌恶者。风险厌恶者可以通过购买保险、使其持有的财产多元化，以及选择低风险和低收益的有价证券来降低风险。</p>
+<p>一种资产的价值等于所有者将得到的现金流的现值。对一股股票而言，这些现金流包括红利流量以及最终出售价格。根据有效市场假说，金融市场理性地处理可获得的信息，因此股票价格总是等于企业价值的最好估算。但是，一些经济学家质疑有效市场假说，并相信非理性心理因素也会影响资产价格。</p>
+<h3 id="第二十八章-失业"><a href="#第二十八章-失业" class="headerlink" title="第二十八章 失业"></a>第二十八章 失业</h3><p>失业率是那些想要工作但又没有工作的人所占的百分比。劳工统计局每月根据对成千上万户家庭的调查计算这个统计数字。</p>
+<p>失业率是对失去工作者的一个不完善的衡量指标。一些自称失业的人实际上可能并不想工作；而一些想工作的人在寻找工作失败后离开了劳动力队伍，从而不被计算为失业者。</p>
+<p>在美国经济中，大多数成为失业者的人在短期内找到了工作。然而，在任何一个既定时间段内所观察到的大多数失业归因于少数几个长期失业者。</p>
+<p>失业的一个原因是工人寻找最适合他们爱好与技能的工作需要时间。由于失业保险、政府政策旨在保护工人收入，因此摩擦性失业增加。</p>
+<p>经济中总是存在某种失业的第二个原因是最低工资法。最低工资法通过把不熟练与无经验的工人的工资提高到均衡水平以上而增加了劳动供给量，并减少劳动需求量。它所引起的过剩劳动供给代表失业。</p>
+<p>失业的第三个原因是工会的市场势力。当工会推动有工会组织的行业工资提高到均衡水平之上时，工会就会创造出了过剩的劳动供给。</p>
+<p>效率工资理论提出了失业的第四个原因。根据这种理论，企业发现支付高于均衡水平的工资是有利的。高工资可以改善工人的健康状况，降低工人流动率，提高工人努力程度，以及提高工人素质。 </p>
+<h3 id="第二十九章-货币制度"><a href="#第二十九章-货币制度" class="headerlink" title="第二十九章 货币制度"></a>第二十九章 货币制度</h3><p>货币这个词指人们经常用来购买物品与服务的资产。</p>
+<p>货币有三种职能：作为交换媒介，它提供用于进行交易的东西；作为计价单位，它提供记录价格和其他经济价值的方式；作为价值储藏手段，它提供把购买力从现在转移到未来的方式。</p>
+<p>像黄金这样的商品货币是有其内在价值的货币：即使它不作为货币也有其价值。像纸币这样的法定货币是没有内在价值的货币：如果它不作为货币就没有价值。</p>
+<p>在美国经济中，货币以通货和其他各类银行存款，例如支票账户的形式存在。</p>
+<p>联邦储备局，即美国的中央银行，负责管理美国的货币体系。美联储主席每隔四年由总统任命并得到国会确认，他是联邦公开市场委员会的领导人。联邦公开市场委员会约每六周开一次会，考虑货币政策的变动。</p>
+<p>银行储户通过把他们的钱存到银行账户向银行提供资源。这些存款是银行负债的一部分。银行所有者也为银行提供资源（称为银行资本）。由于杠杆作用（为投资而借入资金），银行资产价值较小的变动就会银行资本价值较大的变动。为了保护储户，银行监管者要求银行持有某一最低资本量。</p>
+<p>美联储主要通过公开市场操作来控制货币供给：购买政府债券增加货币供给，出售政府债券减少货币供给。美联储还可以用其他工具来控制货币供给。美联储可以通过降低贴现率，增加它对银行的贷款，降低法定准备金，或者降低准备金利率，来扩大货币供给。也可以通过提高贴现率，减少它对银行的贷款，提高法定准备金，或者提高准备金利率，来减少货币供给。</p>
+<p>当个人在银行有存款货币，并且银行把一些存款贷出去时，经济中的货币量就增加了。由于银行体系能够以这种方式影响货币的供给，所以美联储对货币供给的控制是不完全的。</p>
+<p>美联储近年来确定了选择联邦基金利率作为目标的货币政策，联邦基金率是银行向另一家银行贷款的短期利率。当美联储要实现这个目标，它会调整货币供给。</p>
+<h3 id="第三十章-货币增长与通货膨胀"><a href="#第三十章-货币增长与通货膨胀" class="headerlink" title="第三十章 货币增长与通货膨胀"></a>第三十章 货币增长与通货膨胀</h3><p>经济中物价总水平的调整使货币的供给与货币需求平衡。当中央银行增加货币供给时，就会引起物价水平上升。货币供给量的持续增长引起了持续的通货膨胀。</p>
+<p>货币中性原理断言，货币量变动只影响名义变量而不影响真实变量。大多数经济学家认为，货币中性近似地描述了长期中的经济行为。</p>
+<p>政府可以简单地通过印发货币来为自己的一些支出付款。当国家主要依靠这种通货膨胀税时，结果就是超速通货膨胀。</p>
+<p>货币中性原理的一个应用是费雪效应。根据费雪效应，当通货膨胀上升时，名义利率等量上升，因此，真实利率任然不变。</p>
+<p>许多人认为，通货膨胀使他们变穷了，因为提高了他们所买东西的成本。但这种观点是错误的，因为通货膨胀也提高了名义收入。</p>
+<p>经济学家确定了通货膨胀的六种成本：与减少货币持有量相关的皮鞋成本，与频繁地调整价格相关的菜单成本，相对价格变动的家具，由于税法非指数化引起的意想不到的税收负担变动，由于计价单位变动引起的混乱和不方便，以及债务人与债权人之间任意的财富再分配。在超速通货膨胀时期，这些成本都是巨大的，但温和通货膨胀时间这些成本的大小并不清楚。</p>
+<h3 id="第三十一章-开放经济的宏观经济学：基本概念"><a href="#第三十一章-开放经济的宏观经济学：基本概念" class="headerlink" title="第三十一章 开放经济的宏观经济学：基本概念"></a>第三十一章 开放经济的宏观经济学：基本概念</h3><p>净出口是在国外销售的国内生产的物品与服务的价值（出口）减去在国内销售的国外物品与服务的价值（进口）。资本净流出是本国居民获得的外国资产（资本流出）减去外国人获得的本国资产（资本流入）。由于每一次国际交易都包括资产与物品或服务的交换，所以一个经济的资本净流出总是等于其净出口。</p>
+<p>一个经济的储蓄既可以用于为国内投资筹资，又可以用于购买国外资产。因此，国民储蓄等于国内投资加资本净流出。</p>
+<p>名义汇率是两国通货的相对价格，而真实汇率是两国物品与服务的相对价格。当名义汇率变动致使每美元能购买更多的外国通货时，可以说美元升值或者坚挺。当名义汇率变动致使每美元只能购买较少的外国通货时，可以说美元贬值或者疲软。</p>
+<p>根据购买力平价理论，一美元（或者一单位任何一种其他通货）应该能在所有国家购买等量的物品。这种理论意味着两国通货之间的名义汇率应该反映这两个国家的物价水平。因此，有较高通货膨胀的国家的通货应该贬值，而有较低通货膨胀的国家的通货应该升值。</p>
+<h3 id="第三十二章-开放经济的宏观经济理论"><a href="#第三十二章-开放经济的宏观经济理论" class="headerlink" title="第三十二章 开放经济的宏观经济理论"></a>第三十二章 开放经济的宏观经济理论</h3><p>两个市场时开放经济的宏观经济学的中心：可贷资金市场和外汇市场。在可贷资金市场上，真实利率的调整使可贷资金的供给（来自国民储蓄）和可贷资金的需求（来自国内投资和资本净流出）平衡。在外汇市场上，真实汇率的调整使美元的供给（来自资本净流出）和美元的需求（用于净出口）平衡。因为资本净流出是可贷资金需求的一部分，并且它为外汇市场提供了美元，所以它是联系这两个市场的变量。</p>
+<p>减少国民储蓄的政策，例如政府预算赤字，减少了可贷资金的供给，并使利率上升。较高的利率减少了资本净流出，这又减少了外汇市场上的美元供给，导致美元升值及净出口减少。</p>
+<p>虽然限制性贸易政策，例如进口关税或进口配额，有时因被视为一种改变贸易余额的方法而得到支持，但这些政策并不一定有这种效果。贸易限制增加了汇率既定时的净出口，从而也提高了外汇市场上的美元需求。因此，美元的价值上升，这就使国内物品相对于国外物品更昂贵。这种升值抵消了贸易限制对净出口的最初影响。</p>
+<p>当投资者改变他们对持有一国资产的态度时，这对该国经济的后果可能是严重的。特别是，政治上的不稳定会引起资本外逃，资本外逃往往又会提高利率，并引起通货贬值。</p>
+<h3 id="第三十三章-总需求与总供给"><a href="#第三十三章-总需求与总供给" class="headerlink" title="第三十三章 总需求与总供给"></a>第三十三章 总需求与总供给</h3><p>所有社会都经历过围绕长期趋势的短期经济波动。这些波动是无规律的，而且大体上是不可预测的。当衰退真的发生时，真实GDP以及有关收入、支出与生产的其他衡量指标都下降，而失业增加。</p>
+<p>古典经济理论建立在货币供给和物价水平这类名义变量不影响产量和就业这类真实变量这一假设的基础之上。许多经济学家认为，这个假设在长期中是正确的，但在短期中并不正确。经济学家用总需求与总供给模型分析短期经济波动。根据这个模型，物品与服务的产量和物价总水平的调整使总需求与总供给平衡。</p>
+<p>总需求曲线由于三个原因向右下方倾斜。第一是财富效应：较低的物价水平增加了家庭持有的货币的真实价值，这刺激了消费支出。第二是利率效应：较低的价格减少了家庭需要的货币量，随着家庭试图把货币转变为有利息的资产，利率下降了，这刺激了投资支出。第三十汇率效应：当较低的物价水平降低了利率时，外汇市场上美元贬值，这刺激了净出口。</p>
+<p>在物价水平既定时，任何一种增加消费、投资、政府购买或净出口的事件或政策都会增加总需求。在物价水平既定时，任何一种减少消费、投资、政府购买或净出口的事件或政策都会减少总需求。</p>
+<p>长期总供给曲线是垂直的，在长期中，物品与服务的供给量取决于经济中的劳动、资本、自然资源和技术，但不取决于物价总水平。</p>
+<p>本章提出了三重理论用以解释短期总供给曲线向右上方倾斜。根据黏性工资理论，未预期的物价水平下降暂时增加了真实工资，这使企业减少了就业和生产。根据黏性价格理论，未预期的物价水平下降使一些企业的价格暂时升高，这就降低了它们的销售量，并使它们消减生产。根据错觉理论，未预期的物价水平下降使供给者错误地相信，它们的相对价格下降了，这就使它们减少生产。所有这三种理论都意味着，当实际物价与人们预期的物价水平背离时，产量就会与自然水平背离。</p>
+<p>改变经济生产能力的事件，例如劳动、资本、自然资源或技术的改变，都会使短期总供给曲线移动（而且也会使长期总供给曲线移动）。此外，短期总供给曲线的位置还取决于预期的物价水平。</p>
+<p>经济波动的一个可能原因是总需求的移动。例如，当总需求曲线向左移动时，短期中产量和物价就会下降。随着时间的推移，当预期物价水平的变动引起工资、物价和感觉进行调整时，短期总供给曲线就会向右移动，并使经济在一个新的，较低的物价水平时回到其自然产出的水平。</p>
+<p>经济波动的第二个可能原因是总供给的移动。当短期总供给曲线向左移动时，效应是产量减少和物价上升–这种结合被称为滞胀。随着时间的推移，当工资，物价和感觉进行调整时，短期总供给曲线向右移动，使物价水平和产量回到原来的水平。</p>
+<h3 id="第三十四章-货币政策和财政政策对总需求的影响"><a href="#第三十四章-货币政策和财政政策对总需求的影响" class="headerlink" title="第三十四章 货币政策和财政政策对总需求的影响"></a>第三十四章 货币政策和财政政策对总需求的影响</h3><p>在建立短期经济波动理论时，凯恩斯提出了流动性偏好理论来解释利率的决定因素。根据这种理论，利率的调整使货币的供求平衡。</p>
+<p>物价水平上升增加了货币需求，提高了使货币市场均衡的利率。由于利率代表借款的成本，所以较高的利率减少了投资，从而减少了物品与服务的需求量。向右下方倾斜的总需求曲线表明了物价水平与需求量之间的这种负相关关系。</p>
+<p>决策者可以用<strong>货币政策</strong>影响总需求。货币供给的增加降低了物价水平既定时的均衡利率。因为较低的利率刺激了投资支出，所以总需求曲线向右移动。相反，货币供给减少提高物价水平既定时的均衡利率，使总需求曲线向左移动。</p>
+<p>决策者还可以用<strong>财政政策</strong>影响总需求。政府购买增加或减税可以使总需求曲线向右移动。政府购买减少或增税可以使总需求曲线向左移动。</p>
+<p>当政府改变支出或税收时，所引起的总需求变动可能小于或大于财政变动。乘数效应往往扩大财政政策对总需求的影响。挤出效应往往减少财政政策对总需求的影响。</p>
+<p>由于货币政策和财政政策可以影响总需求，所以政府有时用这些政策工具来试图稳定经济。经济学家对政府应该如何积极地进行这种努力的看法并不一致。根据积极稳定政策支持者的看法，家庭和企业态度的改变使总需求变动，如果政府不对此反应，结果就是产量与就业的不合意及不必要的波动。根据积极稳定政策批评者的看法，货币政策与财政政策发生作用都有相当长的时滞，以至于稳定经济的努力往往以不稳定告终。</p>
+<h3 id="第三十五章-通货膨胀与事业之间的短期权衡取舍"><a href="#第三十五章-通货膨胀与事业之间的短期权衡取舍" class="headerlink" title="第三十五章 通货膨胀与事业之间的短期权衡取舍"></a>第三十五章 通货膨胀与事业之间的短期权衡取舍</h3><p>菲利普斯曲线描述了通货膨胀和失业之间的负相关关系。通过扩大总需求，决策者可以在菲利普斯曲线上选择较高通货膨胀和较低失业的一点。通过紧缩总需求，决策者可以在菲利普斯曲线上选择较低通货膨胀和较高失业的一点。</p>
+<p>菲利普斯曲线所描述的通货膨胀与失业之间的权衡取舍只在短期中成立。在长期中，预期通货膨胀根据实际通货膨胀的变动进行调整，而短期菲利普斯曲线也会移动。因此，长期菲利普斯曲线是通过自然失业率的一条垂线。</p>
+<p>短期菲利普斯曲线也会由于总供给冲击而移动。不利的供给冲击，例如世界石油价格的上升，给了决策者一个较为不利的通货膨胀和失业之间的权衡取舍。也就是说，在不利的供给冲击之后，决策者不得不在失业率既定时接受较高的通货膨胀率，或者在通货膨胀率既定时接受较高的失业率。</p>
+<p>当美联储紧缩货币供给增长以降低通货膨胀时，它使经济沿着短期菲利普斯曲线移动，这就引起暂时的高失业。反通货膨胀的代价取决于通货膨胀下降的速度。一些经济学家认为，可信任的低通货膨胀可以通过引起预期的迅速调整而降低反通货膨胀的代价。</p>
+<h3 id="第三十六章-宏观经济政策的六个争论问题"><a href="#第三十六章-宏观经济政策的六个争论问题" class="headerlink" title="第三十六章 宏观经济政策的六个争论问题"></a>第三十六章 宏观经济政策的六个争论问题</h3><p>积极货币政策与财政政策的支持者认为，经济本质上是不稳定的，并相信政府可以管理总需求，以抵消内在的不稳定性。积极货币政策与财政政策的批评者强调，政策对经济的影响存在时滞，而且我们预期未来经济状况的能力是很差的，因此稳定经济的努力可能以使经济不稳定而告终。</p>
+<p>增加政府支出以应对衰退的支持者认为，由于减少的税收可能被用于储蓄而不是支出，因此直接的政府支出能更多地增加总需求，这是促进生产和就业的关键。增加政府支出的批评者认为，减税既可以扩大总需求也可以扩大总供给，而且政府支出迅速增加会引起浪费性的公共项目产生。</p>
+<p>货币政策规则的支持者认为，相机决策的政策会饱受能力不足、滥用权力和政策前后不一致性之苦。货币政策规则的批评者认为，相机抉择的政策在对变化着的经济环境做出反应时较为灵活。</p>
+<p>零通货膨胀目标的支持者强调，通货膨胀有许多成本，而且即使有好处也很少。此外，消除通货膨胀的代价–压低产量和就业–只是暂时的。如果中央银行宣布一项可信的降低通货膨胀的计划，从而直接降低通货膨胀预期，那么甚至连这种代价也可以减少。零通货膨胀目标的批评者认为，温和的通货膨胀给社会只带来很小的成本，而降低通货膨胀所必须的衰退则代价高昂。批评者也指出了几种缓和的通货膨胀可以有助于经济的方法。</p>
+<p>平衡政府预算的支持者认为，预算赤字通过增加子孙后代的税收并减少他们的收入而把不公正的负担加在他们身上。平衡政府预算的批评者认为，赤字只是财政政策的一小部分。只关心预算赤字会忽略诸多方面，包括各种支出计划在内的财政政策能够影响几代人的利益。</p>
+<p>税收激励储蓄观点的支持者支出，我们的社会用许多方法一致储蓄，例如对资本收益征收重税和减少那些积累了财富的人享有的补助。他们支持修改税法以鼓励储蓄，比如把所得税改为消费税。税收激励储蓄观点的批评者认为，许多刺激储蓄的变动主要是使富人受益，而这些富人并不需要减税。他们还认为，这种变化对私人储蓄只有微小的影响。通过降低政府预算赤字来增加公共储蓄可以提供更直接、更平等地增加国民储蓄的方法。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/08/Python%E4%B8%AD%E7%9A%84%E8%B6%85%E5%A4%A7%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97/" rel="prev" title="Python中的超大数的运算">
+      <i class="fa fa-chevron-left"></i> Python中的超大数的运算
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/25/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="社会心理学读书笔记">
+      社会心理学读书笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8D%81%E5%A4%A7%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">第一章 经济学十大原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E8%B5%8B%E7%A8%8E%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-number">2.</span> <span class="nav-text">第八章 赋税的代价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%9B%BD%E9%99%85%E8%B4%B8%E6%98%93"><span class="nav-number">3.</span> <span class="nav-text">第九章 国际贸易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%A4%96%E9%83%A8%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">第十章 外部性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%85%AC%E5%85%B1%E7%89%A9%E5%93%81%E5%92%8C%E5%85%AC%E5%85%B1%E8%B5%84%E6%BA%90"><span class="nav-number">5.</span> <span class="nav-text">第十一章 公共物品和公共资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E7%A8%8E%E5%88%B6%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">6.</span> <span class="nav-text">第十二章 税制的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-%E7%94%9F%E4%BA%A7%E6%88%90%E6%9C%AC"><span class="nav-number">7.</span> <span class="nav-text">第十三章 生产成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E7%AB%9E%E4%BA%89%E5%B8%82%E5%9C%BA%E4%B8%8A%E7%9A%84%E4%BC%81%E4%B8%9A"><span class="nav-number">8.</span> <span class="nav-text">第十四章 竞争市场上的企业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E5%9E%84%E6%96%AD"><span class="nav-number">9.</span> <span class="nav-text">第十五章 垄断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E5%9E%84%E6%96%AD%E7%AB%9E%E4%BA%89"><span class="nav-number">10.</span> <span class="nav-text">第十六章 垄断竞争</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E5%AF%A1%E5%A4%B4"><span class="nav-number">11.</span> <span class="nav-text">第十七章 寡头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E7%94%9F%E6%88%90%E8%A6%81%E7%B4%A0%E5%B8%82%E5%9C%BA"><span class="nav-number">12.</span> <span class="nav-text">第十八章 生成要素市场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E6%94%B6%E5%85%A5%E4%B8%8E%E6%AD%A7%E8%A7%86"><span class="nav-number">13.</span> <span class="nav-text">第十九章 收入与歧视</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0-%E6%94%B6%E5%85%A5%E4%B8%8D%E5%B9%B3%E7%AD%89%E4%B8%8E%E5%B9%B3%E5%9B%B0"><span class="nav-number">14.</span> <span class="nav-text">第二十章 收入不平等与平困</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%B6%88%E8%B4%B9%E8%80%85%E9%80%89%E6%8B%A9%E7%90%86%E8%AE%BA"><span class="nav-number">15.</span> <span class="nav-text">第二十一章 消费者选择理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E7%AB%A0-%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%89%8D%E6%B2%BF"><span class="nav-number">16.</span> <span class="nav-text">第二十二章 微观经济学前沿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E4%B8%80%E5%9B%BD%E6%94%B6%E5%85%A5%E7%9A%84%E8%A1%A1%E9%87%8F"><span class="nav-number">17.</span> <span class="nav-text">第二十三章 一国收入的衡量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AB%A0-%E7%94%9F%E6%B4%BB%E8%B4%B9%E7%94%A8%E7%9A%84%E8%A1%A1%E9%87%8F"><span class="nav-number">18.</span> <span class="nav-text">第二十四章 生活费用的衡量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%94%9F%E4%BA%A7%E4%B8%8E%E5%A2%9E%E9%95%BF"><span class="nav-number">19.</span> <span class="nav-text">第二十五章 生产与增长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AD%E7%AB%A0-%E5%82%A8%E8%93%84%E3%80%81%E6%8A%95%E8%B5%84%E5%92%8C%E9%87%91%E8%9E%8D%E4%BD%93%E7%B3%BB"><span class="nav-number">20.</span> <span class="nav-text">第二十六章 储蓄、投资和金融体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%83%E7%AB%A0-%E9%87%91%E8%9E%8D%E5%AD%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="nav-number">21.</span> <span class="nav-text">第二十七章 金融学的基本工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%A4%B1%E4%B8%9A"><span class="nav-number">22.</span> <span class="nav-text">第二十八章 失业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B9%9D%E7%AB%A0-%E8%B4%A7%E5%B8%81%E5%88%B6%E5%BA%A6"><span class="nav-number">23.</span> <span class="nav-text">第二十九章 货币制度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E7%AB%A0-%E8%B4%A7%E5%B8%81%E5%A2%9E%E9%95%BF%E4%B8%8E%E9%80%9A%E8%B4%A7%E8%86%A8%E8%83%80"><span class="nav-number">24.</span> <span class="nav-text">第三十章 货币增长与通货膨胀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%BC%80%E6%94%BE%E7%BB%8F%E6%B5%8E%E7%9A%84%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">25.</span> <span class="nav-text">第三十一章 开放经济的宏观经济学：基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%8C%E7%AB%A0-%E5%BC%80%E6%94%BE%E7%BB%8F%E6%B5%8E%E7%9A%84%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E7%90%86%E8%AE%BA"><span class="nav-number">26.</span> <span class="nav-text">第三十二章 开放经济的宏观经济理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%80%BB%E9%9C%80%E6%B1%82%E4%B8%8E%E6%80%BB%E4%BE%9B%E7%BB%99"><span class="nav-number">27.</span> <span class="nav-text">第三十三章 总需求与总供给</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%9B%9B%E7%AB%A0-%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96%E5%92%8C%E8%B4%A2%E6%94%BF%E6%94%BF%E7%AD%96%E5%AF%B9%E6%80%BB%E9%9C%80%E6%B1%82%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">28.</span> <span class="nav-text">第三十四章 货币政策和财政政策对总需求的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E7%AB%A0-%E9%80%9A%E8%B4%A7%E8%86%A8%E8%83%80%E4%B8%8E%E4%BA%8B%E4%B8%9A%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9F%AD%E6%9C%9F%E6%9D%83%E8%A1%A1%E5%8F%96%E8%88%8D"><span class="nav-number">29.</span> <span class="nav-text">第三十五章 通货膨胀与事业之间的短期权衡取舍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E7%AB%A0-%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96%E7%9A%84%E5%85%AD%E4%B8%AA%E4%BA%89%E8%AE%BA%E9%97%AE%E9%A2%98"><span class="nav-number">30.</span> <span class="nav-text">第三十六章 宏观经济政策的六个争论问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,22 +1,574 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="初识Vue 想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象； root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法； root容器里的代码被称为【Vue模板】； Vue实例和容器是一一对应的； 真实开发中只有一个Vue实例，并且会配合着组件一起使用； &amp;#123;&amp;#123;xxx&amp;#125;&amp;#125;中的xxx要写js表达式，且xxx可以自动读取到data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue基础知识学习">
+<meta property="og:url" content="http://yoursite.com/2021/09/14/Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="初识Vue 想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象； root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法； root容器里的代码被称为【Vue模板】； Vue实例和容器是一一对应的； 真实开发中只有一个Vue实例，并且会配合着组件一起使用； &amp;#123;&amp;#123;xxx&amp;#125;&amp;#125;中的xxx要写js表达式，且xxx可以自动读取到data">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-14T03:34:47.000Z">
+<meta property="article:modified_time" content="2021-09-15T03:24:11.616Z">
+<meta property="article:author" content="老王">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/09/14/Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue基础知识学习 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">只不过是是随便写写啦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue基础知识学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-14 11:34:47" itemprop="dateCreated datePublished" datetime="2021-09-14T11:34:47+08:00">2021-09-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-15 11:24:11" itemprop="dateModified" datetime="2021-09-15T11:24:11+08:00">2021-09-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="初识Vue"><a href="#初识Vue" class="headerlink" title="初识Vue"></a>初识Vue</h3><ol>
+<li>想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象；</li>
+<li>root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法；</li>
+<li>root容器里的代码被称为【Vue模板】；</li>
+<li>Vue实例和容器是一一对应的；</li>
+<li>真实开发中只有一个Vue实例，并且会配合着组件一起使用；</li>
+<li><code>&#123;&#123;xxx&#125;&#125;</code>中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性；</li>
+<li>一旦data中的数据发生改变，那么页面中用到该数据的地方也会自动更新；</li>
+</ol>
+<p><strong>注意区分</strong>：js表达式 和 js代码(语句)</p>
+<ol>
+<li>表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方：<br> (1). a<br> (2). a+b<br> (3). demo(1)<br> (4). x === y ? ‘a’ : ‘b’</li>
+<li>js代码(语句)<br> (1). <code>if()&#123;&#125;</code><br> (2). <code>for()&#123;&#125;</code></li>
+</ol>
+<span id="more"></span>
+
+<h3 id="Vue模板语法"><a href="#Vue模板语法" class="headerlink" title="Vue模板语法"></a>Vue模板语法</h3><h4 id="插值语法："><a href="#插值语法：" class="headerlink" title="插值语法："></a>插值语法：</h4><p>功能：用于解析标签体内容。<br>写法：<code>&#123;&#123;xxx&#125;&#125;</code>，xxx是js表达式，且可以直接读取到data中的所有属性。</p>
+<h4 id="指令语法："><a href="#指令语法：" class="headerlink" title="指令语法："></a>指令语法：</h4><p>功能：用于解析标签（包括：标签属性、标签体内容、绑定事件…..）。<br>举例：v-bind:href=”xxx” 或  简写为 :href=”xxx”，xxx同样要写js表达式，且可以直接读取到data中的所有属性。<br>备注：Vue中有很多的指令，且形式都是：v-????，此处我们只是拿v-bind举个例子</p>
+<h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><p>Vue中有2种数据绑定的方式：</p>
+<ol>
+<li><p>单向绑定(v-bind)：数据只能从data流向页面。</p>
+</li>
+<li><p>双向绑定(v-model)：数据不仅能从data流向页面，还可以从页面流向data。</p>
+</li>
+</ol>
+<p>备注：</p>
+<ol>
+<li><p>双向绑定一般都应用在表单类元素上（如：input、select等）</p>
+</li>
+<li><p>v-model:value 可以简写为 v-model，因为v-model默认收集的就是value值。</p>
+</li>
+</ol>
+<h3 id="el和data的2种写法"><a href="#el和data的2种写法" class="headerlink" title="el和data的2种写法"></a>el和data的2种写法</h3><p>data与el的2种写法</p>
+<ol>
+<li>el有2种写法<br> (1).new Vue时候配置el属性。<br> (2).先创建Vue实例，随后再通过vm.$mount(‘#root’)指定el的值。</li>
+<li>data有2种写法<br> (1).对象式<br> (2).函数式<br> 如何选择：目前哪种写法都可以，以后学习到组件时，data必须使用函数式，否则会报错。</li>
+<li>一个重要的原则：<br>由Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例了。、</li>
+</ol>
+<h3 id="MVVW模型"><a href="#MVVW模型" class="headerlink" title="MVVW模型"></a>MVVW模型</h3><p>MVVM模型</p>
+<ol>
+<li>M：模型(Model) ：data中的数据</li>
+<li>V：视图(View) ：模板代码</li>
+<li>VM：视图模型(ViewModel)：Vue实例</li>
+</ol>
+<p>观察发现：</p>
+<ol>
+<li>data中所有的属性，最后都出现在了vm身上。</li>
+<li>vm身上所有的属性 及 Vue原型上所有属性，在Vue模板中都可以直接使用。</li>
+</ol>
+<h3 id="Vue中的数据代理"><a href="#Vue中的数据代理" class="headerlink" title="Vue中的数据代理"></a>Vue中的数据代理</h3><ol>
+<li>Vue中的数据代理：<br>通过vm对象来代理data对象中属性的操作（读/写）</li>
+<li>Vue中数据代理的好处：<br>更加方便的操作data中的数据</li>
+<li>基本原理：<br>通过Object.defineProperty()把data对象中所有属性添加到vm上。<br>为每一个添加到vm上的属性，都指定一个getter/setter。</li>
+</ol>
+<h3 id="事件的基本使用"><a href="#事件的基本使用" class="headerlink" title="事件的基本使用"></a>事件的基本使用</h3><h4 id="事件的基本使用-1"><a href="#事件的基本使用-1" class="headerlink" title="事件的基本使用"></a>事件的基本使用</h4><ol>
+<li>使用v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名；</li>
+<li>事件的回调需要配置在methods对象中，最终会在vm上；</li>
+<li>methods中配置的函数，不要用箭头函数！否则this就不是vm了；</li>
+<li>methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；</li>
+<li>@click=”demo” 和 @click=”demo($event)” 效果一致，但后者可以传参；</li>
+</ol>
+<h4 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h4><ol>
+<li>prevent：阻止默认事件（常用）；</li>
+<li>stop：阻止事件冒泡（常用）；</li>
+<li>once：事件只触发一次（常用）；</li>
+<li>capture：使用事件的捕获模式；</li>
+<li>self：只有event.target是当前操作的元素时才触发事件；</li>
+<li>passive：事件的默认行为立即执行，无需等待事件回调执行完毕；</li>
+</ol>
+<h4 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h4><ol>
+<li>Vue中常用的按键别名：<br> 回车 =&gt; enter<br> 删除 =&gt; delete (捕获“删除”和“退格”键)<br> 退出 =&gt; esc<br> 空格 =&gt; space<br> 换行 =&gt; tab (特殊，必须配合keydown去使用)<br> 上 =&gt; up<br> 下 =&gt; down<br> 左 =&gt; left<br> 右 =&gt; right</li>
+<li>Vue未提供别名的按键，可以使用按键原始的key值去绑定，但注意要转为kebab-case（短横线命名）</li>
+<li>系统修饰键（用法特殊）：ctrl、alt、shift、meta<br> (1).配合keyup使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才被触发。<br> (2).配合keydown使用：正常触发事件。</li>
+<li>也可以使用keyCode去指定具体的按键（不推荐）</li>
+<li>Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名</li>
+</ol>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><ol>
+<li>定义：要用的属性不存在，要通过已有属性计算得来。</li>
+<li>原理：底层借助了Objcet.defineproperty方法提供的getter和setter。</li>
+<li>get函数什么时候执行？<br>(1).初次读取时会执行一次。<br>(2).当依赖的数据发生改变时会被再次调用。</li>
+<li>优势：与methods实现相比，内部有缓存机制（复用），效率更高，调试方便。</li>
+<li>备注：</li>
+<li>计算属性最终会出现在vm上，直接读取使用即可。</li>
+<li>如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖的数据发生改变。</li>
+</ol>
+<h3 id="监视属性"><a href="#监视属性" class="headerlink" title="监视属性"></a>监视属性</h3><ol>
+<li>当被监视的属性变化时, 回调函数自动调用, 进行相关操作</li>
+<li>监视的属性必须存在，才能进行监视！！</li>
+<li>监视的两种写法：<br>(1).new Vue时传入watch配置<br>(2).通过vm.$watch监视</li>
+</ol>
+<h4 id="深度监视"><a href="#深度监视" class="headerlink" title="深度监视"></a>深度监视</h4><p>深度监视：</p>
+<ol>
+<li>Vue中的watch默认不监测对象内部值的改变（一层）。</li>
+<li>配置deep:true可以监测对象内部值改变（多层）。</li>
+</ol>
+<p>备注：</p>
+<ol>
+<li>Vue自身可以监测对象内部值的改变，但Vue提供的watch默认不可以！</li>
+<li>使用watch时根据数据的具体结构，决定是否采用深度监视。</li>
+</ol>
+<h4 id="computed和watch之间的区别："><a href="#computed和watch之间的区别：" class="headerlink" title="computed和watch之间的区别："></a>computed和watch之间的区别：</h4><ol>
+<li>computed能完成的功能，watch都可以完成。</li>
+<li>watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作。</li>
+</ol>
+<p>两个重要的小原则：</p>
+<ol>
+<li>所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm 或 组件实例对象。</li>
+<li>所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数等、Promise的回调函数），最好写成箭头函数，这样this的指向才是vm 或 组件实例对象。</li>
+</ol>
+<h3 id="绑定样式"><a href="#绑定样式" class="headerlink" title="绑定样式"></a>绑定样式</h3><h4 id="class样式"><a href="#class样式" class="headerlink" title="class样式"></a>class样式</h4><p>写法:class=”xxx” xxx可以是字符串、对象、数组。<br>    字符串写法适用于：类名不确定，要动态获取。<br>    对象写法适用于：要绑定多个样式，个数不确定，名字也不确定。<br>    数组写法适用于：要绑定多个样式，个数确定，名字也确定，但不确定用不用。</p>
+<h4 id="style样式"><a href="#style样式" class="headerlink" title="style样式"></a>style样式</h4><p><code>:style=&quot;&#123;fontSize: xxx&#125;&quot;</code>其中xxx是动态值。<br><code>:style=&quot;[a,b]&quot;</code>其中a、b是样式对象。</p>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>写法：<br>    (1).v-if=”表达式”<br>    (2).v-else-if=”表达式”<br>    (3).v-else=”表达式”<br>适用于：切换频率较低的场景。<br>特点：不展示的DOM元素直接被移除。<br>注意：v-if可以和:v-else-if、v-else一起使用，但要求结构不能被“打断”。</p>
+<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>写法：v-show=”表达式”<br>适用于：切换频率较高的场景。<br>特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉</p>
+<p>备注：使用v-if的时，元素可能无法获取到，而使用v-show一定可以获取到。</p>
+<h3 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h3><h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>v-for指令:</p>
+<ol>
+<li>用于展示列表数据</li>
+<li>语法：v-for=”(item, index) in xxx” :key=”yyy”</li>
+<li>可遍历：数组、对象、字符串（用的很少）、指定次数（用的很少）</li>
+</ol>
+<h4 id="v-for中的key"><a href="#v-for中的key" class="headerlink" title="v-for中的key"></a>v-for中的key</h4><ol>
+<li><p>虚拟DOM中key的作用：<br> key是虚拟DOM对象的标识，当数据发生变化时，Vue会根据【新数据】生成【新的虚拟DOM】,<br> 随后Vue进行【新虚拟DOM】与【旧虚拟DOM】的差异比较，比较规则如下：</p>
+</li>
+<li><p>对比规则：<br> (1).旧虚拟DOM中找到了与新虚拟DOM相同的key：</p>
+<pre><code> ①.若虚拟DOM中内容没变, 直接使用之前的真实DOM！
+ ②.若虚拟DOM中内容变了, 则生成新的真实DOM，随后替换掉页面中之前的真实DOM。
+</code></pre>
+<p> (2).旧虚拟DOM中未找到与新虚拟DOM相同的key创建新的真实DOM，随后渲染到到页面。</p>
+</li>
+<li><p>用index作为key可能会引发的问题：</p>
+<ol>
+<li><p>若对数据进行：逆序添加、逆序删除等破坏顺序操作:会产生没有必要的真实DOM更新 ==&gt; 界面效果没问题, 但效率低。</p>
+</li>
+<li><p>如果结构中还包含输入类的DOM：会产生错误DOM更新 ==&gt; 界面有问题。</p>
+</li>
+</ol>
+</li>
+<li><p>开发中如何选择key?:</p>
+<ol>
+<li>最好使用每条数据的唯一标识作为key, 比如id、手机号、身份证号、学号等唯一值。</li>
+<li>如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用index作为key是没有问题的。</li>
+</ol>
+</li>
+</ol>
+<h4 id="Vue中监视数据的原理"><a href="#Vue中监视数据的原理" class="headerlink" title="Vue中监视数据的原理"></a>Vue中监视数据的原理</h4><ol>
+<li><p>vue会监视data中所有层次的数据。</p>
+</li>
+<li><p>如何监测对象中的数据？<br> 通过setter实现监视，且要在new Vue时就传入要监测的数据。</p>
+<pre><code> (1).对象中后追加的属性，Vue默认不做响应式处理
+ (2).如需给后添加的属性做响应式，请使用如下API：
+         Vue.set(target，propertyName/index，value) 或vm.$set(target，propertyName/index，value)
+</code></pre>
+</li>
+<li><p>如何监测数组中的数据？<br> 通过包裹数组更新元素的方法实现，本质就是做了两件事：</p>
+<pre><code> (1).调用原生对应的方法对数组进行更新。
+ (2).重新解析模板，进而更新页面。
+</code></pre>
+</li>
+</ol>
+<p>4.在Vue修改数组中的某个元素一定要用如下方法：<br>    (1).使用这些API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()<br>    (2).Vue.set() 或 vm.$set()</p>
+<p>注意：Vue.set() 和 vm.$set() 不能给vm 或 vm的根数据对象 添加属性！！！</p>
+<h3 id="收集表单数据"><a href="#收集表单数据" class="headerlink" title="收集表单数据"></a>收集表单数据</h3><p>若：<code>&lt;input type=&quot;text&quot;/&gt;</code>，则v-model收集的是value值，用户输入的就是value值。<br>若：<code>&lt;input type=&quot;radio&quot;/&gt;</code>，则v-model收集的是value值，且要给标签配置value值。<br>若：<code>&lt;input type=&quot;checkbox&quot;/&gt;</code></p>
+<ol>
+<li>没有配置input的value属性，那么收集的就是checked（勾选 or 未勾选，是布尔值）</li>
+<li>配置input的value属性:<br> (1)v-model的初始值是非数组，那么收集的就是checked（勾选 or 未勾选，是布尔值）<br> (2)v-model的初始值是数组，那么收集的的就是value组成的数组</li>
+</ol>
+<p>备注：v-model的三个修饰符：<br>    lazy：失去焦点再收集数据<br>    number：输入字符串转为有效的数字<br>    trim：输入首尾空格过滤</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/14/SDN%E7%9A%84%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E5%92%8C%E5%8E%9F%E7%90%86/" rel="prev" title="SDN的基础架构和原理">
+      <i class="fa fa-chevron-left"></i> SDN的基础架构和原理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E8%AF%86Vue"><span class="nav-number">1.</span> <span class="nav-text">初识Vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Vue模板语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">插值语法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">指令语法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el%E5%92%8Cdata%E7%9A%842%E7%A7%8D%E5%86%99%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">el和data的2种写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVW%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">MVVW模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">Vue中的数据代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">事件的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-1"><span class="nav-number">7.1.</span> <span class="nav-text">事件的基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">7.2.</span> <span class="nav-text">事件修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="nav-number">7.3.</span> <span class="nav-text">键盘事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="nav-number">8.</span> <span class="nav-text">计算属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7"><span class="nav-number">9.</span> <span class="nav-text">监视属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E7%9B%91%E8%A7%86"><span class="nav-number">9.1.</span> <span class="nav-text">深度监视</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#computed%E5%92%8Cwatch%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">9.2.</span> <span class="nav-text">computed和watch之间的区别：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E6%A0%B7%E5%BC%8F"><span class="nav-number">10.</span> <span class="nav-text">绑定样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#class%E6%A0%B7%E5%BC%8F"><span class="nav-number">10.1.</span> <span class="nav-text">class样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#style%E6%A0%B7%E5%BC%8F"><span class="nav-number">10.2.</span> <span class="nav-text">style样式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"><span class="nav-number">11.</span> <span class="nav-text">条件渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#v-if"><span class="nav-number">11.1.</span> <span class="nav-text">v-if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-show"><span class="nav-number">11.2.</span> <span class="nav-text">v-show</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">12.</span> <span class="nav-text">列表渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#v-for"><span class="nav-number">12.1.</span> <span class="nav-text">v-for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-for%E4%B8%AD%E7%9A%84key"><span class="nav-number">12.2.</span> <span class="nav-text">v-for中的key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue%E4%B8%AD%E7%9B%91%E8%A7%86%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">12.3.</span> <span class="nav-text">Vue中监视数据的原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE"><span class="nav-number">13.</span> <span class="nav-text">收集表单数据</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

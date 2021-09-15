@@ -1,22 +1,1155 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {%- if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta property="og:type" content="website">
+<meta property="og:title" content="只不过是是随便写写啦">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="老王">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">只不过是是随便写写啦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/Zabbix%E4%B8%8B%E7%9A%84mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E6%8E%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/15/Zabbix%E4%B8%8B%E7%9A%84mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E6%8E%A7/" class="post-title-link" itemprop="url">Zabbix下的mysql自定义监控</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-15 11:01:42 / 修改时间：16:17:40" itemprop="dateCreated datePublished" datetime="2020-09-15T11:01:42+08:00">2020-09-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zabbix/" itemprop="url" rel="index"><span itemprop="name">Zabbix</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="用户自定义zabbix的key"><a href="#用户自定义zabbix的key" class="headerlink" title="用户自定义zabbix的key"></a>用户自定义zabbix的key</h3><p>有时候，我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端的配置文件zabbix_angentd.conf里面配置UserParameter。</p>
+<p>语法如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserParameter=key,command</span><br></pre></td></tr></table></figure>
+
+<p>用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。</p>
+<p><strong>用人话来说就是command命令返回值对应这个key，在zabbix服务器端，可以通过这个key来获取command命令的返回值。这个命令可以是bash xx.sh，也可以是python xxx.py，还可以使用下文的[*]来添加参数，如python xxx.pt $1。</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/15/Zabbix%E4%B8%8B%E7%9A%84mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E6%8E%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/Zabbix%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/15/Zabbix%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Zabbix客户端的配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-15 09:37:27 / 修改时间：16:17:29" itemprop="dateCreated datePublished" datetime="2020-09-15T09:37:27+08:00">2020-09-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zabbix/" itemprop="url" rel="index"><span itemprop="name">Zabbix</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在配置完zabbix的服务器端之后，为了监控其它主机的情况，必须在被监控主机上安装一个agentd服务</p>
+<h3 id="Zabbix客户端的配置"><a href="#Zabbix客户端的配置" class="headerlink" title="Zabbix客户端的配置"></a>Zabbix客户端的配置</h3><p>和服务器端的配置一样，要关闭selinux和防火墙</p>
+<h4 id="获取对应的agentd包"><a href="#获取对应的agentd包" class="headerlink" title="获取对应的agentd包"></a>获取对应的agentd包</h4><p>需要在<a target="_blank" rel="noopener" href="http://repo.zabbix.com/zabbix%E4%BB%93%E5%BA%93%E4%B8%8A%E8%8E%B7%E5%8F%96%E6%89%80%E5%AF%B9%E5%BA%94%E7%9A%84rpm%E5%8C%85%EF%BC%8C%E5%A6%82%E6%9C%AC%E4%BA%BA%E7%94%A8%E7%9A%844.0.24%E7%9A%84zabbix%E6%89%80%E5%AF%B9%E5%BA%94%E7%9A%84agentd%E7%89%88%E6%9C%AC%E4%B9%9F%E8%A6%81%E6%98%AF**zabbix-agent-4.0.24-1.el7.x86_64.rpm">http://repo.zabbix.com/zabbix仓库上获取所对应的rpm包，如本人用的4.0.24的zabbix所对应的agentd版本也要是**zabbix-agent-4.0.24-1.el7.x86_64.rpm</a>**</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-agent-4.0.24-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/15/Zabbix%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/Zabbix%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/14/Zabbix%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Zabbix服务器端的搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-14 09:37:00" itemprop="dateCreated datePublished" datetime="2020-09-14T09:37:00+08:00">2020-09-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-15 09:46:29" itemprop="dateModified" datetime="2020-09-15T09:46:29+08:00">2020-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zabbix/" itemprop="url" rel="index"><span itemprop="name">Zabbix</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>由于公司课题中有写监控脚本的，之前使用python写了几个脚本，又写了一个监控平台的后端。然后研究了一下之后就发现，有zabbix这么大的一个轮子，为什么还要自己造轮子呢？</p>
+<p>本文就详细介绍一下zabbix的搭建过程，系统环境是centos7。</p>
+<p>这里感谢作者<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yaoyaojcy/p/9884130.html">CARLOS_CHIANG</a>的教程，下面的web界面的安装也是转载这位大哥的。</p>
+<h3 id="搭建LAMP环境"><a href="#搭建LAMP环境" class="headerlink" title="搭建LAMP环境"></a>搭建LAMP环境</h3><p>搭建之前先看一下系统环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release  <span class="comment">#查看Centos版本</span></span><br><span class="line">cat /proc/version        <span class="comment">#查看内核</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1giq7anatkyj30x202qjre.jpg" alt="image-20200914100958310.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/14/Zabbix%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/25/%E5%86%99shell%E8%84%9A%E6%9C%AC%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/25/%E5%86%99shell%E8%84%9A%E6%9C%AC%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">写shell脚本的时候遇到的一些技巧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-25 17:15:51" itemprop="dateCreated datePublished" datetime="2020-08-25T17:15:51+08:00">2020-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-28 17:42:43" itemprop="dateModified" datetime="2020-08-28T17:42:43+08:00">2020-08-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="本地ip地址的获取（获取ens33网卡）"><a href="#本地ip地址的获取（获取ens33网卡）" class="headerlink" title="本地ip地址的获取（获取ens33网卡）"></a>本地ip地址的获取（获取ens33网卡）</h3><p><code>ip -f inet a show ens33| grep inet| awk &#39;&#123; print $2&#125;&#39; | cut -d/ -f1</code></p>
+<p>其中centos7开始，网卡名字叫ens33，如果网卡是其它名字，就修改ens33。</p>
+<ul>
+<li>第一段 <code>ip -f inet a show ens33</code>是获取本地网卡的ip地址，其中<code>-f inet</code>是获取ipv4的地址。</li>
+<li><code>grep inet</code>是获取ip哪一行。</li>
+<li><code>awk &#39;&#123; print $2&#125;&#39;</code>打印第二个字段，命令中为ip字段。</li>
+<li><code>cut -d/ -f1</code>是去掉了ip中最后的网段。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/25/%E5%86%99shell%E8%84%9A%E6%9C%AC%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/linux%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/21/linux%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">linux中的一些命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-21 15:48:54" itemprop="dateCreated datePublished" datetime="2020-08-21T15:48:54+08:00">2020-08-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/18/vim%E4%BD%BF%E7%94%A8%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/18/vim%E4%BD%BF%E7%94%A8%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">vim使用中的一些方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-18 18:26:42" itemprop="dateCreated datePublished" datetime="2020-08-18T18:26:42+08:00">2020-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-14 15:46:16" itemprop="dateModified" datetime="2020-09-14T15:46:16+08:00">2020-09-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="vim中的设置"><a href="#vim中的设置" class="headerlink" title="vim中的设置"></a>vim中的设置</h3><p>vim的用户配置文件应该是在<code>/usr/bin/vim/.vimrc</code>中，但是本人配置了.vimrc后不起作用，所以对系统的vimrc文件<code>/etc/vimrc</code>进行修改。</p>
+<p>syntax enable “自动检测语法<br>syntax on “自动语法高亮<br>set number “显示行号<br>set tabstop=4 “表示Tab代表4个空格的宽度<br>set expandtab “表示Tab自动转换成空格<br>set autoindent “表示换行后自动缩进<br>set history=400 “vim记住的历史操作的数量，默认的是20<br>set smartindent “智能对齐<br>set shiftwidth=4 “偏移4个空格<br>set cursorline “每行都有下划线</p>
+<h3 id="不用箭头键进行上下左右移动光标"><a href="#不用箭头键进行上下左右移动光标" class="headerlink" title="不用箭头键进行上下左右移动光标"></a>不用箭头键进行上下左右移动光标</h3><p>h是左移，l是右移，j是下移，k是上移</p>
+<h3 id="上下翻页"><a href="#上下翻页" class="headerlink" title="上下翻页"></a>上下翻页</h3><p>pageup 上翻页，pagedown 下翻页</p>
+<h3 id="进入输入模式"><a href="#进入输入模式" class="headerlink" title="进入输入模式"></a>进入输入模式</h3><p>a 光标后插入，i 光标前插入， o 下一行插入</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>单行删除 dd，全文删除 dG</p>
+<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p><strong>单行</strong> 在命令模式下，将光标移动到将要复制的行处，按“yy”进行复制，将光标移动到将要粘贴的行处，按“p”进行粘贴。</p>
+<p><strong>多行</strong> 在命令模式下，按v进入可视模式，按箭头键即可选择相应的行，选择相应的行之后，到复制的文本结束的地方，再按y进行复制，之后会自动退出退出可视模式，光标返回到文本开始的位置。移动光标到需要开始复制的地方，按p进行复制</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>在normal模式下按下<code>/</code>键即可进入查找模式，输入要查找1字符串并按下回车。Vim会跳转到第一个匹配。按下小写的<code>n</code>查找下一个，按下大写的<code>N</code>查找上一个。</p>
+<p>每次查找后VIm会高亮搜索结果，在normal模式下输入:nohl即可</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/%E5%85%AC%E5%8F%B8%E5%AE%9E%E6%88%98%E5%92%8C%E8%80%83%E8%AF%95%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/13/%E5%85%AC%E5%8F%B8%E5%AE%9E%E6%88%98%E5%92%8C%E8%80%83%E8%AF%95%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">公司实战和考试中遇到的一些问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-13 16:22:45" itemprop="dateCreated datePublished" datetime="2020-08-13T16:22:45+08:00">2020-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 11:01:56" itemprop="dateModified" datetime="2020-09-16T11:01:56+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="linux文件权限"><a href="#linux文件权限" class="headerlink" title="linux文件权限"></a>linux文件权限</h3><p>Linux的文件权限有九种，分别是拥有者（owner）、所属群组（group）、其他人（others）三种身份各有自己的读（read）、写（write）、执行（execute），文件的权限字符为：[-rwxrwxrwx]，这九个权限是三个三个一组。其中，我们可以使用数字来代表各个权限，各权限的数字对照表：</p>
+<p><strong>r:4 w:2 x:1</strong></p>
+<p>使用chmod来改变文件的权限（需要sudo或者root权限），如<code>chmod 777 file</code>就是将文件的权限修改为[-rwxrwxrwx]（都是可读可写可执行），而<code>chmod 765 filename</code>就是将文件权限修改为[-rwxrw-r-x]（拥有者可读可写可执行，所属群组可读可写，其他人可读可执行）。</p>
+<p>当然也可以不用数字来进行文件权限的修改，可以使用<code>chmod u+x file</code>的方法给file文件的所有者增加可执行权限。</p>
+<p>其中u代表用户，u可以替换为a（代表所有）、g（代表用户组）、o（代表其他），x代表执行的权限，可以替换为r（可执行），w（可写）。+ 表示增加权限。</p>
+<p>这意味着<code>chmod u+x somefile</code> 只授予这个文件的所属者执行的权限<br>而 <code>chmod +x somefile</code> 和 <code>chmod a+x somefile</code>是一样的</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/13/%E5%85%AC%E5%8F%B8%E5%AE%9E%E6%88%98%E5%92%8C%E8%80%83%E8%AF%95%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/k8s%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/06/k8s%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8/" class="post-title-link" itemprop="url">k8s中的控制器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 09:51:08" itemprop="dateCreated datePublished" datetime="2020-08-06T09:51:08+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-21 18:43:28" itemprop="dateModified" datetime="2020-09-21T18:43:28+08:00">2020-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在k8s中，Pod被分类为自主式Pod，和控制器管理的Pod，其中自主式Pod是当Pod退出了，该类型的Pod就不会创建。而控制器管理的Pod是指，在控制器的生命周期里，始终要维持Pod的副本数目。</p>
+<h3 id="什么是控制器"><a href="#什么是控制器" class="headerlink" title="什么是控制器"></a>什么是控制器</h3><p>Kubernetes 中内建了很多 controller（控制器），这些相当于一个状态机，用来控制 Pod 的具体状态和行为</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/06/k8s%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">搭建k8s集群时遇到的一些问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-05 17:22:32" itemprop="dateCreated datePublished" datetime="2020-08-05T17:22:32+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-17 11:24:09" itemprop="dateModified" datetime="2020-09-17T11:24:09+08:00">2020-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>跟着尚硅谷的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w4411y7">k8s教程</a>在学kubernetes，期间也遇到了一些问题，分享一下这些问题。</p>
+<h3 id="node加入时没有反应，报couldn’t-validate-the-identity-of-the-API-Server"><a href="#node加入时没有反应，报couldn’t-validate-the-identity-of-the-API-Server" class="headerlink" title="node加入时没有反应，报couldn’t validate the identity of the API Server"></a>node加入时没有反应，报couldn’t validate the identity of the API Server</h3><p>Token过期了，需要重新生成token和sha256。</p>
+<p>生成Token的方法。 <code>kubeadm token create</code>，在master服务器输入命令可以生成相应的Token。</p>
+<p>再生成使用证书生成Token相应的sha256。命令<code>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &#39;s/^.\* //&#39;</code></p>
+<p>最后再join一下就完事了。<code>kubeadm join 对应的ip和端口 --token 对应的token     --discovery-token-ca-cert-hash sha256:对应的sha256</code></p>
+<h3 id="centos内核更新没反应"><a href="#centos内核更新没反应" class="headerlink" title="centos内核更新没反应"></a>centos内核更新没反应</h3><p>首先通过<code>uname -r</code>的命令来查看os内核版本。</p>
+<p>然后升级内核</p>
+<p>导入ELRepo仓库的公共密钥</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br></pre></td></tr></table></figure>
+
+<p>安装ELRepo仓库的yum源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>安装最新版本内核</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum --enablerepo=elrepo-kernel install kernel-ml</span><br></pre></td></tr></table></figure>
+
+<p>设置grub2</p>
+<p>内核安装好后，需要设置为默认启动选项并重启后才会生效。</p>
+<p>查看系统上的所有可用内核：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo awk -F\&#x27; &#x27;$1==&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&#x27; /etc/grub2.cfg</span><br><span class="line">0 : CentOS Linux (4.18.7-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">1 : CentOS Linux (3.10.0-862.11.6.el7.x86_64) 7 (Core)</span><br><span class="line">2 : CentOS Linux (3.10.0-514.el7.x86_64) 7 (Core)</span><br><span class="line">3 : CentOS Linux (0-rescue-063ec330caa04d4baae54c6902c62e54) 7 (Core)</span><br></pre></td></tr></table></figure>
+
+<p>设置新的内核为grub2的默认版本</p>
+<p>服务器上存在4 个内核，我们要使用 4.18 这个版本，可以通过 <code>grub2-set-default 0</code> 命令或编辑 <code>/etc/default/grub</code> 文件来设置</p>
+<p>重启就完事了</p>
+<h3 id="修改完网卡配置后还ping不通"><a href="#修改完网卡配置后还ping不通" class="headerlink" title="修改完网卡配置后还ping不通"></a>修改完网卡配置后还ping不通</h3><p>不要忘了重启，重启命令是<code>reboot</code>。</p>
+<h3 id="windows中hosts无法修改"><a href="#windows中hosts无法修改" class="headerlink" title="windows中hosts无法修改"></a>windows中hosts无法修改</h3><p>添加了权限都无法修改，研究了半天，发现是没有取消文件的只读权限。右键文件，只读的勾取消掉就行了。</p>
+<h3 id="harbor突然打不开了"><a href="#harbor突然打不开了" class="headerlink" title="harbor突然打不开了"></a>harbor突然打不开了</h3><p>原来是有关harbor的一些容器down了，需要重新run一下</p>
+<h3 id="kubectl-run之后状态一直ready-0-1"><a href="#kubectl-run之后状态一直ready-0-1" class="headerlink" title="kubectl run之后状态一直ready 0/1"></a>kubectl run之后状态一直ready 0/1</h3><p>使用kubectl describe pod查看pod信息后，发现出现了CrashLoopBackOff的问题，仔细一想后发现，容器hello-world不是一个可持续化的容器，自己写了一个静态化的容器后再run就没什么问题了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/k8s%E4%B8%AD%E7%9A%84%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/k8s%E4%B8%AD%E7%9A%84%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95/" class="post-title-link" itemprop="url">k8s中的资源清单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-05 17:15:56" itemprop="dateCreated datePublished" datetime="2020-08-05T17:15:56+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 11:01:40" itemprop="dateModified" datetime="2020-09-16T11:01:40+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>在k8s中，一般使用yaml格式的文件来创建符合我们预期期望的pod，这样的yaml文件我们一般称为资源清单</strong></p>
+<h3 id="k8s中的资源"><a href="#k8s中的资源" class="headerlink" title="k8s中的资源"></a>k8s中的资源</h3><p>k8s中所有的内容都抽象为资源，资源实例化之后，叫做对象。</p>
+<h4 id="名称空间级别"><a href="#名称空间级别" class="headerlink" title="名称空间级别"></a>名称空间级别</h4><ol>
+<li>工作负载型资源(workload)：Pod、ReplicaSet、Deployment、StatefulSet、DaemonSet、Job、CronJob(ReplicationController在v1.11版本被废弃</li>
+<li>服务发现及负载均衡型资源(ServiceDiscoveryLoadBalance):Service、Ingress、…</li>
+<li>配置与存储型资源：Volume(存储卷)、CSI(容器存储接口,可以扩展各种各样的第三方存储卷)</li>
+<li>特殊类型的存储卷：ConfigMap(当配置中心来使用的资源类型)、Secret(保存敏感数据)、DownwardAPI(把外部环境中的信息输出给容器)</li>
+</ol>
+<h4 id="集群级资源"><a href="#集群级资源" class="headerlink" title="集群级资源"></a>集群级资源</h4><p>Namespace（命名空间），Node（节点），Role（角色），ClusterRole，RoleBinding，ClusterRoleBinding</p>
+<h4 id="元数据资源"><a href="#元数据资源" class="headerlink" title="元数据资源"></a>元数据资源</h4><p>HPA，PodTemplate、LimitRange</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/05/k8s%E4%B8%AD%E7%9A%84%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

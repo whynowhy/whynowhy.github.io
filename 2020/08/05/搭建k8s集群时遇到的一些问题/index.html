@@ -1,22 +1,444 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="跟着尚硅谷的k8s教程在学kubernetes，期间也遇到了一些问题，分享一下这些问题。 node加入时没有反应，报couldn’t validate the identity of the API ServerToken过期了，需要重新生成token和sha256。 生成Token的方法。 kubeadm token create，在master服务器输入命令可以生成相应的Token。 再生成使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建k8s集群时遇到的一些问题">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="跟着尚硅谷的k8s教程在学kubernetes，期间也遇到了一些问题，分享一下这些问题。 node加入时没有反应，报couldn’t validate the identity of the API ServerToken过期了，需要重新生成token和sha256。 生成Token的方法。 kubeadm token create，在master服务器输入命令可以生成相应的Token。 再生成使">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-05T09:22:32.000Z">
+<meta property="article:modified_time" content="2020-09-17T03:24:09.492Z">
+<meta property="article:author" content="老王">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/05/%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>搭建k8s集群时遇到的一些问题 | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">只不过是是随便写写啦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          搭建k8s集群时遇到的一些问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-05 17:22:32" itemprop="dateCreated datePublished" datetime="2020-08-05T17:22:32+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-17 11:24:09" itemprop="dateModified" datetime="2020-09-17T11:24:09+08:00">2020-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>跟着尚硅谷的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w4411y7">k8s教程</a>在学kubernetes，期间也遇到了一些问题，分享一下这些问题。</p>
+<h3 id="node加入时没有反应，报couldn’t-validate-the-identity-of-the-API-Server"><a href="#node加入时没有反应，报couldn’t-validate-the-identity-of-the-API-Server" class="headerlink" title="node加入时没有反应，报couldn’t validate the identity of the API Server"></a>node加入时没有反应，报couldn’t validate the identity of the API Server</h3><p>Token过期了，需要重新生成token和sha256。</p>
+<p>生成Token的方法。 <code>kubeadm token create</code>，在master服务器输入命令可以生成相应的Token。</p>
+<p>再生成使用证书生成Token相应的sha256。命令<code>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &#39;s/^.\* //&#39;</code></p>
+<p>最后再join一下就完事了。<code>kubeadm join 对应的ip和端口 --token 对应的token     --discovery-token-ca-cert-hash sha256:对应的sha256</code></p>
+<h3 id="centos内核更新没反应"><a href="#centos内核更新没反应" class="headerlink" title="centos内核更新没反应"></a>centos内核更新没反应</h3><p>首先通过<code>uname -r</code>的命令来查看os内核版本。</p>
+<p>然后升级内核</p>
+<p>导入ELRepo仓库的公共密钥</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br></pre></td></tr></table></figure>
+
+<p>安装ELRepo仓库的yum源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>安装最新版本内核</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum --enablerepo=elrepo-kernel install kernel-ml</span><br></pre></td></tr></table></figure>
+
+<p>设置grub2</p>
+<p>内核安装好后，需要设置为默认启动选项并重启后才会生效。</p>
+<p>查看系统上的所有可用内核：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo awk -F\&#x27; &#x27;$1==&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&#x27; /etc/grub2.cfg</span><br><span class="line">0 : CentOS Linux (4.18.7-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">1 : CentOS Linux (3.10.0-862.11.6.el7.x86_64) 7 (Core)</span><br><span class="line">2 : CentOS Linux (3.10.0-514.el7.x86_64) 7 (Core)</span><br><span class="line">3 : CentOS Linux (0-rescue-063ec330caa04d4baae54c6902c62e54) 7 (Core)</span><br></pre></td></tr></table></figure>
+
+<p>设置新的内核为grub2的默认版本</p>
+<p>服务器上存在4 个内核，我们要使用 4.18 这个版本，可以通过 <code>grub2-set-default 0</code> 命令或编辑 <code>/etc/default/grub</code> 文件来设置</p>
+<p>重启就完事了</p>
+<h3 id="修改完网卡配置后还ping不通"><a href="#修改完网卡配置后还ping不通" class="headerlink" title="修改完网卡配置后还ping不通"></a>修改完网卡配置后还ping不通</h3><p>不要忘了重启，重启命令是<code>reboot</code>。</p>
+<h3 id="windows中hosts无法修改"><a href="#windows中hosts无法修改" class="headerlink" title="windows中hosts无法修改"></a>windows中hosts无法修改</h3><p>添加了权限都无法修改，研究了半天，发现是没有取消文件的只读权限。右键文件，只读的勾取消掉就行了。</p>
+<h3 id="harbor突然打不开了"><a href="#harbor突然打不开了" class="headerlink" title="harbor突然打不开了"></a>harbor突然打不开了</h3><p>原来是有关harbor的一些容器down了，需要重新run一下</p>
+<h3 id="kubectl-run之后状态一直ready-0-1"><a href="#kubectl-run之后状态一直ready-0-1" class="headerlink" title="kubectl run之后状态一直ready 0/1"></a>kubectl run之后状态一直ready 0/1</h3><p>使用kubectl describe pod查看pod信息后，发现出现了CrashLoopBackOff的问题，仔细一想后发现，容器hello-world不是一个可持续化的容器，自己写了一个静态化的容器后再run就没什么问题了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+              <a href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag"># 运维</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/k8s%E4%B8%AD%E7%9A%84%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95/" rel="prev" title="k8s中的资源清单">
+      <i class="fa fa-chevron-left"></i> k8s中的资源清单
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/06/k8s%E4%B8%AD%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8/" rel="next" title="k8s中的控制器">
+      k8s中的控制器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#node%E5%8A%A0%E5%85%A5%E6%97%B6%E6%B2%A1%E6%9C%89%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%8A%A5couldn%E2%80%99t-validate-the-identity-of-the-API-Server"><span class="nav-number">1.</span> <span class="nav-text">node加入时没有反应，报couldn’t validate the identity of the API Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos%E5%86%85%E6%A0%B8%E6%9B%B4%E6%96%B0%E6%B2%A1%E5%8F%8D%E5%BA%94"><span class="nav-number">2.</span> <span class="nav-text">centos内核更新没反应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%AE%8C%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE%E5%90%8E%E8%BF%98ping%E4%B8%8D%E9%80%9A"><span class="nav-number">3.</span> <span class="nav-text">修改完网卡配置后还ping不通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows%E4%B8%ADhosts%E6%97%A0%E6%B3%95%E4%BF%AE%E6%94%B9"><span class="nav-number">4.</span> <span class="nav-text">windows中hosts无法修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#harbor%E7%AA%81%E7%84%B6%E6%89%93%E4%B8%8D%E5%BC%80%E4%BA%86"><span class="nav-number">5.</span> <span class="nav-text">harbor突然打不开了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kubectl-run%E4%B9%8B%E5%90%8E%E7%8A%B6%E6%80%81%E4%B8%80%E7%9B%B4ready-0-1"><span class="nav-number">6.</span> <span class="nav-text">kubectl run之后状态一直ready 0&#x2F;1</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

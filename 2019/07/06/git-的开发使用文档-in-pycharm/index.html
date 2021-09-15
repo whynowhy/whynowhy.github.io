@@ -1,22 +1,511 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="git的安装 从官网(https:&#x2F;&#x2F;git-scm.com&#x2F;downloads)选择自己的系统安装git 在bash中使用https:&#x2F;&#x2F;git-scm.com&#x2F;downloads命令来生成ssh key，连按三次回车即可。 使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。   将本地已存在的文件夹上传如alicode在命令行中输入如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 的开发使用文档 in pycharm">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/git-%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3-in-pycharm/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:description" content="git的安装 从官网(https:&#x2F;&#x2F;git-scm.com&#x2F;downloads)选择自己的系统安装git 在bash中使用https:&#x2F;&#x2F;git-scm.com&#x2F;downloads命令来生成ssh key，连按三次回车即可。 使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。   将本地已存在的文件夹上传如alicode在命令行中输入如下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mpjyqyirj31dk0ps412.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnh9xofyj31bs0vswpm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnjdafygj31w80t6tcj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnk4y4qhj313413s1kx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnmjj7jdj31ci0xon4s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnsm668kj30qy0dy0uq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnvg0mx8j30oq0g60v9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mntuboj3j30oa0d6q5t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mnxajqnzj31cc1464qp.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mny0zbjtj30pi0mowqh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mo0cagauj317y16y46g.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpbr2ydj313c130b29.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpw1w2sj30nq0vcjv1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqbdzccj30yo184474.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqqdxoaj31vi12iwqz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4myoblhhtj314a13u4qp.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4myomp1y9j30ry0pmn2c.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mo1rh6y6j30su0fidk3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mp8la9oaj30t40e40ti.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mp9i6jzrj30vq0vetap.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mpkunpyuj315q15s7wh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mplfk9rij31si15yn2b.jpg">
+<meta property="article:published_time" content="2019-07-06T04:36:31.000Z">
+<meta property="article:modified_time" content="2019-07-28T06:06:12.000Z">
+<meta property="article:author" content="老王">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007useIpgy1g4mpjyqyirj31dk0ps412.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2019/07/06/git-%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3-in-pycharm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git 的开发使用文档 in pycharm | 只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">只不过是是随便写写啦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/git-%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3-in-pycharm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git 的开发使用文档 in pycharm
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-06 12:36:31" itemprop="dateCreated datePublished" datetime="2019-07-06T12:36:31+08:00">2019-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-07-28 14:06:12" itemprop="dateModified" datetime="2019-07-28T14:06:12+08:00">2019-07-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h2><ol>
+<li>从官网(<a target="_blank" rel="noopener" href="https://git-scm.com/downloads)%E9%80%89%E6%8B%A9%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85git">https://git-scm.com/downloads)选择自己的系统安装git</a></li>
+<li>在bash中使用<code>https://git-scm.com/downloads</code>命令来生成ssh key，连按三次回车即可。</li>
+<li>使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpjyqyirj31dk0ps412.jpg" alt="ssh"></p>
+<h2 id="将本地已存在的文件夹上传如alicode"><a href="#将本地已存在的文件夹上传如alicode" class="headerlink" title="将本地已存在的文件夹上传如alicode"></a>将本地已存在的文件夹上传如alicode</h2><p>在命令行中输入如下的指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@code.aliyun.com:why602443624/gitTest.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &#x27;commit message&#x27;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnh9xofyj31bs0vswpm.jpg" alt="Terminal"></p>
+<p>如下图，打开alicode后就可以看到，代码已经同步上去，同时在pycharm的项目中，我们可以看到git已经可以正常使用。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnjdafygj31w80t6tcj.jpg" alt="Alicode"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnk4y4qhj313413s1kx.jpg" alt="Pycharm"></p>
+<h2 id="pycharm里面使用git"><a href="#pycharm里面使用git" class="headerlink" title="pycharm里面使用git"></a>pycharm里面使用git</h2><ol>
+<li>首先在setting中设置git,一般都会自动检测git的位置。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnmjj7jdj31ci0xon4s.jpg" alt="Setting"></p>
+<ol start="2">
+<li>通过VCS-Checkout from version Control-Git去连接代码仓库仓库，clone代码</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnsm668kj30qy0dy0uq.jpg" alt="Clone"></p>
+<ol start="3">
+<li>在本地创建新的开发分支</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnvg0mx8j30oq0g60v9.jpg" alt="Create New Branch"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mntuboj3j30oa0d6q5t.jpg" alt="Create New Branch"></p>
+<ol start="4">
+<li>使用VCS-Git-Add（快捷键：optopn+command+A）进行add操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnxajqnzj31cc1464qp.jpg" alt="Add"></p>
+<ol start="5">
+<li>使用VCS-Git-Commit File or Directory进行commit操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mny0zbjtj30pi0mowqh.jpg" alt="Commit"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo0cagauj317y16y46g.jpg" alt="Commit"></p>
+<ol start="6">
+<li>pycharm中使用VCS-Git-Revert可进行回滚，或者直接使用pycharm自带的show history来进行回滚</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpbr2ydj313c130b29.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpw1w2sj30nq0vcjv1.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqbdzccj30yo184474.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqqdxoaj31vi12iwqz.jpg" alt="rollback"></p>
+<ol start="7">
+<li>使用VCS-Git-show history进行同分支下任意版本的回荡</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myoblhhtj314a13u4qp.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myomp1y9j30ry0pmn2c.jpg" alt="rollback"></p>
+<ol start="8">
+<li>切换到master分支后合并dev_loacl_feature分支</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo1rh6y6j30su0fidk3.jpg" alt="Checkout"></p>
+<ol start="9">
+<li>对master分支进行push操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg" alt="Push"></p>
+<ol start="10">
+<li>当处于正式开发时，普通情况下都不能push Master分支，你只能push dev_local_feature分支，push到代码平台需要进行merge request（合并请求），等到上司同意之后才能合并。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg" alt="Push Reject"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg" alt="Merge Request"></p>
+<h2 id="产生冲突的原因和冲突的解决方法"><a href="#产生冲突的原因和冲突的解决方法" class="headerlink" title="产生冲突的原因和冲突的解决方法"></a>产生冲突的原因和冲突的解决方法</h2><p>原因：两个分支各自都有了新的提交，且在同样的地方有了不同的修改,在合并的时候就会产生冲突。</p>
+<p>分支1</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg" alt="branch 1"></p>
+<p>分支2</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp8la9oaj30t40e40ti.jpg" alt="branch2"></p>
+<p>合并后产生冲突</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp9i6jzrj30vq0vetap.jpg" alt="conflict"></p>
+<p>解决冲突的方法：在pycharm中VCS-Git-Resolve Conflict来解决冲突<br><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpkunpyuj315q15s7wh.jpg" alt="Resolve Conflict"></p>
+<p>可以选择冲突的文件的其中之一或者自己修改后的文件</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mplfk9rij31si15yn2b.jpg" alt="Resolve Conflict"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/05/14/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E3%80%8AIncremental-Ensemble-Classifier-Addressing-Non-stationary-Fast-Data-Streams%E3%80%8B/" rel="prev" title="读书笔记--《Incremental Ensemble Classifier Addressing Non-stationary Fast Data Streams》">
+      <i class="fa fa-chevron-left"></i> 读书笔记--《Incremental Ensemble Classifier Addressing Non-stationary Fast Data Streams》
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/12/%E4%BD%BF%E7%94%A8FLASK%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%97%B6%EF%BC%8C%E5%AF%B9%E4%BA%8EREST%E6%9E%B6%E6%9E%84%E4%B8%ADAPI%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BF%9D%E6%8A%A4/" rel="next" title="使用FLASK搭建网站时，对于REST架构中API接口的保护">
+      使用FLASK搭建网站时，对于REST架构中API接口的保护 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">git的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E6%9C%AC%E5%9C%B0%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0%E5%A6%82alicode"><span class="nav-number">2.</span> <span class="nav-text">将本地已存在的文件夹上传如alicode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pycharm%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8git"><span class="nav-number">3.</span> <span class="nav-text">pycharm里面使用git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E5%86%B2%E7%AA%81%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E5%86%B2%E7%AA%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">产生冲突的原因和冲突的解决方法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

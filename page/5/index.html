@@ -1,22 +1,1232 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {%- if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta property="og:type" content="website">
+<meta property="og:title" content="只不过是是随便写写啦">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="只不过是是随便写写啦">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="老王">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>只不过是是随便写写啦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">只不过是是随便写写啦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/27/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">常用算法的介绍及分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-27 17:04:03" itemprop="dateCreated datePublished" datetime="2019-08-27T17:04:03+08:00">2019-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:47:10" itemprop="dateModified" datetime="2020-09-16T10:47:10+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)……</p>
+<h4 id="算法策略"><a href="#算法策略" class="headerlink" title="算法策略"></a>算法策略</h4><p>分治策略：对于一个规模为 n 的问题，若该问题可以容易地解决（比如说规模 n 较小）则直接解决，否则将其分解为 k 个规模较小的子问题，这些子问题互相独立且与原问题形式相同，递归地解这些子问题，然后将各子问题的解合并得到原问题的解。 在平时日常生活中，分治思想也是随处可见的。例如：当我们打牌时，在进行洗牌时，若牌的数目较多，一个人洗不过来，则会将牌进行分堆，单独洗一小堆牌是相对容易的，每一堆牌都洗完之后再放到一起，则完成洗牌过程。</p>
+<p>如果原问题可分割成k个子问题，1&lt;k≤n，且这些子问题都可解并可利用这些子问题的解求出原问题的解，那么这种分治法就是可行的。由分治法产生的子问题往往是原问题的较小模式，这就为使用递归技术提供了方便。在这种情况下，反复应用分治手段，可以使子问题与原问题类型一致而其规模却不断缩小，最终使子问题缩小到很容易直接求出其解。这自然导致递归过程的产生。分治与递归像一对孪生兄弟，经常同时应用在算法设计之中，并由此产生许多高效算法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/27/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%88%86%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/27/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">常用数据结构及排序算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-27 16:46:32" itemprop="dateCreated datePublished" datetime="2019-08-27T16:46:32+08:00">2019-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:52:40" itemprop="dateModified" datetime="2020-09-16T10:52:40+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="线性结构"><a href="#线性结构" class="headerlink" title="线性结构"></a>线性结构</h3><p><strong>顺序表</strong>：顺序表是内存中一块连续的区域，紧密排列了若干个相同类型的数据。但是，这种设计需要事先知道同样的元素一共有多少，不然就无法开辟出合适的内存区域（即会存在浪费或者不足）。在普通的编程语言中，数组就是顺序表的经典结构。而且Python中，list（列表）和tuple（元组）就具有顺序表的性质，但是list具有元素可变的性质，具体实现策略是：在建立空表（或很小的表）时，系统分配一块能够容纳8个元素的存储区域；在执行插入操作时，如果元素区满就换一块4倍大的存储区域。如果当时的存储取悦已经很大（当前是50000），系统将改变策略，换存储区域时，容量加倍。</p>
+<p><strong>链表</strong>：链表的诞生是为了解决线性表中元素数量不灵活的缺点。链表的基本单位是节点，每个节点都有一个数据区和next指针，其中的数据区是为了存放数据，next指针指向下一个节点。与顺序表相比，链表可以根据需要自由选择节点的数量，从而解决了内存分配不合适的问题。链表一般分为<strong>头插法</strong>和<strong>尾插法</strong>两种方式。头插法就是把新节点直接插在节点链的头部，比较适合构造栈；尾插法把新节点插在链表末尾，比较适合构造队列，而且需要额外的指针指向尾节点。插入过程如下：(1) 将新节点的next指针指向要插入的位置的后一个节点（new_node-&gt;next = p-&gt;next;）(2) 第二步，把要插入的位置的前一个节点的next指针指向新节点（p-&gt;next = new_node;）。删除节点过程如下：(1) 将要删除的节点的上一个节点的next指针指向被删除的节点的下一个节点（p-&gt;next = deleted_node-&gt;next;) (2) 释放被删除的节点（free(delete_node);）</p>
+<p>相关的python代码。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/27/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/Flask%E4%B8%ADhtml%E6%B2%A1%E6%9C%89%E4%BC%A0%E5%80%BC%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8request%E4%B8%8D%E6%8A%A5%E9%94%99%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/03/Flask%E4%B8%ADhtml%E6%B2%A1%E6%9C%89%E4%BC%A0%E5%80%BC%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8request%E4%B8%8D%E6%8A%A5%E9%94%99%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Flask中html没有传值时，使用request不报错的方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-03 16:08:45" itemprop="dateCreated datePublished" datetime="2019-08-03T16:08:45+08:00">2019-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:38:31" itemprop="dateModified" datetime="2020-09-16T10:38:31+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>之前使用<code>request.args[&#39;&#39;]</code>的方法来获取html的传值。但是使用这种方法传递数据时，如果没有传值网站会报404的错误。经过调查之后发现，使用<code>request.args.get(&#39;&#39;)</code>来获取传值时，如果没有传值，就不会报错，返回的数据为None。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/Python%E7%B1%BB%E4%B8%AD%E4%B8%80%E4%BA%9B%E8%A3%85%E9%A5%B0%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/30/Python%E7%B1%BB%E4%B8%AD%E4%B8%80%E4%BA%9B%E8%A3%85%E9%A5%B0%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Python类中一些装饰器的使用方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-30 20:43:54" itemprop="dateCreated datePublished" datetime="2019-07-30T20:43:54+08:00">2019-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:38:14" itemprop="dateModified" datetime="2020-09-16T10:38:14+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="classmethod"><a href="#classmethod" class="headerlink" title="@classmethod"></a>@classmethod</h3><p>类方法，不需要实例化，也不需要self参数，需要一个cls参数，可以用类名调用，也可以用对象来调用。</p>
+<p>原则上，类方法是将类本身作为对象进行操作的方法。假设有个方法，且这个方法在逻辑上采用类本身作为对象来调用更合理，那么这个方法就可以定义为类方法</p>
+<h3 id="staticmethod"><a href="#staticmethod" class="headerlink" title="@staticmethod"></a>@staticmethod</h3><p>静态方法，不需要实例化，不需要self和cls等参数，就跟使用普通的函数一样，只是封装在类中</p>
+<p>静态方法是类中的函数，不需要实例。静态方法主要是用来存放逻辑性的代码，逻辑上属于类，但是和类本身没有关系，也就是说在静态方法中，不会涉及到类中的属性和方法的操作。可以理解为，静态方法是个独立的、单纯的函数，它仅仅托管于某个类的名称空间中，便于使用和维护。</p>
+<h3 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h3><p>属性方法，主要作用是将一个操作方法封装成一个属性,用户用起来就和操作普通属性完全一致,非常简单.定义时，在实例方法的基础上添加@property装饰器，并且只有一个self参数，调用时，不需要括号</p>
+<p>@property 是经典类中的一种装饰器，新式类中具有三种:<br>1.@property获取属性<br>2.@方法名.setter 修改属性<br>3.@方法名.deleter 删除属性</p>
+<p><strong>总结</strong>：类方法，是直接对类操作时候定义的，实例化方法是操作实例化对象时候定义的，静态方法与类无关，就是独立的逻辑单元。@property是将方法转为属性，直接可使用其返回值，提供了可读可写可删除的操作，如果像只读效果，就只需要定义@property就可以，不定义代表禁止其他操作。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/%E4%BD%BF%E7%94%A8python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%EF%BC%8C%E6%8A%A5Connection-unexpectedly-closed%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/20/%E4%BD%BF%E7%94%A8python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%EF%BC%8C%E6%8A%A5Connection-unexpectedly-closed%E9%94%99/" class="post-title-link" itemprop="url">使用python发送邮件，报Connection unexpectedly closed错</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-20 18:29:09" itemprop="dateCreated datePublished" datetime="2019-07-20T18:29:09+08:00">2019-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:37:23" itemprop="dateModified" datetime="2020-09-16T10:37:23+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="使用python发送邮箱遇上的问题"><a href="#使用python发送邮箱遇上的问题" class="headerlink" title="使用python发送邮箱遇上的问题"></a>使用python发送邮箱遇上的问题</h3><p>按照网上的代码测试发邮件的功能时，发生<code>Connection unexpectedly closed</code>的错误，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">receive = &quot;收件箱地址&quot;</span><br><span class="line">sender = &#x27;发件箱地址&#x27;</span><br><span class="line">password = &#x27;发件箱的密码，一般是随机生成的&#x27;</span><br><span class="line">mailserver = &#x27;发件箱的smtp服务器地址&#x27;</span><br><span class="line">mailport = 465</span><br><span class="line"></span><br><span class="line">message = MIMEMultipart()</span><br><span class="line">message[&quot;From&quot;] = Header(&#x27;测试发送&#x27;, &#x27;utf-8&#x27;)</span><br><span class="line">message[&quot;To&quot;] = Header(&#x27;测试接受&#x27;, &#x27;utf-8&#x27;)</span><br><span class="line">message[&#x27;Subject&#x27;] = Header(&quot;python邮件发送的测试&quot;, &#x27;utf-8&#x27;)</span><br><span class="line"></span><br><span class="line">message.attach(MIMEText(&#x27;这是&#123;&#125;的报表&#x27;.format(today), &#x27;plain&#x27;, &#x27;utf-8&#x27;))</span><br><span class="line">att1 = MIMEText(open(r&#x27;/Users/walkyren/Desktop/&#123;&#125;order.xlsx&#x27;.format(today), &#x27;rb&#x27;).read(), &#x27;base64&#x27;, &#x27;utf-8&#x27;)</span><br><span class="line">att1[&quot;Content-Type&quot;] = &#x27;application/octet-stream&#x27;</span><br><span class="line">att1[&quot;Content-Disposition&quot;] = &#x27;attachment; filename=&quot;todayOrder.xlsx&quot;&#x27;</span><br><span class="line">message.attach(att1)</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    smtpObj = smtplib.SMTP(mailserver, mailport)</span><br><span class="line">    smtpObj.login(sender, password)</span><br><span class="line">    smtpObj.sendmail(sender, receive, message.as_string())</span><br><span class="line">    print(&quot;邮件发送成功&quot;)</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(e)</span><br></pre></td></tr></table></figure>
+<p>由于本人使用的发件箱是腾讯邮箱，而腾讯邮箱使用的是SSL进行加密，所以python中登录服务器也要使用SSL的方式。<br>需要将<code>smtpObj = smtplib.SMTP(mailserver, mailport)</code>改成<code>smtpObj = smtplib.SMTP_SSL(mailserver, mailport)</code>即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/%E4%BD%BF%E7%94%A8python%E7%94%9F%E6%88%90excel%E6%88%96csv%E6%96%87%E4%BB%B6%E9%81%87%E4%B8%8A%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/20/%E4%BD%BF%E7%94%A8python%E7%94%9F%E6%88%90excel%E6%88%96csv%E6%96%87%E4%BB%B6%E9%81%87%E4%B8%8A%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">使用python生成excel或csv文件遇上的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-20 18:18:52" itemprop="dateCreated datePublished" datetime="2019-07-20T18:18:52+08:00">2019-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:47:24" itemprop="dateModified" datetime="2020-09-16T10:47:24+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="使用pandas-DataFrame-to-excel-写入。"><a href="#使用pandas-DataFrame-to-excel-写入。" class="headerlink" title="使用pandas.DataFrame.to_excel()写入。"></a>使用pandas.DataFrame.to_excel()写入。</h3><p>假设字典dict={K_A:V_A, K_B:V_B, K_C:V_C}要生成表格</p>
+<p>使用命令<code>pandas.DataFrame(dict).to_excel(&#39;磁盘&#39;)</code>进行生成，如果V_A只是一个值，不能迭代，会报错： <code>ValueError: If using all scalar values, you must pass an index</code>。这是因为 pandas 的 DataFrame 方法需要传入一个可迭代的对象(列表，元组，字典等)，DataFrame 指定 index 参数就可以解决这个问题。修改后为命令为<code>pandas.DataFrame(dict,index=[0]).to_excel(&#39;本地地址&#39;)</code>。生成的excel表格第一列会显示index,在to_excel()方法中加入index=False方法即可去除。生成的单行数据表格的形式如下：</p>
+<table>
+<thead>
+<tr>
+<th>K_A</th>
+<th>K_B</th>
+<th>K_C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V_A</td>
+<td>V_B</td>
+<td>V_C</td>
+</tr>
+</tbody></table>
+<p>如果需要生成多行数据，那么字典中的键值对的值必须是列表，如字典dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1,V_C2]}可生成以下表格：</p>
+<table>
+<thead>
+<tr>
+<th>K_A</th>
+<th>K_B</th>
+<th>K_C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V_A1</td>
+<td>V_B1</td>
+<td>V_C1</td>
+</tr>
+<tr>
+<td>V_A2</td>
+<td>V_B2</td>
+<td>V_C2</td>
+</tr>
+</tbody></table>
+<h3 id="列表元素不一致时，报arrays-must-all-be-same-length错"><a href="#列表元素不一致时，报arrays-must-all-be-same-length错" class="headerlink" title="列表元素不一致时，报arrays must all be same length错"></a>列表元素不一致时，报arrays must all be same length错</h3><p>如果字典中键值对中的value中的列表的元素数量不一样，如dict={K_A:[V_A1,V_A2], K_B:[V_B1,V_B2], K_C:[V_C1]}，就无法使用<code>pandas.DataFrame().to_excel()</code>生成表格，会报错：<code>ValueError: arrays must all be same length</code>。原因是因为使用dataframe(dict) 构建dataframe时，每个key会变成一个column，list-like values会变为行，每个values中的list长度不一致就会出现这个错误。如果需要使用to_excel生成表格，就需要将不一样长度的列表填充空值，或者使用<strong>xlsxwriter</strong>方法来生成excel，相关代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">workbook = xlsxwriter.Workbook(<span class="string">&#x27;磁盘地址&#x27;</span>)</span><br><span class="line">worksheet = workbook.add_worksheet()</span><br><span class="line"></span><br><span class="line">row = <span class="number">0</span></span><br><span class="line">col = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> <span class="built_in">dict</span>.keys():</span><br><span class="line">    row = <span class="number">0</span></span><br><span class="line">    worksheet.write(row, col, key)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">dict</span>[key]:</span><br><span class="line">        worksheet.write(row+<span class="number">1</span>, col, item)</span><br><span class="line">        row += <span class="number">1</span></span><br><span class="line">    col += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">数据库的相关知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-20 18:08:54" itemprop="dateCreated datePublished" datetime="2019-07-20T18:08:54+08:00">2019-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:49:29" itemprop="dateModified" datetime="2020-09-16T10:49:29+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h3><p>平常使用的关系型数据库（如mysql）中，主要分为两种类型，分别是<strong>innodb</strong>和<strong>myisam</strong>。其中innodb和myisam主要的差别为：</p>
+<ol>
+<li>事务和外键：<strong>InnoDB</strong>具有事务，支持4个事务隔离级别，回滚，崩溃修复能力和多版本并发的事务安全，包括ACID。如果应用中需要执行大量的INSERT或UPDATE操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。<strong>MyISAM</strong>管理非事务表。它提供高速存储和检索，以及全文搜索能力。如果应用中需要执行大量的SELECT查询，那么MyISAM是更好的选择</li>
+<li>全文索引：早期innodb不支持全文索引，在mysql5.6版本之后，innodb开始支持全文索引，5.7版本之后，通过使用ngram支持中文。</li>
+<li>锁：<strong>MyISAM</strong>支持表级锁定，提供与 Oracle 类型一致的不加锁读取(non-locking read in SELECTs)。<strong>InnoDB</strong>支持行级锁，InnoDB表的行锁也不是绝对的，如果在执行一个SQL语句时MySQL不能确定要扫描的范围，InnoDB表同样会锁全表，注意间隙锁的影响</li>
+<li>存储：<strong>MyISAM</strong>在磁盘上存储成三个文件。第一个文件的名字以表的名字开始，扩展名指出文件类型，.frm文件存储表定义，数据文件的扩展名为.MYD，索引文件的扩展名是.MYI。<strong>InnoDB</strong>，基于磁盘的资源是InnoDB表空间数据文件和它的日志文件，InnoDB 表的大小只受限于操作系统文件的大小</li>
+<li>索引：<strong>InnoDB</strong>使用的聚簇索引、索引就是数据，顺序存储，因此能缓存索引，也能缓存数据。<strong>MyISAM</strong>使用的是非聚簇索引、索引和文件分开，随机存储，只能缓存索引。</li>
+<li>并发：<strong>MyISAM</strong>读写互相阻塞：不仅会在写入的时候阻塞读取，MyISAM还会在读取的时候阻塞写入，但读本身并不会阻塞另外的读。<strong>InnoDB</strong>读写阻塞与事务隔离级别相关。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9A%8F%E7%AC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/13/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9A%8F%E7%AC%94/" class="post-title-link" itemprop="url">工作中的一些随笔</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-13 18:37:13" itemprop="dateCreated datePublished" datetime="2019-07-13T18:37:13+08:00">2019-07-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 11:02:13" itemprop="dateModified" datetime="2020-09-16T11:02:13+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="关于数据库的使用"><a href="#关于数据库的使用" class="headerlink" title="关于数据库的使用"></a>关于数据库的使用</h3><p>不能使用远程主数据库进行调试，不能使用远程主数据库进行调试,不能使用远程主数据库进行调试 重要的事情说三次。<br>如需要调试请务必使用本地服务器，需要从远程数据库导出数据库到本地。</p>
+<p>导出方式(workbench)：</p>
+<p>从所选择的连接中选择左边栏中Data Export，选择你想导出的数据库，点击Start Export进行数据导出。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz3rok38j32701544qp.jpg" alt="Export"></p>
+<p>导入：</p>
+<p>选择本地连接左边栏中的Data Import/Restore, 选择之前导出文件的地址，在选择需要导入的数据库和表，点击Start Import进行导入。如果遇到@@GLOBAL.GTID_MODE = OFF的报错，则需要在数据库导出的时候，打开Advanced Options，其中set-gtid-purged - Add ‘SET @@GLOBAL.GTID_PURGED’ to the output选项改成OFF，即可成功导入。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz4r6xhwj326m13ytzw.jpg" alt="Import"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4wz575499j31bs0quh3d.jpg" alt="GTOD_PURGED"></p>
+<h3 id="关于需求的理解"><a href="#关于需求的理解" class="headerlink" title="关于需求的理解"></a>关于需求的理解</h3><p>编码之前需要详细理解需求，上司提出的需要需要详细了解。如“数据管理API：更新host和模板的关系”，是指在api中添加能够用更新host和模板的api。</p>
+<p>如果遇到疑问，应该及时去向上司请教。</p>
+<h3 id="对于REST结构的理解"><a href="#对于REST结构的理解" class="headerlink" title="对于REST结构的理解"></a>对于REST结构的理解</h3><p>一句话，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
+<p>其中Flask中有flask.ext库来实现Rest网络编程，简介可参考(<a target="_blank" rel="noopener" href="http://www.pythondoc.com/Flask-RESTful/quickstart.html">http://www.pythondoc.com/Flask-RESTful/quickstart.html</a>)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/%E4%BD%BF%E7%94%A8FLASK%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%97%B6%EF%BC%8C%E5%AF%B9%E4%BA%8EREST%E6%9E%B6%E6%9E%84%E4%B8%ADAPI%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BF%9D%E6%8A%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/12/%E4%BD%BF%E7%94%A8FLASK%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%97%B6%EF%BC%8C%E5%AF%B9%E4%BA%8EREST%E6%9E%B6%E6%9E%84%E4%B8%ADAPI%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BF%9D%E6%8A%A4/" class="post-title-link" itemprop="url">使用FLASK搭建网站时，对于REST架构中API接口的保护</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-12 15:39:07" itemprop="dateCreated datePublished" datetime="2019-07-12T15:39:07+08:00">2019-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-16 10:37:14" itemprop="dateModified" datetime="2020-09-16T10:37:14+08:00">2020-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="REST架构的开发"><a href="#REST架构的开发" class="headerlink" title="REST架构的开发"></a>REST架构的开发</h3><p>由于小白第一次进行正式项目的开发，对REST(REpresentational State Transfer, 表现层状态转移)架构开发不是特别了解,所以特别了解了一下REST架构和RESTful API。</p>
+<p>其中REST架构用最简洁的语言说明就是，对数据的增删改查都是一个地址，具体的操作靠http的头部信息[GET, POST, PUT, DELETE]来判断。</p>
+<p>详细的说明可以参考知乎(<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27785028)%EF%BC%8C">https://www.zhihu.com/question/27785028)，</a> 相关官网 (<a target="_blank" rel="noopener" href="https://restfulapi.net/)%EF%BC%8C%E6%9C%89%E8%83%BD%E5%8A%9B%E7%9A%84%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E9%98%85%E8%AF%BBRoy">https://restfulapi.net/)，有能力的可以直接阅读Roy</a> Thomas Fielding的博士论文。</p>
+<h3 id="RESTapi的保护"><a href="#RESTapi的保护" class="headerlink" title="RESTapi的保护"></a>RESTapi的保护</h3><p>项目的开发使用的是PYTHON的flask框架，flask框架中拥有flask_HTTPAuth拓展（使用pip安装即可）来对api进行保护。Flask-HTTPAuth 扩展可以很好地对 HTTP 的请求进行认证，不依赖于 Cookie 和 Session。相关的介绍在可以参考博客(<a target="_blank" rel="noopener" href="http://www.bjhee.com/flask-ext9.html)%E6%88%96%E8%80%85%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%8B%B1%E6%96%87%E6%96%87%E6%A1%A3(https://flask-httpauth.readthedocs.io/en/latest/)%E3%80%82">http://www.bjhee.com/flask-ext9.html)或者直接看英文文档(https://flask-httpauth.readthedocs.io/en/latest/)。</a></p>
+<p>由于此次搭建的网站只是最简单的小说站，并不存在网络的登录账号，所以此次就只使用最简单的账号密码的方式来进行权限认证。</p>
+<h3 id="Flask-HTTPAuth的使用"><a href="#Flask-HTTPAuth的使用" class="headerlink" title="Flask_HTTPAuth的使用"></a>Flask_HTTPAuth的使用</h3><p>首先需要创建实例化的对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask_httpauth import HTTPBasicAuth</span><br><span class="line"> </span><br><span class="line">app = Flask(__name__)</span><br><span class="line">auth = HTTPBasicAuth()</span><br></pre></td></tr></table></figure>
+<p>其中导入的HTTPBasicAuth方法是基于账号密码，还有HTTPTokenAuth，MultiAuth和HTTPDigestAuth这三种方法，分别书基于Token的认证，基于多种方式的认证和摘要认证。</p>
+<p>此处详细说明一下账号认证，为了简单说明，且项目数据库也不存在账号，所以此处把用户名置于一个数组内，所以我们所要做的，就是实现一个根据用户名获取密码的回调函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">users = [</span><br><span class="line">    &#123;&#x27;username&#x27;: &#x27;Tom&#x27;, &#x27;password&#x27;: &#x27;111111&#x27;&#125;,</span><br><span class="line">    &#123;&#x27;username&#x27;: &#x27;Michael&#x27;, &#x27;password&#x27;: &#x27;123456&#x27;&#125;</span><br><span class="line">]</span><br><span class="line"> </span><br><span class="line">@auth.get_password</span><br><span class="line">def get_password(username):</span><br><span class="line">    for user in users:</span><br><span class="line">        if user[&#x27;username&#x27;] == username:</span><br><span class="line">            return user[&#x27;password&#x27;]</span><br><span class="line">    return None</span><br></pre></td></tr></table></figure>
+<p>回调函数”get_password()”由装饰器”@auth.get_password”修饰。在函数里，我们根据传入的用户名，返回其密码；如果用户不存在，则返回空。接下来，我们就可以在任一视图函数上，加上”@auth.login_required”装饰器，来表示该视图需要认证：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">@auth.login_required</span><br><span class="line">def index():</span><br><span class="line">    return &quot;Hello, %s!&quot; % auth.username()</span><br></pre></td></tr></table></figure>
+<p>在经手的项目中，在api接口处加上@auth.get_password和@auth.login_required。同时在使用requests请求api界面内容时，添加相关的auth参数来完成权限的认证，如<code>requests.get(&#39;api interface host&#39;, auth=(username,userpwd))</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/git-%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3-in-pycharm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="老王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只不过是是随便写写啦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/06/git-%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3-in-pycharm/" class="post-title-link" itemprop="url">git 的开发使用文档 in pycharm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-06 12:36:31" itemprop="dateCreated datePublished" datetime="2019-07-06T12:36:31+08:00">2019-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-07-28 14:06:12" itemprop="dateModified" datetime="2019-07-28T14:06:12+08:00">2019-07-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h2><ol>
+<li>从官网(<a target="_blank" rel="noopener" href="https://git-scm.com/downloads)%E9%80%89%E6%8B%A9%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85git">https://git-scm.com/downloads)选择自己的系统安装git</a></li>
+<li>在bash中使用<code>https://git-scm.com/downloads</code>命令来生成ssh key，连按三次回车即可。</li>
+<li>使用文本阅读器打开.ssh文件夹下生成的.pub文件，将里面的内容复制进入个人设置，ssh公钥中，标题随意。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpjyqyirj31dk0ps412.jpg" alt="ssh"></p>
+<h2 id="将本地已存在的文件夹上传如alicode"><a href="#将本地已存在的文件夹上传如alicode" class="headerlink" title="将本地已存在的文件夹上传如alicode"></a>将本地已存在的文件夹上传如alicode</h2><p>在命令行中输入如下的指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@code.aliyun.com:why602443624/gitTest.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &#x27;commit message&#x27;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnh9xofyj31bs0vswpm.jpg" alt="Terminal"></p>
+<p>如下图，打开alicode后就可以看到，代码已经同步上去，同时在pycharm的项目中，我们可以看到git已经可以正常使用。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnjdafygj31w80t6tcj.jpg" alt="Alicode"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnk4y4qhj313413s1kx.jpg" alt="Pycharm"></p>
+<h2 id="pycharm里面使用git"><a href="#pycharm里面使用git" class="headerlink" title="pycharm里面使用git"></a>pycharm里面使用git</h2><ol>
+<li>首先在setting中设置git,一般都会自动检测git的位置。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnmjj7jdj31ci0xon4s.jpg" alt="Setting"></p>
+<ol start="2">
+<li>通过VCS-Checkout from version Control-Git去连接代码仓库仓库，clone代码</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnsm668kj30qy0dy0uq.jpg" alt="Clone"></p>
+<ol start="3">
+<li>在本地创建新的开发分支</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnvg0mx8j30oq0g60v9.jpg" alt="Create New Branch"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mntuboj3j30oa0d6q5t.jpg" alt="Create New Branch"></p>
+<ol start="4">
+<li>使用VCS-Git-Add（快捷键：optopn+command+A）进行add操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mnxajqnzj31cc1464qp.jpg" alt="Add"></p>
+<ol start="5">
+<li>使用VCS-Git-Commit File or Directory进行commit操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mny0zbjtj30pi0mowqh.jpg" alt="Commit"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo0cagauj317y16y46g.jpg" alt="Commit"></p>
+<ol start="6">
+<li>pycharm中使用VCS-Git-Revert可进行回滚，或者直接使用pycharm自带的show history来进行回滚</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpbr2ydj313c130b29.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtpw1w2sj30nq0vcjv1.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqbdzccj30yo184474.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mtqqdxoaj31vi12iwqz.jpg" alt="rollback"></p>
+<ol start="7">
+<li>使用VCS-Git-show history进行同分支下任意版本的回荡</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myoblhhtj314a13u4qp.jpg" alt="rollback"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4myomp1y9j30ry0pmn2c.jpg" alt="rollback"></p>
+<ol start="8">
+<li>切换到master分支后合并dev_loacl_feature分支</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo1rh6y6j30su0fidk3.jpg" alt="Checkout"></p>
+<ol start="9">
+<li>对master分支进行push操作</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mo2i1o6kj31280wq7bj.jpg" alt="Push"></p>
+<ol start="10">
+<li>当处于正式开发时，普通情况下都不能push Master分支，你只能push dev_local_feature分支，push到代码平台需要进行merge request（合并请求），等到上司同意之后才能合并。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj2aituyj30tq0cadgq.jpg" alt="Push Reject"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4uj334wn2j327416eah3.jpg" alt="Merge Request"></p>
+<h2 id="产生冲突的原因和冲突的解决方法"><a href="#产生冲突的原因和冲突的解决方法" class="headerlink" title="产生冲突的原因和冲突的解决方法"></a>产生冲突的原因和冲突的解决方法</h2><p>原因：两个分支各自都有了新的提交，且在同样的地方有了不同的修改,在合并的时候就会产生冲突。</p>
+<p>分支1</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp80eitvj30t60bu750.jpg" alt="branch 1"></p>
+<p>分支2</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp8la9oaj30t40e40ti.jpg" alt="branch2"></p>
+<p>合并后产生冲突</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mp9i6jzrj30vq0vetap.jpg" alt="conflict"></p>
+<p>解决冲突的方法：在pycharm中VCS-Git-Resolve Conflict来解决冲突<br><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mpkunpyuj315q15s7wh.jpg" alt="Resolve Conflict"></p>
+<p>可以选择冲突的文件的其中之一或者自己修改后的文件</p>
+<p><img src="http://ww1.sinaimg.cn/large/007useIpgy1g4mplfk9rij31si15yn2b.jpg" alt="Resolve Conflict"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">老王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">老王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
